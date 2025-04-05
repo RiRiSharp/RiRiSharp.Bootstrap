@@ -1,4 +1,6 @@
-﻿namespace RiRiSharp.Bootstrap.Core.Content.Images;
+﻿using System.Text;
+
+namespace RiRiSharp.Bootstrap.Core.Content.Images;
 
 [Flags]
 public enum ImageOptions
@@ -7,19 +9,36 @@ public enum ImageOptions
     Fluid = 1 << 0,
     Thumbnail = 1 << 1,
     Rounded = 1 << 2,
+    Figure = 1 << 3,
 }
 
 public static class ImageOptionsExtensions
 {
+    private static readonly Dictionary<ImageOptions, string> ClassMapping = new()
+    {
+        { ImageOptions.Fluid, "img-fluid" },
+        { ImageOptions.Thumbnail, "img-thumbnail" },
+        { ImageOptions.Rounded, "rounded" },
+        { ImageOptions.Figure, "figure-img" },
+    };
+
     public static string ToBootstrapClass(this ImageOptions imageOptions)
     {
-        var classes = string.Empty;
-        if (imageOptions == ImageOptions.None) return classes;
-        
-        if(imageOptions.HasFlag(ImageOptions.Fluid)) classes += " img-fluid";
-        if(imageOptions.HasFlag(ImageOptions.Thumbnail)) classes += " img-thumbnail";
-        if(imageOptions.HasFlag(ImageOptions.Rounded)) classes += " rounded";
+        return imageOptions.BuildBootstrapClassInner();
+    }
 
-        return classes;
+    private static string BuildBootstrapClassInner(this ImageOptions tableOptions)
+    {
+        var returnClass = new StringBuilder();
+
+        foreach (var entry in ClassMapping)
+        {
+            if (tableOptions.HasFlag(entry.Key))
+            {
+                returnClass.Append(' ').Append(entry.Value);
+            }
+        }
+
+        return returnClass.ToString();
     }
 }
