@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB4B239C-A99E-4442-AFAE-1E8AB6CCF2A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core.Tests", "RiRiSharp.Bootstrap.Core.Tests\RiRiSharp.Bootstrap.Core.Tests.csproj", "{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core", "RiRiSharp.Bootstrap.Core\RiRiSharp.Bootstrap.Core.csproj", "{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E1EFF903-8550-46C6-9A16-52056A1BD4EE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B87D6DF7-85F4-4E0A-AB12-5D0EA352F510}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Packages.props = Directory.Packages.props
 		README.md = README.md
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Global
@@ -26,6 +30,9 @@ Global
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A} = {BB4B239C-A99E-4442-AFAE-1E8AB6CCF2A5}

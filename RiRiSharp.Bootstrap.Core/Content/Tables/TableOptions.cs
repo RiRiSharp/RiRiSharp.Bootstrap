@@ -1,5 +1,5 @@
-﻿using System.Text;
-using RiRiSharp.Bootstrap.Core.Exceptions;
+﻿using RiRiSharp.Bootstrap.Core.Exceptions;
+using System.Text;
 
 namespace RiRiSharp.Bootstrap.Core.Content.Tables;
 
@@ -37,31 +37,12 @@ public enum TableOptions : long
     TableSmall = 1 << 21,
 
     CaptionTop = 1 << 22,
+
+    TableActive = 1 << 23,
 }
 
 public static class TableOptionsExtensions
 {
-    private const TableOptions _colorMask = TableOptions.TablePrimary |
-                                            TableOptions.TableSecondary |
-                                            TableOptions.TableSuccess |
-                                            TableOptions.TableDanger |
-                                            TableOptions.TableWarning |
-                                            TableOptions.TableInfo |
-                                            TableOptions.TableLight |
-                                            TableOptions.TableDark;
-
-    private const TableOptions _stripedMask = TableOptions.TableStriped |
-                                              TableOptions.TableStripedColumns;
-
-    private const TableOptions _tableBorderMask = TableOptions.TableBordered |
-                                                  TableOptions.TableBorderless;
-
-    private const TableOptions _borderColorMask = TableOptions.TableBorderless | TableOptions.BorderPrimary |
-                                                  TableOptions.BorderSecondary | TableOptions.BorderSuccess |
-                                                  TableOptions.BorderDanger | TableOptions.BorderWarning |
-                                                  TableOptions.BorderInfo | TableOptions.BorderLight |
-                                                  TableOptions.BorderDark;
-
     private static readonly Dictionary<TableOptions, string> ClassMapping = new()
     {
         { TableOptions.TablePrimary, "table-primary" },
@@ -89,30 +70,99 @@ public static class TableOptionsExtensions
         { TableOptions.CaptionTop, "caption-top" }
     };
 
-    public static string ToBootstrapClass(this TableOptions options)
-    {
-        var isValid = options.Validate();
-        if (!isValid) throw new InvalidTableOptionsException();
+    private const TableOptions _colorMask = TableOptions.TablePrimary |
+                                            TableOptions.TableSecondary |
+                                            TableOptions.TableSuccess |
+                                            TableOptions.TableDanger |
+                                            TableOptions.TableWarning |
+                                            TableOptions.TableInfo |
+                                            TableOptions.TableLight |
+                                            TableOptions.TableDark;
 
+    private const TableOptions _stripedMask = TableOptions.TableStriped |
+                                              TableOptions.TableStripedColumns;
+
+    private const TableOptions _tableBorderMask = TableOptions.TableBordered |
+                                                  TableOptions.TableBorderless;
+
+    private const TableOptions _borderColorMask = TableOptions.TableBorderless |
+                                                  TableOptions.BorderPrimary |
+                                                  TableOptions.BorderSecondary |
+                                                  TableOptions.BorderSuccess |
+                                                  TableOptions.BorderDanger |
+                                                  TableOptions.BorderWarning |
+                                                  TableOptions.BorderInfo |
+                                                  TableOptions.BorderLight |
+                                                  TableOptions.BorderDark;
+
+    // For <table> everything is an allowable option, except table active
+    private const TableOptions _tableMask = ~TableOptions.TableActive;
+
+    private const TableOptions _rowMask = TableOptions.TablePrimary |
+                                          TableOptions.TableSecondary |
+                                          TableOptions.TableSuccess |
+                                          TableOptions.TableDanger |
+                                          TableOptions.TableWarning |
+                                          TableOptions.TableInfo |
+                                          TableOptions.TableLight |
+                                          TableOptions.TableDark |
+                                          TableOptions.TableActive;
+
+    private const TableOptions _tableHeadMask = TableOptions.TablePrimary |
+                                                TableOptions.TableSecondary |
+                                                TableOptions.TableSuccess |
+                                                TableOptions.TableDanger |
+                                                TableOptions.TableWarning |
+                                                TableOptions.TableInfo |
+                                                TableOptions.TableLight |
+                                                TableOptions.TableDark;
+
+    public static string ToBootstrapTableClass(this TableOptions options)
+    {
+        var relevantTableOptions = options |= _tableMask;
+        relevantTableOptions.ValidateIllegalCombinations();
+
+        return options.BuildBootstrapClassInner();
+    }
+
+    public static string ToBootstrapRowOrDataClass(this TableOptions options)
+    {
+        var relevantRowOptions = options | _rowMask;
+        relevantRowOptions.ValidateIllegalCombinations();
+
+        return options.BuildBootstrapClassInner();
+    }
+
+    public static string ToBootstrapTableHeadClass(this TableOptions options)
+    {
+        var relevantTableHeadOptions = options | _tableHeadMask;
+        relevantTableHeadOptions.ValidateIllegalCombinations();
+
+        return options.BuildBootstrapClassInner();
+    }
+
+    private static void ValidateIllegalCombinations(this TableOptions tableOptions)
+    {
+        var isValid = tableOptions.HasZeroOrOneBitsSetInMask(_colorMask) &&
+                      tableOptions.HasZeroOrOneBitsSetInMask(_stripedMask) &&
+                      tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask) &&
+                      tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
+        if (!isValid) throw new InvalidTableOptionsException();
+    }
+
+    private static string BuildBootstrapClassInner(this TableOptions tableOptions)
+    {
         var returnClass = new StringBuilder();
 
         foreach (var entry in ClassMapping)
         {
-            if (options.HasFlag(entry.Key))
+            if (tableOptions.HasFlag(entry.Key))
             {
                 returnClass.Append(' ').Append(entry.Value);
             }
         }
 
         return returnClass.ToString();
-    }
-
-    public static bool Validate(this TableOptions tableOptions)
-    {
-        return tableOptions.HasZeroOrOneBitsSetInMask(_colorMask) &&
-               tableOptions.HasZeroOrOneBitsSetInMask(_stripedMask) &&
-               tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask) &&
-               tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
     }
 
     private static bool HasZeroOrOneBitsSetInMask(this TableOptions tableOptions, TableOptions mask)

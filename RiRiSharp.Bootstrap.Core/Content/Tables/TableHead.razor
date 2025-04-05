@@ -1,0 +1,9 @@
+﻿@inherits BootstrapCoreChildContentComponent
+
+<tr @attributes="AdditionalAttributes" class="@(Options.ToBootstrapTableHeadClass()) @(Classes)">
+    @(ChildContent)
+</tr>
+
+@code{
+    [Parameter] public TableOptions Options { get; set; }
+}
