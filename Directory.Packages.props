@@ -3,10 +3,19 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AspNetCore.SassCompiler" Version="1.85.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="9.0.2" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.2" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.2" />
-    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.8.1" />
+    <PackageVersion Include="AspNetCore.SassCompiler" Version="1.85.1"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="8.0.14"/>
+
+    <PackageVersion Include="bunit" Version="1.39.5"/>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0"/>
+    <PackageVersion Include="coverlet.collector" Version="6.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+    <PackageVersion Include="xunit" Version="2.9.3"/>
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageVersion>
   </ItemGroup>
 </Project>

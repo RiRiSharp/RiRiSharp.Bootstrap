@@ -13,7 +13,7 @@
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="grid" diff:ignoreChildren></div>
+            @<div class="clearfix" diff:ignoreChildren></div>
         );
     }
 
@@ -34,7 +34,7 @@
 
         // The space afterward is necessary 'cause it ensures the attribute class is created
         cut.Find("div").MarkupMatches(
-            @<div class="grid @(classes)" diff:ignoreChildren></div>
+            @<div class="clearfix @(classes)" diff:ignoreChildren></div>
         );
     }
 
@@ -49,7 +49,7 @@
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="grid" test-attribute="@(attributeValue)" diff:ignoreChildren></div>
+            @<div class="clearfix" test-attribute="@(attributeValue)" diff:ignoreChildren></div>
         );
     }
 }
