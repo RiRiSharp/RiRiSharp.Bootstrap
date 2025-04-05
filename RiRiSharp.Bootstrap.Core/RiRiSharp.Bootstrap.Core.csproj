@@ -11,16 +11,4 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EditorConfigFiles Remove="C:\Code\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.Core\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="C:\Code\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.Core\.editorconfig" />
-  </ItemGroup>
-
 </Project>

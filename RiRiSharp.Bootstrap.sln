@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB4B239C-A99E-4442-AFAE-1E8AB6CCF2A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core.Tests", "RiRiSharp.Bootstrap.Core.Tests\RiRiSharp.Bootstrap.Core.Tests.csproj", "{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core.UnitTests", "RiRiSharp.Bootstrap.Core.UnitTests\RiRiSharp.Bootstrap.Core.UnitTests.csproj", "{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core", "RiRiSharp.Bootstrap.Core\RiRiSharp.Bootstrap.Core.csproj", "{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}"
 EndProject
