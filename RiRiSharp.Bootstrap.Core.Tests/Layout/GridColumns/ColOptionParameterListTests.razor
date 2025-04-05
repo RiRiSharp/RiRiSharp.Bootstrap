@@ -1,0 +1,94 @@
+﻿@using RiRiSharp.Bootstrap.Core.Layout.GridColumns
+@inherits TestContext
+
+@code {
+    [Theory]
+    [InlineData(GridColumnOptions.Sm, "g-col-sm")]
+    [InlineData(GridColumnOptions.Md, "g-col-md")]
+    [InlineData(GridColumnOptions.Lg, "g-col-lg")]
+    [InlineData(GridColumnOptions.Xl, "g-col-xl")]
+    [InlineData(GridColumnOptions.Xxl, "g-col-xxl")]
+    public void BreakpointWorkInListForm(GridColumnOptions gridColumnOptions, string expectedClass)
+    {
+        var cut = Render(
+            @<GridColumn GridOptionsList="[gridColumnOptions]">
+                <hr/>
+            </GridColumn>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData(GridColumnOptions.GCol1, "g-col-1")]
+    [InlineData(GridColumnOptions.GCol2, "g-col-2")]
+    [InlineData(GridColumnOptions.GCol3, "g-col-3")]
+    [InlineData(GridColumnOptions.GCol4, "g-col-4")]
+    [InlineData(GridColumnOptions.GCol5, "g-col-5")]
+    [InlineData(GridColumnOptions.GCol6, "g-col-6")]
+    [InlineData(GridColumnOptions.GCol7, "g-col-7")]
+    [InlineData(GridColumnOptions.GCol8, "g-col-8")]
+    [InlineData(GridColumnOptions.GCol9, "g-col-9")]
+    [InlineData(GridColumnOptions.GCol10, "g-col-10")]
+    [InlineData(GridColumnOptions.GCol11, "g-col-11")]
+    [InlineData(GridColumnOptions.GCol12, "g-col-12")]
+    [InlineData(GridColumnOptions.GColAuto, "g-col-auto")]
+    public void ColWidthWorkInListForm(GridColumnOptions gridColumnOptions, string expectedClass)
+    {
+        var cut = Render(
+            @<GridColumn GridOptionsList="[gridColumnOptions]">
+                <hr/>
+            </GridColumn>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData(GridColumnOptions.GColSm4, "g-col-sm-4")]
+    [InlineData(GridColumnOptions.GColMd4, "g-col-md-4")]
+    [InlineData(GridColumnOptions.GColMd12, "g-col-md-12")]
+    [InlineData(GridColumnOptions.GColLgAuto, "g-col-lg-auto")]
+    [InlineData(GridColumnOptions.GColLg7, "g-col-lg-7")]
+    [InlineData(GridColumnOptions.GColXl7, "g-col-xl-7")]
+    [InlineData(GridColumnOptions.GColXxl1, "g-col-xxl-1")]
+    public void ColumnOptionWorksInListForm(GridColumnOptions gridColumnOptions, string expectedClass)
+    {
+        var cut = Render(
+            @<GridColumn GridOptionsList="[gridColumnOptions]">
+                <hr/>
+            </GridColumn>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+        );
+    }
+
+
+    [Theory]
+    [InlineData(new[] { GridColumnOptions.GColSm6, GridColumnOptions.GColMd5 }, new[] { "g-col-sm-6", "g-col-md-5" })]
+    [InlineData(new[] { GridColumnOptions.GColMd4, GridColumnOptions.GColLg7 }, new[] { "g-col-md-4", "g-col-lg-7" })]
+    [InlineData(new[] { GridColumnOptions.GColMd12, GridColumnOptions.Xxl }, new[] { "g-col-md-12", "g-col-xxl" })]
+    [InlineData(new[] { GridColumnOptions.GColLgAuto, GridColumnOptions.Default }, new[] { "g-col-lg-auto", "" })]
+    [InlineData(new[] { GridColumnOptions.GColLg7, GridColumnOptions.GColSm6 }, new[] { "g-col-lg-7", "g-col-sm-6" })]
+    [InlineData(new[] { GridColumnOptions.Default, GridColumnOptions.GColXl7 }, new[] { "g-col-xl-7", "" })]
+    [InlineData(new[] { GridColumnOptions.GColXxl1, GridColumnOptions.GColMd4 }, new[] { "g-col-xxl-1", "g-col-md-4" })]
+    public void GridColumnOptionsWorkInListForm(GridColumnOptions[] gridColumnOptions, string[] expectedClasses)
+    {
+        var cut = Render(
+            @<GridColumn GridOptionsList="gridColumnOptions.ToList()">
+                <hr/>
+            </GridColumn>
+        );
+
+        var expectedClassesAsOne = string.Join(' ', expectedClasses);
+        cut.Find("div").MarkupMatches(
+            @<div class="@(expectedClassesAsOne)" diff:ignoreChildren></div>
+        );
+    }
+}

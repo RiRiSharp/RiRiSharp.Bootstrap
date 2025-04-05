@@ -1,0 +1,54 @@
+﻿@inherits TestContext
+
+@code {
+    [Fact]
+    public void DefaultWorks()
+    {
+        // Arrange
+        var cut = Render(
+            @<GridColumn>
+                <hr/>
+            </GridColumn>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
+    public void PassingClassesWorks(string classes)
+    {
+        // Arrange
+        var cut = Render(
+            @<GridColumn Classes="@(classes)">
+                <hr/>
+            </GridColumn>
+        );
+
+        // The space afterward is necessary 'cause it ensures the attribute class is created
+        cut.Find("div").MarkupMatches(
+            @<div class="@(classes) " diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData("testAttributeValue")]
+    public void ExtraAttributesWorks(string attributeValue)
+    {
+        var cut = Render(
+            @<GridColumn test-attribute="@(attributeValue)">
+                <hr/>
+            </GridColumn>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="" test-attribute="@(attributeValue)" diff:ignoreChildren></div>
+        );
+    }
+}

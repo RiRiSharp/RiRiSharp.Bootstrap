@@ -1,0 +1,10 @@
+﻿@inherits BootstrapCoreChildContentComponent
+
+<span @attributes="AdditionalAttributes" class="@(Type.ToBootstrapClass()) @(Classes)">
+    @(ChildContent)
+</span>
+
+
+@code {
+    [Parameter] public DisplayHeadingType Type { get; set; }
+}

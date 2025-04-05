@@ -1,0 +1,9 @@
+﻿@inherits BootstrapCoreChildContentComponent
+
+<div @attributes="AdditionalAttributes" class="@(ContainerBreakpoint.ToBootstrapClass()) @(Classes)">
+    @(ChildContent)
+</div>
+
+@code{
+    [Parameter] public ContainerBreakpoint ContainerBreakpoint { get; set; }
+}

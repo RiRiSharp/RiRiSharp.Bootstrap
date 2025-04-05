@@ -1,0 +1,55 @@
+﻿@using RiRiSharp.Bootstrap.Core.Layout.Grids
+@inherits TestContext
+
+@code {
+    [Fact]
+    public void DefaultWorks()
+    {
+        // Arrange
+        var cut = Render(
+            @<Grid>
+                <hr/>
+            </Grid>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="grid" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
+    public void PassingClassesWorks(string classes)
+    {
+        // Arrange
+        var cut = Render(
+            @<Grid Classes="@(classes)">
+                <hr/>
+            </Grid>
+        );
+
+        // The space afterward is necessary 'cause it ensures the attribute class is created
+        cut.Find("div").MarkupMatches(
+            @<div class="grid @(classes)" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData("testAttributeValue")]
+    public void ExtraAttributesWorks(string attributeValue)
+    {
+        var cut = Render(
+            @<Grid test-attribute="@(attributeValue)">
+                <hr/>
+            </Grid>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="grid" test-attribute="@(attributeValue)" diff:ignoreChildren></div>
+        );
+    }
+}

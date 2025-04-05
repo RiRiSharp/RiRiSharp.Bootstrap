@@ -1,0 +1,11 @@
+﻿@inherits BootstrapCoreComponent
+
+<img @attributes="AdditionalAttributes" src="@(Src)" alt="@(Alt)"
+     class="@(Options.ToBootstrapClass()) @(Classes)"/>
+
+
+@code {
+    [Parameter] public ImageOptions Options { get; set; }
+    [Parameter, EditorRequired] public string Src { get; set; }
+    [Parameter] public string Alt { get; set; }
+}

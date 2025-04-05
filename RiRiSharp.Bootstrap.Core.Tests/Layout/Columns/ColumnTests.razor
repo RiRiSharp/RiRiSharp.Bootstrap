@@ -1,0 +1,53 @@
+@inherits TestContext
+
+@code {
+    [Fact]
+    public void DefaultWorks()
+    {
+        // Arrange
+        var cut = Render(
+            @<Column>
+                <hr/>
+            </Column>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="col" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
+    public void PassingClassesWorks(string classes)
+    {
+        // Arrange
+        var cut = Render(
+            @<Column Classes="@(classes)">
+                <hr/>
+            </Column>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="col @(classes)" diff:ignoreChildren></div>
+        );
+    }
+
+    [Theory]
+    [InlineData("testAttributeValue")]
+    public void ExtraAttributesWorks(string attributeValue)
+    {
+        var cut = Render(
+            @<Column test-attribute="@(attributeValue)">
+                <hr/>
+            </Column>
+        );
+
+        cut.Find("div").MarkupMatches(
+            @<div class="col" test-attribute="@(attributeValue)" diff:ignoreChildren></div>
+        );
+    }
+}
