@@ -119,7 +119,7 @@ public static class TableOptionsExtensions
 
     public static string ToBootstrapTableClass(this TableOptions options)
     {
-        var relevantTableOptions = options |= _tableMask;
+        var relevantTableOptions = options & _tableMask;
         relevantTableOptions.ValidateIllegalCombinations();
 
         return options.BuildBootstrapClassInner();
@@ -127,7 +127,7 @@ public static class TableOptionsExtensions
 
     public static string ToBootstrapRowOrDataClass(this TableOptions options)
     {
-        var relevantRowOptions = options | _rowMask;
+        var relevantRowOptions = options & _rowMask;
         relevantRowOptions.ValidateIllegalCombinations();
 
         return options.BuildBootstrapClassInner();
@@ -135,7 +135,7 @@ public static class TableOptionsExtensions
 
     public static string ToBootstrapTableHeadClass(this TableOptions options)
     {
-        var relevantTableHeadOptions = options | _tableHeadMask;
+        var relevantTableHeadOptions = options & _tableHeadMask;
         relevantTableHeadOptions.ValidateIllegalCombinations();
 
         return options.BuildBootstrapClassInner();
