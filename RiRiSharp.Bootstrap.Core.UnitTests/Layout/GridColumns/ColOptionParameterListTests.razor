@@ -16,7 +16,7 @@
             </GridColumn>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>
         );
     }
@@ -43,7 +43,7 @@
             </GridColumn>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>
         );
     }
@@ -64,7 +64,7 @@
             </GridColumn>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>
         );
     }
@@ -87,7 +87,7 @@
         );
 
         var expectedClassesAsOne = string.Join(' ', expectedClasses);
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClassesAsOne)"></div>
         );
     }

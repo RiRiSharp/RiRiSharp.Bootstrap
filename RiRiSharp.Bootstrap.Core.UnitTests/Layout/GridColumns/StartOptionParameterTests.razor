@@ -22,7 +22,7 @@
                 <EmptyComponent/>
             </GridColumn>);
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>);
     }
 }

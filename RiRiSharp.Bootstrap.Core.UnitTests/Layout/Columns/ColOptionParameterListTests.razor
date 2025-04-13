@@ -15,7 +15,7 @@
                 <EmptyComponent/>
             </Column>);
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>);
     }
 
@@ -40,7 +40,7 @@
                 <EmptyComponent/>
             </Column>);
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>);
     }
 
@@ -59,7 +59,7 @@
                 <EmptyComponent/>
             </Column>);
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>);
     }
 
@@ -80,7 +80,7 @@
             </Column>);
 
         var expectedClassesAsOne = string.Join(' ', expectedClasses);
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClassesAsOne)"></div>);
     }
 }

@@ -12,7 +12,7 @@
             </Container>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="container"></div>
         );
     }
@@ -32,7 +32,7 @@
             </Container>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="@(expectedClass)"></div>
         );
     }
@@ -52,7 +52,7 @@
             </Container>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="container @(classes)"></div>
         );
     }
@@ -67,7 +67,7 @@
             </Container>
         );
 
-        cut.Find("div").MarkupMatches(
+        cut.MarkupMatches(
             @<div class="container" test-attribute="@(attributeValue)"
                  ></div>
         );
