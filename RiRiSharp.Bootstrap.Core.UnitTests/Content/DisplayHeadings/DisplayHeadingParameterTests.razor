@@ -1,0 +1,24 @@
+﻿@using RiRiSharp.Bootstrap.Core.Content.DisplayHeadings
+@inherits TestContext
+
+@code {
+    [Theory]
+    [InlineData(DisplayHeadingType.Display1, "display-1")]
+    [InlineData(DisplayHeadingType.Display2, "display-2")]
+    [InlineData(DisplayHeadingType.Display3, "display-3")]
+    [InlineData(DisplayHeadingType.Display4, "display-4")]
+    [InlineData(DisplayHeadingType.Display5, "display-5")]
+    [InlineData(DisplayHeadingType.Display6, "display-6")]
+    public void DisplayHeadingTypeWorks(DisplayHeadingType displayHeadingType, string expectedClass)
+    {
+        var cut = Render(
+            @<DisplayHeading Type="@(displayHeadingType)">
+                <EmptyComponent/>
+            </DisplayHeading>
+        );
+
+        cut.MarkupMatches(
+            @<span class="@(expectedClass)"></span>
+        );
+    }
+}

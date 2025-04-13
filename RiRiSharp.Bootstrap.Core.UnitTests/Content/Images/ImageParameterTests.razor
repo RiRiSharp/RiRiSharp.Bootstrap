@@ -1,0 +1,23 @@
+﻿@using RiRiSharp.Bootstrap.Core.Content.Headings
+@using RiRiSharp.Bootstrap.Core.Content.Images
+@inherits TestContext
+
+@code {
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("source")]
+    [InlineData("https://example.com/an-image.jpg")]
+    [InlineData("C0mplex TîtLè ~💪💪")]
+    public void SrcWorks(string src)
+    {
+        var cut = Render(
+            @<Image Src="@(src)"/>
+            
+        );
+
+        cut.MarkupMatches(
+            @<img class="" src="@(src)"/>
+        );
+    }
+}

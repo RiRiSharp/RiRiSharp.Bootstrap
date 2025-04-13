@@ -1,0 +1,24 @@
+﻿@using RiRiSharp.Bootstrap.Core.Content.Headings
+@inherits TestContext
+
+@code {
+    [Theory]
+    [InlineData(HeadingType.H1, "h1")]
+    [InlineData(HeadingType.H2, "h2")]
+    [InlineData(HeadingType.H3, "h3")]
+    [InlineData(HeadingType.H4, "h4")]
+    [InlineData(HeadingType.H5, "h5")]
+    [InlineData(HeadingType.H6, "h6")]
+    public void HeadingTypeWorks(HeadingType displayHeadingType, string expectedClass)
+    {
+        var cut = Render(
+            @<VirtualHeading Type="@(displayHeadingType)">
+                <EmptyComponent/>
+            </VirtualHeading>
+        );
+
+        cut.MarkupMatches(
+            @<span class="@(expectedClass)"></span>
+        );
+    }
+}

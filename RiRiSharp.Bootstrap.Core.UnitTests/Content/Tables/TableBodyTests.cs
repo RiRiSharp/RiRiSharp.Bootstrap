@@ -1,5 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Core.Content.Abbreviations;
-using RiRiSharp.Bootstrap.Core.Content.Tables;
+﻿using RiRiSharp.Bootstrap.Core.Content.Tables;
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.Tables;
 
