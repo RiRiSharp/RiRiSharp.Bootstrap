@@ -8,12 +8,12 @@
         // Arrange
         var cut = Render(
             @<Container>
-                <hr/>
+                <EmptyComponent/>
             </Container>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="container" diff:ignoreChildren></div>
+            @<div class="container"></div>
         );
     }
 
@@ -28,12 +28,12 @@
     {
         var cut = Render(
             @<Container ContainerBreakpoint="breakpoint">
-                <hr/>
+                <EmptyComponent/>
             </Container>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+            @<div class="@(expectedClass)"></div>
         );
     }
 
@@ -48,12 +48,12 @@
         // Arrange
         var cut = Render(
             @<Container Classes="@(classes)">
-                <hr/>
+                <EmptyComponent/>
             </Container>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="container @(classes)" diff:ignoreChildren></div>
+            @<div class="container @(classes)"></div>
         );
     }
 
@@ -63,13 +63,13 @@
     {
         var cut = Render(
             @<Container test-attribute="@(attributeValue)">
-                <hr/>
+                <EmptyComponent/>
             </Container>
         );
 
         cut.Find("div").MarkupMatches(
             @<div class="container" test-attribute="@(attributeValue)"
-                  diff:ignoreChildren></div>
+                 ></div>
         );
     }
 }

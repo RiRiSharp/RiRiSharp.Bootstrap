@@ -12,11 +12,11 @@
     {
         var cut = Render(
             @<Column ColOptionsList="[columnOptions]">
-                <hr>
+                <EmptyComponent/>
             </Column>);
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>);
+            @<div class="@(expectedClass)"></div>);
     }
 
     [Theory]
@@ -37,11 +37,11 @@
     {
         var cut = Render(
             @<Column ColOptionsList="[columnOptions]">
-                <hr/>
+                <EmptyComponent/>
             </Column>);
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>);
+            @<div class="@(expectedClass)"></div>);
     }
 
     [Theory]
@@ -56,11 +56,11 @@
     {
         var cut = Render(
             @<Column ColOptionsList="[columnOptions]">
-                <hr/>
+                <EmptyComponent/>
             </Column>);
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>);
+            @<div class="@(expectedClass)"></div>);
     }
 
 
@@ -76,11 +76,11 @@
     {
         var cut = Render(
             @<Column ColOptionsList="columnOptions.ToList()">
-                <hr/>
+                <EmptyComponent/>
             </Column>);
 
         var expectedClassesAsOne = string.Join(' ', expectedClasses);
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClassesAsOne)" diff:ignoreChildren></div>);
+            @<div class="@(expectedClassesAsOne)"></div>);
     }
 }

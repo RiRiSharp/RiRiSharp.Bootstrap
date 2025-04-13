@@ -12,12 +12,12 @@
     {
         var cut = Render(
             @<GridColumn GridOption="columnOptions">
-                <hr/>
+                <EmptyComponent/>
             </GridColumn>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+            @<div class="@(expectedClass)"></div>
         );
     }
 
@@ -39,12 +39,12 @@
     {
         var cut = Render(
             @<GridColumn GridOption="columnOptions">
-                <hr/>
+                <EmptyComponent/>
             </GridColumn>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+            @<div class="@(expectedClass)"></div>
         );
     }
 
@@ -60,12 +60,12 @@
     {
         var cut = Render(
             @<GridColumn GridOption="columnOptions">
-                <hr/>
+                <EmptyComponent/>
             </GridColumn>
         );
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>
+            @<div class="@(expectedClass)"></div>
         );
     }
 }

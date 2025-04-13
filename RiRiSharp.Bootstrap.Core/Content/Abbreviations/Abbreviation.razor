@@ -1,8 +1,8 @@
 ﻿@inherits BootstrapCoreChildContentComponent
 
-<span @attributes="AdditionalAttributes" title="@(FullName)" class="@(Type.ToBootstrapClass()) @(Classes)">
+<abbr @attributes="AdditionalAttributes" title="@(FullName)" class="@(Type.ToBootstrapClass()) @(Classes)">
     @(ChildContent)
-</span>
+</abbr>
 
 
 @code {

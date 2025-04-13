@@ -19,10 +19,10 @@
     {
         var cut = Render(
             @<GridColumn StartOption="columnOptions">
-                <hr/>
+                <EmptyComponent/>
             </GridColumn>);
 
         cut.Find("div").MarkupMatches(
-            @<div class="@(expectedClass)" diff:ignoreChildren></div>);
+            @<div class="@(expectedClass)"></div>);
     }
 }
