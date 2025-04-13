@@ -5,7 +5,7 @@
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "table-group-divider")]
-    public void AddingDividerWorks(bool hasDivider, string expectedClass)
+    public void DividerGeneratesCorrectClass(bool hasDivider, string expectedClass)
     {
         var cut = Render(
             @<TableBody TableGroupDivider="@(hasDivider)">

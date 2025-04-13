@@ -8,7 +8,7 @@
     [InlineData("")]
     [InlineData("SimpleTitle")]
     [InlineData("C0mplex TîtLè ~💪💪")]
-    public void FullNameWorks(string fullName)
+    public void FullNameAddsCorrectTitleAttribute(string fullName)
     {
         var cut = Render(
             @<Abbreviation FullName="@(fullName)">
@@ -18,23 +18,6 @@
 
         cut.MarkupMatches(
             @<abbr class="" title="@(fullName)"></abbr>
-        );
-    }
-
-    [Theory]
-    [InlineData(AbbreviationType.Default, "")]
-    [InlineData(AbbreviationType.Initialism, "initialism")]
-    [SuppressMessage("Category", "RZ2012", Justification = "This tests tests explicitly for the Type parameter")]
-    public void AbbreviationTypeWorks(AbbreviationType abbreviationType, string expectedClass)
-    {
-        var cut = Render(
-            @<Abbreviation Type="@(abbreviationType)">
-                <EmptyComponent/>
-            </Abbreviation>
-        );
-
-        cut.MarkupMatches(
-            @<abbr class="@(expectedClass)"></abbr>
         );
     }
 }

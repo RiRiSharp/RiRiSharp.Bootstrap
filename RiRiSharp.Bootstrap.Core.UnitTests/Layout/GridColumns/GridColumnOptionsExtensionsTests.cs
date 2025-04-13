@@ -1,24 +1,19 @@
-﻿@using RiRiSharp.Bootstrap.Core.Layout.GridColumns
-@inherits TestContext
+﻿using RiRiSharp.Bootstrap.Core.Layout.GridColumns;
 
-@code {
-    [Theory]
+namespace RiRiSharp.Bootstrap.Core.UnitTests.Layout.GridColumns;
+
+public class GridColumnOptionsExtensionsTests
+{
+        [Theory]
     [InlineData(GridColumnOptions.Sm, "g-col-sm")]
     [InlineData(GridColumnOptions.Md, "g-col-md")]
     [InlineData(GridColumnOptions.Lg, "g-col-lg")]
     [InlineData(GridColumnOptions.Xl, "g-col-xl")]
     [InlineData(GridColumnOptions.Xxl, "g-col-xxl")]
-    public void BreakpointsWork(GridColumnOptions columnOptions, string expectedClass)
+    public void GridBreakpointGenerateCorrectClass(GridColumnOptions gridColumnOptions, string expectedClass)
     {
-        var cut = Render(
-            @<GridColumn GridOption="columnOptions">
-                <EmptyComponent/>
-            </GridColumn>
-        );
-
-        cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>
-        );
+        var generatedClass = gridColumnOptions.ToBootstrapClass();
+        Assert.Equal(expectedClass, generatedClass);
     }
 
     [Theory]
@@ -35,17 +30,10 @@
     [InlineData(GridColumnOptions.GCol11, "g-col-11")]
     [InlineData(GridColumnOptions.GCol12, "g-col-12")]
     [InlineData(GridColumnOptions.GColAuto, "g-col-auto")]
-    public void ColWidthsWork(GridColumnOptions columnOptions, string expectedClass)
+    public void GridColumnWidthsGenerateCorrectClass(GridColumnOptions gridColumnOptions, string expectedClass)
     {
-        var cut = Render(
-            @<GridColumn GridOption="columnOptions">
-                <EmptyComponent/>
-            </GridColumn>
-        );
-
-        cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>
-        );
+        var generatedClass = gridColumnOptions.ToBootstrapClass();
+        Assert.Equal(expectedClass, generatedClass);
     }
 
     [Theory]
@@ -56,16 +44,10 @@
     [InlineData(GridColumnOptions.GColLg7, "g-col-lg-7")]
     [InlineData(GridColumnOptions.GColXl7, "g-col-xl-7")]
     [InlineData(GridColumnOptions.GColXxl1, "g-col-xxl-1")]
-    public void BreakpointsWithColumnsWork(GridColumnOptions columnOptions, string expectedClass)
+    public void ComposedGridColumnOptionsGenerateCorrectClass(GridColumnOptions gridColumnOptions, string expectedClass)
     {
-        var cut = Render(
-            @<GridColumn GridOption="columnOptions">
-                <EmptyComponent/>
-            </GridColumn>
-        );
-
-        cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>
-        );
+        var generatedClass = gridColumnOptions.ToBootstrapClass();
+        Assert.Equal(expectedClass, generatedClass);
     }
+
 }

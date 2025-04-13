@@ -2,85 +2,79 @@
 @inherits TestContext
 
 @code {
-    [Theory]
-    [InlineData(ColumnOptions.Sm, "col-sm")]
-    [InlineData(ColumnOptions.Md, "col-md")]
-    [InlineData(ColumnOptions.Lg, "col-lg")]
-    [InlineData(ColumnOptions.Xl, "col-xl")]
-    [InlineData(ColumnOptions.Xxl, "col-xxl")]
-    public void BreakpointWorkInListForm(ColumnOptions columnOptions, string expectedClass)
+    [Fact]
+    public void ColumnRenderingWorksInSingularForm()
     {
         var cut = Render(
-            @<Column ColOptionsList="[columnOptions]">
+            @<Column ColOption="ColumnOptions.Col1">
                 <EmptyComponent/>
             </Column>);
 
         cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>);
+            @<div class="col-1"></div>);
     }
 
-    [Theory]
-    [InlineData(ColumnOptions.Col1, "col-1")]
-    [InlineData(ColumnOptions.Col2, "col-2")]
-    [InlineData(ColumnOptions.Col3, "col-3")]
-    [InlineData(ColumnOptions.Col4, "col-4")]
-    [InlineData(ColumnOptions.Col5, "col-5")]
-    [InlineData(ColumnOptions.Col6, "col-6")]
-    [InlineData(ColumnOptions.Col7, "col-7")]
-    [InlineData(ColumnOptions.Col8, "col-8")]
-    [InlineData(ColumnOptions.Col9, "col-9")]
-    [InlineData(ColumnOptions.Col10, "col-10")]
-    [InlineData(ColumnOptions.Col11, "col-11")]
-    [InlineData(ColumnOptions.Col12, "col-12")]
-    [InlineData(ColumnOptions.ColAuto, "col-auto")]
-    public void ColWidthWorkInListForm(ColumnOptions columnOptions, string expectedClass)
+    [Fact]
+    public void ColumnRenderingWorksInListForm()
     {
         var cut = Render(
-            @<Column ColOptionsList="[columnOptions]">
+            @<Column ColOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </Column>);
 
         cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>);
+            @<div class="col-sm-4 col-md-6"></div>);
     }
 
-    [Theory]
-    [InlineData(ColumnOptions.ColSm4, "col-sm-4")]
-    [InlineData(ColumnOptions.ColMd4, "col-md-4")]
-    [InlineData(ColumnOptions.ColMd12, "col-md-12")]
-    [InlineData(ColumnOptions.ColLgAuto, "col-lg-auto")]
-    [InlineData(ColumnOptions.ColLg7, "col-lg-7")]
-    [InlineData(ColumnOptions.ColXl7, "col-xl-7")]
-    [InlineData(ColumnOptions.ColXxl1, "col-xxl-1")]
-    public void ColumnOptionWorksInListForm(ColumnOptions columnOptions, string expectedClass)
+    [Fact]
+    public void ListColumnOptionTakesPrecedenceOverSingularForm()
     {
         var cut = Render(
-            @<Column ColOptionsList="[columnOptions]">
+            @<Column
+                ColOption="ColumnOptions.Col1"
+                ColOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </Column>);
 
         cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>);
+            @<div class="col-sm-4 col-md-6"></div>);
     }
 
-
-    [Theory]
-    [InlineData(new[] { ColumnOptions.ColSm6, ColumnOptions.ColMd5 }, new[] { "col-sm-6", "col-md-5" })]
-    [InlineData(new[] { ColumnOptions.ColMd4, ColumnOptions.ColLg7 }, new[] { "col-md-4", "col-lg-7" })]
-    [InlineData(new[] { ColumnOptions.ColMd12, ColumnOptions.Xxl }, new[] { "col-md-12", "col-xxl" })]
-    [InlineData(new[] { ColumnOptions.ColLgAuto, ColumnOptions.Default }, new[] { "col-lg-auto", "col" })]
-    [InlineData(new[] { ColumnOptions.ColLg7, ColumnOptions.ColSm6 }, new[] { "col-lg-7", "col-sm-6" })]
-    [InlineData(new[] { ColumnOptions.Default, ColumnOptions.ColXl7 }, new[] { "col-xl-7", "col" })]
-    [InlineData(new[] { ColumnOptions.ColXxl1, ColumnOptions.ColMd4 }, new[] { "col-xxl-1", "col-md-4" })]
-    public void ColumnOptionsWorkInListForm(ColumnOptions[] columnOptions, string[] expectedClasses)
+    [Fact]
+    public void ColumnOffsetRenderingWorksInSingularForm()
     {
         var cut = Render(
-            @<Column ColOptionsList="columnOptions.ToList()">
+            @<Column OffsetOption="ColumnOptions.Col1">
                 <EmptyComponent/>
             </Column>);
 
-        var expectedClassesAsOne = string.Join(' ', expectedClasses);
         cut.MarkupMatches(
-            @<div class="@(expectedClassesAsOne)"></div>);
+            @<div class="offset-1"></div>);
+    }
+
+    [Fact]
+    public void ColumnOffsetRenderingWorksInListForm()
+    {
+        var cut = Render(
+            @<Column OffsetOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+                <EmptyComponent/>
+            </Column>);
+
+        cut.MarkupMatches(
+            @<div class="col offset-sm-4 offset-md-6"></div>);
+    }
+
+    [Fact]
+    public void ListColumnOffsetOptionTakesPrecedenceOverSingularForm()
+    {
+        var cut = Render(
+            @<Column
+                OffsetOption="ColumnOptions.Col1"
+                OffsetOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+                <EmptyComponent/>
+            </Column>);
+
+        cut.MarkupMatches(
+            @<div class="col offset-sm-4 offset-md-6"></div>);
     }
 }

@@ -1,7 +1,9 @@
-﻿@using RiRiSharp.Bootstrap.Core.Layout.GridColumns
-@inherits TestContext
+﻿using RiRiSharp.Bootstrap.Core.Layout.GridColumns;
 
-@code {
+namespace RiRiSharp.Bootstrap.Core.UnitTests.Layout.GridColumns;
+
+public class GridStartOptionsExtensionsTests
+{
     [Theory]
     [InlineData(GridStartOptions.Start1, "g-start-1")]
     [InlineData(GridStartOptions.Start2, "g-start-2")]
@@ -15,14 +17,9 @@
     [InlineData(GridStartOptions.Start10, "g-start-10")]
     [InlineData(GridStartOptions.Start11, "g-start-11")]
     [InlineData(GridStartOptions.Start12, "g-start-12")]
-    public void ColWidthsWork(GridStartOptions columnOptions, string expectedClass)
+    public void ColWidthsWork(GridStartOptions gridStartOptions, string expectedClass)
     {
-        var cut = Render(
-            @<GridColumn StartOption="columnOptions">
-                <EmptyComponent/>
-            </GridColumn>);
-
-        cut.MarkupMatches(
-            @<div class="@(expectedClass)"></div>);
+        var generatedClass = gridStartOptions.ToBootstrapClass();
+        Assert.Equal(expectedClass, generatedClass);
     }
 }
