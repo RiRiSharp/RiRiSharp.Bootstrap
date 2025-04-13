@@ -3,4 +3,4 @@
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.DisplayHeadings;
 
 public class DisplayHeadingTests()
-    : BootstrapCoreComponentTests<DisplayHeading>(@"<span class=""display-1 {0}"" {1}></span>");
+    : BootstrapCoreComponentTests<DisplayHeading>("""<span class="display-1 {0}" {1}></span>""");

@@ -2,4 +2,4 @@
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.Abbreviations;
 
-public class AbbreviationTests() : BootstrapCoreComponentTests<Abbreviation>(@"<span class="" {0}"" {1}></span>");
+public class AbbreviationTests() : BootstrapCoreComponentTests<Abbreviation>("""<abbr class=" {0}" {1}></abbr>""");

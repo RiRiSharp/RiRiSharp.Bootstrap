@@ -2,4 +2,4 @@
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.Lists;
 
-public class InlineListTests() : BootstrapCoreComponentTests<InlineList>(@"<ul class=""list-inline {0}"" {1}></ul>");
+public class InlineListTests() : BootstrapCoreComponentTests<InlineList>("""<ul class="list-inline {0}" {1}></ul>""");

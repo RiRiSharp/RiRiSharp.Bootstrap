@@ -2,4 +2,4 @@
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Layout.Columns;
 
-public class ColumnTests() : BootstrapCoreComponentTests<Column>(@"<div class=""col {0}"" {1}></div>");
+public class ColumnTests() : BootstrapCoreComponentTests<Column>("""<div class="col {0}" {1}></div>""");

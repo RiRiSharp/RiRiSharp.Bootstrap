@@ -2,4 +2,4 @@
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Layout.Clearfixes;
 
-public class ClearfixTests() : BootstrapCoreComponentTests<Clearfix>(@"<div class=""clearfix {0}"" {1}></div>");
+public class ClearfixTests() : BootstrapCoreComponentTests<Clearfix>("""<div class="clearfix {0}" {1}></div>""");

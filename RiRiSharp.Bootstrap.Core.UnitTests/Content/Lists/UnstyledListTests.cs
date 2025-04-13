@@ -4,4 +4,4 @@ using RiRiSharp.Bootstrap.Core.Content.Lists;
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.Lists;
 
 public class UnstyledListTests()
-    : BootstrapCoreComponentTests<UnstyledList>(@"<ul class=""list-unstyled {0}"" {1}></ul>");
+    : BootstrapCoreComponentTests<UnstyledList>("""<ul class="list-unstyled {0}" {1}></ul>""");

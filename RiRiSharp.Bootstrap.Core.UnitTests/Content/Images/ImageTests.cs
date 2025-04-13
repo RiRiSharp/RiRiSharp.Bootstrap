@@ -2,4 +2,4 @@
 
 namespace RiRiSharp.Bootstrap.Core.UnitTests.Content.Images;
 
-public class ImageTests() : BootstrapCoreComponentTests<Image>(@"<img class="" {0}"" {1}/>");
+public class ImageTests() : BootstrapCoreComponentTests<Image>("""<img class=" {0}" {1}/>""");
