@@ -1,0 +1,27 @@
+﻿@using RiRiSharp.Bootstrap.Components.NavBar
+@using RiRiSharp.Bootstrap.Layout.Containers
+@using RiRiSharp.Bootstrap.Site.Constants
+<header id="header" class="sticky-top">
+    <BsNavbar Classes="bg-white border-bottom navbar-expand-lg">
+        <BsContainerFluid>
+            <div class="px-2">
+                <BsBrandLink href="@(PageRoutes.Home)">
+                    <div class="logo"></div>
+                </BsBrandLink>
+            </div>
+            <BsNavbarTogglerButton>
+                <BsNavbarTogglerIcon/>
+            </BsNavbarTogglerButton>
+            <BsNavbarCollapsible>
+                <BsNavbarNav>
+                    <BsNavItem>
+                        <BsNavLink href="@(PageRoutes.Home)">
+                            <BsIcon Name="@(BsIconNames.House)"/>
+                            Home
+                        </BsNavLink>
+                    </BsNavItem>
+                </BsNavbarNav>
+            </BsNavbarCollapsible>
+        </BsContainerFluid>
+    </BsNavbar>
+</header>

@@ -1,9 +1,0 @@
-﻿@inherits BootstrapCoreChildContentComponent
-
-<tbody @attributes="AdditionalAttributes" class="@(TableGroupDivider ? "table-group-divider" : "") @(Classes)">
-    @(ChildContent)
-</tbody>
-
-@code{
-    [Parameter] public bool TableGroupDivider { get; set; }
-}

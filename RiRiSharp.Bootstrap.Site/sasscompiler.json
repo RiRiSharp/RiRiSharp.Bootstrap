@@ -1,0 +1,18 @@
+﻿{
+  "Arguments": "--error-css --style=compressed --source-map",
+  "SourceFolder": "SassStyling",
+  "TargetFolder": "wwwroot",
+  "GenerateScopedCss": true,
+  "ScopedCssFolders": [
+    "Shared",
+    "Pages"
+  ],
+  "Configurations": {
+    "Release": {
+      "Arguments": "--no-error-css --style=compressed --no-source-map"
+    },
+    "Debug": {
+      "Arguments": "--error-css --style=compressed --no-source-map"
+    }
+  }
+}

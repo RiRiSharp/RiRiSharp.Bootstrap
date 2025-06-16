@@ -1,0 +1,24 @@
+﻿@inherits BsChildContentComponent
+
+<div @attributes="AdditionalAttributes"
+     class="@(ColumnOptionsBootstrapClasses()) @(StartOption.ToBootstrapClass()) @(Classes)">
+    @(ChildContent)
+</div>
+
+@code{
+    [Parameter] public GridColumnOptions GridOption { get; set; }
+    [Parameter] public List<GridColumnOptions> GridOptionsList { get; set; }
+
+    [Parameter] public GridStartOptions StartOption { get; set; }
+
+    private string ColumnOptionsBootstrapClasses()
+    {
+        if (GridOptionsList is null || GridOptionsList.Count == 0)
+        {
+            return GridOption.ToBootstrapClass();
+        }
+
+        var classes = GridOptionsList.Select(b => b.ToBootstrapClass());
+        return string.Join(' ', classes);
+    }
+}

@@ -1,0 +1,11 @@
+﻿@inherits BsChildContentComponent
+
+<abbr @attributes="AdditionalAttributes" title="@(FullName)" class="@(Type.ToBootstrapClass()) @(Classes)">
+    @(ChildContent)
+</abbr>
+
+
+@code {
+    [Parameter, EditorRequired] public string FullName { get; set; }
+    [Parameter] public AbbreviationType Type { get; set; }
+}

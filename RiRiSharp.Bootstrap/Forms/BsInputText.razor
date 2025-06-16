@@ -1,0 +1,3 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@inherits BsInputBase<string>
+<InputText @attributes="AdditionalAttributes" @bind-Value:get="ValueInner" @bind-Value:set="OnValueSet" class="@(DetermineFormControlClasses())"/>

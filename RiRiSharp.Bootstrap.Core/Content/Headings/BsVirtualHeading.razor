@@ -1,9 +1,0 @@
-﻿@inherits BootstrapCoreChildContentComponent
-
-<span @attributes="AdditionalAttributes" class="@(Type.ToBootstrapClass()) @(Classes)">
-    @(ChildContent)
-</span>
-
-@code {
-    [Parameter] public HeadingType Type { get; set; }
-}

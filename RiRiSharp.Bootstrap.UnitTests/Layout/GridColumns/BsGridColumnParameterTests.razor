@@ -1,0 +1,42 @@
+﻿@using RiRiSharp.Bootstrap.Layout.GridColumns
+@inherits TestContext
+
+@code {
+    [Fact]
+    public void ColumnRenderingWorksInSingularForm()
+    {
+        var cut = Render(
+            @<BsGridColumn GridOption="GridColumnOptions.GCol1">
+                <EmptyComponent/>
+            </BsGridColumn>);
+
+        cut.MarkupMatches(
+            @<div class="g-col-1"></div>);
+    }
+
+    [Fact]
+    public void ColumnRenderingWorksInListForm()
+    {
+        var cut = Render(
+            @<BsGridColumn GridOptionsList="[GridColumnOptions.GColSm4, GridColumnOptions.GColMd6]">
+                <EmptyComponent/>
+            </BsGridColumn>);
+
+        cut.MarkupMatches(
+            @<div class="g-col-sm-4 g-col-md-6"></div>);
+    }
+
+    [Fact]
+    public void ListColumnOptionTakesPrecedenceOverSingularForm()
+    {
+        var cut = Render(
+            @<BsGridColumn
+                GridOption="GridColumnOptions.GCol1"
+                GridOptionsList="[GridColumnOptions.GColSm4, GridColumnOptions.GColMd6]">
+                <EmptyComponent/>
+            </BsGridColumn>);
+
+        cut.MarkupMatches(
+            @<div class="g-col-sm-4 g-col-md-6"></div>);
+    }
+}

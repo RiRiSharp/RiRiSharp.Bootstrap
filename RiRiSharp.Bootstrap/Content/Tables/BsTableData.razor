@@ -1,0 +1,9 @@
+﻿@inherits BsChildContentComponent
+
+<td @attributes="AdditionalAttributes" class="@(Options.ToBootstrapRowOrDataClass()) @(Classes)">
+    @(ChildContent)
+</td>
+
+@code{
+    [Parameter] public TableOptions Options { get; set; }
+}

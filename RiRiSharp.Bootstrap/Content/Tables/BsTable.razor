@@ -1,0 +1,10 @@
+﻿@inherits BsChildContentComponent
+
+<table @attributes="AdditionalAttributes" class="table @(Options.ToBootstrapTableClass()) @(Responsiveness.ToBootstrapClass()) @(Classes)">
+    @(ChildContent)
+</table>
+
+@code{
+    [Parameter] public TableOptions Options { get; set; }
+    [Parameter] public TableResponsiveness Responsiveness { get; set; }
+}

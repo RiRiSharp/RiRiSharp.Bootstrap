@@ -1,0 +1,17 @@
+﻿@page "/"
+@using RiRiSharp.Bootstrap.Forms
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<BsInputText @bind-Value="Text"/>
+Filled in value: @(Text)
+
+<BsInputTextArea @bind-Value="Text"/>
+Filled in value: @(Text)
+@code {
+    public string Text { get; set; }
+}

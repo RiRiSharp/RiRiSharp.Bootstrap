@@ -1,9 +1,0 @@
-﻿@inherits BootstrapCoreChildContentComponent
-
-<div @attributes="AdditionalAttributes" class="row @(ColumnsInRow.ToBootstrapClass()) @(Classes)">
-    @(ChildContent)
-</div>
-
-@code{
-    [Parameter] public ColumnsInRow ColumnsInRow { get; set; }
-}

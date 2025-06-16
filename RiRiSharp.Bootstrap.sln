@@ -5,9 +5,9 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB4B239C-A99E-4442-AFAE-1E8AB6CCF2A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core.UnitTests", "RiRiSharp.Bootstrap.Core.UnitTests\RiRiSharp.Bootstrap.Core.UnitTests.csproj", "{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.UnitTests", "RiRiSharp.Bootstrap.UnitTests\RiRiSharp.Bootstrap.UnitTests.csproj", "{A77B0FFD-7AE5-40DA-B3FF-7B49ADBAD19A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Core", "RiRiSharp.Bootstrap.Core\RiRiSharp.Bootstrap.Core.csproj", "{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap", "RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.csproj", "{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B87D6DF7-85F4-4E0A-AB12-5D0EA352F510}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Site", "RiRiSharp.Bootstrap.Site\RiRiSharp.Bootstrap.Site.csproj", "{C315A720-E3F6-4C62-9448-D29CAA44AEB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiRiSharp.Bootstrap.Icons", "RiRiSharp.Bootstrap.Icons\RiRiSharp.Bootstrap.Icons.csproj", "{4C902A20-2713-4D8A-850B-0AA62C1CF77E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,14 @@ Global
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210FDC33-41E2-4F2E-A3FE-EE1C99BFC1E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C315A720-E3F6-4C62-9448-D29CAA44AEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C315A720-E3F6-4C62-9448-D29CAA44AEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C315A720-E3F6-4C62-9448-D29CAA44AEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C315A720-E3F6-4C62-9448-D29CAA44AEB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C902A20-2713-4D8A-850B-0AA62C1CF77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C902A20-2713-4D8A-850B-0AA62C1CF77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C902A20-2713-4D8A-850B-0AA62C1CF77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C902A20-2713-4D8A-850B-0AA62C1CF77E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
