@@ -147,7 +147,7 @@ public static class TableOptionsExtensions
                       tableOptions.HasZeroOrOneBitsSetInMask(_stripedMask) &&
                       tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask) &&
                       tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
-        if (!isValid) throw new InvalidTableOptionsException();
+        if (!isValid) throw new BsInvalidTableOptionsException();
     }
 
     private static string BuildBootstrapClassInner(this TableOptions tableOptions)

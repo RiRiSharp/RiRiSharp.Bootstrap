@@ -1,17 +1,37 @@
 ﻿@page "/"
 @using RiRiSharp.Bootstrap.Forms
-
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Bind Example</h1>
+<label>
+    Regular input:
+    <BsInputText @bind-Value="InputValue"/> @(InputValue)
+</label>
 
-Welcome to your new app.
+<label>
+    Password input:
+    <BsInputText type="password" @bind-Value="Password"/> @(Password)
+</label>
 
-<BsInputText @bind-Value="Text"/>
-Filled in value: @(Text)
+<label>
+    Readonly input:
+    <BsInputText readonly ReadonlyPlaintext="true" @bind-Value="Text"/> @(Text)
+</label>
 
-<BsInputTextArea @bind-Value="Text"/>
-Filled in value: @(Text)
+<label>
+    File input:
+    <BsInputFile OnChange="FileChange" multiple/> @(_fileInfo)
+</label>
+
+
 @code {
-    public string Text { get; set; }
+    private string InputValue { get; set; }
+    public string Text { get; set; } = "ReadonlyText";
+    public string Password { get; set; }
+    private string _fileInfo;
+
+    private void FileChange(InputFileChangeEventArgs obj)
+    {
+        _fileInfo = $"Name: {obj.File.Name}, Type: {obj.File.ContentType}, Size: {obj.File.Size}, Count: {obj.FileCount}";
+    }
 }

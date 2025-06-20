@@ -1,7 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Forms
-@inherits BsInputBase<string>
-<InputTextArea @attributes="AdditionalAttributes" @bind-Value:get="ValueInner" @bind-Value:set="OnValueSet" class="@(DetermineFormControlClasses())"/>
-
-@code {
-
-}
+﻿@inherits BsInputBase<string>
+<textarea @attributes="AdditionalAttributes" @bind="CurrentValue" class="@(CssClass)">
+    @(TextInArea)
+</textarea>

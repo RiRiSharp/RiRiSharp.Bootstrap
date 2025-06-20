@@ -2,7 +2,7 @@
 
 namespace RiRiSharp.Bootstrap;
 
-public class BsComponent : ComponentBase
+public class BsComponent : ComponentBase, IBsComponent
 {
     [Parameter] public string Classes { get; set; }
     

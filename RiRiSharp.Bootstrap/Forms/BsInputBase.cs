@@ -1,41 +1,34 @@
 ﻿using Microsoft.AspNetCore.Components;
-using RiRiSharp.Bootstrap.Forms.FormControl;
+using Microsoft.AspNetCore.Components.Forms;
+using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms;
 
-public class BsInputBase<TValue> : BsComponent
+public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent, IBsFormControlComponent
 {
     private const string _formControl = "form-control";
-
-    protected TValue ValueInner;
-    [Parameter] public TValue Value { get => ValueInner; set => ValueInner = value; }
-    [Parameter] public EventCallback<TValue> ValueChanged { get; set; }
-
-    protected void OnValueSet(TValue value)
-    {
-        if (EqualityComparer<TValue>.Default.Equals(Value, value)) return;
-        ValueInner = value;
-
-        if (!ValueChanged.HasDelegate) return;
-        ValueChanged.InvokeAsync(ValueInner);
-    }
-
+    private const string _formControlPlaintext = "form-control-plaintext";
+    
+    [Parameter] public string Classes { get; set; }
     [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
+    [Parameter] public bool ReadonlyPlaintext { get; set; }
 
-    protected string DetermineFormControlClasses()
+    protected override void OnParametersSet()
     {
-        var sizeClass = DetermineSizeClass();
-        return string.Concat(' ', _formControl, sizeClass, Classes);
+        base.OnParametersSet();
+        var classes = DetermineClasses();
+        AdditionalAttributes = BsAttributeUtilities.AddClasses(AdditionalAttributes, classes);
     }
 
-    private string DetermineSizeClass()
+    protected string DetermineClasses()
     {
-        return FormSize switch
-        {
-            FormSize.Small => "form-control-sm",
-            FormSize.Regular => null,
-            FormSize.Large => "form-control-lg",
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        var sizeClass = FormSize.ToBootstrapClass();
+        var formControl = DeterminePlainTextClass();
+        return string.Join(' ', formControl, sizeClass, Classes);
+    }
+
+    private string DeterminePlainTextClass()
+    {
+        return ReadonlyPlaintext ? _formControlPlaintext : _formControl;
     }
 }

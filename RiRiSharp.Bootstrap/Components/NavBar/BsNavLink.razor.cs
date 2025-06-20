@@ -1,17 +1,18 @@
-﻿namespace RiRiSharp.Bootstrap.Components.NavBar;
+﻿using RiRiSharp.Bootstrap.Internals;
+
+namespace RiRiSharp.Bootstrap.Components.NavBar;
 
 public partial class BsNavLink : BsChildContentComponent
 {
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
-        base.OnInitialized();
+        base.OnParametersSet();
         AddClass();
     }
 
     private void AddClass()
     {
-        var dictionary = AdditionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
-        dictionary["class"] = $"nav-link {Classes}";
-        AdditionalAttributes = dictionary;
+        var classesToAdd = $"nav-link {Classes}";
+        AdditionalAttributes = BsAttributeUtilities.AddClasses(AdditionalAttributes, classesToAdd);
     }
 }

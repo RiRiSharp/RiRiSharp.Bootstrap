@@ -1,24 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <SubVersion>$(SubVersion)</SubVersion>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <AssemblyVersion>5.3.6</AssemblyVersion>
-        <FileVersion>5.3.6.$(SubVersion)</FileVersion>
-        <InformationalVersion>5.3.6.$(SubVersion)</InformationalVersion>
-    </PropertyGroup>
+<!--  <PropertyGroup>-->
+<!--    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
+<!--    <CompilerGeneratedFilesOutputPath>exclude</CompilerGeneratedFilesOutputPath>-->
+<!--  </PropertyGroup>-->
 
-    <ItemGroup>
-        <SupportedPlatform Include="browser"/>
-    </ItemGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
+  </ItemGroup>
 
 </Project>
