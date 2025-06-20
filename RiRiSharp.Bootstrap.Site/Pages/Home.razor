@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Drawing
 @using RiRiSharp.Bootstrap.Forms
 <PageTitle>Home</PageTitle>
 
@@ -23,11 +24,17 @@
     <BsInputFile OnChange="FileChange" multiple/> @(_fileInfo)
 </label>
 
+<label>
+    Color input:
+    <BsInputColor @bind-Value="Color"/> R: @(ColorTranslator.ToHtml(Color))
+</label>
+
 
 @code {
     private string InputValue { get; set; }
     public string Text { get; set; } = "ReadonlyText";
     public string Password { get; set; }
+    public Color Color { get; set; }
     private string _fileInfo;
 
     private void FileChange(InputFileChangeEventArgs obj)
