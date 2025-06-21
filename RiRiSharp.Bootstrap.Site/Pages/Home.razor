@@ -1,40 +1,74 @@
 ﻿@page "/"
 @using System.Drawing
 @using RiRiSharp.Bootstrap.Forms
+@using RiRiSharp.Bootstrap.Layout.Rows
+@using RiRiSharp.Bootstrap.Site.Shared
 <PageTitle>Home</PageTitle>
 
 <h1>Bind Example</h1>
-<label>
-    Regular input:
-    <BsInputText @bind-Value="InputValue"/> @(InputValue)
-</label>
+<BsRow>
+    <label>
+        Regular input:
+        <BsInputText @bind-Value="InputValue"/> @(InputValue)
+    </label>
 
-<label>
-    Password input:
-    <BsInputText type="password" @bind-Value="Password"/> @(Password)
-</label>
+    <label>
+        Password input:
+        <BsInputText type="password" @bind-Value="Password"/> @(Password)
+    </label>
 
-<label>
-    Readonly input:
-    <BsInputText readonly ReadonlyPlaintext="true" @bind-Value="Text"/> @(Text)
-</label>
+    <label>
+        Readonly input:
+        <BsInputText readonly ReadonlyPlaintext="true" @bind-Value="Text"/> @(Text)
+    </label>
 
-<label>
-    File input:
-    <BsInputFile OnChange="FileChange" multiple/> @(_fileInfo)
-</label>
+    <label>
+        File input:
+        <BsInputFile OnChange="FileChange" multiple/> @(_fileInfo)
+    </label>
 
-<label>
-    Color input:
-    <BsInputColor @bind-Value="Color"/> R: @(ColorTranslator.ToHtml(Color))
-</label>
+    <label>
+        Color input:
+        <BsInputColor @bind-Value="Color"/>
+        Hex: @(ColorTranslator.ToHtml(Color))
+    </label>
+</BsRow>
 
+<BsRow>
+    <label>
+        InputSelect
+        <TextInputSelect @bind-Value="InputSelect" Values="@( ["ValueA", "ValueB"])" Context="value">
+            <BsOption Value="value">
+                @($"Display{value}")
+            </BsOption>
+        </TextInputSelect>
+        InputSelect: @(InputSelect)
+    </label>
+    <label>
+        InputSelect with foreach
+        <TextInputSelect @bind-Value="InputSelect2" Values="Options" FormSize="FormSize.Small">
+            <Options>
+                <BsOption selected TValue="string">Open this select menu</BsOption>
+                @foreach (var option in Options)
+                {
+                    <BsOption Value="option">
+                        @($"Display{option}")
+                    </BsOption>
+                }
+            </Options>
+        </TextInputSelect>
+        InputSelect: @(InputSelect2)
+    </label>
+</BsRow>
 
 @code {
     private string InputValue { get; set; }
     public string Text { get; set; } = "ReadonlyText";
     public string Password { get; set; }
     public Color Color { get; set; }
+    public string InputSelect { get; set; }
+    public string InputSelect2 { get; set; }
+    public List<string> Options { get; set; } = ["AValue", "AndAnotherOne"];
     private string _fileInfo;
 
     private void FileChange(InputFileChangeEventArgs obj)

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace RiRiSharp.Bootstrap.Forms;
 
@@ -17,11 +16,5 @@ public partial class BsInputColor() : BsInputBase<Color>("form-control-color")
     {
         var htmlColor = ColorTranslator.ToHtml(value);
         return htmlColor;
-    }
-
-    private void Change(ChangeEventArgs obj)
-    {
-        var test = obj.Value?.ToString();
-        Console.WriteLine(test);
     }
 }

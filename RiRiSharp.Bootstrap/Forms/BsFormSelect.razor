@@ -1,0 +1,16 @@
+﻿@inherits BsInputBase<TValue>
+@typeparam TValue
+
+<select @attributes="AdditionalAttributes" class="@(CssClass)" @bind="CurrentValueAsString">
+    @if (ChildContent is null)
+    {
+        @(Options)
+    }
+    else
+    {
+        @foreach (var value in Values)
+        {
+            @(ChildContent(value))
+        }
+    }
+</select>
