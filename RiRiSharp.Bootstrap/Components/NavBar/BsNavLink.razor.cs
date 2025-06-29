@@ -4,15 +4,19 @@ namespace RiRiSharp.Bootstrap.Components.NavBar;
 
 public partial class BsNavLink : BsChildContentComponent
 {
-    protected override void OnParametersSet()
+    protected string AllClasses
     {
-        base.OnParametersSet();
-        AddClass();
+        get
+        {
+            var bootstrapClasses = DetermineClasses();
+            return BsAttributeUtilities.CombineClassNames(AdditionalAttributes, bootstrapClasses) ?? string.Empty;
+        }
     }
 
-    private void AddClass()
+    private string DetermineClasses()
     {
         var classesToAdd = $"nav-link {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AddClasses(AdditionalAttributes, classesToAdd);
+        var allClasses = BsAttributeUtilities.CombineClassNames(AdditionalAttributes, classesToAdd);
+        return allClasses;
     }
 }

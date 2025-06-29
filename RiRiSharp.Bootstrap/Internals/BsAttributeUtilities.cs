@@ -1,31 +1,42 @@
-﻿namespace RiRiSharp.Bootstrap.Internals;
+﻿using System.Globalization;
+
+namespace RiRiSharp.Bootstrap.Internals;
 
 internal static class BsAttributeUtilities
 {
-    internal static Dictionary<string, object> AddClasses(IDictionary<string, object> additionalAttributes, string classes)
+    internal static string CombineClassNames(IDictionary<string, object> additionalAttributes, string classNames)
     {
         var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
-        return AddClasses(dictionary, classes);
+        return CombineClassNames(dictionary, classNames);
     }
-    
-    internal static Dictionary<string, object> AddClasses(IReadOnlyDictionary<string, object> additionalAttributes, string classes)
+
+    internal static string CombineClassNames(IReadOnlyDictionary<string, object> additionalAttributes,
+        string classNames)
     {
         var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
-        return AddClasses(dictionary, classes);
+        return CombineClassNames(dictionary, classNames);
     }
-    
-    internal static Dictionary<string, object> AddClasses(Dictionary<string, object> additionalAttributes, string classes)
+
+    // Taken from Microsoft.AspNetCore.Components.Forms.AttributeUtilities, licensed under MIT license
+    internal static string CombineClassNames(Dictionary<string, object> additionalAttributes, string classNames)
     {
-        var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
-        if (dictionary.TryGetValue("class", out var existingClass))
+        if (additionalAttributes is null || !additionalAttributes.TryGetValue("class", out var @class))
         {
-            dictionary["class"] = $"{existingClass} {classes}";
+            return classNames;
         }
-        else
+
+        var classAttributeValue = Convert.ToString(@class, CultureInfo.InvariantCulture);
+
+        if (string.IsNullOrEmpty(classAttributeValue))
         {
-            dictionary["class"] = classes;
+            return classNames;
         }
-        
-        return dictionary;
+
+        if (string.IsNullOrEmpty(classNames))
+        {
+            return classAttributeValue;
+        }
+
+        return $"{classAttributeValue} {classNames}";
     }
 }
