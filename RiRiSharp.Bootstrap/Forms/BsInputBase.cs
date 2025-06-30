@@ -10,7 +10,7 @@ public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
 
     // Use instead of CssClass, this also has the bootstrap classes.
     // Sadly the CssClass property cannot be overriden
-    protected string AllClasses
+    protected string BsCssClass
     {
         get
         {

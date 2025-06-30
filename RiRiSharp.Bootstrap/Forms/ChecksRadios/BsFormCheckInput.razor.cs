@@ -4,23 +4,7 @@ public partial class BsFormCheckInput : BsInputBase<bool>
 {
     protected override bool TryParseValueFromString(string value, out bool result, out string validationErrorMessage)
     {
-        if (value == "selected")
-        {
-            result = true;
-            validationErrorMessage = null;
-            return true;
-        }
-
-        if (value == "")
-        {
-            result = false;
-            validationErrorMessage = null;
-            return true;
-        }
-        
-        result = false;
-        validationErrorMessage = "Could not parse value into bool";
-        return false;
+        throw new NotImplementedException("This method is not necessary for parsing input checkboxes.");
     }
 
     protected override string DetermineClasses()

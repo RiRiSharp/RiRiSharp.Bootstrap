@@ -19,11 +19,7 @@ public class BsInputFile : InputFile
     private void SetClasses()
     {
         var allClasses = DetermineClasses();
-        
-        AdditionalAttributes ??= new Dictionary<string, object>();
-        
-        // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes
-        AdditionalAttributes["class"] =  allClasses.Split(' ').ToHashSet().Aggregate(allClasses, (current, @class) => @class + " " + current);
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
     private string DetermineClasses()

@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using System.Drawing
 @using RiRiSharp.Bootstrap.Forms
+@using RiRiSharp.Bootstrap.Forms.ChecksRadios
 @using RiRiSharp.Bootstrap.Forms.FormControl
 @using RiRiSharp.Bootstrap.Layout.Rows
 @using RiRiSharp.Bootstrap.Site.Shared
@@ -60,6 +61,18 @@
         </TextInputSelect>
         InputSelect: @(InputSelect2)
     </label>
+    <BsFormCheck>
+        <BsFormCheckLabel>
+            <BsFormCheckInput @bind-Value="_selected"/>
+            Label, selected: @(_selected)
+        </BsFormCheckLabel>
+    </BsFormCheck>
+    <BsFormCheck>
+        <BsFormCheckLabel>
+            <BsFormCheckIndeterminateInput @bind-Value="_selected2"/>
+            Label, selected: @(_selected2?.ToString() ?? "null")
+        </BsFormCheckLabel>
+    </BsFormCheck>
 </BsRow>
 
 @code {
@@ -71,6 +84,8 @@
     public string InputSelect2 { get; set; }
     public List<string> Options { get; set; } = ["AValue", "AndAnotherOne"];
     private string _fileInfo;
+    private bool _selected = true;
+    private bool? _selected2;
 
     private void FileChange(InputFileChangeEventArgs obj)
     {

@@ -1,7 +1,7 @@
 ﻿@inherits BsInputBase<TValue>
 @typeparam TValue
 
-<select @attributes="AdditionalAttributes" class="@(CssClass)" @bind="CurrentValueAsString">
+<select @attributes="AdditionalAttributes" class="@(BsCssClass)" @bind="CurrentValueAsString">
     @if (ChildContent is null)
     {
         @(Options)

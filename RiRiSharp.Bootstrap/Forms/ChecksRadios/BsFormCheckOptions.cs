@@ -1,6 +1,6 @@
 ﻿namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public enum FormCheckOptions
+public enum BsFormCheckOptions
 {
     Regular,
     Inline,
