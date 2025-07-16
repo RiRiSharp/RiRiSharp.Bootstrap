@@ -4,13 +4,13 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public class CheckboxJsFunctions
+public class BsCheckboxJsFunctions
 {
     private readonly BsJsObjectReference _bsJsObjectReference;
 
-    public CheckboxJsFunctions(IJSRuntime jsRuntime)
+    public BsCheckboxJsFunctions(IJSRuntime jsRuntime)
     {
-        _bsJsObjectReference = new BsJsObjectReference(jsRuntime, $"./_content/{typeof(CheckboxJsFunctions).Assembly.GetName().Name}/js/checkboxFunctions.js");
+        _bsJsObjectReference = new BsJsObjectReference(jsRuntime, $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/checkboxFunctions.js");
     }
 
     public async ValueTask InitializeIndeterminate(ElementReference checkboxReference)

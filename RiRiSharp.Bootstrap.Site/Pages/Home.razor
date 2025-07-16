@@ -62,10 +62,10 @@
         InputSelect: @(InputSelect2)
     </label>
     <BsFormCheck>
-        <BsFormCheckInput @bind-Value="_selected" disabled/>
-        <BsFormCheckLabel>
+        <BsButtonCheckCheckboxInput @bind-Value="_selected" id="a"/>
+        <BsLabelButtonOutlineDanger for="a">
             Label, selected: @(_selected)
-        </BsFormCheckLabel>
+        </BsLabelButtonOutlineDanger>
     </BsFormCheck>
     <BsFormCheck>
         <BsFormCheckIndeterminateInput @bind-Value="_selected2" disabled/>
