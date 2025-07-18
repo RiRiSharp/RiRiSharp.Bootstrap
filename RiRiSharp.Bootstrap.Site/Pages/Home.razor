@@ -6,6 +6,7 @@
 @using RiRiSharp.Bootstrap.Layout.Rows
 @using RiRiSharp.Bootstrap.Site.Shared
 @using RiRiSharp.Bootstrap.Forms.Range
+@using RiRiSharp.Bootstrap.Forms.InputGroups
 <PageTitle>Home</PageTitle>
 
 <h1>Bind Example</h1>
@@ -90,6 +91,11 @@
     </div>
     <BsFormLabel>Range example (@(_range))</BsFormLabel>
     <BsFormRangeInput @bind-Value="_range"/>
+    <BsInputGroup Size="InputGroupSize.Large">
+        <BsInputGroupText>First and last name</BsInputGroupText>
+        <BsInputText @bind-Value="_inputGroupText"/>
+        <BsInputText @bind-Value="_inputGroupText2"/>
+    </BsInputGroup>
 </BsRow>
 
 @code {
@@ -105,6 +111,9 @@
     private bool? _selected2;
     private int _range;
     public string RadioSelection { get; set; }
+
+    private string _inputGroupText;
+    private string _inputGroupText2;
 
     private void FileChange(InputFileChangeEventArgs obj)
     {
