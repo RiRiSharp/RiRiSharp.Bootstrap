@@ -3,10 +3,10 @@
 @using RiRiSharp.Bootstrap.Forms
 @using RiRiSharp.Bootstrap.Forms.ChecksRadios
 @using RiRiSharp.Bootstrap.Forms.FormControl
+@using RiRiSharp.Bootstrap.Forms.InputGroups
 @using RiRiSharp.Bootstrap.Layout.Rows
 @using RiRiSharp.Bootstrap.Site.Shared
 @using RiRiSharp.Bootstrap.Forms.Range
-@using RiRiSharp.Bootstrap.Forms.InputGroups
 <PageTitle>Home</PageTitle>
 
 <h1>Bind Example</h1>
@@ -97,6 +97,10 @@
         <BsInputText @bind-Value="_inputGroupText2"/>
     </BsInputGroup>
 </BsRow>
+<BsFormFloating>
+    <BsInputText @bind-Value="_inputGroupText3"/>
+    <label>@(_inputGroupText3 ?? "Label")</label>
+</BsFormFloating>
 
 @code {
     private string InputValue { get; set; }
@@ -114,6 +118,7 @@
 
     private string _inputGroupText;
     private string _inputGroupText2;
+    private string _inputGroupText3;
 
     private void FileChange(InputFileChangeEventArgs obj)
     {
