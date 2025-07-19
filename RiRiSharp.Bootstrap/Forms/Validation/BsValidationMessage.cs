@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Forms;
+namespace RiRiSharp.Bootstrap.Forms.Validation;
 
-public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
+public class BsValidationMessage<TValue> : ValidationMessage<TValue>, IBsComponent
 {
     [Parameter] public string Classes { get; set; }
 
@@ -16,10 +16,12 @@ public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
 
     private void SetClasses()
     {
-        var componentSpecificClasses = GetBsComponentSpecificClasses();
-        var allClasses = $"{componentSpecificClasses} {Classes}";
+        var allClasses = GetBsComponentSpecificClasses();
         AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
-    protected abstract string GetBsComponentSpecificClasses();
+    private string GetBsComponentSpecificClasses()
+    {
+        return "invalid-feedback";
+    }
 }

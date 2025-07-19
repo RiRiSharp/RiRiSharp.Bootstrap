@@ -2,24 +2,22 @@
 
 namespace RiRiSharp.Bootstrap.Forms.Range;
 
-public partial class BsFormRangeInput<T> : BsInputBase<T> where T : INumber<T>
+public partial class BsFormRangeInput<TValue> : BsInputBase<TValue> where TValue : INumber<TValue>
 {
-    private const string _formRange = "form-range";
-
-    protected override bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(string value, out TValue result, out string validationErrorMessage)
     {
-        if (T.TryParse(value, null, out result))
+        if (TValue.TryParse(value, null, out result))
         {
             validationErrorMessage = null;
             return true;
         }
 
-        validationErrorMessage = $"The value '{value}' is not valid for type {typeof(T).Name}.";
+        validationErrorMessage = $"The value '{value}' is not valid for type {typeof(TValue).Name}.";
         return false;
     }
 
-    protected override string DetermineClasses()
+    protected override string GetBsComponentSpecificClasses()
     {
-        return _formRange;
+        return "form-range";
     }
 }

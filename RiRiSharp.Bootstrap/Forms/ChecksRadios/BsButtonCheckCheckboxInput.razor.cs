@@ -7,7 +7,7 @@ public partial class BsButtonCheckCheckboxInput : BsInputBase<bool>
         throw new NotImplementedException("This method is not necessary for parsing input checkboxes.");
     }
 
-    protected override string DetermineClasses()
+    protected override string GetBsComponentSpecificClasses()
     {
         return "btn-check";
     }

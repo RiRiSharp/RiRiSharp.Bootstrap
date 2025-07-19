@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Forms.FormControl;
+namespace RiRiSharp.Bootstrap.Forms.Select;
 
-public class BsInputFile : InputFile
+// 'multiple' is not supported (yet)
+public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentComponent
 {
-    private const string _formControl = "form-control";
-    [Parameter] public string Classes { get; set; }
+    private const string _formSelect = "form-select";
     [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
+    [Parameter] public string Classes { get; set; }
 
     protected override void OnParametersSet()
     {
@@ -22,19 +23,19 @@ public class BsInputFile : InputFile
         var allClasses = $"{componentSpecificClasses} {Classes}";
         AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
-
+    
     private string GetBsComponentSpecificClasses()
     {
-        var formSizeClass = DetermineSizeClass();
-        return $"{_formControl} {formSizeClass}";
+        var sizeClass = DetermineSizeClass();
+        return $"{_formSelect} {sizeClass}";
     }
-    
+
     private string DetermineSizeClass()
     {
         if (FormSize == FormSize.Regular) return "";
-        if (FormSize == FormSize.Small) return $"{_formControl}-sm";
-        if (FormSize == FormSize.Large) return $"{_formControl}-lg";
-        
+        if (FormSize == FormSize.Small) return $"{_formSelect}-sm";
+        if (FormSize == FormSize.Large) return $"{_formSelect}-lg";
+
         throw new ArgumentOutOfRangeException(nameof(FormSize));
     }
 }

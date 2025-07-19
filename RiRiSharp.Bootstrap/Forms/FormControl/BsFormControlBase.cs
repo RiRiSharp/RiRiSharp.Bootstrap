@@ -22,11 +22,11 @@ public abstract class BsFormControlBase<TValue> : BsInputBase<TValue>
     [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
     [Parameter] public bool ReadonlyPlaintext { get; set; }
 
-    protected override string DetermineClasses()
+    protected override string GetBsComponentSpecificClasses()
     {
         var sizeClass = DetermineSizeClass();
         var formControl = DeterminePlainTextClass();
-        return string.Join(' ', formControl, _additionalClasses, sizeClass, Classes);
+        return string.Join(' ', formControl, _additionalClasses, sizeClass);
     }
 
     private string DetermineSizeClass()

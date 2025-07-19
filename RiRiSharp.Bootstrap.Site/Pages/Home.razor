@@ -1,127 +1,87 @@
 ﻿@page "/"
-@using System.Drawing
 @using RiRiSharp.Bootstrap.Forms
 @using RiRiSharp.Bootstrap.Forms.ChecksRadios
 @using RiRiSharp.Bootstrap.Forms.FormControl
 @using RiRiSharp.Bootstrap.Forms.InputGroups
-@using RiRiSharp.Bootstrap.Layout.Rows
-@using RiRiSharp.Bootstrap.Site.Shared
-@using RiRiSharp.Bootstrap.Forms.Range
+@using RiRiSharp.Bootstrap.Forms.Validation
+@using RiRiSharp.Bootstrap.Layout.Columns
+@using RiRiSharp.Bootstrap.Forms.Select
 <PageTitle>Home</PageTitle>
 
-<h1>Bind Example</h1>
-<BsRow>
-    <label>
-        Regular input:
-        <BsInputText @bind-Value="InputValue"/> @(InputValue)
-    </label>
-
-    <label>
-        Password input:
-        <BsInputText type="password" @bind-Value="Password"/> @(Password)
-    </label>
-
-    <label>
-        Readonly input:
-        <BsInputText readonly ReadonlyPlaintext="true" @bind-Value="Text"/> @(Text)
-    </label>
-
-    <label>
-        File input:
-        <BsInputFile OnChange="FileChange" multiple/> @(_fileInfo)
-    </label>
-
-    <label>
-        Color input:
-        <BsInputColor @bind-Value="Color"/>
-        Hex: @(ColorTranslator.ToHtml(Color))
-    </label>
-</BsRow>
-
-<BsRow>
-    <label>
-        InputSelect
-        <TextInputSelect @bind-Value="InputSelect" Values="@( ["ValueA", "ValueB"])" Context="value">
-            <BsOption Value="value">
-                @($"Display{value}")
-            </BsOption>
-        </TextInputSelect>
-        InputSelect: @(InputSelect)
-    </label>
-    <label>
-        InputSelect with foreach
-        <TextInputSelect @bind-Value="InputSelect2" Values="Options" FormSize="FormSize.Small">
-            <Options>
-                <BsOption selected TValue="string">Open this select menu</BsOption>
-                @foreach (var option in Options)
-                {
-                    <BsOption Value="option">
-                        @($"Display{option}")
-                    </BsOption>
-                }
-            </Options>
-        </TextInputSelect>
-        InputSelect: @(InputSelect2)
-    </label>
-    <BsFormCheck>
-        <BsButtonCheckCheckboxInput @bind-Value="_selected" id="a"/>
-        <BsLabelButtonOutlineDanger for="a">
-            Label, selected: @(_selected)
-        </BsLabelButtonOutlineDanger>
-    </BsFormCheck>
-    <BsFormCheck>
-        <BsFormCheckIndeterminateInput @bind-Value="_selected2" disabled/>
-        <BsFormCheckLabel>
-            Label, selected: @(_selected2?.ToString() ?? "null")
-        </BsFormCheckLabel>
-    </BsFormCheck>
-    <div>
-        <BsInputRadioGroup @bind-Value="RadioSelection">
-            @foreach (var value in Options)
+<BsEditForm EditContext="_editContext" Classes="row g-3" OnValidSubmit="ValidSubmit" OnInvalidSubmit="InvalidSubmit">
+    <DataAnnotationsValidator/>
+    <BsColumn ColOption="ColumnOptions.ColMd4">
+        <BsFormLabel>First name</BsFormLabel>
+        <InputText class="form-control" @bind-Value="_homeModel.FirstName"/>
+        <BsValidationMessage class="invalid-feedback" For="() => _homeModel.FirstName"/>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd4">
+        <BsFormLabel>Last name</BsFormLabel>
+        <BsInputText @bind-Value="_homeModel.LastName"/>
+        <BsValidationMessage For="() => _homeModel.LastName"/>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd4">
+        <BsFormLabel>Username</BsFormLabel>
+        <BsInputGroup>
+            <BsInputGroupText>@@</BsInputGroupText>
+            <BsInputText @bind-Value="_homeModel.Username"/>
+            <BsValidationMessage For="() => _homeModel.Username"/>
+        </BsInputGroup>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd6">
+        <BsFormLabel>City</BsFormLabel>
+        <BsInputText @bind-Value="_homeModel.City"/>
+        <BsValidationMessage For="() => _homeModel.City"/>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd3">
+        <BsFormLabel>State</BsFormLabel>
+        <BsInputSelect @bind-Value="_homeModel.State">
+            <option selected disabled value="">Choose...</option>
+            @foreach (var state in _states)
             {
-                <BsFormCheck FormCheckOptions="BsFormCheckOptions.Reverse">
-                    <BsFormCheckLabel>
-                        <BsInputRadio Value="value"/>
-                        @(value)
-                    </BsFormCheckLabel>
-                </BsFormCheck>
+                <option value="@(state)">@(state)</option>
             }
-        </BsInputRadioGroup>
-        Selection: @(RadioSelection)
-    </div>
-    <BsFormLabel>Range example (@(_range))</BsFormLabel>
-    <BsFormRangeInput @bind-Value="_range"/>
-    <BsInputGroup Size="InputGroupSize.Large">
-        <BsInputGroupText>First and last name</BsInputGroupText>
-        <BsInputText @bind-Value="_inputGroupText"/>
-        <BsInputText @bind-Value="_inputGroupText2"/>
-    </BsInputGroup>
-</BsRow>
-<BsFormFloating>
-    <BsInputText @bind-Value="_inputGroupText3"/>
-    <label>@(_inputGroupText3 ?? "Label")</label>
-</BsFormFloating>
+        </BsInputSelect>
+        <BsValidationMessage For="() => _homeModel.State"/>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd3">
+        <BsFormLabel>Zip</BsFormLabel>
+        <BsInputText @bind-Value="_homeModel.Zip"/>
+        <BsValidationMessage For="() => _homeModel.Zip"/>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd12">
+        <BsFormCheck>
+            <BsFormCheckLabel>
+                <BsInputCheckbox @bind-Value="_homeModel.AgreeTermsAndConditions"/>
+                Agree to terms and conditions
+            </BsFormCheckLabel>
+            <BsValidationMessage For="() => _homeModel.AgreeTermsAndConditions"/>
+        </BsFormCheck>
+    </BsColumn>
+    <BsColumn ColOption="ColumnOptions.ColMd12">
+        <button type="submit" class="btn btn-primary">Submit form</button>
+    </BsColumn>
+</BsEditForm>
 
 @code {
-    private string InputValue { get; set; }
-    public string Text { get; set; } = "ReadonlyText";
-    public string Password { get; set; }
-    public Color Color { get; set; }
-    public string InputSelect { get; set; }
-    public string InputSelect2 { get; set; }
-    public List<string> Options { get; set; } = ["AValue", "AndAnotherOne"];
-    private string _fileInfo;
-    private bool _selected = true;
-    private bool? _selected2;
-    private int _range;
-    public string RadioSelection { get; set; }
+    HomeModel _homeModel;
+    private EditContext _editContext;
+    private readonly IEnumerable<string> _states = ["State A", "State B"];
 
-    private string _inputGroupText;
-    private string _inputGroupText2;
-    private string _inputGroupText3;
-
-    private void FileChange(InputFileChangeEventArgs obj)
+    protected override void OnInitialized()
     {
-        _fileInfo = $"Name: {obj.File.Name}, Type: {obj.File.ContentType}, Size: {obj.File.Size}, Count: {obj.FileCount}";
+        _homeModel = new HomeModel();
+        _editContext = BsEditContextBuilder.Build(_homeModel);
+        base.OnInitialized();
+    }
+
+    private void ValidSubmit()
+    {
+        Console.WriteLine("Submit was valid");
+    }
+
+    private void InvalidSubmit()
+    {
+        Console.WriteLine("Submit was invalid");
     }
 }

@@ -10,7 +10,7 @@ internal static class BsAttributeUtilities
     /// <param name="additionalAttributes">The attribute dictionary</param>
     /// <param name="classNames">CSS classes to add</param>
     /// <returns>A CSS class string containing the combination of the provided classnames and the classes present in the dictionary.</returns>
-    internal static string CombineClassNames<T>(T additionalAttributes, string classNames) where T : IEnumerable<KeyValuePair<string, object>>
+    internal static string CombineClassNames<TValue>(TValue additionalAttributes, string classNames) where TValue : IEnumerable<KeyValuePair<string, object>>
     {
         var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
         return CombineClassNames(dictionary, classNames);
@@ -69,8 +69,9 @@ internal static class BsAttributeUtilities
 
     private static void AssignClassNames(Dictionary<string, object> additionalAttributes, string classNames)
     {
+        var allClasses = CombineClassNames(additionalAttributes, classNames);
         // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes
-        additionalAttributes["class"] = classNames
+        additionalAttributes["class"] = allClasses
             .Split(' ')
             .ToHashSet()
             .Aggregate("", (current, @class) => @class + " " + current);

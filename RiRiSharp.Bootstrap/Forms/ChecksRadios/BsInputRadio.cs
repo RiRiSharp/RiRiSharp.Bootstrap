@@ -15,11 +15,11 @@ public class BsInputRadio<TValue> : InputRadio<TValue>
 
     private void SetClasses()
     {
-        var allClasses = DetermineClasses();
+        var allClasses = GetBsComponentSpecificClasses();
         AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
-    private string DetermineClasses()
+    private string GetBsComponentSpecificClasses()
     {
         return "form-check-input";
     }

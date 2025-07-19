@@ -4,25 +4,27 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public partial class BsFormCheck : BsChildContentComponent
 {
-    private const string _formCheck = "form-check";
+    private readonly string _additionalFormCheckClasses;
 
     public BsFormCheck(string additionalFormCheckClasses = "")
     {
-        if (string.IsNullOrWhiteSpace(additionalFormCheckClasses)) return;
-        _formCheckClasses = $"{_formCheck} {additionalFormCheckClasses}";
+        _additionalFormCheckClasses = additionalFormCheckClasses;
     }
     
-    private string _formCheckClasses = _formCheck;
     [Parameter] public BsFormCheckOptions FormCheckOptions { get; set; }
 
-    protected string BsCssClass
+    private string CssClass
     {
-        get => DetermineClasses();
+        get
+        {
+            var componentSpecificClasses = GetBsComponentSpecificClasses();
+            return $"{componentSpecificClasses} {Classes}";
+        }
     }
-
-    private string DetermineClasses()
+    
+    private string GetBsComponentSpecificClasses()
     {
         var optionsClass = FormCheckOptions.ToBootstrapClass();
-        return $"{_formCheckClasses} {optionsClass} {Classes}";
+        return $"form-check {_additionalFormCheckClasses} {optionsClass}";
     }
 }

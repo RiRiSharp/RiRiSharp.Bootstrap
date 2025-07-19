@@ -2,7 +2,7 @@
 
 namespace RiRiSharp.Bootstrap;
 
-public interface IBsChildContentComponent
+public interface IBsChildContentComponent : IBsComponent
 {
     public RenderFragment ChildContent { get; set; }
 }

@@ -1,4 +1,4 @@
 ﻿@using System.Numerics
-@typeparam T where T : INumber<T>
-@inherits BsInputBase<T>
-<input @attributes="AdditionalAttributes" type="range" class="@(BsCssClass)" @bind="@(CurrentValue)"/>
+@typeparam TValue where TValue : INumber<TValue>
+@inherits BsInputBase<TValue>
+<input @attributes="AdditionalAttributes" type="range" class="@(CssClass)" @bind="@(CurrentValue)"/>
