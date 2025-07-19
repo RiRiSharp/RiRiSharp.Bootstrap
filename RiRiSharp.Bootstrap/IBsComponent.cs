@@ -1,4 +1,6 @@
-﻿namespace RiRiSharp.Bootstrap;
+﻿using System.ComponentModel;
+
+namespace RiRiSharp.Bootstrap;
 
 public interface IBsComponent
 {
