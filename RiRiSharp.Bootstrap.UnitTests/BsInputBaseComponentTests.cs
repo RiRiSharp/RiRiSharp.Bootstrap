@@ -1,25 +1,27 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using RiRiSharp.Bootstrap.Forms;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat)
-    where TComponent : ComponentBase, IBsComponent
+public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat)
+    where TComponent : BsInputBase<TValue>
 {
     [Fact]
     public void DefaultWorks()
     {
         // Arrange
         using var ctx = new TestContext();
+        TValue value = default;
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>();
+        var cut = ctx.RenderComponent<TComponent>(parameters => parameters.Bind(
+            p => p.Value, value, newValue => value = newValue));
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Theory]
     [InlineData(null)]
     [InlineData("")]
@@ -30,23 +32,25 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
         // Arrange
         using var ctx = new TestContext();
+        TValue value = default;
 
         // Act
         var cut = ctx.RenderComponent<TComponent>(parameters => parameters
-            .Add(x => x.Classes, classes));
-        
+            .Add(x => x.Classes, classes)
+            .Bind(
+                p => p.Value, value, newValue => value = newValue));
+
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, classes, string.Empty);
         cut.MarkupMatches(expectedMarkupString);
-        
     }
 
     [Theory]
-    [InlineData(new[] {"attributeKey"}, new [] {"attributeValue"}, 
+    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
         """
         attributeKey="attributeValue"
         """)]
-    [InlineData(new[] {"attributeKey1", "attributeKey2"}, new [] {"attributeValue1", "attributeValue2"}, 
+    [InlineData(new[] { "attributeKey1", "attributeKey2" }, new[] { "attributeValue1", "attributeValue2" },
         """
         attributeKey1="attributeValue1" attributeKey2="attributeValue2"
         """)]
@@ -54,7 +58,8 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
         // Arrange
         using var ctx = new TestContext();
-
+        TValue value = default;
+        
         // Act
         var cut = ctx.RenderComponent<TComponent>(parameters =>
         {
@@ -63,8 +68,10 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
                 parameters
                     .AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
+
+            parameters.Bind(p => p.Value, value, newValue => value = newValue);
         });
-        
+
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, expected);
         cut.MarkupMatches(expectedMarkupString);

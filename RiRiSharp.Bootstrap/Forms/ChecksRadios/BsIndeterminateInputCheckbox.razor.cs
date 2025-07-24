@@ -2,12 +2,12 @@
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public partial class BsFormCheckIndeterminateInput : BsInputBase<bool?>
+public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
 {
     private readonly BsCheckboxJsFunctions _bsCheckboxJsFunctions;
     private ElementReference _checkboxReference;
 
-    public BsFormCheckIndeterminateInput(BsCheckboxJsFunctions bsCheckboxJsFunctions)
+    public BsIndeterminateInputCheckbox(BsCheckboxJsFunctions bsCheckboxJsFunctions)
     {
         _bsCheckboxJsFunctions = bsCheckboxJsFunctions;
     }

@@ -1,6 +1,6 @@
 ﻿namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public partial class BsButtonCheckCheckboxInput : BsInputBase<bool>
+public partial class BsButtonCheckInputCheckbox : BsInputBase<bool>
 {
     protected override bool TryParseValueFromString(string value, out bool result, out string validationErrorMessage)
     {
