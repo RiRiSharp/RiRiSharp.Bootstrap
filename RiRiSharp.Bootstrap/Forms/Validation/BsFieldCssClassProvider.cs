@@ -2,7 +2,7 @@
 
 namespace RiRiSharp.Bootstrap.Forms.Validation;
 
-public class BsFieldCssClassProvider : FieldCssClassProvider
+public class BsFieldCssClassProvider(bool showValidInput = true) : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext,
         in FieldIdentifier fieldIdentifier)
@@ -12,7 +12,7 @@ public class BsFieldCssClassProvider : FieldCssClassProvider
         if (isInvalid) 
             return "is-invalid";
 
-        if (editContext.IsModified(fieldIdentifier)) 
+        if (editContext.IsModified(fieldIdentifier) && showValidInput) 
             return "is-valid";
 
         return string.Empty;
