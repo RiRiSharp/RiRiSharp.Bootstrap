@@ -6,6 +6,8 @@ namespace RiRiSharp.Bootstrap.UnitTests;
 public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat)
     where TComponent : BsInputBase<TValue>
 {
+    protected string HtmlFormat => htmlFormat;
+    
     [Fact]
     public void DefaultWorks()
     {
