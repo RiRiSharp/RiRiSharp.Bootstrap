@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public class BsButtonCheckRadioInput<TValue> : InputRadio<TValue>, IBsComponent
+public class BsButtonCheckInputRadio<TValue> : InputRadio<TValue>, IBsComponent
 {
     [Parameter] public BsFormCheckOptions FormCheckOptions { get; set; } = BsFormCheckOptions.Stacked;
     [Parameter] public string Classes { get; set; }

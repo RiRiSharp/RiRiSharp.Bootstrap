@@ -11,7 +11,7 @@
         // Act
         var cut = ctx.Render(
             @<BsInputRadioGroup @bind-Value="_boundValue">
-            <BsButtonCheckRadioInput TValue="string"/>
+            <BsButtonCheckInputRadio TValue="string"/>
         </BsInputRadioGroup>);
 
         // Assert
@@ -33,7 +33,7 @@
         // Act
         var cut = ctx.Render(
             @<BsInputRadioGroup @bind-Value="_boundValue">
-              <BsButtonCheckRadioInput TValue="string" Classes="@(classes)"/>
+              <BsButtonCheckInputRadio TValue="string" Classes="@(classes)"/>
             </BsInputRadioGroup>);
 
         // Assert
@@ -55,7 +55,7 @@
         // Act
         var cut = ctx.Render(
             @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckRadioInput AdditionalAttributes="attributes" TValue="string"/>
+                <BsButtonCheckInputRadio AdditionalAttributes="attributes" TValue="string"/>
             </BsInputRadioGroup>);
     
         // Assert
@@ -73,7 +73,7 @@
         // Act
         var cut = ctx.Render(
             @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckRadioInput Value="SomeValueVar"/>
+                <BsButtonCheckInputRadio Value="SomeValueVar"/>
             </BsInputRadioGroup>);
 
         // Assert
@@ -92,8 +92,8 @@
         using var ctx = new TestContext();
         var cut = ctx.Render(
             @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckRadioInput Value="SomeValueVar" id="some"/>
-                <BsButtonCheckRadioInput Value="DifferentValueVar" id="different"/>
+                <BsButtonCheckInputRadio Value="SomeValueVar" id="some"/>
+                <BsButtonCheckInputRadio Value="DifferentValueVar" id="different"/>
             </BsInputRadioGroup>);
 
         // Act
