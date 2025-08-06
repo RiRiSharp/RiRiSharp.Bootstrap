@@ -1,0 +1,108 @@
+﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
+@inherits TestContext
+
+@code {
+    [Fact]
+    public void DefaultWorks()
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        // Act
+        var cut = ctx.Render(
+            @<BsInputRadioGroup @bind-Value="_boundValue">
+            <BsButtonCheckRadioInput TValue="string"/>
+        </BsInputRadioGroup>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, string.Empty);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
+    public void PassingClassesWorks(string classes)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        // Act
+        var cut = ctx.Render(
+            @<BsInputRadioGroup @bind-Value="_boundValue">
+              <BsButtonCheckRadioInput TValue="string" Classes="@(classes)"/>
+            </BsInputRadioGroup>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+    
+    [Theory]
+    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
+        """attributeKey="attributeValue" """)]
+    [InlineData(new[] { "attributeKey1", "attributeKey2" }, new[] { "attributeValue1", "attributeValue2" },
+        """attributeKey1="attributeValue1" attributeKey2="attributeValue2" """)]
+    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+    
+        var attributes = attributeKeys.Zip(attributeValues).ToDictionary(t => t.First, object (t) => t.Second);
+        // Act
+        var cut = ctx.Render(
+            @<BsInputRadioGroup @bind-Value="_boundValue">
+                <BsButtonCheckRadioInput AdditionalAttributes="attributes" TValue="string"/>
+            </BsInputRadioGroup>);
+    
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+    
+    [Fact]
+    public void MatchingValuesChecksTheRadio()
+    {
+        // Arrange
+        using var ctx = new TestContext();
+        _boundValue = SomeValueVar;
+
+        // Act
+        var cut = ctx.Render(
+            @<BsInputRadioGroup @bind-Value="_boundValue">
+                <BsButtonCheckRadioInput Value="SomeValueVar"/>
+            </BsInputRadioGroup>);
+
+        // Assert
+        // One might ask why a? And there's a (no pun intended) super obscure reason for it.
+        // This can be found here: https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web/src/Forms/InputRadio.cs#L78-L95
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);  
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData("some", SomeValueVar)]
+    [InlineData("different",DifferentValueVar)]
+    public void ClickingRadioSetsCorrectValue(string idToClick, string expectedBoundValue)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+        var cut = ctx.Render(
+            @<BsInputRadioGroup @bind-Value="_boundValue">
+                <BsButtonCheckRadioInput Value="SomeValueVar" id="some"/>
+                <BsButtonCheckRadioInput Value="DifferentValueVar" id="different"/>
+            </BsInputRadioGroup>);
+
+        // Act
+        var inputElement = cut.Find($"#{idToClick}");
+        inputElement.Change(new ChangeEventArgs{Value = expectedBoundValue });
+
+        // Assert
+       Assert.Equal(expectedBoundValue, _boundValue);
+       var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);  
+       cut.MarkupMatches(expectedMarkupString);
+    }
+}

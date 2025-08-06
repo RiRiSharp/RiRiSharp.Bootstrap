@@ -1,10 +1,10 @@
-﻿using RiRiSharp.Bootstrap.Forms;
+﻿using Microsoft.AspNetCore.Components.Forms;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
 public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat)
-    where TComponent : BsInputBase<TValue>
+    where TComponent : InputBase<TValue>, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;
     

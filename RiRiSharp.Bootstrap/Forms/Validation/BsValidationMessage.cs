@@ -16,7 +16,8 @@ public class BsValidationMessage<TValue> : ValidationMessage<TValue>, IBsCompone
 
     private void SetClasses()
     {
-        var allClasses = GetBsComponentSpecificClasses();
+        var componentSpecificClasses = GetBsComponentSpecificClasses();
+        var allClasses = $"{componentSpecificClasses} {Classes}";
         AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
