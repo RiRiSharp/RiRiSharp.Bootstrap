@@ -7,7 +7,7 @@ public static class BsStartupExtensions
 {
     public static IServiceCollection EnableJsInteractiveComponents(this IServiceCollection services)
     {
-        services.AddSingleton<BsCheckboxJsFunctions>();
+        services.AddSingleton<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>();
         return services;
     }
 }

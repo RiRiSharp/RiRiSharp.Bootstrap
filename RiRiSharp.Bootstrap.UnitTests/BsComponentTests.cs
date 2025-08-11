@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : TestContext
+public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat)
     where TComponent : ComponentBase, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;

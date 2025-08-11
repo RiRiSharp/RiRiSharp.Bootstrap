@@ -9,8 +9,7 @@
         using var ctx = new TestContext();
 
         // Act
-        var cut = ctx.Render(
-            @<BsInputRadioGroup @bind-Value="_boundValue">
+        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio TValue="string"/>
         </BsInputRadioGroup>);
 
@@ -31,16 +30,15 @@
         using var ctx = new TestContext();
 
         // Act
-        var cut = ctx.Render(
-            @<BsInputRadioGroup @bind-Value="_boundValue">
-              <BsButtonCheckInputRadio TValue="string" Classes="@(classes)"/>
-            </BsInputRadioGroup>);
+        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+            <BsButtonCheckInputRadio TValue="string" Classes="@(classes)"/>
+        </BsInputRadioGroup>);
 
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Theory]
     [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
         """attributeKey="attributeValue" """)]
@@ -50,19 +48,18 @@
     {
         // Arrange
         using var ctx = new TestContext();
-    
+
         var attributes = attributeKeys.Zip(attributeValues).ToDictionary(t => t.First, object (t) => t.Second);
         // Act
-        var cut = ctx.Render(
-            @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckInputRadio AdditionalAttributes="attributes" TValue="string"/>
-            </BsInputRadioGroup>);
-    
+        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+            <BsButtonCheckInputRadio AdditionalAttributes="attributes" TValue="string"/>
+        </BsInputRadioGroup>);
+
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Fact]
     public void MatchingValuesChecksTheRadio()
     {
@@ -71,38 +68,36 @@
         _boundValue = SomeValueVar;
 
         // Act
-        var cut = ctx.Render(
-            @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckInputRadio Value="SomeValueVar"/>
-            </BsInputRadioGroup>);
+        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+            <BsButtonCheckInputRadio Value="SomeValueVar"/>
+        </BsInputRadioGroup>);
 
         // Assert
         // One might ask why a? And there's a (no pun intended) super obscure reason for it.
         // This can be found here: https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web/src/Forms/InputRadio.cs#L78-L95
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);  
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);
         cut.MarkupMatches(expectedMarkupString);
     }
 
     [Theory]
     [InlineData("some", SomeValueVar)]
-    [InlineData("different",DifferentValueVar)]
+    [InlineData("different", DifferentValueVar)]
     public void ClickingRadioSetsCorrectValue(string idToClick, string expectedBoundValue)
     {
         // Arrange
         using var ctx = new TestContext();
-        var cut = ctx.Render(
-            @<BsInputRadioGroup @bind-Value="_boundValue">
-                <BsButtonCheckInputRadio Value="SomeValueVar" id="some"/>
-                <BsButtonCheckInputRadio Value="DifferentValueVar" id="different"/>
-            </BsInputRadioGroup>);
+        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+            <BsButtonCheckInputRadio Value="SomeValueVar" id="some"/>
+            <BsButtonCheckInputRadio Value="DifferentValueVar" id="different"/>
+        </BsInputRadioGroup>);
 
         // Act
         var inputElement = cut.Find($"#{idToClick}");
-        inputElement.Change(new ChangeEventArgs{Value = expectedBoundValue });
+        inputElement.Change(new ChangeEventArgs { Value = expectedBoundValue });
 
         // Assert
-       Assert.Equal(expectedBoundValue, _boundValue);
-       var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);  
-       cut.MarkupMatches(expectedMarkupString);
+        Assert.Equal(expectedBoundValue, _boundValue);
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);
+        cut.MarkupMatches(expectedMarkupString);
     }
 }

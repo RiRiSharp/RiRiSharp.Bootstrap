@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <SupportedPlatform Include="browser"/>
+    <InternalsVisibleTo Include="$(MSBuildProjectName).UnitTests"/>
   </ItemGroup>
 
   <ItemGroup>

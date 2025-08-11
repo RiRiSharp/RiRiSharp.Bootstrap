@@ -7,17 +7,16 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     where TComponent : InputBase<TValue>, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;
-    
+
     [Fact]
     public void DefaultWorks()
     {
         // Arrange
         using var ctx = new TestContext();
-        TValue value = default;
+        ConfigureTestContext(ctx);
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters => parameters.Bind(
-            p => p.Value, value, newValue => value = newValue));
+        var cut = ctx.RenderComponent<TComponent>(BuildParameters);
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
@@ -34,13 +33,14 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     {
         // Arrange
         using var ctx = new TestContext();
-        TValue value = default;
+        ConfigureTestContext(ctx);
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters => parameters
-            .Add(x => x.Classes, classes)
-            .Bind(
-                p => p.Value, value, newValue => value = newValue));
+        var cut = ctx.RenderComponent<TComponent>(parameters =>
+        {
+            BuildParameters(parameters);
+            parameters.Add(x => x.Classes, classes);
+        });
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, classes, string.Empty);
@@ -60,22 +60,31 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     {
         // Arrange
         using var ctx = new TestContext();
-        TValue value = default;
-        
+        ConfigureTestContext(ctx);
+
         // Act
         var cut = ctx.RenderComponent<TComponent>(parameters =>
         {
+            BuildParameters(parameters);
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters
-                    .AddUnmatched(attributeKeys[i], attributeValues[i]);
+                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
-
-            parameters.Bind(p => p.Value, value, newValue => value = newValue);
         });
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, expected);
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    protected virtual void BuildParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
+    {
+        TValue value = default;
+        parameterBuilder.Bind(p => p.Value, value, newValue => value = newValue);
+    }
+
+    protected virtual void ConfigureTestContext(TestContext ctx)
+    {
+        
     }
 }

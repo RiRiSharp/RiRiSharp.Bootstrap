@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-public class BsCheckboxJsFunctions
+internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions
 {
     private readonly BsJsObjectReference _bsJsObjectReference;
 

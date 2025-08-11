@@ -4,18 +4,21 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
 {
-    private readonly BsCheckboxJsFunctions _bsCheckboxJsFunctions;
+    private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions;
     private ElementReference _checkboxReference;
 
-    public BsIndeterminateInputCheckbox(BsCheckboxJsFunctions bsCheckboxJsFunctions)
+    public BsIndeterminateInputCheckbox(IBsCheckboxJsFunctions bsCheckboxJsFunctions)
     {
         _bsCheckboxJsFunctions = bsCheckboxJsFunctions;
     }
-    
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+
+    protected override async Task OnParametersSetAsync()
     {
-        if (firstRender)
+        await base.OnParametersSetAsync();
+        if (CurrentValue is null)
+        {
             await _bsCheckboxJsFunctions.InitializeIndeterminate(_checkboxReference);
+        }
     }
 
     protected override bool TryParseValueFromString(string value, out bool? result, out string validationErrorMessage)

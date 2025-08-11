@@ -24,10 +24,10 @@ public class BsButtonCheckInputCheckboxTests()
     }
 
     [Theory]
-    [InlineData(false, true, "checked")]
+    [InlineData(false, false, "")]
     [InlineData(true, true, "checked")]
     [InlineData(true, false, "")]
-    [InlineData(false, false, "")]
+    [InlineData(false, true, "checked")]
     public void CheckingCheckboxSetsCorrectValue(bool beforeValue, bool afterValue, string expectedAttribute)
     {
         // Arrange
