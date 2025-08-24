@@ -1,0 +1,47 @@
+﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
+
+@code {
+    [Fact]
+    public void ConstructorWorks()
+    {
+        // Arrange
+        var ctx = new TestContext();
+
+        // Act
+        try
+        {
+            _ = new BsCheckboxJsFunctions(ctx.JSInterop.JSRuntime);
+        }
+        catch (Exception ex)
+        {
+            // Assert
+            Assert.Fail("Expected no exception, but got: " + ex.Message);
+        }
+    }
+
+    [Fact]
+    public async Task CallingInitializeIndeterminateDoesNotThrowException()
+    {
+        // Arrange
+        var ctx = new TestContext();
+        var reference = default(ElementReference);
+
+        ctx.JSInterop
+            .SetupModule($"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JsFileName}")
+            .SetupVoid(BsCheckboxJsFunctions.InitIndeterminateJsFunctionName, reference)
+            .SetVoidResult();
+        
+        var functions = new BsCheckboxJsFunctions(ctx.JSInterop.JSRuntime);
+
+        // Act
+        try
+        {
+            await functions.InitializeIndeterminate(reference);
+        }
+        catch (Exception ex)
+        {
+            // Assert
+            Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
+        }
+    }
+}

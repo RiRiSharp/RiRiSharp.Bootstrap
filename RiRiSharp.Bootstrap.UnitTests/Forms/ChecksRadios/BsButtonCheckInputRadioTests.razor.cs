@@ -9,4 +9,9 @@ public partial class BsButtonCheckInputRadioTests : TestContext
     private string _boundValue = "";
     private const string SomeValueVar = "someValue";
     private const string DifferentValueVar = "differentValue";
+
+    private static string GetHtmlFormat(string id)
+    {
+        return $$"""<input class="btn-check {0}" type="radio" name="{{nameof(_boundValue)}}" id="{{id}}" {1}>""";
+    }
 }

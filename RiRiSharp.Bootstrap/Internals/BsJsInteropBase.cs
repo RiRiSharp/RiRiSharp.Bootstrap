@@ -8,8 +8,11 @@ internal class BsJsObjectReference : IJSObjectReference
 
     internal BsJsObjectReference(IJSRuntime jsRuntime, string filePath)
     {
-        _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-            "import", filePath).AsTask());
+        _moduleTask = new(() =>
+        {
+            return jsRuntime.InvokeAsync<IJSObjectReference>(
+                "import", filePath).AsTask();
+        });
     }
 
     public async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object[] args)

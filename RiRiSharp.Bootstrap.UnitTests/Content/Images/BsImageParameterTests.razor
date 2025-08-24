@@ -10,11 +10,12 @@
     [InlineData("C0mplex TîtLè ~💪💪")]
     public void SrcWorks(string src)
     {
+        // Arrange + act
         var cut = Render(
             @<BsImage Src="@(src)"/>
-            
         );
 
+        // Assert
         cut.MarkupMatches(
             @<img class="" src="@(src)"/>
         );

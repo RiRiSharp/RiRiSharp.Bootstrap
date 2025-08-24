@@ -1,0 +1,20 @@
+﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
+@inherits TestContext
+@code {
+
+    [Theory]
+    [InlineData(BsFormCheckOptions.Inline, "form-check-inline")]
+    [InlineData(BsFormCheckOptions.Reverse, "form-check-reverse")]
+    public async Task PassingParametersRendersIntoCorrectBsClass(BsFormCheckOptions formCheckOptions, string expected)
+    {
+        // Arrange + act
+        var cut = Render(
+            @<BsFormCheck FormCheckOptions="formCheckOptions" />
+        );
+
+        // Assert
+        cut.MarkupMatches(
+            $"""<div class="form-check {expected}"></div>"""
+        );
+    }
+}
