@@ -15,7 +15,7 @@
         catch (Exception ex)
         {
             // Assert
-            Assert.Fail("Expected no exception, but got: " + ex.Message);
+            Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
         }
     }
 

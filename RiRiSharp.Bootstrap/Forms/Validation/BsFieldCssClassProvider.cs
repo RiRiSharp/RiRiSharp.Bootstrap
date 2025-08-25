@@ -8,13 +8,15 @@ public class BsFieldCssClassProvider(bool showValidInput = true) : FieldCssClass
         in FieldIdentifier fieldIdentifier)
     {
         var isInvalid = editContext.GetValidationMessages(fieldIdentifier).Any();
+        
+        return DetermineClass(editContext.IsModified(fieldIdentifier), isInvalid);
+    }
 
-        if (isInvalid) 
-            return "is-invalid";
-
-        if (editContext.IsModified(fieldIdentifier) && showValidInput) 
-            return "is-valid";
-
-        return string.Empty;
+    internal string DetermineClass(bool isModified, bool isInvalid)
+    {
+        if (!isModified) return "";
+        if (isInvalid) return "is-invalid";
+        if (showValidInput) return "is-valid";
+        return "";
     }
 }
