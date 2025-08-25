@@ -1,16 +1,16 @@
 ﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
-
+@inherits TestContext
 @code {
     [Fact]
     public void ConstructorWorks()
     {
         // Arrange
-        var ctx = new TestContext();
+
 
         // Act
         try
         {
-            _ = new BsCheckboxJsFunctions(ctx.JSInterop.JSRuntime);
+            _ = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
         }
         catch (Exception ex)
         {
@@ -23,15 +23,15 @@
     public async Task CallingInitializeIndeterminateDoesNotThrowException()
     {
         // Arrange
-        var ctx = new TestContext();
+
         var reference = default(ElementReference);
 
-        ctx.JSInterop
+        JSInterop
             .SetupModule($"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JsFileName}")
             .SetupVoid(BsCheckboxJsFunctions.InitIndeterminateJsFunctionName, reference)
             .SetVoidResult();
         
-        var functions = new BsCheckboxJsFunctions(ctx.JSInterop.JSRuntime);
+        var functions = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
 
         // Act
         try

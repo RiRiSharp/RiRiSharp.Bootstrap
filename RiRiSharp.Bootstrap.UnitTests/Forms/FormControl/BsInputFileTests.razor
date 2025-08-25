@@ -1,15 +1,15 @@
 ﻿@using RiRiSharp.Bootstrap.Forms
 @using RiRiSharp.Bootstrap.Forms.FormControl
-
+@inherits TestContext
 @code {
     [Fact]
     public void DefaultWorks()
     {
         // Arrange
-        using var ctx = new TestContext();
+
 
         // Act
-        var cut = ctx.Render(@<BsInputFile/>);
+        var cut = Render(@<BsInputFile/>);
 
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, string.Empty, string.Empty);
@@ -25,10 +25,10 @@
     public void PassingClassesWorks(string classes)
     {
         // Arrange
-        using var ctx = new TestContext();
+
 
         // Act
-        var cut = ctx.Render(@<BsInputFile Classes="@(classes)"/>);
+        var cut = Render(@<BsInputFile Classes="@(classes)"/>);
 
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
@@ -43,14 +43,14 @@
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
-        using var ctx = new TestContext();
+
 
         var attributes = attributeKeys
             .Zip(attributeValues)
             .ToDictionary(t => t.First, object (t) => t.Second);
 
         // Act
-        var cut = ctx.Render(@<BsInputFile AdditionalAttributes="attributes"/>);
+        var cut = Render(@<BsInputFile AdditionalAttributes="attributes"/>);
 
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
@@ -64,10 +64,10 @@
     public void PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expectedClass)
     {
         // Arrange
-        using var ctx = new TestContext();
+
 
         // Act
-        var cut = ctx.Render(@<BsInputFile FormSize="formSize"/>);
+        var cut = Render(@<BsInputFile FormSize="formSize"/>);
 
         // Assert
         var expectedMarkupString = string.Format(HtmlFormat, expectedClass, string.Empty);

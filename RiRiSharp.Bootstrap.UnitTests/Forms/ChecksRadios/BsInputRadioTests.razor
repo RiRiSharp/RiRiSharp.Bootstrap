@@ -5,10 +5,10 @@
     public void DefaultWorks()
     {
         // Arrange
-        using var ctx = new TestContext();
+
 
         // Act
-        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        var cut = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsInputRadio TValue="string"/>
         </BsInputRadioGroup>);
 
