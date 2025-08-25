@@ -2,7 +2,7 @@
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 // We have a partial class because of RIDER-128549
-public partial class BsInputRadioTests : TestContext 
+public partial class BsInputRadioTests 
 {
     private static string HtmlFormat => $$"""<input class="form-check-input {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>""";
     private string _boundValue = "";

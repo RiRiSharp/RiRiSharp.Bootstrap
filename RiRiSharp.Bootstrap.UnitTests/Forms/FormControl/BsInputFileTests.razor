@@ -1,0 +1,76 @@
+﻿@using RiRiSharp.Bootstrap.Forms
+@using RiRiSharp.Bootstrap.Forms.FormControl
+
+@code {
+    [Fact]
+    public void DefaultWorks()
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        // Act
+        var cut = ctx.Render(@<BsInputFile/>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, string.Empty);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
+    public void PassingClassesWorks(string classes)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        // Act
+        var cut = ctx.Render(@<BsInputFile Classes="@(classes)"/>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
+        """attributeKey="attributeValue" """)]
+    [InlineData(new[] { "attributeKey1", "attributeKey2" }, new[] { "attributeValue1", "attributeValue2" },
+        """attributeKey1="attributeValue1" attributeKey2="attributeValue2" """)]
+    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        var attributes = attributeKeys
+            .Zip(attributeValues)
+            .ToDictionary(t => t.First, object (t) => t.Second);
+
+        // Act
+        var cut = ctx.Render(@<BsInputFile AdditionalAttributes="attributes"/>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData(FormSize.Small, "form-control-sm")]
+    [InlineData(FormSize.Regular, "")]
+    [InlineData(FormSize.Large, "form-control-lg")]
+    public void PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expectedClass)
+    {
+        // Arrange
+        using var ctx = new TestContext();
+
+        // Act
+        var cut = ctx.Render(@<BsInputFile FormSize="formSize"/>);
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, expectedClass, string.Empty);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+}

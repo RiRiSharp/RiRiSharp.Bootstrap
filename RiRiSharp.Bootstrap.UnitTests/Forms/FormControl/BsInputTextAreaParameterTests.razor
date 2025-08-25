@@ -1,0 +1,38 @@
+﻿@using RiRiSharp.Bootstrap.Forms
+@using RiRiSharp.Bootstrap.Forms.FormControl
+@inherits TestContext
+
+@code {
+    [Theory]
+    [InlineData(FormSize.Large, "form-control-lg")]
+    [InlineData(FormSize.Regular, "")]
+    [InlineData(FormSize.Small, "form-control-sm")]
+    public async Task PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expected)
+    {
+        // Arrange
+        var boundValue = "";
+        
+        // Act
+        var cut = Render(@<BsInputTextArea @bind-Value="boundValue" FormSize="formSize"/>);
+
+        // Assert
+        cut.MarkupMatches(
+            $"""<textarea class="form-control {expected}" value=""></textarea>"""
+        );
+    }
+    
+    [Fact]
+    public async Task PlaintextRendersCorrectly()
+    {
+        // Arrange
+        var boundValue = "";
+        
+        // Act
+        var cut = Render(@<BsInputTextArea @bind-Value="boundValue" ReadonlyPlaintext="true"/>);
+
+        // Assert
+        cut.MarkupMatches(
+            """<textarea readonly class="form-control-plaintext" value=""/>"""
+        );
+    }
+}

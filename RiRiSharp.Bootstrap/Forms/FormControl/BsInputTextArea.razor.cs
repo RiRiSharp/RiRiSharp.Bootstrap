@@ -2,7 +2,7 @@
 
 namespace RiRiSharp.Bootstrap.Forms.FormControl;
 
-public partial class BsInputTextArea : BsFormControlBase<string>
+public partial class BsInputTextArea : BsFormControlTextBase<string>
 {
     [Parameter] public string TextInArea { get; set; }
     

@@ -6,7 +6,6 @@ namespace RiRiSharp.Bootstrap.Forms.FormControl;
 
 public class BsInputFile : InputFile
 {
-    private const string _formControl = "form-control";
     [Parameter] public string Classes { get; set; }
     [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
 
@@ -26,15 +25,11 @@ public class BsInputFile : InputFile
     private string GetBsComponentSpecificClasses()
     {
         var formSizeClass = DetermineSizeClass();
-        return $"{_formControl} {formSizeClass}";
+        return $"form-control {formSizeClass}";
     }
     
     private string DetermineSizeClass()
     {
-        if (FormSize == FormSize.Regular) return "";
-        if (FormSize == FormSize.Small) return $"{_formControl}-sm";
-        if (FormSize == FormSize.Large) return $"{_formControl}-lg";
-        
-        throw new ArgumentOutOfRangeException(nameof(FormSize));
+        return FormSize.ToBootstrapClass();
     }
 }

@@ -3,6 +3,7 @@
 @code {
 
     [Theory]
+    [InlineData(BsFormCheckOptions.Stacked, "")]
     [InlineData(BsFormCheckOptions.Inline, "form-check-inline")]
     [InlineData(BsFormCheckOptions.Reverse, "form-check-reverse")]
     public async Task PassingParametersRendersIntoCorrectBsClass(BsFormCheckOptions formCheckOptions, string expected)

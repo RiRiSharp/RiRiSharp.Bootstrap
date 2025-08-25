@@ -1,15 +1,11 @@
 ﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
 @inherits TestContext
-
 @code {
     [Fact]
     public void DefaultWorks()
     {
-        // Arrange
-        using var ctx = new TestContext();
-
-        // Act
-        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        // Act + Act
+        var cut = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio TValue="string"/>
         </BsInputRadioGroup>);
 
@@ -26,11 +22,8 @@
     [InlineData("aclass blass class")]
     public void PassingClassesWorks(string classes)
     {
-        // Arrange
-        using var ctx = new TestContext();
-
-        // Act
-        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        // Arrange + Act
+        var cut = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio TValue="string" Classes="@(classes)"/>
         </BsInputRadioGroup>);
 
@@ -47,11 +40,12 @@
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
-        using var ctx = new TestContext();
-
-        var attributes = attributeKeys.Zip(attributeValues).ToDictionary(t => t.First, object (t) => t.Second);
+        var attributes = attributeKeys
+            .Zip(attributeValues)
+            .ToDictionary(t => t.First, object (t) => t.Second);
+        
         // Act
-        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        var cut = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio AdditionalAttributes="attributes" TValue="string"/>
         </BsInputRadioGroup>);
 
@@ -64,11 +58,10 @@
     public void MatchingValuesChecksTheRadio()
     {
         // Arrange
-        using var ctx = new TestContext();
         _boundValue = SomeValueVar;
 
         // Act
-        var cut = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        var cut = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio Value="SomeValueVar"/>
         </BsInputRadioGroup>);
 
@@ -85,8 +78,7 @@
     public void ClickingRadioSetsCorrectValue(string idToClick, string expectedBoundValue)
     {
         // Arrange
-        using var ctx = new TestContext();
-        var fragment = ctx.Render(@<BsInputRadioGroup @bind-Value="_boundValue">
+        var fragment = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
             <BsButtonCheckInputRadio Value="SomeValueVar" id="someValueId"/>
             <BsButtonCheckInputRadio Value="DifferentValueVar" id="differentValueId"/>
         </BsInputRadioGroup>);

@@ -4,7 +4,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Layout.GridColumns;
 
 public class GridColumnOptionsExtensionsTests
 {
-        [Theory]
+    [Theory]
     [InlineData(GridColumnOptions.Sm, "g-col-sm")]
     [InlineData(GridColumnOptions.Md, "g-col-md")]
     [InlineData(GridColumnOptions.Lg, "g-col-lg")]
