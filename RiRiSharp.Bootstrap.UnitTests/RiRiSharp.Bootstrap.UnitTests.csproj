@@ -37,8 +37,4 @@
         <ProjectReference Include="..\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Forms\Range\" />
-    </ItemGroup>
-
 </Project>
