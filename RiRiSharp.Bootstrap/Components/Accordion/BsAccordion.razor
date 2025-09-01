@@ -1,0 +1,6 @@
+﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+<div @attributes="AdditionalAttributes" class="accordion @(DisplayStyle) @(Classes)">
+    <CascadingValue Value="_accordionContext">
+        @(ChildContent)
+    </CascadingValue>
+</div>
