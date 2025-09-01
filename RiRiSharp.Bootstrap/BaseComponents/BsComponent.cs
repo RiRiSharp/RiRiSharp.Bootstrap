@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace RiRiSharp.Bootstrap;
+namespace RiRiSharp.Bootstrap.BaseComponents;
 
 public class BsComponent : ComponentBase, IBsComponent
 {

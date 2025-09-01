@@ -1,4 +1,4 @@
-﻿namespace RiRiSharp.Bootstrap.BsHelpers;
+﻿namespace RiRiSharp.Bootstrap.Helpers;
 
 public enum Justification
 {

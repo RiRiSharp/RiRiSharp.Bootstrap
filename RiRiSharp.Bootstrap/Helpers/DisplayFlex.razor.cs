@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
 
-namespace RiRiSharp.Bootstrap.BsHelpers;
+namespace RiRiSharp.Bootstrap.Helpers;
 
 public partial class DisplayFlex : BsChildContentComponent
 {

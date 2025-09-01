@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;

@@ -1,5 +1,5 @@
-﻿using System.Text;
-using RiRiSharp.Bootstrap.Exceptions;
+﻿using RiRiSharp.Bootstrap.Internals.Exceptions;
+using System.Text;
 
 namespace RiRiSharp.Bootstrap.Content.Tables;
 

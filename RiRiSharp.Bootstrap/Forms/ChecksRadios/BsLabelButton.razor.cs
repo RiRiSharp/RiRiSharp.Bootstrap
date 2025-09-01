@@ -1,4 +1,6 @@
-﻿namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
+﻿using RiRiSharp.Bootstrap.BaseComponents;
+
+namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public partial class BsLabelButton : BsChildContentComponent
 {
