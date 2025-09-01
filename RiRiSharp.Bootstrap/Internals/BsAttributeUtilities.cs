@@ -21,7 +21,7 @@ internal static class BsAttributeUtilities
     {
         if (additionalAttributes is null || !additionalAttributes.TryGetValue("class", out var @class))
         {
-            return classNames;
+            return classNames ?? "";
         }
 
         var classAttributeValue = Convert.ToString(@class, CultureInfo.InvariantCulture);
