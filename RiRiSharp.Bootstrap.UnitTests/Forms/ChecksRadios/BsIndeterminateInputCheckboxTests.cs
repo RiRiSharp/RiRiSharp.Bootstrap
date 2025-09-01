@@ -15,11 +15,10 @@ public class BsIndeterminateInputCheckboxTests()
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
     {
         // Arrange
-        using var ctx = new TestContext();
-        ConfigureTestContext(ctx);
+        ConfigureTestContext();
 
         // Act
-        _ = ctx.RenderComponent<BsIndeterminateInputCheckbox>(BuildParameters);
+        _ = Render<BsIndeterminateInputCheckbox>(BuildParameters);
         await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminate(Arg.Any<ElementReference>());
     }
 
@@ -33,12 +32,11 @@ public class BsIndeterminateInputCheckboxTests()
     public void CheckingCheckboxSetsCorrectValue(bool? beforeValue, bool? afterValue, string expectedAttribute)
     {
         // Arrange
-        using var ctx = new TestContext();
-        ConfigureTestContext(ctx);
+        ConfigureTestContext();
         var value = beforeValue;
 
         // Act
-        var cut = ctx.RenderComponent<BsIndeterminateInputCheckbox>(parameters => parameters.Bind(
+        var cut = Render<BsIndeterminateInputCheckbox>(parameters => parameters.Bind(
             p => p.Value, value, newValue => value = newValue));
         var inputElement = cut.Find("input");
         inputElement.Change(afterValue);
@@ -48,8 +46,8 @@ public class BsIndeterminateInputCheckboxTests()
         cut.MarkupMatches(expectedMarkupString);
     }
     
-    protected override void ConfigureTestContext(TestContext ctx)
+    protected override void ConfigureTestContext()
     {
-        ctx.Services.AddSingleton(_bsCheckboxJsFunctions);
+        Services.AddSingleton(_bsCheckboxJsFunctions);
     }
 }

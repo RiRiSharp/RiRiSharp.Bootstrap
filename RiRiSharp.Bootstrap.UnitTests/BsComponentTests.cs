@@ -3,19 +3,14 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat)
+public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : BunitContext
     where TComponent : ComponentBase, IBsComponent
 {
-    protected string HtmlFormat => htmlFormat;
-    
     [Fact]
     public void DefaultWorks()
     {
-        // Arrange
-        using var ctx = new TestContext();
-
         // Act
-        var cut = ctx.RenderComponent<TComponent>();
+        var cut = Render<TComponent>(BuildParameters);
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
@@ -30,12 +25,13 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     [InlineData("aclass blass class")]
     public void PassingClassesWorks(string classes)
     {
-        // Arrange
-        using var ctx = new TestContext();
-
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters => parameters
-            .Add(x => x.Classes, classes));
+        var cut = Render<TComponent>(parameters =>
+        {
+            BuildParameters(parameters);
+            parameters
+                .Add(x => x.Classes, classes);
+        });
         
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, classes, string.Empty);
@@ -54,12 +50,10 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         """)]
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
-        // Arrange
-        using var ctx = new TestContext();
-
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters =>
+        var cut = Render<TComponent>(parameters =>
         {
+            BuildParameters(parameters);
             for (var i = 0; i < attributeKeys.Length; i++)
             {
                 parameters
@@ -70,5 +64,10 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, expected);
         cut.MarkupMatches(expectedMarkupString);
+    }
+    
+    protected virtual void BuildParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
+    {
+
     }
 }

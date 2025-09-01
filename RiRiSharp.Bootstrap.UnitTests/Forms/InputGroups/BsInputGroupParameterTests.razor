@@ -1,19 +1,19 @@
 ﻿@using RiRiSharp.Bootstrap.Forms.InputGroups
-@inherits TestContext
+@inherits BunitContext
 
 @code {
     [Theory]
     [InlineData(InputGroupSize.Small, "input-group-sm")]
     [InlineData(InputGroupSize.Regular, "")]
     [InlineData(InputGroupSize.Large, "input-group-lg")]
-    public async Task PassingParametersRendersIntoCorrectBsClass(InputGroupSize formSize, string expected)
+    public void PassingParametersRendersIntoCorrectBsClass(InputGroupSize formSize, string expected)
     {
         // Arrange + Act
-        var cut = Render(@<BsInputGroup><EmptyComponent/></BsInputGroup>);
+        var cut = Render(@<BsInputGroup Size="formSize"><EmptyComponent/></BsInputGroup>);
         
         // Assert
         cut.MarkupMatches(
-            $"""<div class="input-group {expected}" value=""></div>"""
+            $"""<div class="input-group has-validation {expected}"></div>"""
         );
     }
 }

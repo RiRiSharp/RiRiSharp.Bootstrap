@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat)
+public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat) : BunitContext
     where TComponent : InputBase<TValue>, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;
@@ -12,11 +12,10 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     public void DefaultWorks()
     {
         // Arrange
-        using var ctx = new TestContext();
-        ConfigureTestContext(ctx);
+        ConfigureTestContext();
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>(BuildParameters);
+        var cut = Render<TComponent>(BuildParameters);
 
         // Assert
         var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
@@ -32,11 +31,10 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     public void PassingClassesWorks(string classes)
     {
         // Arrange
-        using var ctx = new TestContext();
-        ConfigureTestContext(ctx);
+        ConfigureTestContext();
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters =>
+        var cut = Render<TComponent>(parameters =>
         {
             BuildParameters(parameters);
             parameters.Add(x => x.Classes, classes);
@@ -59,11 +57,10 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
-        using var ctx = new TestContext();
-        ConfigureTestContext(ctx);
+        ConfigureTestContext();
 
         // Act
-        var cut = ctx.RenderComponent<TComponent>(parameters =>
+        var cut = Render<TComponent>(parameters =>
         {
             BuildParameters(parameters);
             for (var i = 0; i < attributeKeys.Length; i++)
@@ -83,7 +80,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         parameterBuilder.Bind(p => p.Value, value, newValue => value = newValue);
     }
 
-    protected virtual void ConfigureTestContext(TestContext ctx)
+    protected virtual void ConfigureTestContext()
     {
         
     }

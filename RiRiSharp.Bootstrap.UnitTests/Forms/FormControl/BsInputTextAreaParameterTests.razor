@@ -1,13 +1,13 @@
 ﻿@using RiRiSharp.Bootstrap.Forms
 @using RiRiSharp.Bootstrap.Forms.FormControl
-@inherits TestContext
+@inherits BunitContext
 
 @code {
     [Theory]
     [InlineData(FormSize.Large, "form-control-lg")]
     [InlineData(FormSize.Regular, "")]
     [InlineData(FormSize.Small, "form-control-sm")]
-    public async Task PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expected)
+    public void PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expected)
     {
         // Arrange
         var boundValue = "";
@@ -22,7 +22,7 @@
     }
     
     [Fact]
-    public async Task PlaintextRendersCorrectly()
+    public void PlaintextRendersCorrectly()
     {
         // Arrange
         var boundValue = "";

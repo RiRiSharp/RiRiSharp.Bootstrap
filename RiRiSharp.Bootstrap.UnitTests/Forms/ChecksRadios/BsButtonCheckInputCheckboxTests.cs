@@ -11,11 +11,10 @@ public class BsButtonCheckInputCheckboxTests()
     public void TrueChecksTheCheckbox()
     {
         // Arrange
-        using var ctx = new TestContext();
         var value = true;
 
         // Act
-        var cut = ctx.RenderComponent<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
+        var cut = Render<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
             p => p.Value, value, newValue => value = newValue));
 
         // Assert
@@ -31,11 +30,10 @@ public class BsButtonCheckInputCheckboxTests()
     public void CheckingCheckboxSetsCorrectValue(bool beforeValue, bool afterValue, string expectedAttribute)
     {
         // Arrange
-        using var ctx = new TestContext();
         var value = beforeValue;
 
         // Act
-        var cut = ctx.RenderComponent<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
+        var cut = Render<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
             p => p.Value, value, newValue => value = newValue));
         var inputElement = cut.Find("input");
         inputElement.Change(afterValue);
