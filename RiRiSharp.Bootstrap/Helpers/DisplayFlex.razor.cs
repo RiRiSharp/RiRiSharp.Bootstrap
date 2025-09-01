@@ -5,5 +5,5 @@ namespace RiRiSharp.Bootstrap.Helpers;
 
 public partial class DisplayFlex : BsChildContentComponent
 {
-    [Parameter] public Justification Justify { get; set; }
+    [Parameter] public BsJustification Justify { get; set; }
 }

@@ -2,7 +2,7 @@
 @using RiRiSharp.Bootstrap.Forms
 @using RiRiSharp.Bootstrap.Forms.ChecksRadios
 @using RiRiSharp.Bootstrap.Forms.FormControl
-@using RiRiSharp.Bootstrap.Forms.InputGroups
+@using RiRiSharp.Bootstrap.Forms.InputGroup
 @using RiRiSharp.Bootstrap.Forms.Validation
 @using RiRiSharp.Bootstrap.Layout.Columns
 @using RiRiSharp.Bootstrap.Forms.Select
@@ -10,17 +10,17 @@
 
 <BsEditForm EditContext="_editContext" Classes="row g-3" OnValidSubmit="ValidSubmit" OnInvalidSubmit="InvalidSubmit">
     <DataAnnotationsValidator/>
-    <BsColumn ColOption="ColumnOptions.ColMd4">
+    <BsColumn ColOption="BsColumnOptions.ColMd4">
         <BsFormLabel>First name</BsFormLabel>
         <InputText class="form-control" @bind-Value="_homeModel.FirstName"/>
         <BsValidationMessage class="invalid-feedback" For="() => _homeModel.FirstName"/>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd4">
+    <BsColumn ColOption="BsColumnOptions.ColMd4">
         <BsFormLabel>Last name</BsFormLabel>
         <BsInputText @bind-Value="_homeModel.LastName"/>
         <BsValidationMessage For="() => _homeModel.LastName"/>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd4">
+    <BsColumn ColOption="BsColumnOptions.ColMd4">
         <BsFormLabel>Username</BsFormLabel>
         <BsInputGroup>
             <BsInputGroupText>@@</BsInputGroupText>
@@ -28,12 +28,12 @@
             <BsValidationMessage For="() => _homeModel.Username"/>
         </BsInputGroup>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd6">
+    <BsColumn ColOption="BsColumnOptions.ColMd6">
         <BsFormLabel>City</BsFormLabel>
         <BsInputText @bind-Value="_homeModel.City"/>
         <BsValidationMessage For="() => _homeModel.City"/>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd3">
+    <BsColumn ColOption="BsColumnOptions.ColMd3">
         <BsFormLabel>State</BsFormLabel>
         <BsInputSelect @bind-Value="_homeModel.State">
             <option selected disabled value="">Choose...</option>
@@ -44,12 +44,12 @@
         </BsInputSelect>
         <BsValidationMessage For="() => _homeModel.State"/>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd3">
+    <BsColumn ColOption="BsColumnOptions.ColMd3">
         <BsFormLabel>Zip</BsFormLabel>
         <BsInputText @bind-Value="_homeModel.Zip"/>
         <BsValidationMessage For="() => _homeModel.Zip"/>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd6">
+    <BsColumn ColOption="BsColumnOptions.ColMd6">
         <BsFormCheck>
             <BsFormCheckLabel>
                 <BsInputCheckbox @bind-Value="_homeModel.AgreeTermsAndConditions"/>
@@ -58,7 +58,7 @@
             <BsValidationMessage For="() => _homeModel.AgreeTermsAndConditions"/>
         </BsFormCheck>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd6">
+    <BsColumn ColOption="BsColumnOptions.ColMd6">
         <BsInputRadioGroup @bind-Value="_state">
             <BsFormCheck FormCheckOptions="BsFormCheckOptions.Inline">
                 <BsInputRadio Value="@(State.StateA)" id="StateA"/>
@@ -70,7 +70,7 @@
             </BsFormCheck>
         </BsInputRadioGroup>
     </BsColumn>
-    <BsColumn ColOption="ColumnOptions.ColMd12">
+    <BsColumn ColOption="BsColumnOptions.ColMd12">
         <button type="submit" class="btn btn-primary">Submit form</button>
     </BsColumn>
 </BsEditForm>

@@ -4,10 +4,10 @@
 
 @code {
     [Theory]
-    [InlineData(FormSize.Large, "form-control-lg")]
-    [InlineData(FormSize.Regular, "")]
-    [InlineData(FormSize.Small, "form-control-sm")]
-    public void PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expected)
+    [InlineData(BsFormSize.Large, "form-control-lg")]
+    [InlineData(BsFormSize.Regular, "")]
+    [InlineData(BsFormSize.Small, "form-control-sm")]
+    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expected)
     {
         // Arrange
         var boundValue = "";

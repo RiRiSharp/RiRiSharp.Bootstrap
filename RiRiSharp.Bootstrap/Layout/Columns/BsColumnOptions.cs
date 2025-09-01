@@ -1,7 +1,7 @@
 ﻿namespace RiRiSharp.Bootstrap.Layout.Columns;
 
 [Flags]
-public enum ColumnOptions : long
+public enum BsColumnOptions : long
 {
     Default = 0,
     Sm = 1 << 1,
@@ -97,7 +97,7 @@ public enum ColumnOptions : long
 
 public static class ColumnOptsExtensions
 {
-    public static string ToBootstrapColClass(this ColumnOptions breakpoint)
+    public static string ToBootstrapColClass(this BsColumnOptions breakpoint)
     {
         var classString = "col";
         classString += breakpoint.SizeClass();
@@ -105,10 +105,10 @@ public static class ColumnOptsExtensions
         return classString;
     }
 
-    public static string ToBootstrapOffsetClass(this ColumnOptions breakpoint)
+    public static string ToBootstrapOffsetClass(this BsColumnOptions breakpoint)
     {
         var classString = "";
-        if(breakpoint == ColumnOptions.Default) return classString;
+        if(breakpoint == BsColumnOptions.Default) return classString;
 
         classString = "offset";
         classString += breakpoint.SizeClass();
@@ -116,29 +116,29 @@ public static class ColumnOptsExtensions
         return classString;
     }
 
-    private static string SizeClass(this ColumnOptions breakpoint)
+    private static string SizeClass(this BsColumnOptions breakpoint)
     {
-        if (breakpoint.HasFlag(ColumnOptions.Sm))
+        if (breakpoint.HasFlag(BsColumnOptions.Sm))
         {
             return "-sm";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Md))
+        if (breakpoint.HasFlag(BsColumnOptions.Md))
         {
             return "-md";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Lg))
+        if (breakpoint.HasFlag(BsColumnOptions.Lg))
         {
             return "-lg";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Xl))
+        if (breakpoint.HasFlag(BsColumnOptions.Xl))
         {
             return "-xl";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Xxl))
+        if (breakpoint.HasFlag(BsColumnOptions.Xxl))
         {
             return "-xxl";
         }
@@ -146,69 +146,69 @@ public static class ColumnOptsExtensions
         return "";
     }
 
-    private static string ColumnWidth(this ColumnOptions breakpoint)
+    private static string ColumnWidth(this BsColumnOptions breakpoint)
     {
-        if (breakpoint.HasFlag(ColumnOptions.Col1))
+        if (breakpoint.HasFlag(BsColumnOptions.Col1))
         {
             return "-1";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col2))
+        if (breakpoint.HasFlag(BsColumnOptions.Col2))
         {
             return "-2";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col3))
+        if (breakpoint.HasFlag(BsColumnOptions.Col3))
         {
             return "-3";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col4))
+        if (breakpoint.HasFlag(BsColumnOptions.Col4))
         {
             return "-4";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col5))
+        if (breakpoint.HasFlag(BsColumnOptions.Col5))
         {
             return "-5";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col6))
+        if (breakpoint.HasFlag(BsColumnOptions.Col6))
         {
             return "-6";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col7))
+        if (breakpoint.HasFlag(BsColumnOptions.Col7))
         {
             return "-7";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col8))
+        if (breakpoint.HasFlag(BsColumnOptions.Col8))
         {
             return "-8";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col9))
+        if (breakpoint.HasFlag(BsColumnOptions.Col9))
         {
             return "-9";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col10))
+        if (breakpoint.HasFlag(BsColumnOptions.Col10))
         {
             return "-10";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col11))
+        if (breakpoint.HasFlag(BsColumnOptions.Col11))
         {
             return "-11";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.Col12))
+        if (breakpoint.HasFlag(BsColumnOptions.Col12))
         {
             return "-12";
         }
 
-        if (breakpoint.HasFlag(ColumnOptions.ColAuto))
+        if (breakpoint.HasFlag(BsColumnOptions.ColAuto))
         {
             return "-auto";
         }

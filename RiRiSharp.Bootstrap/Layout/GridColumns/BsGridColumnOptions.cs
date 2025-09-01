@@ -1,7 +1,7 @@
 ﻿namespace RiRiSharp.Bootstrap.Layout.GridColumns;
 
 [Flags]
-public enum GridColumnOptions : long
+public enum BsGridColumnOptions : long
 {
     Default = 0,
     Sm = 1 << 1,
@@ -97,9 +97,9 @@ public enum GridColumnOptions : long
 
 public static class GridColumnOptionsExtensions
 {
-    public static string ToBootstrapClass(this GridColumnOptions gridColumnOptions)
+    public static string ToBootstrapClass(this BsGridColumnOptions gridColumnOptions)
     {
-        if (gridColumnOptions == GridColumnOptions.Default)
+        if (gridColumnOptions == BsGridColumnOptions.Default)
         {
             return "";
         }
@@ -110,29 +110,29 @@ public static class GridColumnOptionsExtensions
         return classString;
     }
 
-    private static string SizeClass(this GridColumnOptions gridColumnOptions)
+    private static string SizeClass(this BsGridColumnOptions gridColumnOptions)
     {
-        if (gridColumnOptions.HasFlag(GridColumnOptions.Sm))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.Sm))
         {
             return "-sm";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.Md))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.Md))
         {
             return "-md";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.Lg))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.Lg))
         {
             return "-lg";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.Xl))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.Xl))
         {
             return "-xl";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.Xxl))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.Xxl))
         {
             return "-xxl";
         }
@@ -140,69 +140,69 @@ public static class GridColumnOptionsExtensions
         return "";
     }
 
-    private static string ColumnWidth(this GridColumnOptions gridColumnOptions)
+    private static string ColumnWidth(this BsGridColumnOptions gridColumnOptions)
     {
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol1))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol1))
         {
             return "-1";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol2))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol2))
         {
             return "-2";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol3))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol3))
         {
             return "-3";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol4))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol4))
         {
             return "-4";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol5))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol5))
         {
             return "-5";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol6))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol6))
         {
             return "-6";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol7))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol7))
         {
             return "-7";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol8))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol8))
         {
             return "-8";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol9))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol9))
         {
             return "-9";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol10))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol10))
         {
             return "-10";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol11))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol11))
         {
             return "-11";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GCol12))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GCol12))
         {
             return "-12";
         }
 
-        if (gridColumnOptions.HasFlag(GridColumnOptions.GColAuto))
+        if (gridColumnOptions.HasFlag(BsGridColumnOptions.GColAuto))
         {
             return "-auto";
         }

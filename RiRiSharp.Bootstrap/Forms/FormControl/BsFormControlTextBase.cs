@@ -16,7 +16,7 @@ public abstract class BsFormControlTextBase<TValue> : BsInputBase<TValue>
         _additionalClasses = additionalClasses;
     }
 
-    [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
+    [Parameter] public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
     [Parameter] public bool ReadonlyPlaintext { get; set; }
 
     protected override string GetBsComponentSpecificClasses()

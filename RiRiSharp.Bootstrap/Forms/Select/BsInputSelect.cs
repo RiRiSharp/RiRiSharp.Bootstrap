@@ -9,7 +9,7 @@ namespace RiRiSharp.Bootstrap.Forms.Select;
 public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentComponent
 {
     private const string _formSelect = "form-select";
-    [Parameter] public FormSize FormSize { get; set; } = FormSize.Regular;
+    [Parameter] public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
     [Parameter] public string Classes { get; set; }
 
     protected override void OnParametersSet()
@@ -33,9 +33,9 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
 
     private string DetermineSizeClass()
     {
-        if (FormSize == FormSize.Regular) return "";
-        if (FormSize == FormSize.Small) return $"{_formSelect}-sm";
-        if (FormSize == FormSize.Large) return $"{_formSelect}-lg";
+        if (FormSize == BsFormSize.Regular) return "";
+        if (FormSize == BsFormSize.Small) return $"{_formSelect}-sm";
+        if (FormSize == BsFormSize.Large) return $"{_formSelect}-lg";
 
         throw new ArgumentOutOfRangeException(nameof(FormSize));
     }

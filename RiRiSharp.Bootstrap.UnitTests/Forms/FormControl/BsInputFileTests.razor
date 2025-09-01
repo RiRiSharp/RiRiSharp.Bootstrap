@@ -58,10 +58,10 @@
     }
 
     [Theory]
-    [InlineData(FormSize.Small, "form-control-sm")]
-    [InlineData(FormSize.Regular, "")]
-    [InlineData(FormSize.Large, "form-control-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(FormSize formSize, string expectedClass)
+    [InlineData(BsFormSize.Small, "form-control-sm")]
+    [InlineData(BsFormSize.Regular, "")]
+    [InlineData(BsFormSize.Large, "form-control-lg")]
+    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
     {
         // Arrange
 

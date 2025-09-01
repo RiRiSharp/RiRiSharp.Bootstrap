@@ -1,6 +1,6 @@
 ﻿namespace RiRiSharp.Bootstrap.Content.Abbreviations;
 
-public enum AbbreviationType
+public enum BsAbbreviationType
 {
     Default,
     Initialism
@@ -8,12 +8,12 @@ public enum AbbreviationType
 
 public static class AbbreviationTypeExtensions
 {
-    public static string ToBootstrapClass(this AbbreviationType abbreviationType)
+    public static string ToBootstrapClass(this BsAbbreviationType abbreviationType)
     {
         return abbreviationType switch
         {
-            AbbreviationType.Default => "",
-            AbbreviationType.Initialism => "initialism",
+            BsAbbreviationType.Default => "",
+            BsAbbreviationType.Initialism => "initialism",
             _ => throw new ArgumentOutOfRangeException(nameof(abbreviationType), abbreviationType, null)
         };
     }

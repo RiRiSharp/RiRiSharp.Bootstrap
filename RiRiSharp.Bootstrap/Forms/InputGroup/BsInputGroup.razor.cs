@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 
-namespace RiRiSharp.Bootstrap.Forms.InputGroups;
+namespace RiRiSharp.Bootstrap.Forms.InputGroup;
 
 public partial class BsInputGroup : BsChildContentComponent
 {
-    [Parameter] public InputGroupSize Size { get; set; } = InputGroupSize.Regular;
+    [Parameter] public BsInputGroupSize Size { get; set; } = BsInputGroupSize.Regular;
 }

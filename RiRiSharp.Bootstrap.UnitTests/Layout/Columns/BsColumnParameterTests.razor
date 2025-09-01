@@ -6,7 +6,7 @@
     public void ColumnRenderingWorksInSingularForm()
     {
         var cut = Render(
-            @<BsColumn ColOption="ColumnOptions.Col1">
+            @<BsColumn ColOption="BsColumnOptions.Col1">
                 <EmptyComponent/>
             </BsColumn>);
 
@@ -18,7 +18,7 @@
     public void ColumnRenderingWorksInListForm()
     {
         var cut = Render(
-            @<BsColumn ColOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+            @<BsColumn ColOptionsList="[BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </BsColumn>);
 
@@ -31,8 +31,8 @@
     {
         var cut = Render(
             @<BsColumn
-                ColOption="ColumnOptions.Col1"
-                ColOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+                ColOption="BsColumnOptions.Col1"
+                ColOptionsList="[BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </BsColumn>);
 
@@ -44,7 +44,7 @@
     public void ColumnOffsetRenderingWorksInSingularForm()
     {
         var cut = Render(
-            @<BsColumn OffsetOption="ColumnOptions.Col1">
+            @<BsColumn OffsetOption="BsColumnOptions.Col1">
                 <EmptyComponent/>
             </BsColumn>);
 
@@ -56,7 +56,7 @@
     public void ColumnOffsetRenderingWorksInListForm()
     {
         var cut = Render(
-            @<BsColumn OffsetOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+            @<BsColumn OffsetOptionsList="[BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </BsColumn>);
 
@@ -69,8 +69,8 @@
     {
         var cut = Render(
             @<BsColumn
-                OffsetOption="ColumnOptions.Col1"
-                OffsetOptionsList="[ColumnOptions.ColSm4, ColumnOptions.ColMd6]">
+                OffsetOption="BsColumnOptions.Col1"
+                OffsetOptionsList="[BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]">
                 <EmptyComponent/>
             </BsColumn>);
 

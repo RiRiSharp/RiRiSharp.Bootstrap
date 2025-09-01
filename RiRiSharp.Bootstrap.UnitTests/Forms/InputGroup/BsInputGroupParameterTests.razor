@@ -1,12 +1,12 @@
-﻿@using RiRiSharp.Bootstrap.Forms.InputGroups
+﻿@using RiRiSharp.Bootstrap.Forms.InputGroup
 @inherits BunitContext
 
 @code {
     [Theory]
-    [InlineData(InputGroupSize.Small, "input-group-sm")]
-    [InlineData(InputGroupSize.Regular, "")]
-    [InlineData(InputGroupSize.Large, "input-group-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(InputGroupSize formSize, string expected)
+    [InlineData(BsInputGroupSize.Small, "input-group-sm")]
+    [InlineData(BsInputGroupSize.Regular, "")]
+    [InlineData(BsInputGroupSize.Large, "input-group-lg")]
+    public void PassingParametersRendersIntoCorrectBsClass(BsInputGroupSize formSize, string expected)
     {
         // Arrange + Act
         var cut = Render(@<BsInputGroup Size="formSize"><EmptyComponent/></BsInputGroup>);

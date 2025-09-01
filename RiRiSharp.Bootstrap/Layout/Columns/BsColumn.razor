@@ -6,13 +6,13 @@
 </div>
 
 @code {
-    [Parameter] public ColumnOptions ColOption { get; set; }
-    [Parameter] public List<ColumnOptions> ColOptionsList { get; set; }
+    [Parameter] public BsColumnOptions ColOption { get; set; }
+    [Parameter] public List<BsColumnOptions> ColOptionsList { get; set; }
 
-    [Parameter] public ColumnOptions OffsetOption { get; set; }
-    [Parameter] public List<ColumnOptions> OffsetOptionsList { get; set; }
+    [Parameter] public BsColumnOptions OffsetOption { get; set; }
+    [Parameter] public List<BsColumnOptions> OffsetOptionsList { get; set; }
 
-    [Parameter] public ColumnOrder ColumnOrder { get; set; }
+    [Parameter] public BsColumnOrder ColumnOrder { get; set; }
 
     private string ColumnOptionsBootstrapClasses()
     {

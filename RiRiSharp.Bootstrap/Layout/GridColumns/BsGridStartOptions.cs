@@ -1,7 +1,7 @@
 ﻿namespace RiRiSharp.Bootstrap.Layout.GridColumns;
 
 [Flags]
-public enum GridStartOptions : long
+public enum BsGridStartOptions : long
 {
     Default = 0,
 
@@ -22,74 +22,74 @@ public enum GridStartOptions : long
 public static class GridStartOptionsExtensions
 {
 
-    public static string ToBootstrapClass(this GridStartOptions gridColumnOptions)
+    public static string ToBootstrapClass(this BsGridStartOptions gridColumnOptions)
     {
         var classString = "";
-        if (gridColumnOptions == GridStartOptions.Default) return classString;
+        if (gridColumnOptions == BsGridStartOptions.Default) return classString;
 
         classString = "g-start";
         classString += gridColumnOptions.ColumnWidth();
         return classString;
     }
     
-    private static string ColumnWidth(this GridStartOptions gridColumnOptions)
+    private static string ColumnWidth(this BsGridStartOptions gridColumnOptions)
     {
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start1))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start1))
         {
             return "-1";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start2))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start2))
         {
             return "-2";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start3))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start3))
         {
             return "-3";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start4))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start4))
         {
             return "-4";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start5))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start5))
         {
             return "-5";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start6))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start6))
         {
             return "-6";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start7))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start7))
         {
             return "-7";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start8))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start8))
         {
             return "-8";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start9))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start9))
         {
             return "-9";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start10))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start10))
         {
             return "-10";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start11))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start11))
         {
             return "-11";
         }
 
-        if (gridColumnOptions.HasFlag(GridStartOptions.Start12))
+        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start12))
         {
             return "-12";
         }

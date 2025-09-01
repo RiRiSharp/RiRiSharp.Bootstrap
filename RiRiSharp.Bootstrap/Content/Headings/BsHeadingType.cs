@@ -1,6 +1,6 @@
 ﻿namespace RiRiSharp.Bootstrap.Content.Headings;
 
-public enum HeadingType
+public enum BsHeadingType
 {
     H1,
     H2,
@@ -12,7 +12,7 @@ public enum HeadingType
 
 public static class HeadingTypeExtensions
 {
-    public static string ToBootstrapClass(this HeadingType headingType)
+    public static string ToBootstrapClass(this BsHeadingType headingType)
     {
         return headingType.ToString().ToLowerInvariant();
     }
