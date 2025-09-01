@@ -15,7 +15,7 @@ internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions
     }
 
     internal const string InitIndeterminateJsFunctionName = "initializeIndeterminate";
-    public async ValueTask InitializeIndeterminate(ElementReference checkboxReference)
+    public async ValueTask InitializeIndeterminateAsync(ElementReference checkboxReference)
     {
         await _bsJsObjectReference.InvokeVoidAsync(InitIndeterminateJsFunctionName, checkboxReference);
     }

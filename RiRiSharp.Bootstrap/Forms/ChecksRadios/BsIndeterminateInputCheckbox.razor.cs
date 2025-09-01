@@ -17,7 +17,7 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
         await base.OnParametersSetAsync();
         if (CurrentValue is null)
         {
-            await _bsCheckboxJsFunctions.InitializeIndeterminate(_checkboxReference);
+            await _bsCheckboxJsFunctions.InitializeIndeterminateAsync(_checkboxReference);
         }
     }
 

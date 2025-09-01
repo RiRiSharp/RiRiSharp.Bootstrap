@@ -19,7 +19,7 @@ public class BsIndeterminateInputCheckboxTests()
 
         // Act
         _ = Render<BsIndeterminateInputCheckbox>(BuildParameters);
-        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminate(Arg.Any<ElementReference>());
+        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminateAsync(Arg.Any<ElementReference>());
     }
 
     [Theory]
