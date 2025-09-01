@@ -1,14 +1,20 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿namespace RiRiSharp.Bootstrap.BsHelpers;
 
-namespace RiRiSharp.Bootstrap.Helpers;
-
-public partial class DisplayFlex : BsChildContentComponent
+public enum Justification
 {
-    [Parameter] public Justification Justify { get; set; }
+    Start,
+    End,
+    Center,
+    Between,
+    Around,
+    Evenly
+}
 
-    public virtual string JustificationClass()
+public static class JustificationExtensions
+{
+    public static string ToBootstrapClass(this Justification justification)
     {
-        return Justify switch
+        return justification switch
         {
             Justification.Start => "justify-content-start",
             Justification.End => "justify-content-end",
@@ -16,7 +22,7 @@ public partial class DisplayFlex : BsChildContentComponent
             Justification.Between => "justify-content-between",
             Justification.Around => "justify-content-around",
             Justification.Evenly => "justify-content-evenly",
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(nameof(justification),  justification, null)
         };
     }
 }
