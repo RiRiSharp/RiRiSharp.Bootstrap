@@ -12,7 +12,7 @@
         var cut = Render(@<BsInputFile/>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, string.Empty);
+        var expectedMarkupString = string.Format(HtmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -31,7 +31,7 @@
         var cut = Render(@<BsInputFile Classes="@(classes)"/>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
+        var expectedMarkupString = string.Format(HtmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -53,7 +53,7 @@
         var cut = Render(@<BsInputFile AdditionalAttributes="attributes"/>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
+        var expectedMarkupString = string.Format(HtmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -70,7 +70,7 @@
         var cut = Render(@<BsInputFile FormSize="formSize"/>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, expectedClass, string.Empty);
+        var expectedMarkupString = string.Format(HtmlFormat, expectedClass, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 }

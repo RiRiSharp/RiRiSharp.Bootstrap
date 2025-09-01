@@ -10,7 +10,7 @@
         </BsInputRadioGroup>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, string.Empty);
+        var expectedMarkupString = string.Format(HtmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -28,7 +28,7 @@
         </BsInputRadioGroup>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, classes, string.Empty);
+        var expectedMarkupString = string.Format(HtmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -50,7 +50,7 @@
         </BsInputRadioGroup>);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expected);
+        var expectedMarkupString = string.Format(HtmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -68,7 +68,7 @@
         // Assert
         // One might ask why a? And there's a (no pun intended) super obscure reason for it.
         // This can be found here: https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web/src/Forms/InputRadio.cs#L78-L95
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, $"""value="{SomeValueVar}" checked="a" """);
+        var expectedMarkupString = string.Format(HtmlFormat, "", $"""value="{SomeValueVar}" checked="a" """);
         cut.MarkupMatches(expectedMarkupString);
     }
 

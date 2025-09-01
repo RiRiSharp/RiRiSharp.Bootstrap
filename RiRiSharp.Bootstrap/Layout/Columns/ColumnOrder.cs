@@ -18,7 +18,7 @@ public static class ColumnOrderExtensions
     {
         return options switch
         {
-            ColumnOrder.Default => string.Empty,
+            ColumnOrder.Default => "",
             ColumnOrder.Order1 => "order-1",
             ColumnOrder.Order2 => "order-2",
             ColumnOrder.Order3 => "order-3",

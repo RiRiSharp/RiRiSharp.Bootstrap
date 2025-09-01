@@ -18,7 +18,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         var cut = Render<TComponent>(BuildParameters);
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
+        var expectedMarkupString = string.Format(htmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -41,7 +41,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         });
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, classes, string.Empty);
+        var expectedMarkupString = string.Format(htmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -70,7 +70,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         });
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, string.Empty, expected);
+        var expectedMarkupString = string.Format(htmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
 

@@ -12,7 +12,7 @@ public static class AbbreviationTypeExtensions
     {
         return abbreviationType switch
         {
-            AbbreviationType.Default => string.Empty,
+            AbbreviationType.Default => "",
             AbbreviationType.Initialism => "initialism",
             _ => throw new ArgumentOutOfRangeException(nameof(abbreviationType), abbreviationType, null)
         };

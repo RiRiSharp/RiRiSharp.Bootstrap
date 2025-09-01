@@ -24,7 +24,7 @@ public static class GridStartOptionsExtensions
 
     public static string ToBootstrapClass(this GridStartOptions gridColumnOptions)
     {
-        var classString = string.Empty;
+        var classString = "";
         if (gridColumnOptions == GridStartOptions.Default) return classString;
 
         classString = "g-start";
@@ -94,6 +94,6 @@ public static class GridStartOptionsExtensions
             return "-12";
         }
 
-        return string.Empty;
+        return "";
     }
 }

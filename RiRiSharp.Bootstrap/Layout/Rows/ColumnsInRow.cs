@@ -24,7 +24,7 @@ public static class RowOptsExtensions
     {
         return options switch
         {
-            ColumnsInRow.None => string.Empty,
+            ColumnsInRow.None => "",
             ColumnsInRow.Cols1 => "row-cols-1",
             ColumnsInRow.Cols2 => "row-cols-2",
             ColumnsInRow.Cols3 => "row-cols-3",

@@ -42,7 +42,7 @@ public class BsIndeterminateInputCheckboxTests()
         inputElement.Change(afterValue);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expectedAttribute);
+        var expectedMarkupString = string.Format(HtmlFormat, "", expectedAttribute);
         cut.MarkupMatches(expectedMarkupString);
     }
     

@@ -45,7 +45,7 @@ public class BsValidationMessageTests : BunitContext
         await SimulateValidatingModel();
 
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, string.Empty, string.Empty);
+        var expectedMarkupString = string.Format(_htmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -67,7 +67,7 @@ public class BsValidationMessageTests : BunitContext
         await SimulateValidatingModel();
         
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, classes, string.Empty);
+        var expectedMarkupString = string.Format(_htmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -96,7 +96,7 @@ public class BsValidationMessageTests : BunitContext
         await SimulateValidatingModel();
 
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, string.Empty, expected);
+        var expectedMarkupString = string.Format(_htmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
     

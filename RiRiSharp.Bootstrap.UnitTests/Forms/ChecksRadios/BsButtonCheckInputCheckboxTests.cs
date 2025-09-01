@@ -18,7 +18,7 @@ public class BsButtonCheckInputCheckboxTests()
             p => p.Value, value, newValue => value = newValue));
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, "checked");
+        var expectedMarkupString = string.Format(HtmlFormat, "", "checked");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -39,7 +39,7 @@ public class BsButtonCheckInputCheckboxTests()
         inputElement.Change(afterValue);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, string.Empty, expectedAttribute);
+        var expectedMarkupString = string.Format(HtmlFormat, "", expectedAttribute);
         cut.MarkupMatches(expectedMarkupString);
     }
 }

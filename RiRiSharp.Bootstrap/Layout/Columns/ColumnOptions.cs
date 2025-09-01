@@ -107,7 +107,7 @@ public static class ColumnOptsExtensions
 
     public static string ToBootstrapOffsetClass(this ColumnOptions breakpoint)
     {
-        var classString = string.Empty;
+        var classString = "";
         if(breakpoint == ColumnOptions.Default) return classString;
 
         classString = "offset";
@@ -143,7 +143,7 @@ public static class ColumnOptsExtensions
             return "-xxl";
         }
 
-        return string.Empty;
+        return "";
     }
 
     private static string ColumnWidth(this ColumnOptions breakpoint)
@@ -213,6 +213,6 @@ public static class ColumnOptsExtensions
             return "-auto";
         }
 
-        return string.Empty;
+        return "";
     }
 }

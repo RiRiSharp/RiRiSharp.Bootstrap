@@ -101,7 +101,7 @@ public static class GridColumnOptionsExtensions
     {
         if (gridColumnOptions == GridColumnOptions.Default)
         {
-            return string.Empty;
+            return "";
         }
         
         var classString = "g-col";
@@ -137,7 +137,7 @@ public static class GridColumnOptionsExtensions
             return "-xxl";
         }
 
-        return string.Empty;
+        return "";
     }
 
     private static string ColumnWidth(this GridColumnOptions gridColumnOptions)
@@ -207,6 +207,6 @@ public static class GridColumnOptionsExtensions
             return "-auto";
         }
 
-        return string.Empty;
+        return "";
     }
 }

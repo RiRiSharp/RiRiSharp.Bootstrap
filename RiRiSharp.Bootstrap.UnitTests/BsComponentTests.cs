@@ -13,7 +13,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         var cut = Render<TComponent>(BuildParameters);
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, string.Empty, string.Empty);
+        var expectedMarkupString = string.Format(htmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
     
@@ -34,7 +34,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
         
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, classes, string.Empty);
+        var expectedMarkupString = string.Format(htmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
         
     }
@@ -62,7 +62,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
         
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, string.Empty, expected);
+        var expectedMarkupString = string.Format(htmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
     
