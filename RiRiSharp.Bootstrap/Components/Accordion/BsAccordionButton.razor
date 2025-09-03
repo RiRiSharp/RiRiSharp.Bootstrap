@@ -1,53 +1,6 @@
 ﻿@using RiRiSharp.Bootstrap.BaseComponents
 @inherits BsChildContentComponent
 
-<button type="button" @attributes="AdditionalAttributes" class="accordion-button @(GetCollapsedClass()) @(Classes)">
+<button type="button" @onclick="ToggleAsync" @attributes="AdditionalAttributes" class="accordion-button @(GetCollapsedClass()) @(Classes)">
     @(ChildContent)
 </button>
-
-@code {
-    private bool _jsOwnsDown;
-
-    private bool _collapsedInner;
-    [Parameter] public bool Collapsed { get; set; } = true;
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (!firstRender) return;
-        _collapsedInner = Collapsed;
-        _jsOwnsDown = true;
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        if (!_jsOwnsDown) return;
-        if (Collapsed == _collapsedInner) return;
-        
-        if (Collapsed)
-        {
-            await CollapseAsync();
-        }
-        else
-        {
-            await ShowAsync();
-        }
-    }
-
-    private async Task ShowAsync()
-    {
-        _collapsedInner = true;
-        // JS interop
-    }
-
-    public async Task CollapseAsync()
-    {
-        _collapsedInner = false;
-        // JS interop
-    }
-    
-    private string GetCollapsedClass()
-    {
-        if (_jsOwnsDown) return "";
-        return Collapsed ? "collapsed" : "";
-    }
-}

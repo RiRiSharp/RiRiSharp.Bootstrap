@@ -1,106 +1,45 @@
 ﻿@page "/"
-@using RiRiSharp.Bootstrap.Forms
-@using RiRiSharp.Bootstrap.Forms.ChecksRadios
-@using RiRiSharp.Bootstrap.Forms.FormControl
-@using RiRiSharp.Bootstrap.Forms.InputGroup
-@using RiRiSharp.Bootstrap.Forms.Validation
-@using RiRiSharp.Bootstrap.Layout.Columns
-@using RiRiSharp.Bootstrap.Forms.Select
+@using RiRiSharp.Bootstrap.Components.Accordion
 <PageTitle>Home</PageTitle>
 
-<BsEditForm EditContext="_editContext" Classes="row g-3" OnValidSubmit="ValidSubmit" OnInvalidSubmit="InvalidSubmit">
-    <DataAnnotationsValidator/>
-    <BsColumn ColOption="BsColumnOptions.ColMd4">
-        <BsFormLabel>First name</BsFormLabel>
-        <InputText class="form-control" @bind-Value="_homeModel.FirstName"/>
-        <BsValidationMessage class="invalid-feedback" For="() => _homeModel.FirstName"/>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd4">
-        <BsFormLabel>Last name</BsFormLabel>
-        <BsInputText @bind-Value="_homeModel.LastName"/>
-        <BsValidationMessage For="() => _homeModel.LastName"/>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd4">
-        <BsFormLabel>Username</BsFormLabel>
-        <BsInputGroup>
-            <BsInputGroupText>@@</BsInputGroupText>
-            <BsInputText @bind-Value="_homeModel.Username"/>
-            <BsValidationMessage For="() => _homeModel.Username"/>
-        </BsInputGroup>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd6">
-        <BsFormLabel>City</BsFormLabel>
-        <BsInputText @bind-Value="_homeModel.City"/>
-        <BsValidationMessage For="() => _homeModel.City"/>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd3">
-        <BsFormLabel>State</BsFormLabel>
-        <BsInputSelect @bind-Value="_homeModel.State">
-            <option selected disabled value="">Choose...</option>
-            @foreach (var state in _states)
-            {
-                <option value="@(state)">@(state)</option>
-            }
-        </BsInputSelect>
-        <BsValidationMessage For="() => _homeModel.State"/>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd3">
-        <BsFormLabel>Zip</BsFormLabel>
-        <BsInputText @bind-Value="_homeModel.Zip"/>
-        <BsValidationMessage For="() => _homeModel.Zip"/>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd6">
-        <BsFormCheck>
-            <BsFormCheckLabel>
-                <BsInputCheckbox @bind-Value="_homeModel.AgreeTermsAndConditions"/>
-                Agree to terms and conditions
-            </BsFormCheckLabel>
-            <BsValidationMessage For="() => _homeModel.AgreeTermsAndConditions"/>
-        </BsFormCheck>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd6">
-        <BsInputRadioGroup @bind-Value="_state">
-            <BsFormCheck FormCheckOptions="BsFormCheckOptions.Inline">
-                <BsInputRadio Value="@(State.StateA)" id="StateA"/>
-                <BsFormCheckLabel for="StateA">State A</BsFormCheckLabel>
-            </BsFormCheck>
-            <BsFormCheck FormCheckOptions="BsFormCheckOptions.Inline">
-                <BsInputRadio Value="@(State.StateB)" id="StateB"/>
-                <BsFormCheckLabel for="StateB">State B</BsFormCheckLabel>
-            </BsFormCheck>
-        </BsInputRadioGroup>
-    </BsColumn>
-    <BsColumn ColOption="BsColumnOptions.ColMd12">
-        <button type="submit" class="btn btn-primary">Submit form</button>
-    </BsColumn>
-</BsEditForm>
-
+<BsAccordion>
+    <BsAccordionItem>
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #1
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number one.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+    <BsAccordionItem>
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #2
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number two.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+    <BsAccordionItem>
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #3
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number three.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+</BsAccordion>
 @code {
-    HomeModel _homeModel;
-    private EditContext _editContext;
-    private readonly IEnumerable<State> _states = [State.StateA, State.StateB];
-    private State _state;
 
-    protected override void OnInitialized()
-    {
-        _homeModel = new HomeModel();
-        _editContext = BsEditContextBuilder.Build(_homeModel);
-        base.OnInitialized();
-    }
-
-    private void ValidSubmit()
-    {
-        Console.WriteLine("Submit was valid");
-    }
-
-    private void InvalidSubmit()
-    {
-        Console.WriteLine("Submit was invalid");
-    }
-
-    public enum State
-    {
-        StateA,
-        StateB
-    }
 }

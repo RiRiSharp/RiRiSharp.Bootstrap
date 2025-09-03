@@ -19,4 +19,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Components\Accordion\BsAccordionButton.razor.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
 </Project>

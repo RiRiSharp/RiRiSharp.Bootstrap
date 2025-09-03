@@ -1,5 +1,6 @@
-﻿@using RiRiSharp.Bootstrap.BaseComponents
-@inherits BsChildContentComponent
+﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 <div @attributes="AdditionalAttributes" class="accordion-item @(Classes)">
-    @(ChildContent)
+    <CascadingValue Value="_accordionItemContext">
+        @(ChildContent)
+    </CascadingValue>
 </div>

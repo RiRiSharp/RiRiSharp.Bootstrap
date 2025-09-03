@@ -16,19 +16,19 @@ public partial class BsAccordion : BsChildContentComponent
         _accordionContext = new BsAccordionContext();
     }
 
-    public async Task CollapseAllAsync()
-    {
-        await Task.WhenAll(_accordionContext.Items.Select(i => i.CollapseAsync()));
-    }
-
     public async Task ShowAllAsync()
     {
-        await Task.WhenAll(_accordionContext.Items.Select(i => i.ShowAsync()));
+        await _accordionContext.ShowAllItemAsync();
+    }
+
+    public async Task CollapseAllAsync()
+    {
+        await _accordionContext.CollapseAllItemsAsync();
     }
 
     public async Task ShowExactlyOne(BsAccordionItem exceptionItem)
     {
-        await Task.WhenAll(_accordionContext.Items.Where(i => i != exceptionItem).Select(i => i.CollapseAsync()));
-        await exceptionItem.ShowAsync();
+        await _accordionContext.CollapseAllItemsAsync();
+        await _accordionContext.ShowItemAsync(exceptionItem);
     }
 }

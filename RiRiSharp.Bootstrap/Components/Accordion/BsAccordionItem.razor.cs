@@ -1,16 +1,29 @@
-﻿using RiRiSharp.Bootstrap.BaseComponents;
+﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
+using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionItem : BsChildContentComponent
 {
-    public async Task CollapseAsync()
+    private BsAccordionItemContext _accordionItemContext = new();
+    [CascadingParameter] public BsAccordionContext AccordionContext { get; set; }
+
+    protected override void OnInitialized()
     {
-        throw new NotImplementedException();
+        base.OnInitialized();
+        _accordionItemContext = new BsAccordionItemContext();
+        AccordionContext.OnShow[this] += ShowAsync;
+        AccordionContext.OnCollapse[this] += CollapseAsync;
     }
 
-    public Task ShowAsync()
+    private async Task ShowAsync()
     {
-        throw new NotImplementedException();
+        await _accordionItemContext.Show();
+    }
+
+    private async Task CollapseAsync()
+    {
+        await _accordionItemContext.Collapse();
     }
 }
