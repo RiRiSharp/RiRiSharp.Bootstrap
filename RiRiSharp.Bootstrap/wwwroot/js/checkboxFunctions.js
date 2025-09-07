@@ -1,3 +1,3 @@
-﻿export function initializeIndeterminate(element) {
-    element.indeterminate = true
+﻿export function initializeIndeterminate(checkboxReference) {
+    checkboxReference.indeterminate = true
 }

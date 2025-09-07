@@ -6,24 +6,29 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionItem : BsChildContentComponent
 {
-    private BsAccordionItemContext _accordionItemContext = new();
-    [CascadingParameter] public BsAccordionContext AccordionContext { get; set; }
+    private BsAccordionItemContext _accordionItemContext;
+    private ElementReference _bsAccordionItem;
+    [Inject] private IBsAccordionJsFunctions JsFunctions { get; set; }
+    [CascadingParameter] private BsAccordionContext AccordionContext { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        _accordionItemContext = new BsAccordionItemContext();
-        AccordionContext.OnShow[this] += ShowAsync;
-        AccordionContext.OnCollapse[this] += CollapseAsync;
+        _accordionItemContext = new BsAccordionItemContext(this);
     }
 
     private async Task ShowAsync()
     {
-        await _accordionItemContext.Show();
+        await JsFunctions.ShowAsync(_bsAccordionItem);
     }
 
     private async Task CollapseAsync()
     {
-        await _accordionItemContext.Collapse();
+        await JsFunctions.CollapseAsync(_bsAccordionItem);
+    }
+
+    public async Task ToggleAsync()
+    {
+        await JsFunctions.ToggleAsync(_bsAccordionItem);
     }
 }

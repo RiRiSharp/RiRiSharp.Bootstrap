@@ -1,17 +1,9 @@
 ﻿namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
-public class BsAccordionItemContext
+public class BsAccordionItemContext(BsAccordionItem accordionItem)
 {
-    public async Task Show()
+    public async Task ToggleAsync()
     {
-        await OnShow();
+        await accordionItem.ToggleAsync();
     }
-
-    public async Task Collapse()
-    {
-        await OnCollapse();
-    }
-
-    public Func<Task> OnShow { get; set; }
-    public Func<Task> OnCollapse { get; set; }
 }
