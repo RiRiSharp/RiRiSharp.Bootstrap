@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
@@ -30,5 +31,11 @@ public class BsAccordionJsFunctions : IBsAccordionJsFunctions
     public async Task ToggleAsync(ElementReference bsAccordionItemReference)
     {
         await _bsJsObjectReference.InvokeVoidAsync(Toggle, bsAccordionItemReference);
+    }
+
+    internal const string RegisterCollapseCallback = "registerCollapseCallback";
+    public async Task RegisterCollapseCallbackAsync<T>(ElementReference buttonRef, DotNetObjectReference<T> dotNetRef) where T : class, IHasCollapseState
+    {
+        await _bsJsObjectReference.InvokeVoidAsync(RegisterCollapseCallback, buttonRef, dotNetRef);
     }
 }

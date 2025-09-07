@@ -8,7 +8,7 @@ public partial class BsAccordionItem : BsChildContentComponent
 {
     private BsAccordionItemContext _accordionItemContext;
     private ElementReference _bsAccordionItem;
-    [Inject] private IBsAccordionJsFunctions JsFunctions { get; set; }
+    [Inject] private IBsAccordionJsFunctions AccordionFunctions { get; set; }
     [CascadingParameter] private BsAccordionContext AccordionContext { get; set; }
 
     protected override void OnInitialized()
@@ -19,16 +19,16 @@ public partial class BsAccordionItem : BsChildContentComponent
 
     private async Task ShowAsync()
     {
-        await JsFunctions.ShowAsync(_bsAccordionItem);
+        await AccordionFunctions.ShowAsync(_bsAccordionItem);
     }
 
     private async Task CollapseAsync()
     {
-        await JsFunctions.CollapseAsync(_bsAccordionItem);
+        await AccordionFunctions.CollapseAsync(_bsAccordionItem);
     }
 
     public async Task ToggleAsync()
     {
-        await JsFunctions.ToggleAsync(_bsAccordionItem);
+        await AccordionFunctions.ToggleAsync(_bsAccordionItem);
     }
 }

@@ -1,13 +1,33 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 namespace  RiRiSharp.Bootstrap.Components.Accordion;
 
-public partial class BsAccordionButton : BsChildContentComponent
+public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseState
 {
+    private DotNetObjectReference<BsAccordionButton> _dotNetRef;
+    private ElementReference _accordionButtonRef;
     [Parameter] public bool Collapsed { get; set; } = true;
-    [CascadingParameter] public BsAccordionItemContext AccordionItemContext { get; set; }
+    [CascadingParameter] internal BsAccordionItemContext AccordionItemContext { get; set; }
+    [Inject] private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await AccordionJsFunctions.RegisterCollapseCallbackAsync(_accordionButtonRef, _dotNetRef);
+        }
+    }
+    
+    [JSInvokable]
+    public void UpdateCollapseState(bool isCollapsed)
+    {
+        Collapsed = isCollapsed;
+        StateHasChanged();
+    }
 
     private async Task ToggleAsync()
     {
