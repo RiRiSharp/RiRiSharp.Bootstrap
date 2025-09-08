@@ -8,7 +8,6 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseState
 {
     private DotNetObjectReference<BsAccordionButton> _dotNetRef;
-    private ElementReference _accordionButtonRef;
     private bool _initialCollapse;
     public bool Collapsed { get; set; } = true;
     [CascadingParameter] internal BsAccordionItemContext AccordionItemContext { get; set; }
@@ -26,7 +25,7 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
         if (firstRender)
         {
             _dotNetRef = DotNetObjectReference.Create(this);
-            await AccordionJsFunctions.RegisterCollapseCallbackAsync(_accordionButtonRef, _dotNetRef);
+            await AccordionJsFunctions.RegisterCollapseCallbackAsync(htmlRef, _dotNetRef);
         }
     }
     

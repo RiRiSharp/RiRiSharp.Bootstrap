@@ -18,6 +18,16 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         cut.MarkupMatches(expectedMarkupString);
     }
     
+    [Fact]
+    public void RefIsSet()
+    {
+        // Act
+        var cut = Render<TComponent>(BuildParameters);
+
+        // Assert
+        Assert.NotEqual(default, cut.Instance.HtmlRef);
+    }
+    
     [Theory]
     [InlineData(null)]
     [InlineData("")]

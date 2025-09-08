@@ -1,6 +1,6 @@
 ﻿@using RiRiSharp.Bootstrap.BaseComponents
 @inherits BsChildContentComponent
 
-<button type="button" @onclick="ToggleAsync" @attributes="AdditionalAttributes" class="accordion-button @(GetInitialCollapsedClass()) @(Classes)" @ref="_accordionButtonRef">
+<button type="button" @onclick="ToggleAsync" @attributes="AdditionalAttributes" class="accordion-button @(GetInitialCollapsedClass()) @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </button>

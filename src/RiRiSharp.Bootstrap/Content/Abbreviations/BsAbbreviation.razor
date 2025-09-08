@@ -1,6 +1,6 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
-<abbr @attributes="AdditionalAttributes" title="@(FullName)" class="@(Type.ToBootstrapClass()) @(Classes)">
+<abbr @attributes="AdditionalAttributes" title="@(FullName)" class="@(Type.ToBootstrapClass()) @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </abbr>
 

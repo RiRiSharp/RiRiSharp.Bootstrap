@@ -1,6 +1,6 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
-<span @attributes="AdditionalAttributes" class="@(Type.ToBootstrapClass()) @(Classes)">
+<span @attributes="AdditionalAttributes" class="@(Type.ToBootstrapClass()) @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </span>
 

@@ -5,7 +5,6 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
 {
     private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions;
-    private ElementReference _htmlRef;
 
     public BsIndeterminateInputCheckbox(IBsCheckboxJsFunctions bsCheckboxJsFunctions)
     {
@@ -17,7 +16,7 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
         await base.OnParametersSetAsync();
         if (CurrentValue is null)
         {
-            await _bsCheckboxJsFunctions.InitializeIndeterminateAsync(_htmlRef);
+            await _bsCheckboxJsFunctions.InitializeIndeterminateAsync(htmlRef);
         }
     }
 

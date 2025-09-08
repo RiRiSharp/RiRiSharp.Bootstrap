@@ -1,6 +1,6 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
-<table @attributes="AdditionalAttributes" class="table @(Options.ToBootstrapTableClass()) @(Responsiveness.ToBootstrapClass()) @(Classes)">
+<table @attributes="AdditionalAttributes" class="table @(Options.ToBootstrapTableClass()) @(Responsiveness.ToBootstrapClass()) @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </table>
 

@@ -1,5 +1,5 @@
 ﻿@using RiRiSharp.Bootstrap.BaseComponents
 @inherits BsChildContentComponent
-<h2 @attributes="AdditionalAttributes" class="accordion-header @(Classes)">
+<h2 @attributes="AdditionalAttributes" class="accordion-header @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </h2>

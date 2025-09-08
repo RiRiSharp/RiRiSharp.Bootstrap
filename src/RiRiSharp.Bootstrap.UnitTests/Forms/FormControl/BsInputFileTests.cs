@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using RiRiSharp.Bootstrap.BaseComponents;
-using System.Diagnostics.CodeAnalysis;
+﻿using RiRiSharp.Bootstrap.Forms;
+using RiRiSharp.Bootstrap.Forms.FormControl;
+using System;
 
-namespace RiRiSharp.Bootstrap.UnitTests;
+namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
-public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSyntax("Html")] string htmlFormat) : BunitContext
-    where TComponent : InputBase<TValue>, IBsComponent
+public class BsInputFileTests : BunitContext
 {
-    protected string HtmlFormat => htmlFormat;
+    private static string HtmlFormat => """<input class="form-control {0}" type="file" {1}>""";
 
     [Fact]
     public void DefaultWorks()
@@ -17,10 +15,10 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         ConfigureTestContext();
 
         // Act
-        var cut = Render<TComponent>(BuildParameters);
+        var cut = GetCut();
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, "", "");
+        var expectedMarkupString = string.Format(HtmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
     
@@ -31,7 +29,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         ConfigureTestContext();
 
         // Act
-        var cut = Render<TComponent>(BuildParameters);
+        var cut = GetCut();
 
         // Assert
         Assert.NotEqual(default, cut.Instance.HtmlRef);
@@ -49,14 +47,13 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         ConfigureTestContext();
 
         // Act
-        var cut = Render<TComponent>(parameters =>
+        var cut = GetCut(parameters =>
         {
-            BuildParameters(parameters);
             parameters.Add(x => x.Classes, classes);
         });
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, classes, "");
+        var expectedMarkupString = string.Format(HtmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -75,9 +72,8 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         ConfigureTestContext();
 
         // Act
-        var cut = Render<TComponent>(parameters =>
+        var cut = GetCut(parameters =>
         {
-            BuildParameters(parameters);
             for (var i = 0; i < attributeKeys.Length; i++)
             {
                 parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
@@ -85,18 +81,42 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
         });
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, "", expected);
+        var expectedMarkupString = string.Format(HtmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
-
-    protected virtual void BuildParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
+    
+    [Theory]
+    [InlineData(BsFormSize.Small, "form-control-sm")]
+    [InlineData(BsFormSize.Regular, "")]
+    [InlineData(BsFormSize.Large, "form-control-lg")]
+    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
     {
-        TValue value = default;
-        parameterBuilder.Bind(p => p.Value, value, newValue => value = newValue);
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut(parameters => parameters.Add(x => x.FormSize, formSize));
+
+        // Assert
+        var expectedMarkupString = string.Format(HtmlFormat, expectedClass, "");
+        cut.MarkupMatches(expectedMarkupString);
+    }
+    
+    protected IRenderedComponent<BsInputFile> GetCut(Action<ComponentParameterCollectionBuilder<BsInputFile>> action = null)
+    {
+        return Render<BsInputFile>(parameters =>
+        {
+            BindParameters(parameters);
+            action?.Invoke(parameters);
+        });
+    }
+
+    protected virtual void BindParameters(ComponentParameterCollectionBuilder<BsInputFile> parameterBuilder)
+    {
+
     }
 
     protected virtual void ConfigureTestContext()
     {
-        
     }
 }

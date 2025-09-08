@@ -8,7 +8,7 @@ namespace RiRiSharp.Bootstrap.Forms.Validation;
 public class BsValidationMessage<TValue> : ValidationMessage<TValue>, IBsComponent
 {
     [Parameter] public string Classes { get; set; }
-    public ElementReference HtmlRef => default;
+    public ElementReference HtmlRef => default; // TODO https://github.com/RiRiSharp/RiRiSharp.Bootstrap/issues/5
 
     protected override void OnParametersSet()
     {

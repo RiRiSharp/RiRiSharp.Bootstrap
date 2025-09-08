@@ -1,4 +1,4 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
-<li @attributes="AdditionalAttributes" class="nav-item dropdown @(Classes)">
+<li @attributes="AdditionalAttributes" class="nav-item dropdown @(Classes)" @ref="htmlRef">
     @(ChildContent)
 </li>

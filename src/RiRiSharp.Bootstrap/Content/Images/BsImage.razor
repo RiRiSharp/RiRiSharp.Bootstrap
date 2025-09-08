@@ -1,7 +1,7 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsComponent
 
 <img @attributes="AdditionalAttributes" src="@(Src)" alt="@(Alt)"
-     class="@(Options.ToBootstrapClass()) @(Classes)"/>
+     class="@(Options.ToBootstrapClass()) @(Classes)" @ref="htmlRef"/>
 
 
 @code {

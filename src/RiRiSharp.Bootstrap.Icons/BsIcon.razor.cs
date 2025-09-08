@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
 
 namespace RiRiSharp.Bootstrap.Icons;
 
-public partial class BsIcon : ComponentBase
+public partial class BsIcon : BsComponent
 {
     [Parameter, EditorRequired] public string Name { get; set; }
-    [Parameter] public string Classes { get; set; }
-    
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IDictionary<string, object> AdditionalAttributes { get; set; }
 }
