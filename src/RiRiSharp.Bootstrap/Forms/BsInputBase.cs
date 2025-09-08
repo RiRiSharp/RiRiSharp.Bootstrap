@@ -8,6 +8,8 @@ namespace RiRiSharp.Bootstrap.Forms;
 public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
 {
     [Parameter] public string Classes { get; set; }
+    private ElementReference _htmlRef;
+    public ElementReference HtmlRef => _htmlRef;
 
     protected override void OnParametersSet()
     {

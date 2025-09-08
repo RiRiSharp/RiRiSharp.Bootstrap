@@ -8,6 +8,8 @@ namespace RiRiSharp.Bootstrap.Forms;
 public class BsEditForm : EditForm, IBsComponent
 {
     [Parameter] public string Classes { get; set; }
+    public ElementReference HtmlRef => default; // TODO find a way to fix this
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();

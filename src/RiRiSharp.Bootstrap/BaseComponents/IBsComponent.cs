@@ -1,7 +1,10 @@
-﻿namespace RiRiSharp.Bootstrap.BaseComponents;
+﻿using Microsoft.AspNetCore.Components;
+
+namespace RiRiSharp.Bootstrap.BaseComponents;
 
 public interface IBsComponent
 {
-    public string Classes { get; set; }
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+    string Classes { get; set; }
+    IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+    ElementReference HtmlRef { get; }
 }

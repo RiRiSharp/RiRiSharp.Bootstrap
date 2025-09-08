@@ -10,10 +10,26 @@ public partial class BsAccordion : BsChildContentComponent
 
     [Parameter] public bool AlwaysOpen { get; set; } = false;
     [Parameter] public BsAccordionDisplayStyle DisplayStyle { get; set; }
+    [Inject] private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         _accordionContext = new BsAccordionContext { AlwaysOpen = AlwaysOpen };
+    }
+
+    public async Task CollapseAllAsync()
+    {
+        await AccordionJsFunctions.CollapseAllAsync(HtmlRef);
+    }
+
+    public async Task ShowAllAsync()
+    {
+        await AccordionJsFunctions.ShowAllAsync(HtmlRef);
+    }
+
+    public async Task CollapseAllButOneAsync(BsAccordionItem accordionItem)
+    {
+        await AccordionJsFunctions.CollapseAllButOneAsync(HtmlRef, accordionItem.HtmlRef);
     }
 }

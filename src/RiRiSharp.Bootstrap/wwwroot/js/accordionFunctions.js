@@ -1,10 +1,36 @@
 ﻿const togglingState = new WeakMap();
 
-// Public versions (with locking)
-export function toggle(accordionItemReference, alwaysOpen = false) {
-    console.log(alwaysOpen);
-    const collapseElement = accordionItemReference.querySelector('.accordion-collapse');
-    const buttonElement = accordionItemReference.querySelector('.accordion-button');
+export function showAll(accordionRef) {
+    if (!accordionRef) return;
+
+    const items = accordionRef.querySelectorAll('.accordion-item');
+    items.forEach(item => show(item, true)); // use public version with locking
+}
+
+export function collapseAll(accordionRef) {
+    if (!accordionRef) return;
+
+    const items = accordionRef.querySelectorAll('.accordion-item');
+    items.forEach(collapse); // use public version with locking
+}
+
+
+export function collapseAllButOne(accordionRef, accordionItemRef) {
+    if (!accordionRef || !accordionItemRef) return;
+
+    const items = accordionRef.querySelectorAll('.accordion-item');
+    items.forEach(item => {
+        if (item === accordionItemRef) {
+            show(item);
+            return;
+        }
+        collapse(item);
+    });
+}
+
+export function toggle(accordionItemRef, alwaysOpen = false) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
+    const buttonElement = accordionItemRef.querySelector('.accordion-button');
     if (!collapseElement || !buttonElement || togglingState.get(collapseElement)) return;
 
     togglingState.set(collapseElement, true);
@@ -16,12 +42,7 @@ export function toggle(accordionItemReference, alwaysOpen = false) {
     collapseInstance.toggle();
 
     if (!alwaysOpen) {
-        const accordionParent = accordionItemReference.closest('.accordion');
-        if (accordionParent) {
-            const otherItems = Array.from(accordionParent.querySelectorAll('.accordion-item'))
-                .filter(item => item !== accordionItemReference);
-            otherItems.forEach(collapseInt); // use internal version
-        }
+        collapseOtherAccordionItems(accordionItemRef);
     }
 
     const clearState = () => togglingState.set(collapseElement, false);
@@ -29,24 +50,36 @@ export function toggle(accordionItemReference, alwaysOpen = false) {
     collapseElement.addEventListener('hidden.bs.collapse', clearState, {once: true});
 }
 
-export function show(accordionItemReference) {
-    const collapseElement = accordionItemReference.querySelector('.accordion-collapse');
+export function show(accordionItemRef, alwaysOpen = false) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
     if (!collapseElement || togglingState.get(collapseElement)) return;
 
+    if (collapseElement.classList.contains('show')) {
+        return; // Already shown, no need to proceed
+    }
+
     togglingState.set(collapseElement, true);
-    showInt(accordionItemReference);
+    showInt(accordionItemRef);
+
+    if (!alwaysOpen) {
+        collapseOtherAccordionItems(accordionItemRef);
+    }
 
     collapseElement.addEventListener('shown.bs.collapse', () => {
         togglingState.set(collapseElement, false);
     }, {once: true});
 }
 
-export function collapse(accordionItemReference) {
-    const collapseElement = accordionItemReference.querySelector('.accordion-collapse');
+export function collapse(accordionItemRef) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
     if (!collapseElement || togglingState.get(collapseElement)) return;
 
+    if (!collapseElement.classList.contains('show')) {
+        return; // Already collapsed, no need to proceed
+    }
+
     togglingState.set(collapseElement, true);
-    collapseInt(accordionItemReference);
+    collapseInt(accordionItemRef);
 
     collapseElement.addEventListener('hidden.bs.collapse', () => {
         togglingState.set(collapseElement, false);
@@ -79,10 +112,18 @@ function updateButtonState(buttonElement, isCollapsed) {
     }
 }
 
-// Internal versions (no locking)
-function showInt(accordionItemReference) {
-    const collapseElement = accordionItemReference.querySelector('.accordion-collapse');
-    const buttonElement = accordionItemReference.querySelector('.accordion-button');
+function collapseOtherAccordionItems(accordionItemRef) {
+    const accordionParent = accordionItemRef.closest('.accordion');
+    if (accordionParent) {
+        const otherItems = Array.from(accordionParent.querySelectorAll('.accordion-item'))
+            .filter(item => item !== accordionItemRef);
+        otherItems.forEach(collapseInt);
+    }
+}
+
+function showInt(accordionItemRef) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
+    const buttonElement = accordionItemRef.querySelector('.accordion-button');
     if (!collapseElement || !buttonElement) return;
 
     const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false});
@@ -91,9 +132,9 @@ function showInt(accordionItemReference) {
     updateButtonState(buttonElement, false);
 }
 
-function collapseInt(accordionItemReference) {
-    const collapseElement = accordionItemReference.querySelector('.accordion-collapse');
-    const buttonElement = accordionItemReference.querySelector('.accordion-button');
+function collapseInt(accordionItemRef) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
+    const buttonElement = accordionItemRef.querySelector('.accordion-button');
     if (!collapseElement || !buttonElement) return;
 
     const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false});

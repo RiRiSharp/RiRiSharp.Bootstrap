@@ -7,7 +7,6 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 public partial class BsAccordionItem : BsChildContentComponent
 {
     private BsAccordionItemContext _accordionItemContext;
-    private ElementReference _bsAccordionItem;
 
     [Parameter] public bool InitialCollapsed { get; set; } = true;
     [Inject] private IBsAccordionJsFunctions AccordionFunctions { get; set; }
@@ -19,18 +18,18 @@ public partial class BsAccordionItem : BsChildContentComponent
         _accordionItemContext = new BsAccordionItemContext(this);
     }
 
-    private async Task ShowAsync()
-    {
-        await AccordionFunctions.ShowAsync(_bsAccordionItem);
-    }
-
-    private async Task CollapseAsync()
-    {
-        await AccordionFunctions.CollapseAsync(_bsAccordionItem);
-    }
-
     public async Task ToggleAsync()
     {
-        await AccordionFunctions.ToggleAsync(_bsAccordionItem, AccordionContext.AlwaysOpen);
+        await AccordionFunctions.ToggleAsync(htmlRef, AccordionContext.AlwaysOpen);
+    }
+
+    public async Task ShowAsync()
+    {
+        await AccordionFunctions.ShowAsync(htmlRef, AccordionContext.AlwaysOpen);
+    }
+
+    public async Task CollapseAsync()
+    {
+        await AccordionFunctions.CollapseAsync(htmlRef);
     }
 }

@@ -9,6 +9,8 @@ public class BsInputRadio<TValue> : InputRadio<TValue>, IBsComponent
 {
     [Parameter] public BsFormCheckOptions FormCheckOptions { get; set; } = BsFormCheckOptions.Stacked;
     [Parameter] public string Classes { get; set; }
+    public ElementReference HtmlRef => Element.GetValueOrDefault();
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
