@@ -2,7 +2,8 @@
 @using RiRiSharp.Bootstrap.Components.Accordion
 <PageTitle>Home</PageTitle>
 
-<BsAccordion>
+<h3>Accordion test 1</h3>
+<BsAccordion AlwaysOpen="true">
     <BsAccordionItem>
         <BsAccordionHeader>
             <BsAccordionButton>
@@ -40,6 +41,42 @@
         </BsAccordionCollapse>
     </BsAccordionItem>
 </BsAccordion>
-@code {
-    BsAccordionButton _item;
-}
+<h3>Accordion test 2</h3>
+<BsAccordion AlwaysOpen="false">
+    <BsAccordionItem InitialCollapsed="false">
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #1
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number one.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+    <BsAccordionItem>
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #2
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number two.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+    <BsAccordionItem>
+        <BsAccordionHeader>
+            <BsAccordionButton>
+                Accordion item #3
+            </BsAccordionButton>
+        </BsAccordionHeader>
+        <BsAccordionCollapse>
+            <BsAccordionBody>
+                Body number three.
+            </BsAccordionBody>
+        </BsAccordionCollapse>
+    </BsAccordionItem>
+</BsAccordion>

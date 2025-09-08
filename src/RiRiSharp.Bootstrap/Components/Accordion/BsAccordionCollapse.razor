@@ -1,5 +1,5 @@
 ﻿@using RiRiSharp.Bootstrap.BaseComponents
 @inherits BsChildContentComponent
-<div @attributes="AdditionalAttributes" class="accordion-collapse collapse @(Classes)" @ref="_accordionCollapseRef">
+<div @attributes="AdditionalAttributes" class="accordion-collapse collapse @(GetInitialCollapsedClass()) @(Classes)" @ref="_accordionCollapseRef">
     @(ChildContent)
 </div>

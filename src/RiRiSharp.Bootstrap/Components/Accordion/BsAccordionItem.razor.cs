@@ -8,6 +8,8 @@ public partial class BsAccordionItem : BsChildContentComponent
 {
     private BsAccordionItemContext _accordionItemContext;
     private ElementReference _bsAccordionItem;
+
+    [Parameter] public bool InitialCollapsed { get; set; } = true;
     [Inject] private IBsAccordionJsFunctions AccordionFunctions { get; set; }
     [CascadingParameter] private BsAccordionContext AccordionContext { get; set; }
 
@@ -29,6 +31,6 @@ public partial class BsAccordionItem : BsChildContentComponent
 
     public async Task ToggleAsync()
     {
-        await AccordionFunctions.ToggleAsync(_bsAccordionItem);
+        await AccordionFunctions.ToggleAsync(_bsAccordionItem, AccordionContext.AlwaysOpen);
     }
 }

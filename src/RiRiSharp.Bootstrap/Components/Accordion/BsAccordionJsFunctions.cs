@@ -15,6 +15,12 @@ public class BsAccordionJsFunctions : IBsAccordionJsFunctions
         _bsJsObjectReference = new BsJsObjectReference(jsRuntime, $"./_content/{typeof(BsAccordionJsFunctions).Assembly.GetName().Name}/js/{JsFileName}");
     }
 
+    internal const string Toggle = "toggle";
+    public async Task ToggleAsync(ElementReference bsAccordionItemReference, bool alwaysOpen = false)
+    {
+        await _bsJsObjectReference.InvokeVoidAsync(Toggle, bsAccordionItemReference, alwaysOpen);
+    }
+
     internal const string Show = "show";
     public async Task ShowAsync(ElementReference bsAccordionItemReference)
     {
@@ -25,12 +31,6 @@ public class BsAccordionJsFunctions : IBsAccordionJsFunctions
     public async Task CollapseAsync(ElementReference bsAccordionItemReference)
     {
         await _bsJsObjectReference.InvokeVoidAsync(Collapse, bsAccordionItemReference);
-    }
-
-    internal const string Toggle = "toggle";
-    public async Task ToggleAsync(ElementReference bsAccordionItemReference)
-    {
-        await _bsJsObjectReference.InvokeVoidAsync(Toggle, bsAccordionItemReference);
     }
 
     internal const string RegisterCollapseCallback = "registerCollapseCallback";
