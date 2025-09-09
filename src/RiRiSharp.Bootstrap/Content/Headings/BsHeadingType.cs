@@ -7,7 +7,7 @@ public enum BsHeadingType
     H3,
     H4,
     H5,
-    H6
+    H6,
 }
 
 public static class HeadingTypeExtensions

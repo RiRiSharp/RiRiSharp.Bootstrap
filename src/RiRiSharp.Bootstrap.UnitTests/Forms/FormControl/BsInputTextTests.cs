@@ -4,7 +4,9 @@ using RiRiSharp.Bootstrap.Forms.FormControl;
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
 public class BsInputTextTests()
-    : BsInputBaseComponentTests<BsInputText, string>("""<input class="form-control {0}" type="text" {1}></input>""")
+    : BsInputBaseComponentTests<BsInputText, string>(
+        """<input class="form-control {0}" type="text" {1}></input>"""
+    )
 {
     [Theory]
     [InlineData(BsFormSize.Large, "form-control-lg")]
@@ -14,20 +16,20 @@ public class BsInputTextTests()
     {
         // Arrange
         _value = "";
-        
+
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.Size, formSize));
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml(expected, "value=\"\""));
     }
-    
+
     [Fact]
     public void PlaintextRendersCorrectly()
     {
         // Arrange
         _value = "";
-        
+
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.ReadonlyPlaintext, true));
 

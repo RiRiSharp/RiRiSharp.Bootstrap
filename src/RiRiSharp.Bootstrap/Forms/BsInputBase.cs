@@ -7,9 +7,9 @@ namespace RiRiSharp.Bootstrap.Forms;
 
 public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
 {
-    [Parameter] public string Classes { get; set; }
-    protected ElementReference htmlRef;
-    public ElementReference HtmlRef => htmlRef;
+    [Parameter]
+    public string Classes { get; set; }
+    public ElementReference HtmlRef { get; protected set; }
 
     protected override void OnParametersSet()
     {
@@ -21,7 +21,10 @@ public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
+            AdditionalAttributes,
+            allClasses
+        );
     }
 
     protected abstract string GetBsComponentSpecificClasses();

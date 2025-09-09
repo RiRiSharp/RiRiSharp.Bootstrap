@@ -1,22 +1,23 @@
-﻿using Microsoft.AspNetCore.Components;
-using RiRiSharp.Bootstrap.BaseComponents;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : BunitContext
+public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat)
+    : BunitContext
     where TComponent : ComponentBase, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;
     protected virtual bool SkipRefCheck => false;
-    
+
     [Fact]
     public void DefaultWorks()
     {
         // Arrange
         ConfigureTestContext();
-        
+
         // Act
         var cut = GetCut();
 
@@ -24,21 +25,22 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         var expectedMarkupString = GetExpectedHtml("", "");
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Fact]
     public void RefIsSet()
     {
         // Arrange
-        if (SkipRefCheck) return;
+        if (SkipRefCheck)
+            return;
         ConfigureTestContext();
-        
+
         // Act
         var cut = GetCut();
 
         // Assert
         Assert.NotEqual(default, cut.Instance.HtmlRef);
     }
-    
+
     [Theory]
     [InlineData(null)]
     [InlineData("")]
@@ -49,50 +51,59 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
         // Arrange
         ConfigureTestContext();
-        
+
         // Act
         var cut = GetCut(parameters =>
         {
-            parameters
-                .Add(x => x.Classes, classes);
+            parameters.Add(x => x.Classes, classes);
         });
-        
+
         // Assert
         var expectedMarkupString = GetExpectedHtml(classes, "");
         cut.MarkupMatches(expectedMarkupString);
-        
     }
 
     [Theory]
-    [InlineData(new[] {"attributeKey"}, new [] {"attributeValue"}, 
+    [InlineData(
+        new[] { "attributeKey" },
+        new[] { "attributeValue" },
         """
-        attributeKey="attributeValue"
-        """)]
-    [InlineData(new[] {"attributeKey1", "attributeKey2"}, new [] {"attributeValue1", "attributeValue2"}, 
+            attributeKey="attributeValue"
+            """
+    )]
+    [InlineData(
+        new[] { "attributeKey1", "attributeKey2" },
+        new[] { "attributeValue1", "attributeValue2" },
         """
-        attributeKey1="attributeValue1" attributeKey2="attributeValue2"
-        """)]
-    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+            attributeKey1="attributeValue1" attributeKey2="attributeValue2"
+            """
+    )]
+    public void ExtraAttributesWorks(
+        string[] attributeKeys,
+        string[] attributeValues,
+        string expected
+    )
     {
         // Arrange
         ConfigureTestContext();
-        
+
         // Act
         var cut = GetCut(parameters =>
         {
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters
-                    .AddUnmatched(attributeKeys[i], attributeValues[i]);
+                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
         });
-        
+
         // Assert
         var expectedMarkupString = GetExpectedHtml("", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
-    protected virtual IRenderedComponent<TComponent> GetCut(Action<ComponentParameterCollectionBuilder<TComponent>> action = null)
+
+    protected virtual IRenderedComponent<TComponent> GetCut(
+        Action<ComponentParameterCollectionBuilder<TComponent>> action = null
+    )
     {
         return Render<TComponent>(parameters =>
         {
@@ -101,13 +112,11 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
     }
 
-    protected virtual void BindParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
-    {
-    }
+    protected virtual void BindParameters(
+        ComponentParameterCollectionBuilder<TComponent> parameterBuilder
+    ) { }
 
-    protected virtual void ConfigureTestContext()
-    {
-    }
+    protected virtual void ConfigureTestContext() { }
 
     protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
     {

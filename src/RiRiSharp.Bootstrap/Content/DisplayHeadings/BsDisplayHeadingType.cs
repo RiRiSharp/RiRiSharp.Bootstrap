@@ -22,7 +22,11 @@ public static class DisplayHeadingTypeExtensions
             BsDisplayHeadingType.Display4 => "display-4",
             BsDisplayHeadingType.Display5 => "display-5",
             BsDisplayHeadingType.Display6 => "display-6",
-            _ => throw new ArgumentOutOfRangeException(nameof(displayHeadingType), displayHeadingType, null)
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(displayHeadingType),
+                displayHeadingType,
+                null
+            ),
         };
     }
 }

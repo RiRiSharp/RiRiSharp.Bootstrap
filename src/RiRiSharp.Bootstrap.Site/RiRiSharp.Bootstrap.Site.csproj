@@ -1,19 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-  
   <ItemGroup>
-    <SupportedPlatform Include="browser"/>
+    <SupportedPlatform Include="browser" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="AspNetCore.SassCompiler"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all"/>
+    <PackageReference Include="AspNetCore.SassCompiler" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+    <PackageReference
+      Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"
+      PrivateAssets="all"
+    />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\RiRiSharp.Bootstrap.Icons\RiRiSharp.Bootstrap.Icons.csproj"/>
-    <ProjectReference Include="..\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.csproj"/>
+    <ProjectReference Include="..\RiRiSharp.Bootstrap.Icons\RiRiSharp.Bootstrap.Icons.csproj" />
+    <ProjectReference Include="..\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.csproj" />
   </ItemGroup>
-
 </Project>

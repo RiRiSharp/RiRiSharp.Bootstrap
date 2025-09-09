@@ -21,17 +21,17 @@ public enum BsGridStartOptions : long
 
 public static class GridStartOptionsExtensions
 {
-
     public static string ToBootstrapClass(this BsGridStartOptions gridColumnOptions)
     {
         var classString = "";
-        if (gridColumnOptions == BsGridStartOptions.Default) return classString;
+        if (gridColumnOptions == BsGridStartOptions.Default)
+            return classString;
 
         classString = "g-start";
         classString += gridColumnOptions.ColumnWidth();
         return classString;
     }
-    
+
     private static string ColumnWidth(this BsGridStartOptions gridColumnOptions)
     {
         if (gridColumnOptions.HasFlag(BsGridStartOptions.Start1))

@@ -8,9 +8,14 @@ public partial class BsAccordion : BsChildContentComponent
 {
     private BsAccordionContext _accordionContext;
 
-    [Parameter] public bool AlwaysOpen { get; set; } = false;
-    [Parameter] public BsAccordionDisplayStyle DisplayStyle { get; set; }
-    [Inject] private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
+    [Parameter]
+    public bool AlwaysOpen { get; set; } = false;
+
+    [Parameter]
+    public BsAccordionDisplayStyle DisplayStyle { get; set; }
+
+    [Inject]
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
 
     protected override void OnInitialized()
     {

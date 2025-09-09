@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using RiRiSharp.Bootstrap.Forms;
-using RiRiSharp.Bootstrap.Forms.Validation;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Forms;
+using RiRiSharp.Bootstrap.Forms;
+using RiRiSharp.Bootstrap.Forms.Validation;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.Validation;
 
-public class BsValidationMessageTests : BunitContext 
+public class BsValidationMessageTests : BunitContext
 {
     private const string _errorMessage = "Error message";
     private readonly TestModel _model;
     private readonly EditContext _editContext;
     private IRenderedComponent<BsEditForm> _editContextComponent;
-    [StringSyntax("Html")] private const string _htmlFormat = $$"""<div class="invalid-feedback {0}" {1}>{{_errorMessage}}</div>""";
-    
-    private Action<ComponentParameterCollectionBuilder<BsValidationMessage<string>>> DefaultAction => parameters => parameters.Add(p => p.For, () => _model.Property);
+
+    [StringSyntax("Html")]
+    private const string _htmlFormat =
+        $$"""<div class="invalid-feedback {0}" {1}>{{_errorMessage}}</div>""";
+
+    private Action<
+        ComponentParameterCollectionBuilder<BsValidationMessage<string>>
+    > DefaultAction => parameters => parameters.Add(p => p.For, () => _model.Property);
 
     public BsValidationMessageTests()
     {
@@ -24,14 +29,16 @@ public class BsValidationMessageTests : BunitContext
     }
 
     private IRenderedComponent<BsValidationMessage<string>> GetCut(
-        Action<ComponentParameterCollectionBuilder<BsValidationMessage<string>>> builder = null)
+        Action<ComponentParameterCollectionBuilder<BsValidationMessage<string>>> builder = null
+    )
     {
         var builderAction = DefaultAction + builder;
-        _editContextComponent =
-            Render<BsEditForm>(parameters => parameters
+        _editContextComponent = Render<BsEditForm>(parameters =>
+            parameters
                 .Add(p => p.EditContext, _editContext)
-                .Add(p => p.ChildContent, _ => builderAction));
-        
+                .Add(p => p.ChildContent, _ => builderAction)
+        );
+
         return _editContextComponent.FindComponent<BsValidationMessage<string>>();
     }
 
@@ -65,33 +72,42 @@ public class BsValidationMessageTests : BunitContext
 
         // Act
         await SimulateValidatingModel();
-        
+
         // Assert
         var expectedMarkupString = string.Format(_htmlFormat, classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
     [Theory]
-    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
+    [InlineData(
+        new[] { "attributeKey" },
+        new[] { "attributeValue" },
         """
-        attributeKey="attributeValue"
-        """)]
-    [InlineData(new[] { "attributeKey1", "attributeKey2" }, new[] { "attributeValue1", "attributeValue2" },
+            attributeKey="attributeValue"
+            """
+    )]
+    [InlineData(
+        new[] { "attributeKey1", "attributeKey2" },
+        new[] { "attributeValue1", "attributeValue2" },
         """
-        attributeKey1="attributeValue1" attributeKey2="attributeValue2"
-        """)]
-    public async Task ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+            attributeKey1="attributeValue1" attributeKey2="attributeValue2"
+            """
+    )]
+    public async Task ExtraAttributesWorks(
+        string[] attributeKeys,
+        string[] attributeValues,
+        string expected
+    )
     {
         // Arrange
         var cut = GetCut(parameters =>
         {
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters
-                    .AddUnmatched(attributeKeys[i], attributeValues[i]);
+                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
         });
-        
+
         // Act
         await SimulateValidatingModel();
 
@@ -99,7 +115,7 @@ public class BsValidationMessageTests : BunitContext
         var expectedMarkupString = string.Format(_htmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     private async Task SimulateValidatingModel()
     {
         // We need to make sure an error happened so we make the validation message actually appear

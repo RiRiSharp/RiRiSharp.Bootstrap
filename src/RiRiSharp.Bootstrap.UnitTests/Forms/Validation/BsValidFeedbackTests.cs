@@ -2,4 +2,5 @@
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.Validation;
 
-public class BsValidFeedbackTests () : BsComponentTests<BsValidFeedback>("""<div class="valid-feedback {0}" {1}></div>""");
+public class BsValidFeedbackTests()
+    : BsComponentTests<BsValidFeedback>("""<div class="valid-feedback {0}" {1}></div>""");

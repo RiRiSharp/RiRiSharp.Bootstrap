@@ -8,10 +8,13 @@ public class AbbreviationTypeExtensionsTests
     [Theory]
     [InlineData(BsAbbreviationType.Default, "")]
     [InlineData(BsAbbreviationType.Initialism, "initialism")]
-    public void AbbreviationTypeGeneratesCorrectClass(BsAbbreviationType abbreviationType, string expectedClass)
+    public void AbbreviationTypeGeneratesCorrectClass(
+        BsAbbreviationType abbreviationType,
+        string expectedClass
+    )
     {
         var generatedClass = abbreviationType.ToBootstrapClass();
-        
+
         Assert.Equal(expectedClass, generatedClass);
     }
 }

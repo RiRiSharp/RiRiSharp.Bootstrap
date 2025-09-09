@@ -15,7 +15,7 @@ public enum BsColumnsInRow
     Cols10 = 10,
     Cols11 = 11,
     Cols12 = 12,
-    ColsAuto = 13
+    ColsAuto = 13,
 }
 
 public static class RowOptsExtensions
@@ -38,7 +38,7 @@ public static class RowOptsExtensions
             BsColumnsInRow.Cols11 => "row-cols-11",
             BsColumnsInRow.Cols12 => "row-cols-12",
             BsColumnsInRow.ColsAuto => "row-cols-auto",
-            _ => throw new ArgumentOutOfRangeException(nameof(options), options, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(options), options, null),
         };
     }
 }

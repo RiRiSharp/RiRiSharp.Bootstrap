@@ -7,7 +7,7 @@ public enum BsTableBreakpoint
     Md,
     Lg,
     Xl,
-    Xxl
+    Xxl,
 }
 
 public static class TableResponsivenessExtensions
@@ -22,7 +22,11 @@ public static class TableResponsivenessExtensions
             BsTableBreakpoint.Lg => "table-responsive-lg",
             BsTableBreakpoint.Xl => "table-responsive-xl",
             BsTableBreakpoint.Xxl => "table-responsive-xxl",
-            _ => throw new ArgumentOutOfRangeException(nameof(tableBreakpoint), tableBreakpoint, null)
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(tableBreakpoint),
+                tableBreakpoint,
+                null
+            ),
         };
     }
 }

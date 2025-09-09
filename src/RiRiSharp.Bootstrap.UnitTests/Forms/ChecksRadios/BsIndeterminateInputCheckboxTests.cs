@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
-using System.Threading.Tasks;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 public class BsIndeterminateInputCheckboxTests()
     : BsInputBaseComponentTests<BsIndeterminateInputCheckbox, bool?>(
-        """<input class="form-check-input {0}" type="checkbox" {1}></label>""")
+        """<input class="form-check-input {0}" type="checkbox" {1}></label>"""
+    )
 {
-        private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions = Substitute.For<IBsCheckboxJsFunctions>();
-        
+    private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions =
+        Substitute.For<IBsCheckboxJsFunctions>();
+
     [Fact]
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
     {
@@ -19,9 +21,11 @@ public class BsIndeterminateInputCheckboxTests()
 
         // Act
         var cut = GetCut();
-        
+
         // Assert
-        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminateAsync(cut.Instance.HtmlRef);
+        await _bsCheckboxJsFunctions
+            .ReceivedWithAnyArgs(1)
+            .InitializeIndeterminateAsync(cut.Instance.HtmlRef);
     }
 
     [Theory]
@@ -31,7 +35,11 @@ public class BsIndeterminateInputCheckboxTests()
     [InlineData(null, true, "checked")]
     [InlineData(true, false, "")]
     [InlineData(false, true, "checked")]
-    public void CheckingCheckboxSetsCorrectValue(bool? beforeValue, bool? afterValue, string expectedAttribute)
+    public void CheckingCheckboxSetsCorrectValue(
+        bool? beforeValue,
+        bool? afterValue,
+        string expectedAttribute
+    )
     {
         // Arrange
         ConfigureTestContext();
@@ -46,7 +54,7 @@ public class BsIndeterminateInputCheckboxTests()
         var expectedMarkupString = GetExpectedHtml("", expectedAttribute);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     protected override void ConfigureTestContext()
     {
         Services.AddSingleton(_bsCheckboxJsFunctions);

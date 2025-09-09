@@ -3,4 +3,5 @@ using RiRiSharp.Bootstrap.Content.TextDecorations;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.TextDecorations;
 
-public class BsSmallTextTests() : BsComponentTests<BsSmallText>("""<span class="small {0}" {1}></span>""");
+public class BsSmallTextTests()
+    : BsComponentTests<BsSmallText>("""<span class="small {0}" {1}></span>""");

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.Validation;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.Validation;
 
@@ -15,12 +15,12 @@ public class BsFieldCssClassProviderTests
     [InlineData(false, false)]
     public void UneditedFieldsReturnNoClass(bool isInvalid, bool showValidInput)
     {
-        // Arrange 
+        // Arrange
         var sut = new BsFieldCssClassProvider(showValidInput);
-        
+
         // Act
         var res = sut.DetermineClass(isModified: false, isInvalid: isInvalid);
-        
+
         // Assert
         Assert.Equal("", res);
     }
@@ -30,9 +30,9 @@ public class BsFieldCssClassProviderTests
     [InlineData(false)]
     public void WrongFieldsReturnCorrectClass(bool showValidInput)
     {
-        // Arrange 
+        // Arrange
         var sut = new BsFieldCssClassProvider(showValidInput);
-        
+
         // Act
         var res = sut.DetermineClass(isModified: true, isInvalid: true);
 
@@ -45,16 +45,16 @@ public class BsFieldCssClassProviderTests
     [InlineData(false, "")]
     public void ValidatedFieldsReturnCorrectClass(bool showValidInput, string expected)
     {
-        // Arrange 
+        // Arrange
         var sut = new BsFieldCssClassProvider(showValidInput);
-        
+
         // Act
         var res = sut.DetermineClass(isModified: true, isInvalid: false);
-        
+
         // Assert
         Assert.Equal(expected, res);
     }
-    
+
     private class TestObject
     {
         public string SomeProperty { get; set; }

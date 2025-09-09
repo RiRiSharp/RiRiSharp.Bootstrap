@@ -8,9 +8,14 @@ public partial class BsAccordionItem : BsChildContentComponent
 {
     private BsAccordionItemContext _accordionItemContext;
 
-    [Parameter] public bool InitialCollapsed { get; set; } = true;
-    [Inject] private IBsAccordionJsFunctions AccordionFunctions { get; set; }
-    [CascadingParameter] private BsAccordionContext AccordionContext { get; set; }
+    [Parameter]
+    public bool InitialCollapsed { get; set; } = true;
+
+    [Inject]
+    private IBsAccordionJsFunctions AccordionFunctions { get; set; }
+
+    [CascadingParameter]
+    private BsAccordionContext AccordionContext { get; set; }
 
     protected override void OnInitialized()
     {
@@ -20,16 +25,16 @@ public partial class BsAccordionItem : BsChildContentComponent
 
     public async Task ToggleAsync()
     {
-        await AccordionFunctions.ToggleAsync(htmlRef, AccordionContext.AlwaysOpen);
+        await AccordionFunctions.ToggleAsync(HtmlRef, AccordionContext.AlwaysOpen);
     }
 
     public async Task ShowAsync()
     {
-        await AccordionFunctions.ShowAsync(htmlRef, AccordionContext.AlwaysOpen);
+        await AccordionFunctions.ShowAsync(HtmlRef, AccordionContext.AlwaysOpen);
     }
 
     public async Task CollapseAsync()
     {
-        await AccordionFunctions.CollapseAsync(htmlRef);
+        await AccordionFunctions.CollapseAsync(HtmlRef);
     }
 }

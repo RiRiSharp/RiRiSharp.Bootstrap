@@ -4,7 +4,7 @@ public enum BsInputGroupSize
 {
     Small,
     Regular,
-    Large
+    Large,
 }
 
 public static class InputGroupSizeExtensions
@@ -16,7 +16,7 @@ public static class InputGroupSizeExtensions
             BsInputGroupSize.Small => "input-group-sm",
             BsInputGroupSize.Regular => "",
             BsInputGroupSize.Large => "input-group-lg",
-            _ => throw new ArgumentOutOfRangeException(nameof(size), size, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(size), size, null),
         };
     }
 }

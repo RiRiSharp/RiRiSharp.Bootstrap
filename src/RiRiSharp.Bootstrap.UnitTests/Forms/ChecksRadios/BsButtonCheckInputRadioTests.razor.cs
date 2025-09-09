@@ -1,22 +1,20 @@
 ﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 // We have a partial class because of RIDER-128549
-public partial class BsButtonCheckInputRadioTests : BsComponentTests<BsButtonCheckInputRadio<string>>
+public partial class BsButtonCheckInputRadioTests
+    : BsComponentTests<BsButtonCheckInputRadio<string>>
 {
     private string _boundValue = "";
     private const string _someValueVar = "someValue";
     private const string _differentValueVar = "differentValue";
-    
-    public BsButtonCheckInputRadioTests() : base(
-        $$"""<input class="btn-check {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>""")
-    {
-        
-    }
-    
+
+    public BsButtonCheckInputRadioTests()
+        : base(
+            $$"""<input class="btn-check {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>"""
+        ) { }
+
     [Fact]
     public void MatchingValuesChecksTheRadio()
     {
@@ -24,7 +22,7 @@ public partial class BsButtonCheckInputRadioTests : BsComponentTests<BsButtonChe
         _boundValue = _someValueVar;
 
         // Act
-        var cut = GetCut(parameteters => parameteters.Add(p => p.Value, _someValueVar));
+        var cut = GetCut(parameters => parameters.Add(p => p.Value, _someValueVar));
 
         // Assert
         // One might ask why a? And there's a (no pun intended) super obscure reason for it.
@@ -32,9 +30,10 @@ public partial class BsButtonCheckInputRadioTests : BsComponentTests<BsButtonChe
         var expectedMarkupString = GetExpectedHtml("", $"""value="{_someValueVar}" checked="a" """);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     protected override IRenderedComponent<BsButtonCheckInputRadio<string>> GetCut(
-        Action<ComponentParameterCollectionBuilder<BsButtonCheckInputRadio<string>>> action = null)
+        Action<ComponentParameterCollectionBuilder<BsButtonCheckInputRadio<string>>> action = null
+    )
     {
         var inputGroupComponent = Render<BsInputRadioGroup<string>>(parameters =>
         {

@@ -14,7 +14,7 @@ public static class BsAccordionDisplayStyleExtensions
         {
             BsAccordionDisplayStyle.Regular => "",
             BsAccordionDisplayStyle.Flush => "accordion-flush",
-            _ => throw new ArgumentOutOfRangeException(nameof(style), style, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(style), style, null),
         };
     }
 }

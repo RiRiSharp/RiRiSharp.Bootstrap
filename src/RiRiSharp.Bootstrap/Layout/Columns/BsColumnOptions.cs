@@ -108,7 +108,8 @@ public static class ColumnOptsExtensions
     public static string ToBootstrapOffsetClass(this BsColumnOptions breakpoint)
     {
         var classString = "";
-        if(breakpoint == BsColumnOptions.Default) return classString;
+        if (breakpoint == BsColumnOptions.Default)
+            return classString;
 
         classString = "offset";
         classString += breakpoint.SizeClass();

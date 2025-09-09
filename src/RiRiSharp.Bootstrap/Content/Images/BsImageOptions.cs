@@ -29,7 +29,9 @@ public static class ImageOptionsExtensions
 
     private static string BuildBootstrapClassInner(this BsImageOptions tableOptions)
     {
-        var returnClass = ClassMapping.Where(kvp => tableOptions.HasFlag(kvp.Key)).Select(kvp => kvp.Value);
+        var returnClass = ClassMapping
+            .Where(kvp => tableOptions.HasFlag(kvp.Key))
+            .Select(kvp => kvp.Value);
 
         return string.Join(" ", returnClass);
     }

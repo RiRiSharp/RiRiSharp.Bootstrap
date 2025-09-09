@@ -2,7 +2,7 @@
 
 public class AsyncFuncRegistry<TKey> : IAsyncFuncRegistry<TKey>
 {
-    readonly Dictionary<TKey, Func<Task>> _innerRegistry = new();
+    private readonly Dictionary<TKey, Func<Task>> _innerRegistry = new();
     public Func<Task> this[TKey i]
     {
         get => _innerRegistry.GetValueOrDefault(i);

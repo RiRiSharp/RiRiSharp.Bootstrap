@@ -1,5 +1,5 @@
-﻿using RiRiSharp.Bootstrap.Internals.Exceptions;
-using System.Text;
+﻿using System.Text;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Content.Tables;
 
@@ -67,55 +67,59 @@ public static class TableOptionsExtensions
         { BsTableOptions.BorderLight, "border-light" },
         { BsTableOptions.BorderDark, "border-dark" },
         { BsTableOptions.TableSmall, "table-sm" },
-        { BsTableOptions.CaptionTop, "caption-top" }
+        { BsTableOptions.CaptionTop, "caption-top" },
     };
 
-    private const BsTableOptions _colorMask = BsTableOptions.TablePrimary |
-                                            BsTableOptions.TableSecondary |
-                                            BsTableOptions.TableSuccess |
-                                            BsTableOptions.TableDanger |
-                                            BsTableOptions.TableWarning |
-                                            BsTableOptions.TableInfo |
-                                            BsTableOptions.TableLight |
-                                            BsTableOptions.TableDark;
+    private const BsTableOptions _colorMask =
+        BsTableOptions.TablePrimary
+        | BsTableOptions.TableSecondary
+        | BsTableOptions.TableSuccess
+        | BsTableOptions.TableDanger
+        | BsTableOptions.TableWarning
+        | BsTableOptions.TableInfo
+        | BsTableOptions.TableLight
+        | BsTableOptions.TableDark;
 
-    private const BsTableOptions _stripedMask = BsTableOptions.TableStriped |
-                                              BsTableOptions.TableStripedColumns;
+    private const BsTableOptions _stripedMask =
+        BsTableOptions.TableStriped | BsTableOptions.TableStripedColumns;
 
-    private const BsTableOptions _tableBorderMask = BsTableOptions.TableBordered |
-                                                  BsTableOptions.TableBorderless;
+    private const BsTableOptions _tableBorderMask =
+        BsTableOptions.TableBordered | BsTableOptions.TableBorderless;
 
-    private const BsTableOptions _borderColorMask = BsTableOptions.TableBorderless |
-                                                  BsTableOptions.BorderPrimary |
-                                                  BsTableOptions.BorderSecondary |
-                                                  BsTableOptions.BorderSuccess |
-                                                  BsTableOptions.BorderDanger |
-                                                  BsTableOptions.BorderWarning |
-                                                  BsTableOptions.BorderInfo |
-                                                  BsTableOptions.BorderLight |
-                                                  BsTableOptions.BorderDark;
+    private const BsTableOptions _borderColorMask =
+        BsTableOptions.TableBorderless
+        | BsTableOptions.BorderPrimary
+        | BsTableOptions.BorderSecondary
+        | BsTableOptions.BorderSuccess
+        | BsTableOptions.BorderDanger
+        | BsTableOptions.BorderWarning
+        | BsTableOptions.BorderInfo
+        | BsTableOptions.BorderLight
+        | BsTableOptions.BorderDark;
 
     // For <table> everything is an allowable option, except table active
     private const BsTableOptions _tableMask = ~BsTableOptions.TableActive;
 
-    private const BsTableOptions _rowMask = BsTableOptions.TablePrimary |
-                                          BsTableOptions.TableSecondary |
-                                          BsTableOptions.TableSuccess |
-                                          BsTableOptions.TableDanger |
-                                          BsTableOptions.TableWarning |
-                                          BsTableOptions.TableInfo |
-                                          BsTableOptions.TableLight |
-                                          BsTableOptions.TableDark |
-                                          BsTableOptions.TableActive;
+    private const BsTableOptions _rowMask =
+        BsTableOptions.TablePrimary
+        | BsTableOptions.TableSecondary
+        | BsTableOptions.TableSuccess
+        | BsTableOptions.TableDanger
+        | BsTableOptions.TableWarning
+        | BsTableOptions.TableInfo
+        | BsTableOptions.TableLight
+        | BsTableOptions.TableDark
+        | BsTableOptions.TableActive;
 
-    private const BsTableOptions _tableHeadMask = BsTableOptions.TablePrimary |
-                                                BsTableOptions.TableSecondary |
-                                                BsTableOptions.TableSuccess |
-                                                BsTableOptions.TableDanger |
-                                                BsTableOptions.TableWarning |
-                                                BsTableOptions.TableInfo |
-                                                BsTableOptions.TableLight |
-                                                BsTableOptions.TableDark;
+    private const BsTableOptions _tableHeadMask =
+        BsTableOptions.TablePrimary
+        | BsTableOptions.TableSecondary
+        | BsTableOptions.TableSuccess
+        | BsTableOptions.TableDanger
+        | BsTableOptions.TableWarning
+        | BsTableOptions.TableInfo
+        | BsTableOptions.TableLight
+        | BsTableOptions.TableDark;
 
     public static string ToBootstrapTableClass(this BsTableOptions options)
     {
@@ -143,11 +147,13 @@ public static class TableOptionsExtensions
 
     private static void ValidateIllegalCombinations(this BsTableOptions tableOptions)
     {
-        var isValid = tableOptions.HasZeroOrOneBitsSetInMask(_colorMask) &&
-                      tableOptions.HasZeroOrOneBitsSetInMask(_stripedMask) &&
-                      tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask) &&
-                      tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
-        if (!isValid) throw new BsInvalidTableOptionsException();
+        var isValid =
+            tableOptions.HasZeroOrOneBitsSetInMask(_colorMask)
+            && tableOptions.HasZeroOrOneBitsSetInMask(_stripedMask)
+            && tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask)
+            && tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
+        if (!isValid)
+            throw new BsInvalidTableOptionsException();
     }
 
     private static string BuildBootstrapClassInner(this BsTableOptions tableOptions)
@@ -165,7 +171,10 @@ public static class TableOptionsExtensions
         return returnClass.ToString();
     }
 
-    private static bool HasZeroOrOneBitsSetInMask(this BsTableOptions tableOptions, BsTableOptions mask)
+    private static bool HasZeroOrOneBitsSetInMask(
+        this BsTableOptions tableOptions,
+        BsTableOptions mask
+    )
     {
         var relevantPart = tableOptions & mask;
         return relevantPart == 0 || (relevantPart & (relevantPart - 1)) == 0;

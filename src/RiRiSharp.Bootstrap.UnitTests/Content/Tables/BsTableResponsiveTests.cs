@@ -3,7 +3,8 @@ using RiRiSharp.Bootstrap.Content.Tables;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Tables;
 
-public class BsTableResponsiveTests() : BsComponentTests<BsTableResponsive>("""<div class="table-responsive {0}" {1}></div>""")
+public class BsTableResponsiveTests()
+    : BsComponentTests<BsTableResponsive>("""<div class="table-responsive {0}" {1}></div>""")
 {
     [Theory]
     [InlineData(BsTableBreakpoint.Default, "table-responsive")]
@@ -16,7 +17,7 @@ public class BsTableResponsiveTests() : BsComponentTests<BsTableResponsive>("""<
     {
         // Arrange + Act
         var cut = GetCut(parameters => parameters.Add(p => p.Breakpoint, options));
-        
+
         // Assert
         cut.MarkupMatches($"""<div class="{expectedClass}"></div>""");
     }

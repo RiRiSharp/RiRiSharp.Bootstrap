@@ -9,7 +9,8 @@ public partial class BsLabelButton : BsChildContentComponent
 
     public BsLabelButton(string additionalButtonLabelClasses = "")
     {
-        if (string.IsNullOrWhiteSpace(additionalButtonLabelClasses)) return;
+        if (string.IsNullOrWhiteSpace(additionalButtonLabelClasses))
+            return;
         _buttonLabelClasses = $"{Button} {additionalButtonLabelClasses}";
     }
 }

@@ -5,7 +5,11 @@ namespace RiRiSharp.Bootstrap.Forms.FormControl;
 // Solves https://stackoverflow.com/questions/64052566/is-there-any-blazor-timepicker-and-colorpicker
 public partial class BsInputColor : BsInputBase<Color>
 {
-    protected override bool TryParseValueFromString(string value, out Color result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(
+        string value,
+        out Color result,
+        out string validationErrorMessage
+    )
     {
         result = ColorTranslator.FromHtml(value);
         validationErrorMessage = null;

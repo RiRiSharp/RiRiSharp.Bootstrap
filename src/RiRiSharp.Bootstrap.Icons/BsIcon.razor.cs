@@ -5,5 +5,6 @@ namespace RiRiSharp.Bootstrap.Icons;
 
 public partial class BsIcon : BsComponent
 {
-    [Parameter, EditorRequired] public string Name { get; set; }
+    [Parameter, EditorRequired]
+    public string Name { get; set; }
 }

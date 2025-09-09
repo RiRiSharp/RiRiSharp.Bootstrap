@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 public class BsButtonCheckInputCheckboxTests()
     : BsInputBaseComponentTests<BsButtonCheckInputCheckbox, bool>(
-        """<input class="btn-check {0}" type="checkbox" {1}/>""")
+        """<input class="btn-check {0}" type="checkbox" {1}/>"""
+    )
 {
     [Fact]
     public void TrueChecksTheCheckbox()
@@ -14,8 +14,9 @@ public class BsButtonCheckInputCheckboxTests()
         var value = true;
 
         // Act
-        var cut = Render<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
-            p => p.Value, value, newValue => value = newValue));
+        var cut = Render<BsButtonCheckInputCheckbox>(parameters =>
+            parameters.Bind(p => p.Value, value, newValue => value = newValue)
+        );
 
         // Assert
         var expectedMarkupString = GetExpectedHtml("", "checked");
@@ -27,14 +28,19 @@ public class BsButtonCheckInputCheckboxTests()
     [InlineData(true, true, "checked")]
     [InlineData(true, false, "")]
     [InlineData(false, true, "checked")]
-    public void CheckingCheckboxSetsCorrectValue(bool beforeValue, bool afterValue, string expectedAttribute)
+    public void CheckingCheckboxSetsCorrectValue(
+        bool beforeValue,
+        bool afterValue,
+        string expectedAttribute
+    )
     {
         // Arrange
         var value = beforeValue;
 
         // Act
-        var cut = Render<BsButtonCheckInputCheckbox>(parameters => parameters.Bind(
-            p => p.Value, value, newValue => value = newValue));
+        var cut = Render<BsButtonCheckInputCheckbox>(parameters =>
+            parameters.Bind(p => p.Value, value, newValue => value = newValue)
+        );
         var inputElement = cut.Find("input");
         inputElement.Change(afterValue);
 

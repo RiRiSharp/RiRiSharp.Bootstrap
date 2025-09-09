@@ -7,8 +7,11 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public class BsInputRadio<TValue> : InputRadio<TValue>, IBsComponent
 {
-    [Parameter] public BsFormCheckOptions FormCheckOptions { get; set; } = BsFormCheckOptions.Stacked;
-    [Parameter] public string Classes { get; set; }
+    [Parameter]
+    public BsFormCheckOptions FormCheckOptions { get; set; } = BsFormCheckOptions.Stacked;
+
+    [Parameter]
+    public string Classes { get; set; }
     public ElementReference HtmlRef => Element.GetValueOrDefault();
 
     protected override void OnParametersSet()
@@ -21,12 +24,14 @@ public class BsInputRadio<TValue> : InputRadio<TValue>, IBsComponent
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
+            AdditionalAttributes,
+            allClasses
+        );
     }
 
     private string GetBsComponentSpecificClasses()
     {
         return "form-check-input";
     }
-
 }

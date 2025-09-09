@@ -1,6 +1,6 @@
-﻿using RiRiSharp.Bootstrap.Forms;
+﻿using System;
+using RiRiSharp.Bootstrap.Forms;
 using RiRiSharp.Bootstrap.Forms.FormControl;
-using System;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
@@ -21,7 +21,7 @@ public class BsInputFileTests : BunitContext
         var expectedMarkupString = string.Format(HtmlFormat, "", "");
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Fact]
     public void RefIsSet()
     {
@@ -58,15 +58,25 @@ public class BsInputFileTests : BunitContext
     }
 
     [Theory]
-    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" },
+    [InlineData(
+        new[] { "attributeKey" },
+        new[] { "attributeValue" },
         """
-        attributeKey="attributeValue"
-        """)]
-    [InlineData(new[] { "attributeKey1", "attributeKey2" }, new[] { "attributeValue1", "attributeValue2" },
+            attributeKey="attributeValue"
+            """
+    )]
+    [InlineData(
+        new[] { "attributeKey1", "attributeKey2" },
+        new[] { "attributeValue1", "attributeValue2" },
         """
-        attributeKey1="attributeValue1" attributeKey2="attributeValue2"
-        """)]
-    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+            attributeKey1="attributeValue1" attributeKey2="attributeValue2"
+            """
+    )]
+    public void ExtraAttributesWorks(
+        string[] attributeKeys,
+        string[] attributeValues,
+        string expected
+    )
     {
         // Arrange
         ConfigureTestContext();
@@ -84,12 +94,15 @@ public class BsInputFileTests : BunitContext
         var expectedMarkupString = string.Format(HtmlFormat, "", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
+
     [Theory]
     [InlineData(BsFormSize.Small, "form-control-sm")]
     [InlineData(BsFormSize.Regular, "")]
     [InlineData(BsFormSize.Large, "form-control-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
+    public void PassingParametersRendersIntoCorrectBsClass(
+        BsFormSize formSize,
+        string expectedClass
+    )
     {
         // Arrange
         ConfigureTestContext();
@@ -101,8 +114,10 @@ public class BsInputFileTests : BunitContext
         var expectedMarkupString = string.Format(HtmlFormat, expectedClass, "");
         cut.MarkupMatches(expectedMarkupString);
     }
-    
-    protected IRenderedComponent<BsInputFile> GetCut(Action<ComponentParameterCollectionBuilder<BsInputFile>> action = null)
+
+    protected IRenderedComponent<BsInputFile> GetCut(
+        Action<ComponentParameterCollectionBuilder<BsInputFile>> action = null
+    )
     {
         return Render<BsInputFile>(parameters =>
         {
@@ -111,12 +126,9 @@ public class BsInputFileTests : BunitContext
         });
     }
 
-    protected virtual void BindParameters(ComponentParameterCollectionBuilder<BsInputFile> parameterBuilder)
-    {
+    protected virtual void BindParameters(
+        ComponentParameterCollectionBuilder<BsInputFile> parameterBuilder
+    ) { }
 
-    }
-
-    protected virtual void ConfigureTestContext()
-    {
-    }
+    protected virtual void ConfigureTestContext() { }
 }

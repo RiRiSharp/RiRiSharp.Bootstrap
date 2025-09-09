@@ -10,16 +10,23 @@ internal static class BsAttributeUtilities
     /// <param name="additionalAttributes">The attribute dictionary</param>
     /// <param name="classNames">CSS classes to add</param>
     /// <returns>A CSS class string containing the combination of the provided classnames and the classes present in the dictionary.</returns>
-    internal static string CombineClassNames<TValue>(TValue additionalAttributes, string classNames) where TValue : IEnumerable<KeyValuePair<string, object>>
+    internal static string CombineClassNames<TValue>(TValue additionalAttributes, string classNames)
+        where TValue : IEnumerable<KeyValuePair<string, object>>
     {
         var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
         return CombineClassNames(dictionary, classNames);
     }
 
     // Taken from Microsoft.AspNetCore.Components.Forms.AttributeUtilities, licensed under MIT license
-    private static string CombineClassNames(Dictionary<string, object> additionalAttributes, string classNames)
+    private static string CombineClassNames(
+        Dictionary<string, object> additionalAttributes,
+        string classNames
+    )
     {
-        if (additionalAttributes is null || !additionalAttributes.TryGetValue("class", out var @class))
+        if (
+            additionalAttributes is null
+            || !additionalAttributes.TryGetValue("class", out var @class)
+        )
         {
             return classNames ?? "";
         }
@@ -46,7 +53,9 @@ internal static class BsAttributeUtilities
     /// <param name="classNames">The classes which will overwrite to the class attribute of the attribute dictionary</param>
     /// <returns>A copy of the attribute dictionary where the classes attribute is overwritten.</returns>
     internal static IDictionary<string, object> AssignClassNames(
-        IDictionary<string, object> additionalAttributes, string classNames)
+        IDictionary<string, object> additionalAttributes,
+        string classNames
+    )
     {
         var attributes = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
         AssignClassNames(attributes, classNames);
@@ -60,14 +69,19 @@ internal static class BsAttributeUtilities
     /// <param name="classNames">The classes which will overwrite to the class attribute of the attribute dictionary</param>
     /// <returns>A copy of the attribute dictionary where the classes attribute is overwritten.</returns>
     internal static IReadOnlyDictionary<string, object> AssignClassNames(
-        IReadOnlyDictionary<string, object> additionalAttributes, string classNames)
+        IReadOnlyDictionary<string, object> additionalAttributes,
+        string classNames
+    )
     {
         var attributes = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
         AssignClassNames(attributes, classNames);
         return attributes;
     }
 
-    private static void AssignClassNames(Dictionary<string, object> additionalAttributes, string classNames)
+    private static void AssignClassNames(
+        Dictionary<string, object> additionalAttributes,
+        string classNames
+    )
     {
         var allClasses = CombineClassNames(additionalAttributes, classNames);
         // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes

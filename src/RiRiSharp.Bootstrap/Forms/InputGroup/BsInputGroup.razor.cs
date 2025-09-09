@@ -5,5 +5,6 @@ namespace RiRiSharp.Bootstrap.Forms.InputGroup;
 
 public partial class BsInputGroup : BsChildContentComponent
 {
-    [Parameter] public BsInputGroupSize Size { get; set; } = BsInputGroupSize.Regular;
+    [Parameter]
+    public BsInputGroupSize Size { get; set; } = BsInputGroupSize.Regular;
 }

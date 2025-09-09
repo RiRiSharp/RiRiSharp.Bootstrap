@@ -7,7 +7,7 @@ public enum BsJustification
     Center,
     Between,
     Around,
-    Evenly
+    Evenly,
 }
 
 public static class JustificationExtensions
@@ -22,7 +22,7 @@ public static class JustificationExtensions
             BsJustification.Between => "justify-content-between",
             BsJustification.Around => "justify-content-around",
             BsJustification.Evenly => "justify-content-evenly",
-            _ => throw new ArgumentOutOfRangeException(nameof(justification),  justification, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(justification), justification, null),
         };
     }
 }

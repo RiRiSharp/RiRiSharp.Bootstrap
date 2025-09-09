@@ -11,7 +11,10 @@ public class VirtualHeadingExtensionsTests
     [InlineData(BsHeadingType.H4, "h4")]
     [InlineData(BsHeadingType.H5, "h5")]
     [InlineData(BsHeadingType.H6, "h6")]
-    public void HeadingTypeGeneratesCorrectClass(BsHeadingType displayHeadingType, string expectedClass)
+    public void HeadingTypeGeneratesCorrectClass(
+        BsHeadingType displayHeadingType,
+        string expectedClass
+    )
     {
         var generatedClass = displayHeadingType.ToBootstrapClass();
 

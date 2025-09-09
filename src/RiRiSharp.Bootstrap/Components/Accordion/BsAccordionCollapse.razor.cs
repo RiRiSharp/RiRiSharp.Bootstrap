@@ -9,34 +9,38 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
 {
     private DotNetObjectReference<BsAccordionCollapse> _dotNetRef;
     private bool _initialCollapse;
-    
+
     public bool Collapsed { get; set; } = true;
-    [CascadingParameter] public BsAccordionItemContext AccordionItemContext { get; set; }
-    [Inject] private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
-    
+
+    [CascadingParameter]
+    public BsAccordionItemContext AccordionItemContext { get; set; }
+
+    [Inject]
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         Collapsed = AccordionItemContext.Collapsed;
-        _initialCollapse =  Collapsed;
+        _initialCollapse = Collapsed;
     }
-    
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             _dotNetRef = DotNetObjectReference.Create(this);
-            await AccordionJsFunctions.RegisterCollapseCallbackAsync(htmlRef, _dotNetRef);
+            await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);
         }
     }
-    
+
     [JSInvokable]
     public void UpdateCollapseState(bool isCollapsed)
     {
         Collapsed = isCollapsed;
         StateHasChanged();
     }
-    
+
     private string GetInitialCollapsedClass()
     {
         return _initialCollapse ? "" : "show";

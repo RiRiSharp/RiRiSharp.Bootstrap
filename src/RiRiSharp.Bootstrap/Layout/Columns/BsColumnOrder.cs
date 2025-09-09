@@ -26,7 +26,7 @@ public static class ColumnOrderExtensions
             BsColumnOrder.Order5 => "order-5",
             BsColumnOrder.OrderFirst => "order-first",
             BsColumnOrder.OrderLast => "order-last",
-            _ => throw new ArgumentOutOfRangeException(nameof(options), options, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(options), options, null),
         };
     }
 }

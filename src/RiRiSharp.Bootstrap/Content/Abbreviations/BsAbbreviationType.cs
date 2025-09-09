@@ -3,7 +3,7 @@
 public enum BsAbbreviationType
 {
     Default,
-    Initialism
+    Initialism,
 }
 
 public static class AbbreviationTypeExtensions
@@ -14,7 +14,11 @@ public static class AbbreviationTypeExtensions
         {
             BsAbbreviationType.Default => "",
             BsAbbreviationType.Initialism => "initialism",
-            _ => throw new ArgumentOutOfRangeException(nameof(abbreviationType), abbreviationType, null)
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(abbreviationType),
+                abbreviationType,
+                null
+            ),
         };
     }
 }

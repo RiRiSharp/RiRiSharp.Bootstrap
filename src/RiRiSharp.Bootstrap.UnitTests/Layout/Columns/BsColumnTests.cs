@@ -4,7 +4,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Layout.Columns;
 
 public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}" {1}></div>""")
 {
-        [Fact]
+    [Fact]
     public void ColumnRenderingWorksInSingularForm()
     {
         // Arrange + Act
@@ -18,7 +18,9 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     public void ColumnRenderingWorksInListForm()
     {
         // Arrange + Act
-        var cut = GetCut(parameters => parameters.Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]));
+        var cut = GetCut(parameters =>
+            parameters.Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
+        );
 
         // Assert
         cut.MarkupMatches("""<div class="col-sm-4 col-md-6"></div>""");
@@ -27,9 +29,11 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     [Fact]
     public void ListColumnOptionTakesPrecedenceOverSingularForm()
     {
-        var cut = GetCut(parameters => parameters
-            .Add(p => p.ColOption, BsColumnOptions.Col1)
-            .Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]));
+        var cut = GetCut(parameters =>
+            parameters
+                .Add(p => p.ColOption, BsColumnOptions.Col1)
+                .Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
+        );
 
         cut.MarkupMatches("""<div class="col-sm-4 col-md-6"></div>""");
     }
@@ -45,7 +49,12 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     [Fact]
     public void ColumnOffsetRenderingWorksInListForm()
     {
-        var cut = GetCut(parameters => parameters.Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]));
+        var cut = GetCut(parameters =>
+            parameters.Add(
+                p => p.OffsetOptionsList,
+                [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]
+            )
+        );
 
         cut.MarkupMatches(GetExpectedHtml("offset-sm-4 offset-md-6", ""));
     }
@@ -53,9 +62,11 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     [Fact]
     public void ListColumnOffsetOptionTakesPrecedenceOverSingularForm()
     {
-        var cut = GetCut(parameters => parameters
-            .Add(p => p.OffsetOption, BsColumnOptions.Col1)
-            .Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]));
+        var cut = GetCut(parameters =>
+            parameters
+                .Add(p => p.OffsetOption, BsColumnOptions.Col1)
+                .Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
+        );
 
         cut.MarkupMatches(GetExpectedHtml("offset-sm-4 offset-md-6", ""));
     }

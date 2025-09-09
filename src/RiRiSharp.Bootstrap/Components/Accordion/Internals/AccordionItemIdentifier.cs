@@ -13,7 +13,6 @@ internal record AccordionItemIdentifier
     {
         Id = id;
     }
-    
+
     public string Id { get; }
 }
-

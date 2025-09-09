@@ -4,7 +4,7 @@ public enum BsFormCheckOptions
 {
     Stacked,
     Inline,
-    Reverse
+    Reverse,
 }
 
 public static class BsFormCheckOptionsExtensions
@@ -16,7 +16,7 @@ public static class BsFormCheckOptionsExtensions
             BsFormCheckOptions.Stacked => "",
             BsFormCheckOptions.Inline => "form-check-inline",
             BsFormCheckOptions.Reverse => "form-check-reverse",
-            _ => throw new ArgumentOutOfRangeException(nameof(formCheckOptions))
+            _ => throw new ArgumentOutOfRangeException(nameof(formCheckOptions)),
         };
     }
 }

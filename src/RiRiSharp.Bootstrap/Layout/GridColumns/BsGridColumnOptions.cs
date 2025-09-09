@@ -103,7 +103,7 @@ public static class GridColumnOptionsExtensions
         {
             return "";
         }
-        
+
         var classString = "g-col";
         classString += gridColumnOptions.SizeClass();
         classString += gridColumnOptions.ColumnWidth();

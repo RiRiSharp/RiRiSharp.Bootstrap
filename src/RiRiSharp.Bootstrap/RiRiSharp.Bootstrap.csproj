@@ -1,21 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
   <PropertyGroup>
     <BootstrapVersion>5.3.8</BootstrapVersion>
   </PropertyGroup>
-
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>.\obj</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
-
   <ItemGroup>
-    <SupportedPlatform Include="browser"/>
-    <InternalsVisibleTo Include="$(MSBuildProjectName).UnitTests"/>
+    <SupportedPlatform Include="browser" />
+    <InternalsVisibleTo Include="$(MSBuildProjectName).UnitTests" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
   </ItemGroup>
-
 </Project>

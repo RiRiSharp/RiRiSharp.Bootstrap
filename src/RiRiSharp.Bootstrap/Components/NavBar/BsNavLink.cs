@@ -7,7 +7,8 @@ namespace RiRiSharp.Bootstrap.Components.NavBar;
 
 public class BsNavLink : NavLink, IBsComponent
 {
-    [Parameter] public string Classes { get; set; }
+    [Parameter]
+    public string Classes { get; set; }
     public ElementReference HtmlRef => default; // TODO https://github.com/RiRiSharp/RiRiSharp.Bootstrap/issues/5
 
     protected override void OnParametersSet()
@@ -20,7 +21,10 @@ public class BsNavLink : NavLink, IBsComponent
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
+            AdditionalAttributes,
+            allClasses
+        );
     }
 
     private string GetBsComponentSpecificClasses()

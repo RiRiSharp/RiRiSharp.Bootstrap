@@ -4,7 +4,7 @@ public enum BsFormSize
 {
     Small,
     Regular,
-    Large
+    Large,
 }
 
 public static class FormSizeExtensions
@@ -16,7 +16,7 @@ public static class FormSizeExtensions
             BsFormSize.Regular => "",
             BsFormSize.Small => "form-control-sm",
             BsFormSize.Large => "form-control-lg",
-            _ => throw new ArgumentOutOfRangeException(nameof(BsFormSize))
+            _ => throw new ArgumentOutOfRangeException(nameof(BsFormSize)),
         };
     }
 }

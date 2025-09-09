@@ -9,14 +9,14 @@ public class BsImageTests() : BsComponentTests<BsImage>("""<img class=" {0}" {1}
     {
         // Arrange
         ConfigureTestContext();
-        
+
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.Src, null));
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml("", ""));
     }
-    
+
     [Theory]
     [InlineData("")]
     [InlineData("source")]
@@ -27,7 +27,7 @@ public class BsImageTests() : BsComponentTests<BsImage>("""<img class=" {0}" {1}
         // Arrange
         ConfigureTestContext();
         var srcAttribute = $"src=\"{src}\"";
-        
+
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.Src, src));
 

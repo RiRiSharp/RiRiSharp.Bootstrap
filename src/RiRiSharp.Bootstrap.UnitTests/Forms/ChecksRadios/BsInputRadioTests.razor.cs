@@ -1,5 +1,5 @@
-﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios;
-using System;
+﻿using System;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
@@ -9,13 +9,12 @@ public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
     private string _boundValue = "";
     private const string _someValueVar = "someValue";
     private const string _differentValueVar = "differentValue";
-    
-    public BsInputRadioTests() : base(
-        $$"""<input class="form-check-input {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>""")
-    {
-        
-    }
-    
+
+    public BsInputRadioTests()
+        : base(
+            $$"""<input class="form-check-input {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>"""
+        ) { }
+
     [Fact]
     public void MatchingValuesChecksTheRadio()
     {
@@ -31,8 +30,10 @@ public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
         var expectedMarkupString = GetExpectedHtml("", $"""value="{_someValueVar}" checked="a" """);
         cut.MarkupMatches(expectedMarkupString);
     }
-    
-    protected override IRenderedComponent<BsInputRadio<string>> GetCut(Action<ComponentParameterCollectionBuilder<BsInputRadio<string>>> action = null)
+
+    protected override IRenderedComponent<BsInputRadio<string>> GetCut(
+        Action<ComponentParameterCollectionBuilder<BsInputRadio<string>>> action = null
+    )
     {
         var inputGroupComponent = Render<BsInputRadioGroup<string>>(parameters =>
         {

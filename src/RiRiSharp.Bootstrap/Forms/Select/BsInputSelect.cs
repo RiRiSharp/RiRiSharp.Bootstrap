@@ -9,8 +9,12 @@ namespace RiRiSharp.Bootstrap.Forms.Select;
 public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentComponent
 {
     private const string _formSelect = "form-select";
-    [Parameter] public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
-    [Parameter] public string Classes { get; set; }
+
+    [Parameter]
+    public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
+
+    [Parameter]
+    public string Classes { get; set; }
     public ElementReference HtmlRef => Element.GetValueOrDefault();
 
     protected override void OnParametersSet()
@@ -23,9 +27,12 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
+            AdditionalAttributes,
+            allClasses
+        );
     }
-    
+
     private string GetBsComponentSpecificClasses()
     {
         var sizeClass = DetermineSizeClass();
@@ -34,10 +41,16 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
 
     private string DetermineSizeClass()
     {
-        if (FormSize == BsFormSize.Regular) return "";
-        if (FormSize == BsFormSize.Small) return $"{_formSelect}-sm";
-        if (FormSize == BsFormSize.Large) return $"{_formSelect}-lg";
-
-        throw new ArgumentOutOfRangeException(nameof(FormSize));
+        if (Classes == null)
+        {
+            Console.WriteLine(Classes);
+        }
+        return FormSize switch
+        {
+            BsFormSize.Regular => "",
+            BsFormSize.Small => $"{_formSelect}-sm",
+            BsFormSize.Large => $"{_formSelect}-lg",
+            _ => throw new ArgumentOutOfRangeException(nameof(FormSize)),
+        };
     }
 }

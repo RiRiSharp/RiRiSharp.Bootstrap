@@ -3,4 +3,5 @@ using RiRiSharp.Bootstrap.Content.Headings;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Headings;
 
-public class BsVirtualHeadingTests() : BsComponentTests<BsVirtualHeading>("""<span class="h1 {0}" {1}></span>""");
+public class BsVirtualHeadingTests()
+    : BsComponentTests<BsVirtualHeading>("""<span class="h1 {0}" {1}></span>""");

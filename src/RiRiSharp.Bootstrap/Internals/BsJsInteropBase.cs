@@ -10,8 +10,7 @@ internal class BsJsObjectReference : IJSObjectReference
     {
         _moduleTask = new(() =>
         {
-            return jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", filePath).AsTask();
+            return jsRuntime.InvokeAsync<IJSObjectReference>("import", filePath).AsTask();
         });
     }
 
@@ -21,8 +20,11 @@ internal class BsJsObjectReference : IJSObjectReference
         return await module.InvokeAsync<TValue>(identifier, args);
     }
 
-    public async ValueTask<TValue> InvokeAsync<TValue>(string identifier, CancellationToken cancellationToken,
-        object[] args)
+    public async ValueTask<TValue> InvokeAsync<TValue>(
+        string identifier,
+        CancellationToken cancellationToken,
+        object[] args
+    )
     {
         var module = await _moduleTask.Value;
         return await module.InvokeAsync<TValue>(identifier, cancellationToken);
@@ -36,8 +38,10 @@ internal class BsJsObjectReference : IJSObjectReference
 
     protected virtual async Task Dispose(bool disposing)
     {
-        if (!disposing) return;
-        if (!_moduleTask.IsValueCreated) return;
+        if (!disposing)
+            return;
+        if (!_moduleTask.IsValueCreated)
+            return;
 
         var module = await _moduleTask.Value;
         await module.DisposeAsync();
