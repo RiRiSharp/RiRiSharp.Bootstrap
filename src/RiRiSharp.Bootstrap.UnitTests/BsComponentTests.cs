@@ -9,6 +9,8 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     where TComponent : ComponentBase, IBsComponent
 {
     protected string HtmlFormat => htmlFormat;
+    protected virtual bool SkipRefCheck => false;
+    
     [Fact]
     public void DefaultWorks()
     {
@@ -27,6 +29,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     public void RefIsSet()
     {
         // Arrange
+        if (SkipRefCheck) return;
         ConfigureTestContext();
         
         // Act

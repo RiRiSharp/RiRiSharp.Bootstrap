@@ -1,6 +1,6 @@
 ﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 @typeparam TValue
-<option @attributes="AdditionalAttributes" class="@(Classes)" value="@(ValueAsString)" @ref="htmlRef">
+<option @attributes="AdditionalAttributes" class="@(Classes) " value="@(ValueAsString)" @ref="htmlRef">
     @if (ChildContent is not null)
     {
         @(ChildContent)
