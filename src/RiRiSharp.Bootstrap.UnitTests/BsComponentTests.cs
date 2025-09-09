@@ -106,7 +106,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
     }
 
-    protected virtual string GetExpectedHtml(string classes, string attributes)
+    protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
     {
         return string.Format(HtmlFormat, classes, attributes);
     }

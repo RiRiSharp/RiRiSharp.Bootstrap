@@ -1,0 +1,9 @@
+﻿@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+
+<div @attributes="AdditionalAttributes" class="@(Breakpoint.ToBootstrapClass()) @(Classes)" @ref="htmlRef">
+    @(ChildContent)
+</div>
+
+@code{
+    [Parameter] public BsTableBreakpoint Breakpoint { get; set; }
+}
