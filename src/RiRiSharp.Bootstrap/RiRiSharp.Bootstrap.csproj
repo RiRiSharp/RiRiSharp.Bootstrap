@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <BootstrapVersion>5.3.8</BootstrapVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>

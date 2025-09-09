@@ -3,6 +3,8 @@
     <File Path="Directory.Packages.props" />
     <File Path=".editorconfig" />
     <File Path="..\README.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="..\.gitignore" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="RiRiSharp.Bootstrap.UnitTests\RiRiSharp.Bootstrap.UnitTests.csproj" Type="Classic C#" />
