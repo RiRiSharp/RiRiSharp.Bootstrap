@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <SubVersion>$(SubVersion)</SubVersion>
+    <BootstrapIconsVersion>1.13.1</BootstrapIconsVersion>
     </PropertyGroup>
 
     <PropertyGroup>
