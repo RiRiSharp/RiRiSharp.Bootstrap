@@ -18,8 +18,10 @@ public class BsIndeterminateInputCheckboxTests()
         ConfigureTestContext();
 
         // Act
-        _ = Render<BsIndeterminateInputCheckbox>(BuildParameters);
-        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminateAsync(Arg.Any<ElementReference>());
+        var cut = GetCut();
+        
+        // Assert
+        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminateAsync(cut.Instance.HtmlRef);
     }
 
     [Theory]
@@ -33,16 +35,15 @@ public class BsIndeterminateInputCheckboxTests()
     {
         // Arrange
         ConfigureTestContext();
-        var value = beforeValue;
+        _value = beforeValue;
 
         // Act
-        var cut = Render<BsIndeterminateInputCheckbox>(parameters => parameters.Bind(
-            p => p.Value, value, newValue => value = newValue));
+        var cut = GetCut();
         var inputElement = cut.Find("input");
         inputElement.Change(afterValue);
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, "", expectedAttribute);
+        var expectedMarkupString = GetExpectedHtml("", expectedAttribute);
         cut.MarkupMatches(expectedMarkupString);
     }
     

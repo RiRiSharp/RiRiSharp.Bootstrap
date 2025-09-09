@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
@@ -7,22 +8,29 @@ namespace RiRiSharp.Bootstrap.UnitTests;
 public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : BunitContext
     where TComponent : ComponentBase, IBsComponent
 {
+    protected string HtmlFormat => htmlFormat;
     [Fact]
     public void DefaultWorks()
     {
+        // Arrange
+        ConfigureTestContext();
+        
         // Act
-        var cut = Render<TComponent>(BuildParameters);
+        var cut = GetCut();
 
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, "", "");
+        var expectedMarkupString = GetExpectedHtml("", "");
         cut.MarkupMatches(expectedMarkupString);
     }
     
     [Fact]
     public void RefIsSet()
     {
+        // Arrange
+        ConfigureTestContext();
+        
         // Act
-        var cut = Render<TComponent>(BuildParameters);
+        var cut = GetCut();
 
         // Assert
         Assert.NotEqual(default, cut.Instance.HtmlRef);
@@ -36,16 +44,18 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     [InlineData("aclass blass class")]
     public void PassingClassesWorks(string classes)
     {
+        // Arrange
+        ConfigureTestContext();
+        
         // Act
-        var cut = Render<TComponent>(parameters =>
+        var cut = GetCut(parameters =>
         {
-            BuildParameters(parameters);
             parameters
                 .Add(x => x.Classes, classes);
         });
         
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, classes, "");
+        var expectedMarkupString = GetExpectedHtml(classes, "");
         cut.MarkupMatches(expectedMarkupString);
         
     }
@@ -61,10 +71,12 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         """)]
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
+        // Arrange
+        ConfigureTestContext();
+        
         // Act
-        var cut = Render<TComponent>(parameters =>
+        var cut = GetCut(parameters =>
         {
-            BuildParameters(parameters);
             for (var i = 0; i < attributeKeys.Length; i++)
             {
                 parameters
@@ -73,12 +85,29 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
         
         // Assert
-        var expectedMarkupString = string.Format(htmlFormat, "", expected);
+        var expectedMarkupString = GetExpectedHtml("", expected);
         cut.MarkupMatches(expectedMarkupString);
     }
     
-    protected virtual void BuildParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
+    protected virtual IRenderedComponent<TComponent> GetCut(Action<ComponentParameterCollectionBuilder<TComponent>> action = null)
     {
+        return Render<TComponent>(parameters =>
+        {
+            BindParameters(parameters);
+            action?.Invoke(parameters);
+        });
+    }
 
+    protected virtual void BindParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
+    {
+    }
+
+    protected virtual void ConfigureTestContext()
+    {
+    }
+
+    protected virtual string GetExpectedHtml(string classes, string attributes)
+    {
+        return string.Format(HtmlFormat, classes, attributes);
     }
 }
