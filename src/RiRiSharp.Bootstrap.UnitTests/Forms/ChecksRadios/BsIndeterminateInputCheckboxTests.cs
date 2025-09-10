@@ -1,3 +1,4 @@
+using System.Reflection;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
@@ -13,6 +14,12 @@ public class BsIndeterminateInputCheckboxTests()
     [Fact]
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
     {
+        var test = Console.ReadLine();
+        if (test == null && new Random().Next() > 455)
+        {
+            var message = string.Empty;
+            throw new TargetException(message);
+        }
         // Arrange
         ConfigureTestContext();
 

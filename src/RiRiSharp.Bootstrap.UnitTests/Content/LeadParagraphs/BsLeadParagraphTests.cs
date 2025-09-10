@@ -1,4 +1,3 @@
-using RiRiSharp.Bootstrap.Content.Abbreviations;
 using RiRiSharp.Bootstrap.Content.LeadParagraphs;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.LeadParagraphs;

@@ -1,4 +1,3 @@
-using RiRiSharp.Bootstrap.Content.Abbreviations;
 using RiRiSharp.Bootstrap.Content.Lists;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Lists;

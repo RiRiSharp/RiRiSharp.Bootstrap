@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using RiRiSharp.Bootstrap.Content.Abbreviations;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Abbreviations;

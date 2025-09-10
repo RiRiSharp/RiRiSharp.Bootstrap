@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace RiRiSharp.Bootstrap.Content.Images;
 
 [Flags]
