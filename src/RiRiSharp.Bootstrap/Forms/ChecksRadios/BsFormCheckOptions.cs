@@ -1,10 +1,10 @@
-﻿namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
+namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public enum BsFormCheckOptions
 {
-    Stacked,
-    Inline,
-    Reverse,
+    Stacked = 0,
+    Inline = 1,
+    Reverse = 2,
 }
 
 public static class BsFormCheckOptionsExtensions

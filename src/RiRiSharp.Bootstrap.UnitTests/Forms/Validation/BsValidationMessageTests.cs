@@ -1,5 +1,7 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.Forms;
@@ -15,31 +17,13 @@ public class BsValidationMessageTests : BunitContext
     private IRenderedComponent<BsEditForm> _editContextComponent;
 
     [StringSyntax("Html")]
-    private const string _htmlFormat =
-        $$"""<div class="invalid-feedback {0}" {1}>{{_errorMessage}}</div>""";
-
-    private Action<
-        ComponentParameterCollectionBuilder<BsValidationMessage<string>>
-    > DefaultAction => parameters => parameters.Add(p => p.For, () => _model.Property);
+    private const string _htmlFormat = $$"""<div class="invalid-feedback {0}" {1}>{{_errorMessage}}</div>""";
+    private static CompositeFormat HtmlFormatCache => CompositeFormat.Parse(_htmlFormat);
 
     public BsValidationMessageTests()
     {
         _model = new TestModel();
         _editContext = new EditContext(_model);
-    }
-
-    private IRenderedComponent<BsValidationMessage<string>> GetCut(
-        Action<ComponentParameterCollectionBuilder<BsValidationMessage<string>>> builder = null
-    )
-    {
-        var builderAction = DefaultAction + builder;
-        _editContextComponent = Render<BsEditForm>(parameters =>
-            parameters
-                .Add(p => p.EditContext, _editContext)
-                .Add(p => p.ChildContent, _ => builderAction)
-        );
-
-        return _editContextComponent.FindComponent<BsValidationMessage<string>>();
     }
 
     [Fact]
@@ -52,8 +36,7 @@ public class BsValidationMessageTests : BunitContext
         await SimulateValidatingModel();
 
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, "", "");
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml());
     }
 
     [Theory]
@@ -65,17 +48,13 @@ public class BsValidationMessageTests : BunitContext
     public async Task PassingClassesWorks(string classes)
     {
         // Arrange
-        var cut = GetCut(parameters =>
-        {
-            parameters.Add(x => x.Classes, classes);
-        });
+        var cut = GetCut(parameters => parameters.Add(x => x.Classes, classes));
 
         // Act
         await SimulateValidatingModel();
 
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, classes, "");
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml(classes));
     }
 
     [Theory]
@@ -93,18 +72,14 @@ public class BsValidationMessageTests : BunitContext
             attributeKey1="attributeValue1" attributeKey2="attributeValue2"
             """
     )]
-    public async Task ExtraAttributesWorks(
-        string[] attributeKeys,
-        string[] attributeValues,
-        string expected
-    )
+    public async Task ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
         var cut = GetCut(parameters =>
         {
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
+                _ = parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
         });
 
@@ -112,8 +87,38 @@ public class BsValidationMessageTests : BunitContext
         await SimulateValidatingModel();
 
         // Assert
-        var expectedMarkupString = string.Format(_htmlFormat, "", expected);
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml(attributes: expected));
+    }
+
+    protected virtual IRenderedComponent<BsValidationMessage<string>> GetCut(
+        Action<ComponentParameterCollectionBuilder<BsValidationMessage<string>>> action = null
+    )
+    {
+        _editContextComponent = Render<BsEditForm>(parameters =>
+        {
+            _ = parameters
+                .Add(p => p.EditContext, _editContext)
+                .AddChildContent<BsValidationMessage<string>>(pms =>
+                {
+                    BindParameters(pms);
+                    action?.Invoke(pms);
+                });
+        });
+        return _editContextComponent.FindComponent<BsValidationMessage<string>>();
+    }
+
+    protected virtual void BindParameters(
+        ComponentParameterCollectionBuilder<BsValidationMessage<string>> parameterBuilder
+    )
+    {
+        _ = (parameterBuilder?.Add(p => p.For, () => _model.Property));
+    }
+
+    protected virtual void ConfigureTestContext() { }
+
+    protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
+    {
+        return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
     }
 
     private async Task SimulateValidatingModel()
@@ -126,7 +131,13 @@ public class BsValidationMessageTests : BunitContext
         await _editContextComponent.InvokeAsync(_editContext.NotifyValidationStateChanged);
     }
 
-    private class TestModel
+    protected override async ValueTask DisposeAsyncCore()
+    {
+        await base.DisposeAsyncCore();
+        _editContextComponent.Dispose();
+    }
+
+    private sealed class TestModel
     {
         public string Property { get; set; }
     }

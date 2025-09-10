@@ -1,13 +1,13 @@
-﻿namespace RiRiSharp.Bootstrap.Helpers;
+namespace RiRiSharp.Bootstrap.Helpers;
 
 public enum BsJustification
 {
-    Start,
-    End,
-    Center,
-    Between,
-    Around,
-    Evenly,
+    Start = 0,
+    End = 1,
+    Center = 2,
+    Between = 3,
+    Around = 4,
+    Evenly = 5,
 }
 
 public static class JustificationExtensions

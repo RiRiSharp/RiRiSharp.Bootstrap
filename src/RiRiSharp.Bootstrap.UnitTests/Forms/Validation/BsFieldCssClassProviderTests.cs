@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components.Forms;
 using NSubstitute;
@@ -53,10 +53,5 @@ public class BsFieldCssClassProviderTests
 
         // Assert
         Assert.Equal(expected, res);
-    }
-
-    private class TestObject
-    {
-        public string SomeProperty { get; set; }
     }
 }

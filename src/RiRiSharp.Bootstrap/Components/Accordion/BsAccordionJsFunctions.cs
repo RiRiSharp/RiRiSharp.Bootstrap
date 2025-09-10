@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
 
-public class BsAccordionJsFunctions : IBsAccordionJsFunctions
+internal class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
 {
     internal const string JsFileName = "accordionFunctions.js";
     private readonly BsJsObjectReference _bsJsObjectRef;
@@ -34,10 +34,7 @@ public class BsAccordionJsFunctions : IBsAccordionJsFunctions
 
     internal const string CollapseAllButOne = "collapseAllButOne";
 
-    public async Task CollapseAllButOneAsync(
-        ElementReference accordionRef,
-        ElementReference accordionItemRef
-    )
+    public async Task CollapseAllButOneAsync(ElementReference accordionRef, ElementReference accordionItemRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(CollapseAllButOne, accordionRef, accordionItemRef);
     }
@@ -65,12 +62,19 @@ public class BsAccordionJsFunctions : IBsAccordionJsFunctions
 
     internal const string RegisterCollapseCallback = "registerCollapseCallback";
 
-    public async Task RegisterCollapseCallbackAsync<T>(
-        ElementReference buttonRef,
-        DotNetObjectReference<T> dotNetRef
-    )
+    public async Task RegisterCollapseCallbackAsync<T>(ElementReference buttonRef, DotNetObjectReference<T> dotNetRef)
         where T : class, IHasCollapseState
     {
         await _bsJsObjectRef.InvokeVoidAsync(RegisterCollapseCallback, buttonRef, dotNetRef);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_bsJsObjectRef is null)
+        {
+            return;
+        }
+
+        await _bsJsObjectRef.DisposeAsync();
     }
 }

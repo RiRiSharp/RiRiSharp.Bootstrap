@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+using System;
+using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
@@ -9,7 +10,7 @@ public partial class BsAccordion : BsChildContentComponent
     private BsAccordionContext _accordionContext;
 
     [Parameter]
-    public bool AlwaysOpen { get; set; } = false;
+    public bool AlwaysOpen { get; set; }
 
     [Parameter]
     public BsAccordionDisplayStyle DisplayStyle { get; set; }
@@ -35,6 +36,7 @@ public partial class BsAccordion : BsChildContentComponent
 
     public async Task CollapseAllButOneAsync(BsAccordionItem accordionItem)
     {
+        ArgumentNullException.ThrowIfNull(accordionItem);
         await AccordionJsFunctions.CollapseAllButOneAsync(HtmlRef, accordionItem.HtmlRef);
     }
 }

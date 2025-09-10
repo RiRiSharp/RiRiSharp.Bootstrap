@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.Tables;
+using RiRiSharp.Bootstrap.Content.Tables;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Tables;
 

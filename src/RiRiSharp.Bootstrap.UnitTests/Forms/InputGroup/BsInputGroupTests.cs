@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.InputGroup;
+using RiRiSharp.Bootstrap.Forms.InputGroup;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.InputGroup;
 
@@ -9,10 +9,7 @@ public class BsInputGroupTests()
     [InlineData(BsInputGroupSize.Small, "input-group-sm")]
     [InlineData(BsInputGroupSize.Regular, "")]
     [InlineData(BsInputGroupSize.Large, "input-group-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(
-        BsInputGroupSize formSize,
-        string expected
-    )
+    public void PassingParametersRendersIntoCorrectBsClass(BsInputGroupSize formSize, string expected)
     {
         // Arrange + Act
         var cut = GetCut(parameters => parameters.Add(p => p.Size, formSize));

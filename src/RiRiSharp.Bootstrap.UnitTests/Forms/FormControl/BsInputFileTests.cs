@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Globalization;
+using System.Text;
 using RiRiSharp.Bootstrap.Forms;
 using RiRiSharp.Bootstrap.Forms.FormControl;
 
@@ -7,6 +9,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 public class BsInputFileTests : BunitContext
 {
     private static string HtmlFormat => """<input class="form-control {0}" type="file" {1}>""";
+    private static CompositeFormat HtmlFormatCache => CompositeFormat.Parse(HtmlFormat);
 
     [Fact]
     public void DefaultWorks()
@@ -18,8 +21,7 @@ public class BsInputFileTests : BunitContext
         var cut = GetCut();
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, "", "");
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml("", ""));
     }
 
     [Fact]
@@ -47,14 +49,10 @@ public class BsInputFileTests : BunitContext
         ConfigureTestContext();
 
         // Act
-        var cut = GetCut(parameters =>
-        {
-            parameters.Add(x => x.Classes, classes);
-        });
+        var cut = GetCut(parameters => parameters.Add(x => x.Classes, classes));
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, classes, "");
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml(classes, ""));
     }
 
     [Theory]
@@ -72,11 +70,7 @@ public class BsInputFileTests : BunitContext
             attributeKey1="attributeValue1" attributeKey2="attributeValue2"
             """
     )]
-    public void ExtraAttributesWorks(
-        string[] attributeKeys,
-        string[] attributeValues,
-        string expected
-    )
+    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
         ConfigureTestContext();
@@ -86,23 +80,19 @@ public class BsInputFileTests : BunitContext
         {
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
+                _ = parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
         });
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, "", expected);
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml("", expected));
     }
 
     [Theory]
     [InlineData(BsFormSize.Small, "form-control-sm")]
     [InlineData(BsFormSize.Regular, "")]
     [InlineData(BsFormSize.Large, "form-control-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(
-        BsFormSize formSize,
-        string expectedClass
-    )
+    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -111,8 +101,7 @@ public class BsInputFileTests : BunitContext
         var cut = GetCut(parameters => parameters.Add(x => x.FormSize, formSize));
 
         // Assert
-        var expectedMarkupString = string.Format(HtmlFormat, expectedClass, "");
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml(expectedClass, ""));
     }
 
     protected IRenderedComponent<BsInputFile> GetCut(
@@ -126,9 +115,12 @@ public class BsInputFileTests : BunitContext
         });
     }
 
-    protected virtual void BindParameters(
-        ComponentParameterCollectionBuilder<BsInputFile> parameterBuilder
-    ) { }
+    protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
+    {
+        return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
+    }
+
+    protected virtual void BindParameters(ComponentParameterCollectionBuilder<BsInputFile> parameterBuilder) { }
 
     protected virtual void ConfigureTestContext() { }
 }

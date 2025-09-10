@@ -1,9 +1,9 @@
-﻿namespace RiRiSharp.Bootstrap.Layout.Columns;
+namespace RiRiSharp.Bootstrap.Layout.Columns;
 
 [Flags]
 public enum BsColumnOptions : long
 {
-    Default = 0,
+    None = 0,
     Sm = 1 << 1,
     Md = 1 << 2,
     Lg = 1 << 3,
@@ -11,87 +11,87 @@ public enum BsColumnOptions : long
     Xxl = 1 << 5,
 
     Col1 = 1 << 6,
-    Col2 = 1 << 7,
-    Col3 = 1 << 8,
-    Col4 = 1 << 9,
-    Col5 = 1 << 10,
-    Col6 = 1 << 11,
-    Col7 = 1 << 12,
-    Col8 = 1 << 13,
-    Col9 = 1 << 14,
-    Col10 = 1 << 15,
-    Col11 = 1 << 16,
-    Col12 = 1 << 17,
-    ColAuto = 1 << 18,
 
     ColSm1 = Sm | Col1,
-    ColSm2 = Sm | Col2,
-    ColSm3 = Sm | Col3,
-    ColSm4 = Sm | Col4,
-    ColSm5 = Sm | Col5,
-    ColSm6 = Sm | Col6,
-    ColSm7 = Sm | Col7,
-    ColSm8 = Sm | Col8,
-    ColSm9 = Sm | Col9,
-    ColSm10 = Sm | Col10,
-    ColSm11 = Sm | Col11,
-    ColSm12 = Sm | Col12,
-    ColSmAuto = Sm | ColAuto,
 
     ColMd1 = Md | Col1,
-    ColMd2 = Md | Col2,
-    ColMd3 = Md | Col3,
-    ColMd4 = Md | Col4,
-    ColMd5 = Md | Col5,
-    ColMd6 = Md | Col6,
-    ColMd7 = Md | Col7,
-    ColMd8 = Md | Col8,
-    ColMd9 = Md | Col9,
-    ColMd10 = Md | Col10,
-    ColMd11 = Md | Col11,
-    ColMd12 = Md | Col12,
-    ColMdAuto = Md | ColAuto,
 
     ColLg1 = Lg | Col1,
-    ColLg2 = Lg | Col2,
-    ColLg3 = Lg | Col3,
-    ColLg4 = Lg | Col4,
-    ColLg5 = Lg | Col5,
-    ColLg6 = Lg | Col6,
-    ColLg7 = Lg | Col7,
-    ColLg8 = Lg | Col8,
-    ColLg9 = Lg | Col9,
-    ColLg10 = Lg | Col10,
-    ColLg11 = Lg | Col11,
-    ColLg12 = Lg | Col12,
-    ColLgAuto = Lg | ColAuto,
 
     ColXl1 = Xl | Col1,
-    ColXl2 = Xl | Col2,
-    ColXl3 = Xl | Col3,
-    ColXl4 = Xl | Col4,
-    ColXl5 = Xl | Col5,
-    ColXl6 = Xl | Col6,
-    ColXl7 = Xl | Col7,
-    ColXl8 = Xl | Col8,
-    ColXl9 = Xl | Col9,
-    ColXl10 = Xl | Col10,
-    ColXl11 = Xl | Col11,
-    ColXl12 = Xl | Col12,
-    ColXlAuto = Xl | ColAuto,
 
     ColXxl1 = Xxl | Col1,
+    Col2 = 1 << 7,
+    ColSm2 = Sm | Col2,
+    ColMd2 = Md | Col2,
+    ColLg2 = Lg | Col2,
+    ColXl2 = Xl | Col2,
     ColXxl2 = Xxl | Col2,
+    Col3 = 1 << 8,
+    ColSm3 = Sm | Col3,
+    ColMd3 = Md | Col3,
+    ColLg3 = Lg | Col3,
+    ColXl3 = Xl | Col3,
     ColXxl3 = Xxl | Col3,
+    Col4 = 1 << 9,
+    ColSm4 = Sm | Col4,
+    ColMd4 = Md | Col4,
+    ColLg4 = Lg | Col4,
+    ColXl4 = Xl | Col4,
     ColXxl4 = Xxl | Col4,
+    Col5 = 1 << 10,
+    ColSm5 = Sm | Col5,
+    ColMd5 = Md | Col5,
+    ColLg5 = Lg | Col5,
+    ColXl5 = Xl | Col5,
     ColXxl5 = Xxl | Col5,
+    Col6 = 1 << 11,
+    ColSm6 = Sm | Col6,
+    ColMd6 = Md | Col6,
+    ColLg6 = Lg | Col6,
+    ColXl6 = Xl | Col6,
     ColXxl6 = Xxl | Col6,
+    Col7 = 1 << 12,
+    ColSm7 = Sm | Col7,
+    ColMd7 = Md | Col7,
+    ColLg7 = Lg | Col7,
+    ColXl7 = Xl | Col7,
     ColXxl7 = Xxl | Col7,
+    Col8 = 1 << 13,
+    ColSm8 = Sm | Col8,
+    ColMd8 = Md | Col8,
+    ColLg8 = Lg | Col8,
+    ColXl8 = Xl | Col8,
     ColXxl8 = Xxl | Col8,
+    Col9 = 1 << 14,
+    ColSm9 = Sm | Col9,
+    ColMd9 = Md | Col9,
+    ColLg9 = Lg | Col9,
+    ColXl9 = Xl | Col9,
     ColXxl9 = Xxl | Col9,
+    Col10 = 1 << 15,
+    ColSm10 = Sm | Col10,
+    ColMd10 = Md | Col10,
+    ColLg10 = Lg | Col10,
+    ColXl10 = Xl | Col10,
     ColXxl10 = Xxl | Col10,
+    Col11 = 1 << 16,
+    ColSm11 = Sm | Col11,
+    ColMd11 = Md | Col11,
+    ColLg11 = Lg | Col11,
+    ColXl11 = Xl | Col11,
     ColXxl11 = Xxl | Col11,
+    Col12 = 1 << 17,
+    ColSm12 = Sm | Col12,
+    ColMd12 = Md | Col12,
+    ColLg12 = Lg | Col12,
+    ColXl12 = Xl | Col12,
     ColXxl12 = Xxl | Col12,
+    ColAuto = 1 << 18,
+    ColSmAuto = Sm | ColAuto,
+    ColMdAuto = Md | ColAuto,
+    ColLgAuto = Lg | ColAuto,
+    ColXlAuto = Xl | ColAuto,
     ColXxlAuto = Xxl | ColAuto,
 }
 
@@ -108,8 +108,10 @@ public static class ColumnOptsExtensions
     public static string ToBootstrapOffsetClass(this BsColumnOptions breakpoint)
     {
         var classString = "";
-        if (breakpoint == BsColumnOptions.Default)
+        if (breakpoint == BsColumnOptions.None)
+        {
             return classString;
+        }
 
         classString = "offset";
         classString += breakpoint.SizeClass();
@@ -139,12 +141,7 @@ public static class ColumnOptsExtensions
             return "-xl";
         }
 
-        if (breakpoint.HasFlag(BsColumnOptions.Xxl))
-        {
-            return "-xxl";
-        }
-
-        return "";
+        return breakpoint.HasFlag(BsColumnOptions.Xxl) ? "-xxl" : "";
     }
 
     private static string ColumnWidth(this BsColumnOptions breakpoint)

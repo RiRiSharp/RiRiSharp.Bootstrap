@@ -1,6 +1,6 @@
-﻿namespace RiRiSharp.Bootstrap.Site.Constants;
+namespace RiRiSharp.Bootstrap.Site.Constants;
 
-public static class PageRoutes
+internal static class PageRoutes
 {
-    public const string Home = "/";
+    internal const string Home = "/";
 }

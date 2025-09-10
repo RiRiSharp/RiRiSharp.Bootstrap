@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.DisplayHeadings;
+using RiRiSharp.Bootstrap.Content.DisplayHeadings;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.DisplayHeadings;
 
@@ -11,10 +11,7 @@ public class DisplayHeadingExtensionsTests
     [InlineData(BsDisplayHeadingType.Display4, "display-4")]
     [InlineData(BsDisplayHeadingType.Display5, "display-5")]
     [InlineData(BsDisplayHeadingType.Display6, "display-6")]
-    public void DisplayHeadingGeneratesCorrectClass(
-        BsDisplayHeadingType displayHeadingType,
-        string expectedClass
-    )
+    public void DisplayHeadingGeneratesCorrectClass(BsDisplayHeadingType displayHeadingType, string expectedClass)
     {
         var generatedClass = displayHeadingType.ToBootstrapClass();
 

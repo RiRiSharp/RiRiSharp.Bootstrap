@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Internals;
@@ -21,13 +21,10 @@ public class BsNavLink : NavLink, IBsComponent
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
-            AdditionalAttributes,
-            allClasses
-        );
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
-    private string GetBsComponentSpecificClasses()
+    private static string GetBsComponentSpecificClasses()
     {
         return "nav-link";
     }

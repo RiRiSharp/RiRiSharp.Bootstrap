@@ -1,9 +1,9 @@
-﻿namespace RiRiSharp.Bootstrap.Components.Accordion;
+namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public enum BsAccordionDisplayStyle
 {
-    Regular,
-    Flush,
+    Regular = 0,
+    Flush = 1,
 }
 
 public static class BsAccordionDisplayStyleExtensions

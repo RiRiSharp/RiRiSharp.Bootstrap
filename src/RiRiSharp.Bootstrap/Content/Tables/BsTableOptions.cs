@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Content.Tables;
@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.Content.Tables;
 [Flags]
 public enum BsTableOptions : long
 {
-    Default = 0,
+    None = 0,
 
     TablePrimary = 1 << 0,
     TableSecondary = 1 << 1,
@@ -43,7 +43,7 @@ public enum BsTableOptions : long
 
 public static class TableOptionsExtensions
 {
-    private static readonly Dictionary<BsTableOptions, string> ClassMapping = new()
+    private static readonly Dictionary<BsTableOptions, string> _classMapping = new()
     {
         { BsTableOptions.TablePrimary, "table-primary" },
         { BsTableOptions.TableSecondary, "table-secondary" },
@@ -80,11 +80,9 @@ public static class TableOptionsExtensions
         | BsTableOptions.TableLight
         | BsTableOptions.TableDark;
 
-    private const BsTableOptions _stripedMask =
-        BsTableOptions.TableStriped | BsTableOptions.TableStripedColumns;
+    private const BsTableOptions _stripedMask = BsTableOptions.TableStriped | BsTableOptions.TableStripedColumns;
 
-    private const BsTableOptions _tableBorderMask =
-        BsTableOptions.TableBordered | BsTableOptions.TableBorderless;
+    private const BsTableOptions _tableBorderMask = BsTableOptions.TableBordered | BsTableOptions.TableBorderless;
 
     private const BsTableOptions _borderColorMask =
         BsTableOptions.TableBorderless
@@ -97,7 +95,9 @@ public static class TableOptionsExtensions
         | BsTableOptions.BorderLight
         | BsTableOptions.BorderDark;
 
-    // For <table> everything is an allowable option, except table active
+    /// <summary>
+    /// For table everything is an allowable option, except table active
+    /// </summary>
     private const BsTableOptions _tableMask = ~BsTableOptions.TableActive;
 
     private const BsTableOptions _rowMask =
@@ -153,28 +153,27 @@ public static class TableOptionsExtensions
             && tableOptions.HasZeroOrOneBitsSetInMask(_tableBorderMask)
             && tableOptions.HasZeroOrOneBitsSetInMask(_borderColorMask);
         if (!isValid)
+        {
             throw new BsInvalidTableOptionsException();
+        }
     }
 
     private static string BuildBootstrapClassInner(this BsTableOptions tableOptions)
     {
         var returnClass = new StringBuilder();
 
-        foreach (var entry in ClassMapping)
+        foreach (var entry in _classMapping)
         {
             if (tableOptions.HasFlag(entry.Key))
             {
-                returnClass.Append(' ').Append(entry.Value);
+                _ = returnClass.Append(' ').Append(entry.Value);
             }
         }
 
         return returnClass.ToString();
     }
 
-    private static bool HasZeroOrOneBitsSetInMask(
-        this BsTableOptions tableOptions,
-        BsTableOptions mask
-    )
+    private static bool HasZeroOrOneBitsSetInMask(this BsTableOptions tableOptions, BsTableOptions mask)
     {
         var relevantPart = tableOptions & mask;
         return relevantPart == 0 || (relevantPart & (relevantPart - 1)) == 0;

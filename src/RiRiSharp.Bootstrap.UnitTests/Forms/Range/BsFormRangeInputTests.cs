@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.Range;
+using RiRiSharp.Bootstrap.Forms.Range;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.Range;
 

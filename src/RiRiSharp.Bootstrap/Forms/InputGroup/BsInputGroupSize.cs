@@ -1,10 +1,10 @@
-﻿namespace RiRiSharp.Bootstrap.Forms.InputGroup;
+namespace RiRiSharp.Bootstrap.Forms.InputGroup;
 
 public enum BsInputGroupSize
 {
-    Small,
-    Regular,
-    Large,
+    Small = 0,
+    Regular = 1,
+    Large = 2,
 }
 
 public static class InputGroupSizeExtensions

@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.Blockquotes;
+using RiRiSharp.Bootstrap.Content.Blockquotes;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Blockquotes;
 

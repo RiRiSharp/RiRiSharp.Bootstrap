@@ -1,4 +1,4 @@
-﻿namespace RiRiSharp.Bootstrap.Layout.Rows;
+namespace RiRiSharp.Bootstrap.Layout.Rows;
 
 public enum BsColumnsInRow
 {

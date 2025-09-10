@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms;
+using RiRiSharp.Bootstrap.Forms;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms;
 

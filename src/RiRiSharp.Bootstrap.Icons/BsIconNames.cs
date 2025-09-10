@@ -1,4 +1,4 @@
-﻿namespace RiRiSharp.Bootstrap.Icons;
+namespace RiRiSharp.Bootstrap.Icons;
 
 public static class BsIconNames
 {

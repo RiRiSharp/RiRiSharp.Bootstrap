@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.Images;
+using RiRiSharp.Bootstrap.Content.Images;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Images;
 
@@ -13,16 +13,10 @@ public class ImageOptionsExtensionsTests
     [InlineData(BsImageOptions.Fluid | BsImageOptions.Rounded, "img-fluid rounded")]
     [InlineData(BsImageOptions.Thumbnail | BsImageOptions.Figure, "img-thumbnail figure-img")]
     [InlineData(
-        BsImageOptions.Fluid
-            | BsImageOptions.Thumbnail
-            | BsImageOptions.Rounded
-            | BsImageOptions.Figure,
+        BsImageOptions.Fluid | BsImageOptions.Thumbnail | BsImageOptions.Rounded | BsImageOptions.Figure,
         "img-fluid img-thumbnail rounded figure-img"
     )]
-    public void ImageOptionsGeneratesCorrectClasses(
-        BsImageOptions imageOptions,
-        string expectedClass
-    )
+    public void ImageOptionsGeneratesCorrectClasses(BsImageOptions imageOptions, string expectedClass)
     {
         var generatedClass = imageOptions.ToBootstrapClass();
         Assert.Equal(expectedClass, generatedClass);

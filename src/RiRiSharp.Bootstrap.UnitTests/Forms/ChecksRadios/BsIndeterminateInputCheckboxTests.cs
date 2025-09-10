@@ -1,5 +1,3 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
@@ -10,8 +8,7 @@ public class BsIndeterminateInputCheckboxTests()
         """<input class="form-check-input {0}" type="checkbox" {1}></label>"""
     )
 {
-    private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions =
-        Substitute.For<IBsCheckboxJsFunctions>();
+    private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions = Substitute.For<IBsCheckboxJsFunctions>();
 
     [Fact]
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
@@ -23,9 +20,7 @@ public class BsIndeterminateInputCheckboxTests()
         var cut = GetCut();
 
         // Assert
-        await _bsCheckboxJsFunctions
-            .ReceivedWithAnyArgs(1)
-            .InitializeIndeterminateAsync(cut.Instance.HtmlRef);
+        await _bsCheckboxJsFunctions.ReceivedWithAnyArgs(1).InitializeIndeterminateAsync(cut.Instance.HtmlRef);
     }
 
     [Theory]
@@ -35,15 +30,11 @@ public class BsIndeterminateInputCheckboxTests()
     [InlineData(null, true, "checked")]
     [InlineData(true, false, "")]
     [InlineData(false, true, "checked")]
-    public void CheckingCheckboxSetsCorrectValue(
-        bool? beforeValue,
-        bool? afterValue,
-        string expectedAttribute
-    )
+    public void CheckingCheckboxSetsCorrectValue(bool? beforeValue, bool? afterValue, string expectedAttribute)
     {
         // Arrange
         ConfigureTestContext();
-        _value = beforeValue;
+        Value = beforeValue;
 
         // Act
         var cut = GetCut();
@@ -51,12 +42,11 @@ public class BsIndeterminateInputCheckboxTests()
         inputElement.Change(afterValue);
 
         // Assert
-        var expectedMarkupString = GetExpectedHtml("", expectedAttribute);
-        cut.MarkupMatches(expectedMarkupString);
+        cut.MarkupMatches(GetExpectedHtml("", expectedAttribute));
     }
 
     protected override void ConfigureTestContext()
     {
-        Services.AddSingleton(_bsCheckboxJsFunctions);
+        _ = Services.AddSingleton(_bsCheckboxJsFunctions);
     }
 }

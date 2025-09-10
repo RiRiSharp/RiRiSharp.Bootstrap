@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 

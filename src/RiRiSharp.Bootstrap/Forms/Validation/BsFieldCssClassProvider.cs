@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace RiRiSharp.Bootstrap.Forms.Validation;
 
 public class BsFieldCssClassProvider(bool showValidInput = true) : FieldCssClassProvider
 {
-    public override string GetFieldCssClass(
-        EditContext editContext,
-        in FieldIdentifier fieldIdentifier
-    )
+    public override string GetFieldCssClass(EditContext editContext, in FieldIdentifier fieldIdentifier)
     {
         ArgumentNullException.ThrowIfNull(editContext);
         var isInvalid = editContext.GetValidationMessages(fieldIdentifier).Any();
@@ -17,9 +14,15 @@ public class BsFieldCssClassProvider(bool showValidInput = true) : FieldCssClass
     internal string DetermineClass(bool isModified, bool isInvalid)
     {
         if (!isModified)
+        {
             return "";
+        }
+
         if (isInvalid)
+        {
             return "is-invalid";
+        }
+
         return showValidInput ? "is-valid" : "";
     }
 }

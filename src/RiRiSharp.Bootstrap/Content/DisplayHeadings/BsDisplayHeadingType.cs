@@ -1,13 +1,13 @@
-﻿namespace RiRiSharp.Bootstrap.Content.DisplayHeadings;
+namespace RiRiSharp.Bootstrap.Content.DisplayHeadings;
 
 public enum BsDisplayHeadingType
 {
-    Display1,
-    Display2,
-    Display3,
-    Display4,
-    Display5,
-    Display6,
+    Display1 = 0,
+    Display2 = 1,
+    Display3 = 2,
+    Display4 = 3,
+    Display5 = 4,
+    Display6 = 5,
 }
 
 public static class DisplayHeadingTypeExtensions
@@ -22,11 +22,7 @@ public static class DisplayHeadingTypeExtensions
             BsDisplayHeadingType.Display4 => "display-4",
             BsDisplayHeadingType.Display5 => "display-5",
             BsDisplayHeadingType.Display6 => "display-6",
-            _ => throw new ArgumentOutOfRangeException(
-                nameof(displayHeadingType),
-                displayHeadingType,
-                null
-            ),
+            _ => throw new ArgumentOutOfRangeException(nameof(displayHeadingType), displayHeadingType, null),
         };
     }
 }

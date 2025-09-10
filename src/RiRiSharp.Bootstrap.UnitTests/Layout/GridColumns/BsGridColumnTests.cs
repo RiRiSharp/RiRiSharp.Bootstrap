@@ -1,17 +1,14 @@
-﻿using RiRiSharp.Bootstrap.Layout.GridColumns;
+using RiRiSharp.Bootstrap.Layout.GridColumns;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.GridColumns;
 
-public class BsGridColumnTests()
-    : BsComponentTests<BsGridColumn>("""<div class=" {0}" {1}></div>""")
+public class BsGridColumnTests() : BsComponentTests<BsGridColumn>("""<div class=" {0}" {1}></div>""")
 {
     [Fact]
     public void ColumnRenderingWorksInSingularForm()
     {
         // Arrange + Act
-        var cut = GetCut(parameters =>
-            parameters.Add(p => p.GridOption, BsGridColumnOptions.GCol1)
-        );
+        var cut = GetCut(parameters => parameters.Add(p => p.GridOption, BsGridColumnOptions.GCol1));
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml("g-col-1", ""));
@@ -22,10 +19,7 @@ public class BsGridColumnTests()
     {
         // Arrange + Act
         var cut = GetCut(parameters =>
-            parameters.Add(
-                p => p.GridOptionsList,
-                [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6]
-            )
+            parameters.Add(p => p.GridOptionsList, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
         );
 
         // Assert
@@ -39,10 +33,7 @@ public class BsGridColumnTests()
         var cut = GetCut(parameters =>
             parameters
                 .Add(p => p.GridOption, BsGridColumnOptions.GCol1)
-                .Add(
-                    p => p.GridOptionsList,
-                    [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6]
-                )
+                .Add(p => p.GridOptionsList, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
         );
 
         // Assert

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 namespace RiRiSharp.Bootstrap.Site;
 
-public class Program
+internal static class Program
 {
     public static async Task Main(string[] args)
     {
@@ -11,11 +11,11 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
-        builder.Services.AddScoped(sp => new HttpClient
+        _ = builder.Services.AddScoped(_ => new HttpClient
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress),
         });
-        builder.Services.EnableJsInteractiveComponents();
+        _ = builder.Services.EnableJsInteractiveComponents();
 
         await builder.Build().RunAsync();
     }

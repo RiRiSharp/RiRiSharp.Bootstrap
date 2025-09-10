@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Layout.GridColumns;
+using RiRiSharp.Bootstrap.Layout.GridColumns;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.GridColumns;
 

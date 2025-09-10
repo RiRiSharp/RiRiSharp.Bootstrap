@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using RiRiSharp.Bootstrap.Forms.Validation;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.Validation;
@@ -14,12 +14,13 @@ public class BsEditContextBuilderTests
         // Act
         try
         {
-            var sut = BsEditContextBuilder.Build(obj);
+            _ = BsEditContextBuilder.Build(obj);
         }
         catch (Exception ex)
         {
             // Assert
             Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
+            throw;
         }
     }
 
@@ -36,7 +37,7 @@ public class BsEditContextBuilderTests
         Assert.Equal(obj, sut.Model);
     }
 
-    private class TestObject
+    private sealed class TestObject
     {
         public string SomeProperty { get; set; }
     }

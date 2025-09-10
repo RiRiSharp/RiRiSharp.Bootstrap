@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
@@ -28,11 +28,7 @@ public class BsButtonCheckInputCheckboxTests()
     [InlineData(true, true, "checked")]
     [InlineData(true, false, "")]
     [InlineData(false, true, "checked")]
-    public void CheckingCheckboxSetsCorrectValue(
-        bool beforeValue,
-        bool afterValue,
-        string expectedAttribute
-    )
+    public void CheckingCheckboxSetsCorrectValue(bool beforeValue, bool afterValue, string expectedAttribute)
     {
         // Arrange
         var value = beforeValue;

@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.Images;
+using RiRiSharp.Bootstrap.Content.Images;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Images;
 

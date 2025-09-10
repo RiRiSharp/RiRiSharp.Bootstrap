@@ -1,15 +1,15 @@
-﻿namespace RiRiSharp.Bootstrap.Layout.Columns;
+namespace RiRiSharp.Bootstrap.Layout.Columns;
 
 public enum BsColumnOrder
 {
-    Default,
-    Order1,
-    Order2,
-    Order3,
-    Order4,
-    Order5,
-    OrderFirst,
-    OrderLast,
+    Default = 0,
+    Order1 = 1,
+    Order2 = 2,
+    Order3 = 3,
+    Order4 = 4,
+    Order5 = 5,
+    OrderFirst = 6,
+    OrderLast = 7,
 }
 
 public static class ColumnOrderExtensions

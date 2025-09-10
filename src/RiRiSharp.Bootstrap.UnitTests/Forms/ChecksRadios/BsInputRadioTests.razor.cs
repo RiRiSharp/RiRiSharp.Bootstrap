@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
-// We have a partial class because of RIDER-128549
 public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
 {
     private string _boundValue = "";
@@ -11,9 +10,7 @@ public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
     private const string _differentValueVar = "differentValue";
 
     public BsInputRadioTests()
-        : base(
-            $$"""<input class="form-check-input {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>"""
-        ) { }
+        : base($$"""<input class="form-check-input {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>""") { }
 
     [Fact]
     public void MatchingValuesChecksTheRadio()
@@ -37,13 +34,14 @@ public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
     {
         var inputGroupComponent = Render<BsInputRadioGroup<string>>(parameters =>
         {
-            parameters.Add(p => p.Name, nameof(_boundValue));
-            parameters.Bind(p => p.Value, _boundValue, newValue => _boundValue = newValue);
-            parameters.AddChildContent<BsInputRadio<string>>(pms =>
-            {
-                BindParameters(pms);
-                action?.Invoke(pms);
-            });
+            _ = parameters
+                .Add(p => p.Name, nameof(_boundValue))
+                .Bind(p => p.Value, _boundValue, newValue => _boundValue = newValue)
+                .AddChildContent<BsInputRadio<string>>(pms =>
+                {
+                    BindParameters(pms);
+                    action?.Invoke(pms);
+                });
         });
         return inputGroupComponent.FindComponent<BsInputRadio<string>>();
     }

@@ -1,16 +1,24 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 namespace RiRiSharp.Bootstrap.Forms.FormControl;
 
-// Solves https://stackoverflow.com/questions/64052566/is-there-any-blazor-timepicker-and-colorpicker
+/// <summary>
+/// Input element for colors
+/// </summary>
+/// <remark>
+/// Solves https://stackoverflow.com/questions/64052566/is-there-any-blazor-timepicker-and-colorpicker
+/// </remark>
 public partial class BsInputColor : BsInputBase<Color>
 {
-    protected override bool TryParseValueFromString(
-        string value,
-        out Color result,
-        out string validationErrorMessage
-    )
+    protected override bool TryParseValueFromString(string value, out Color result, out string validationErrorMessage)
     {
+        if (value is null)
+        {
+            validationErrorMessage = "Provided value was null";
+            result = default;
+            return false;
+        }
+
         result = ColorTranslator.FromHtml(value);
         validationErrorMessage = null;
         return true;
@@ -18,8 +26,7 @@ public partial class BsInputColor : BsInputBase<Color>
 
     protected override string FormatValueAsString(Color value)
     {
-        var htmlColor = ColorTranslator.ToHtml(value);
-        return htmlColor;
+        return ColorTranslator.ToHtml(value);
     }
 
     protected override string GetBsComponentSpecificClasses()

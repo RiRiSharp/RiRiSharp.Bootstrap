@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Internals;
+using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 

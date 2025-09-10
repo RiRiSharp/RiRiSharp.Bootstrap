@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Layout.GridColumns;
+using RiRiSharp.Bootstrap.Layout.GridColumns;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.GridColumns;
 
@@ -10,10 +10,7 @@ public class GridColumnOptionsExtensionsTests
     [InlineData(BsGridColumnOptions.Lg, "g-col-lg")]
     [InlineData(BsGridColumnOptions.Xl, "g-col-xl")]
     [InlineData(BsGridColumnOptions.Xxl, "g-col-xxl")]
-    public void GridBreakpointGenerateCorrectClass(
-        BsGridColumnOptions gridColumnOptions,
-        string expectedClass
-    )
+    public void GridBreakpointGenerateCorrectClass(BsGridColumnOptions gridColumnOptions, string expectedClass)
     {
         var generatedClass = gridColumnOptions.ToBootstrapClass();
         Assert.Equal(expectedClass, generatedClass);
@@ -33,10 +30,7 @@ public class GridColumnOptionsExtensionsTests
     [InlineData(BsGridColumnOptions.GCol11, "g-col-11")]
     [InlineData(BsGridColumnOptions.GCol12, "g-col-12")]
     [InlineData(BsGridColumnOptions.GColAuto, "g-col-auto")]
-    public void GridColumnWidthsGenerateCorrectClass(
-        BsGridColumnOptions gridColumnOptions,
-        string expectedClass
-    )
+    public void GridColumnWidthsGenerateCorrectClass(BsGridColumnOptions gridColumnOptions, string expectedClass)
     {
         var generatedClass = gridColumnOptions.ToBootstrapClass();
         Assert.Equal(expectedClass, generatedClass);

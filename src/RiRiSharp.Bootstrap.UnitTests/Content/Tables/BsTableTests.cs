@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.Abbreviations;
+using RiRiSharp.Bootstrap.Content.Abbreviations;
 using RiRiSharp.Bootstrap.Content.Tables;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.Tables;
@@ -6,10 +6,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Content.Tables;
 public class BsTableTests() : BsComponentTests<BsTable>("""<table class="table {0}" {1}></table>""")
 {
     [Theory]
-    [InlineData(
-        BsTableOptions.TableBordered | BsTableOptions.BorderDanger,
-        "table-bordered border-danger"
-    )]
+    [InlineData(BsTableOptions.TableBordered | BsTableOptions.BorderDanger, "table-bordered border-danger")]
     [InlineData(BsTableOptions.CaptionTop, "caption-top")]
     [InlineData(BsTableOptions.TableBorderless, "table-borderless")]
     public void TableOptionsWorks(BsTableOptions options, string expectedClass)

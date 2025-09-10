@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.InputGroup;
+using RiRiSharp.Bootstrap.Forms.InputGroup;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.InputGroup;
 

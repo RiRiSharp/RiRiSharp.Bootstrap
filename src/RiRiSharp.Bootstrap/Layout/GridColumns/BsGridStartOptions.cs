@@ -1,9 +1,9 @@
-﻿namespace RiRiSharp.Bootstrap.Layout.GridColumns;
+namespace RiRiSharp.Bootstrap.Layout.GridColumns;
 
 [Flags]
 public enum BsGridStartOptions : long
 {
-    Default = 0,
+    None = 0,
 
     Start1 = 1 << 6,
     Start2 = 1 << 7,
@@ -24,8 +24,10 @@ public static class GridStartOptionsExtensions
     public static string ToBootstrapClass(this BsGridStartOptions gridColumnOptions)
     {
         var classString = "";
-        if (gridColumnOptions == BsGridStartOptions.Default)
+        if (gridColumnOptions == BsGridStartOptions.None)
+        {
             return classString;
+        }
 
         classString = "g-start";
         classString += gridColumnOptions.ColumnWidth();
@@ -89,11 +91,6 @@ public static class GridStartOptionsExtensions
             return "-11";
         }
 
-        if (gridColumnOptions.HasFlag(BsGridStartOptions.Start12))
-        {
-            return "-12";
-        }
-
-        return "";
+        return gridColumnOptions.HasFlag(BsGridStartOptions.Start12) ? "-12" : "";
     }
 }

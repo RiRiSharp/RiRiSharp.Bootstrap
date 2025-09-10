@@ -1,13 +1,13 @@
-﻿namespace RiRiSharp.Bootstrap.Content.Tables;
+namespace RiRiSharp.Bootstrap.Content.Tables;
 
 public enum BsTableBreakpoint
 {
-    Default,
-    Sm,
-    Md,
-    Lg,
-    Xl,
-    Xxl,
+    Default = 0,
+    Sm = 1,
+    Md = 2,
+    Lg = 3,
+    Xl = 4,
+    Xxl = 5,
 }
 
 public static class TableResponsivenessExtensions
@@ -22,11 +22,7 @@ public static class TableResponsivenessExtensions
             BsTableBreakpoint.Lg => "table-responsive-lg",
             BsTableBreakpoint.Xl => "table-responsive-xl",
             BsTableBreakpoint.Xxl => "table-responsive-xxl",
-            _ => throw new ArgumentOutOfRangeException(
-                nameof(tableBreakpoint),
-                tableBreakpoint,
-                null
-            ),
+            _ => throw new ArgumentOutOfRangeException(nameof(tableBreakpoint), tableBreakpoint, null),
         };
     }
 }

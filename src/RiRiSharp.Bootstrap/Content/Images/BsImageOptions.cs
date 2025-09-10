@@ -1,11 +1,11 @@
-﻿using System.Text;
+using System.Text;
 
 namespace RiRiSharp.Bootstrap.Content.Images;
 
 [Flags]
 public enum BsImageOptions
 {
-    None,
+    None = 0,
     Fluid = 1 << 0,
     Thumbnail = 1 << 1,
     Rounded = 1 << 2,
@@ -14,7 +14,7 @@ public enum BsImageOptions
 
 public static class ImageOptionsExtensions
 {
-    private static readonly Dictionary<BsImageOptions, string> ClassMapping = new()
+    private static readonly Dictionary<BsImageOptions, string> _classMapping = new()
     {
         { BsImageOptions.Fluid, "img-fluid" },
         { BsImageOptions.Thumbnail, "img-thumbnail" },
@@ -29,9 +29,7 @@ public static class ImageOptionsExtensions
 
     private static string BuildBootstrapClassInner(this BsImageOptions tableOptions)
     {
-        var returnClass = ClassMapping
-            .Where(kvp => tableOptions.HasFlag(kvp.Key))
-            .Select(kvp => kvp.Value);
+        var returnClass = _classMapping.Where(kvp => tableOptions.HasFlag(kvp.Key)).Select(kvp => kvp.Value);
 
         return string.Join(" ", returnClass);
     }

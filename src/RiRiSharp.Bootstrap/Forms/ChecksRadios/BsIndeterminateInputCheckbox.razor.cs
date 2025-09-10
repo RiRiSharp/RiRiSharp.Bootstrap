@@ -1,4 +1,4 @@
-﻿namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
+namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
 {
@@ -7,11 +7,6 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
     public BsIndeterminateInputCheckbox(IBsCheckboxJsFunctions bsCheckboxJsFunctions)
     {
         _bsCheckboxJsFunctions = bsCheckboxJsFunctions;
-
-        if (_bsCheckboxJsFunctions == null) // Roslynator suggests using 'is null'
-        {
-            Console.WriteLine("Null");
-        }
     }
 
     protected override async Task OnParametersSetAsync()
@@ -23,15 +18,9 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
         }
     }
 
-    protected override bool TryParseValueFromString(
-        string value,
-        out bool? result,
-        out string validationErrorMessage
-    )
+    protected override bool TryParseValueFromString(string value, out bool? result, out string validationErrorMessage)
     {
-        throw new NotImplementedException(
-            "This method is not necessary for parsing input checkboxes."
-        );
+        throw new NotImplementedException("This method is not necessary for parsing input checkboxes.");
     }
 
     protected override string GetBsComponentSpecificClasses()

@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Forms.Select;
+namespace RiRiSharp.Bootstrap.Forms.Selects;
 
-// 'multiple' is not supported (yet)
+/// <summary>
+/// Renders an input select list
+/// </summary>
+/// <typeparam name="TValue">The value type you want to select</typeparam>
 public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentComponent
 {
     private const string _formSelect = "form-select";
@@ -27,10 +30,7 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
-            AdditionalAttributes,
-            allClasses
-        );
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
     private string GetBsComponentSpecificClasses()
@@ -41,10 +41,6 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
 
     private string DetermineSizeClass()
     {
-        if (Classes == null)
-        {
-            Console.WriteLine(Classes);
-        }
         return FormSize switch
         {
             BsFormSize.Regular => "",

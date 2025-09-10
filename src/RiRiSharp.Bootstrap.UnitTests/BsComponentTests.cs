@@ -1,15 +1,15 @@
-﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text;
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 
 namespace RiRiSharp.Bootstrap.UnitTests;
 
-public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat)
-    : BunitContext
+public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : BunitContext
     where TComponent : ComponentBase, IBsComponent
 {
-    protected string HtmlFormat => htmlFormat;
+    protected CompositeFormat HtmlFormatCache => CompositeFormat.Parse(htmlFormat);
     protected virtual bool SkipRefCheck => false;
 
     [Fact]
@@ -31,7 +31,10 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
         // Arrange
         if (SkipRefCheck)
+        {
             return;
+        }
+
         ConfigureTestContext();
 
         // Act
@@ -41,48 +44,45 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         Assert.NotEqual(default, cut.Instance.HtmlRef);
     }
 
-    [Theory]
-    [InlineData(null)]
-    [InlineData("")]
-    [InlineData("aclass")]
-    [InlineData("aclass bclass")]
-    [InlineData("aclass blass class")]
+    [
+        Theory,
+        InlineData(null),
+        InlineData(""),
+        InlineData("aclass"),
+        InlineData("aclass bclass"),
+        InlineData("aclass blass class")
+    ]
     public void PassingClassesWorks(string classes)
     {
         // Arrange
         ConfigureTestContext();
 
         // Act
-        var cut = GetCut(parameters =>
-        {
-            parameters.Add(x => x.Classes, classes);
-        });
+        var cut = GetCut(parameters => parameters.Add(x => x.Classes, classes));
 
         // Assert
         var expectedMarkupString = GetExpectedHtml(classes, "");
         cut.MarkupMatches(expectedMarkupString);
     }
 
-    [Theory]
-    [InlineData(
-        new[] { "attributeKey" },
-        new[] { "attributeValue" },
-        """
-            attributeKey="attributeValue"
+    [
+        Theory,
+        InlineData(
+            new[] { "attributeKey" },
+            new[] { "attributeValue" },
             """
-    )]
-    [InlineData(
-        new[] { "attributeKey1", "attributeKey2" },
-        new[] { "attributeValue1", "attributeValue2" },
-        """
-            attributeKey1="attributeValue1" attributeKey2="attributeValue2"
+                attributeKey="attributeValue"
+                """
+        ),
+        InlineData(
+            new[] { "attributeKey1", "attributeKey2" },
+            new[] { "attributeValue1", "attributeValue2" },
             """
-    )]
-    public void ExtraAttributesWorks(
-        string[] attributeKeys,
-        string[] attributeValues,
-        string expected
-    )
+                attributeKey1="attributeValue1" attributeKey2="attributeValue2"
+                """
+        )
+    ]
+    public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
         ConfigureTestContext();
@@ -92,7 +92,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         {
             for (var i = 0; i < attributeKeys.Length; i++)
             {
-                parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
+                _ = parameters.AddUnmatched(attributeKeys[i], attributeValues[i]);
             }
         });
 
@@ -112,14 +112,12 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
     }
 
-    protected virtual void BindParameters(
-        ComponentParameterCollectionBuilder<TComponent> parameterBuilder
-    ) { }
+    protected virtual void BindParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder) { }
 
     protected virtual void ConfigureTestContext() { }
 
     protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
     {
-        return string.Format(HtmlFormat, classes, attributes);
+        return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
     }
 }

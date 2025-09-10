@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Content.DisplayHeadings;
+using RiRiSharp.Bootstrap.Content.DisplayHeadings;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Content.DisplayHeadings;
 

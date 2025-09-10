@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Layout.Columns;
+using RiRiSharp.Bootstrap.Layout.Columns;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.Columns;
 
@@ -50,10 +50,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     public void ColumnOffsetRenderingWorksInListForm()
     {
         var cut = GetCut(parameters =>
-            parameters.Add(
-                p => p.OffsetOptionsList,
-                [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6]
-            )
+            parameters.Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
         cut.MarkupMatches(GetExpectedHtml("offset-sm-4 offset-md-6", ""));

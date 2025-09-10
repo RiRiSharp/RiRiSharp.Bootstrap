@@ -4,8 +4,9 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
   <PropertyGroup>
-    <NoWarn>RZ2012</NoWarn>
     <!--Disables checking for a required property, because we are testing one parameter at a time-->
+    <!--And disable forcing internal, as test classes must be public-->
+    <NoWarn>$(NoWarn);RZ2012;CA1515</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Using Include="Bunit" />

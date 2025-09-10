@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+using System;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Internals;
@@ -20,11 +21,12 @@ public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
     private void SetClasses()
     {
         var componentSpecificClasses = GetBsComponentSpecificClasses();
+        if (componentSpecificClasses == null)
+        {
+            return;
+        }
         var allClasses = $"{componentSpecificClasses} {Classes}";
-        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(
-            AdditionalAttributes,
-            allClasses
-        );
+        AdditionalAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, allClasses);
     }
 
     protected abstract string GetBsComponentSpecificClasses();

@@ -1,4 +1,4 @@
-﻿namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
+namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 public interface IHasCollapseState
 {

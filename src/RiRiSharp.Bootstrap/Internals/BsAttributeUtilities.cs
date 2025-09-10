@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 namespace RiRiSharp.Bootstrap.Internals;
 
@@ -7,26 +7,29 @@ internal static class BsAttributeUtilities
     /// <summary>
     /// Combines the class attribute given in the attribute dictionary with the classnames provided.
     /// </summary>
+    /// <typeparam name="TValue">Type of attributes</typeparam>
     /// <param name="additionalAttributes">The attribute dictionary</param>
     /// <param name="classNames">CSS classes to add</param>
     /// <returns>A CSS class string containing the combination of the provided classnames and the classes present in the dictionary.</returns>
     internal static string CombineClassNames<TValue>(TValue additionalAttributes, string classNames)
         where TValue : IEnumerable<KeyValuePair<string, object>>
     {
-        var dictionary = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
+        var dictionary = additionalAttributes?.ToDictionary() ?? [];
         return CombineClassNames(dictionary, classNames);
     }
 
-    // Taken from Microsoft.AspNetCore.Components.Forms.AttributeUtilities, licensed under MIT license
-    private static string CombineClassNames(
-        Dictionary<string, object> additionalAttributes,
-        string classNames
-    )
+    /// <summary>
+    /// Combines the classnames with the class attribute in the dictionary, if present
+    /// </summary>
+    /// <remark>
+    /// Taken from Microsoft.AspNetCore.Components.Forms.AttributeUtilities, licensed under MIT license
+    /// </remark>
+    /// <param name="additionalAttributes">Attributes, usually on a component</param>
+    /// <param name="classNames">Space seperated "list" of classes</param>
+    /// <returns>A combination of the provided classNames and the class names present in the attributes dictionary</returns>
+    private static string CombineClassNames(Dictionary<string, object> additionalAttributes, string classNames)
     {
-        if (
-            additionalAttributes is null
-            || !additionalAttributes.TryGetValue("class", out var @class)
-        )
+        if (additionalAttributes is null || !additionalAttributes.TryGetValue("class", out var @class))
         {
             return classNames ?? "";
         }
@@ -38,12 +41,7 @@ internal static class BsAttributeUtilities
             return classNames;
         }
 
-        if (string.IsNullOrEmpty(classNames))
-        {
-            return classAttributeValue;
-        }
-
-        return $"{classAttributeValue} {classNames}";
+        return string.IsNullOrEmpty(classNames) ? classAttributeValue : $"{classAttributeValue} {classNames}";
     }
 
     /// <summary>
@@ -57,7 +55,7 @@ internal static class BsAttributeUtilities
         string classNames
     )
     {
-        var attributes = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
+        var attributes = additionalAttributes?.ToDictionary() ?? [];
         AssignClassNames(attributes, classNames);
         return attributes;
     }
@@ -73,15 +71,12 @@ internal static class BsAttributeUtilities
         string classNames
     )
     {
-        var attributes = additionalAttributes?.ToDictionary() ?? new Dictionary<string, object>();
+        var attributes = additionalAttributes?.ToDictionary() ?? [];
         AssignClassNames(attributes, classNames);
         return attributes;
     }
 
-    private static void AssignClassNames(
-        Dictionary<string, object> additionalAttributes,
-        string classNames
-    )
+    private static void AssignClassNames(Dictionary<string, object> additionalAttributes, string classNames)
     {
         var allClasses = CombineClassNames(additionalAttributes, classNames);
         // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes

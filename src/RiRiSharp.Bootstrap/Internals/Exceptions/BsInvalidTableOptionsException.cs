@@ -1,4 +1,13 @@
-﻿namespace RiRiSharp.Bootstrap.Internals.Exceptions;
+namespace RiRiSharp.Bootstrap.Internals.Exceptions;
 
-internal class BsInvalidTableOptionsException()
-    : Exception("Invalid combination of table options provided.");
+public class BsInvalidTableOptionsException : Exception
+{
+    public BsInvalidTableOptionsException()
+        : base("Invalid combination of table options provided.") { }
+
+    public BsInvalidTableOptionsException(string message)
+        : base(message) { }
+
+    public BsInvalidTableOptionsException(string message, Exception innerException)
+        : base(message, innerException) { }
+}

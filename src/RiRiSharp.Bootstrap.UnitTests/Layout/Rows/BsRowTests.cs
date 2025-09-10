@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Layout.Rows;
+using RiRiSharp.Bootstrap.Layout.Rows;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.Rows;
 

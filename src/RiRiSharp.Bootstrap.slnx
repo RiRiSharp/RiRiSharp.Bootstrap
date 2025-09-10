@@ -8,7 +8,10 @@
     <File Path=".editorconfig" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="RiRiSharp.Bootstrap.UnitTests\RiRiSharp.Bootstrap.UnitTests.csproj" Type="Classic C#" />
+    <Project
+      Path="RiRiSharp.Bootstrap.UnitTests\RiRiSharp.Bootstrap.UnitTests.csproj"
+      Type="Classic C#"
+    />
   </Folder>
   <Project Path="RiRiSharp.Bootstrap.Icons\RiRiSharp.Bootstrap.Icons.csproj" Type="Classic C#" />
   <Project Path="RiRiSharp.Bootstrap.Site\RiRiSharp.Bootstrap.Site.csproj" Type="Classic C#" />

@@ -1,12 +1,10 @@
-﻿using RiRiSharp.Bootstrap.Forms;
+using RiRiSharp.Bootstrap.Forms;
 using RiRiSharp.Bootstrap.Forms.FormControl;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
 public class BsInputTextAreaTests()
-    : BsInputBaseComponentTests<BsInputTextArea, string>(
-        """<textarea class="form-control {0}" {1}></textarea>"""
-    )
+    : BsInputBaseComponentTests<BsInputTextArea, string>("""<textarea class="form-control {0}" {1}></textarea>""")
 {
     [Theory]
     [InlineData(BsFormSize.Large, "form-control-lg")]
@@ -15,7 +13,7 @@ public class BsInputTextAreaTests()
     public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expected)
     {
         // Arrange
-        _value = "";
+        Value = "";
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.Size, formSize));
@@ -28,7 +26,7 @@ public class BsInputTextAreaTests()
     public void PlaintextRendersCorrectly()
     {
         // Arrange
-        _value = "";
+        Value = "";
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.ReadonlyPlaintext, true));

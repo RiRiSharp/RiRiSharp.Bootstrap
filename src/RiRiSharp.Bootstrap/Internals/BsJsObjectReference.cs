@@ -1,4 +1,4 @@
-﻿using Microsoft.JSInterop;
+using Microsoft.JSInterop;
 
 namespace RiRiSharp.Bootstrap.Internals;
 
@@ -8,10 +8,7 @@ internal class BsJsObjectReference : IJSObjectReference
 
     internal BsJsObjectReference(IJSRuntime jsRuntime, string filePath)
     {
-        _moduleTask = new(() =>
-        {
-            return jsRuntime.InvokeAsync<IJSObjectReference>("import", filePath).AsTask();
-        });
+        _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", filePath).AsTask());
     }
 
     public async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object[] args)
@@ -36,12 +33,22 @@ internal class BsJsObjectReference : IJSObjectReference
         GC.SuppressFinalize(this);
     }
 
-    protected virtual async Task Dispose(bool disposing)
+    public void Dispose()
+    {
+        _ = Task.Run(() => Dispose(true));
+    }
+
+    private async Task Dispose(bool disposing)
     {
         if (!disposing)
+        {
             return;
+        }
+
         if (!_moduleTask.IsValueCreated)
+        {
             return;
+        }
 
         var module = await _moduleTask.Value;
         await module.DisposeAsync();

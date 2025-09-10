@@ -1,3 +1,3 @@
-﻿namespace RiRiSharp.Bootstrap.Layout.Containers;
+namespace RiRiSharp.Bootstrap.Layout.Containers;
 
 public class BsContainerXl() : BsContainer("xl");

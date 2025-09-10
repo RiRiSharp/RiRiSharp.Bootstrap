@@ -1,11 +1,11 @@
-﻿namespace RiRiSharp.Bootstrap.Internals;
+namespace RiRiSharp.Bootstrap.Internals;
 
 internal static class BsIdGenerator
 {
-    private static readonly Random Random = new();
+    private static readonly Random _random = new();
 
     internal static string Generate()
     {
-        return $"id-{Random.Next()}";
+        return $"id-{_random.Next()}";
     }
 }

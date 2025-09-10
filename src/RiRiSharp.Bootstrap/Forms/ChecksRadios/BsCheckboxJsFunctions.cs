@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
-internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions
+internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions, IAsyncDisposable
 {
     internal const string JsFileName = "BsCheckboxJsFunctions.js";
-    private readonly BsJsObjectReference _bsJsObjectReference;
+    private readonly BsJsObjectReference _bsJsObjectRef;
 
     internal BsCheckboxJsFunctions(IJSRuntime jsRuntime)
     {
-        _bsJsObjectReference = new BsJsObjectReference(
+        _bsJsObjectRef = new BsJsObjectReference(
             jsRuntime,
             $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{JsFileName}"
         );
@@ -21,9 +21,16 @@ internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions
 
     public async ValueTask InitializeIndeterminateAsync(ElementReference checkboxReference)
     {
-        await _bsJsObjectReference.InvokeVoidAsync(
-            InitIndeterminateJsFunctionName,
-            checkboxReference
-        );
+        await _bsJsObjectRef.InvokeVoidAsync(InitIndeterminateJsFunctionName, checkboxReference);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_bsJsObjectRef is null)
+        {
+            return;
+        }
+
+        await _bsJsObjectRef.DisposeAsync();
     }
 }

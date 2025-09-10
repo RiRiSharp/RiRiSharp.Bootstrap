@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using RiRiSharp.Bootstrap.Forms.FormControl;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;

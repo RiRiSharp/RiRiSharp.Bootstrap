@@ -1,4 +1,4 @@
-﻿using RiRiSharp.Bootstrap.Forms.ChecksRadios.BsLabelButtons;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios.BsLabelButtons;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios.BsLabelButtons;
 

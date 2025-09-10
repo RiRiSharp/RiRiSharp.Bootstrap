@@ -1,10 +1,10 @@
-﻿namespace RiRiSharp.Bootstrap.Forms;
+namespace RiRiSharp.Bootstrap.Forms;
 
 public enum BsFormSize
 {
-    Small,
-    Regular,
-    Large,
+    Small = 0,
+    Regular = 1,
+    Large = 2,
 }
 
 public static class FormSizeExtensions
@@ -16,7 +16,7 @@ public static class FormSizeExtensions
             BsFormSize.Regular => "",
             BsFormSize.Small => "form-control-sm",
             BsFormSize.Large => "form-control-lg",
-            _ => throw new ArgumentOutOfRangeException(nameof(BsFormSize)),
+            _ => throw new ArgumentOutOfRangeException(nameof(formSize), formSize, null),
         };
     }
 }
