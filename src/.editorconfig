@@ -266,20 +266,20 @@ dotnet_diagnostic.CA5394.severity = none
 # | Roslynator |
 # --------------
 dotnet_analyzer_diagnostic.category-roslynator.severity = warning
-
+roslynator_null_check_style = pattern_matching
+roslynator_use_var = always
+roslynator_empty_string_style = literal
+roslynator_use_collection_expression = true
+roslynator_array_creation_type_style = implicit
 
 # RCS1013: Use predefined type
 dotnet_diagnostig.RCS1013.severity = warning
 
 # RCS1014: Use implicitly typed array
-roslynator_array_creation_type_style = implicit
-roslynator_use_collection_expression = true
 dotnet_diagnostig.RCS1014.severity = warning
 
 # RCS1078: Use "" instead of 'string.Empty'
-roslynator_empty_string_style = literal
 dotnet_diagnostig.RCS1078.severity = warning
 
-# RC1248: Normalize null check
-roslynator_null_check_style = pattern_matching
-dotnet_diagnostig.RC1248.severity = warning
+# RCS1248: Normalize null check
+dotnet_diagnostig.RCS1248.severity = warning

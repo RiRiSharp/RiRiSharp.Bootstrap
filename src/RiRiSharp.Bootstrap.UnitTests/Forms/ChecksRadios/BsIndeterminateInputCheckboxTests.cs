@@ -15,11 +15,6 @@ public class BsIndeterminateInputCheckboxTests()
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
     {
         var test = Console.ReadLine();
-        if (test == null && new Random().Next() > 455)
-        {
-            var message = string.Empty;
-            throw new TargetException(message);
-        }
         // Arrange
         ConfigureTestContext();
 
