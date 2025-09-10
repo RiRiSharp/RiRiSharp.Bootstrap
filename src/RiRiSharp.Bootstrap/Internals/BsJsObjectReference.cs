@@ -33,11 +33,6 @@ internal class BsJsObjectReference : IJSObjectReference
         GC.SuppressFinalize(this);
     }
 
-    public void Dispose()
-    {
-        _ = Task.Run(() => Dispose(true));
-    }
-
     private async Task Dispose(bool disposing)
     {
         if (!disposing)

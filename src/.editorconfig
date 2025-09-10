@@ -55,7 +55,7 @@ dotnet_style_prefer_collection_expression = when_types_loosely_match
 dotnet_style_prefer_compound_assignment = true
 dotnet_style_prefer_conditional_expression_over_assignment = true
 dotnet_style_prefer_conditional_expression_over_return = true
-dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
+dotnet_style_prefer_foreach_explicit_cast_in_source = always
 dotnet_style_prefer_inferred_anonymous_type_member_names = true
 dotnet_style_prefer_inferred_tuple_names = true
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true
@@ -66,7 +66,7 @@ dotnet_style_prefer_simplified_interpolation = true
 dotnet_style_readonly_field = true
 
 # Parameter preferences
-dotnet_code_quality_unused_parameters = all: silent
+dotnet_code_quality_unused_parameters = all
 
 # Suppression preferences
 dotnet_remove_unnecessary_suppression_exclusions = none
@@ -266,20 +266,7 @@ dotnet_diagnostic.CA5394.severity = none
 # | Roslynator |
 # --------------
 dotnet_analyzer_diagnostic.category-roslynator.severity = warning
-roslynator_null_check_style = pattern_matching
-roslynator_use_var = always
 roslynator_empty_string_style = literal
-roslynator_use_collection_expression = true
-roslynator_array_creation_type_style = implicit
-
-# RCS1013: Use predefined type
-dotnet_diagnostig.RCS1013.severity = warning
-
-# RCS1014: Use implicitly typed array
-dotnet_diagnostig.RCS1014.severity = warning
 
 # RCS1078: Use "" instead of 'string.Empty'
 dotnet_diagnostig.RCS1078.severity = warning
-
-# RCS1248: Normalize null check
-dotnet_diagnostig.RCS1248.severity = warning
