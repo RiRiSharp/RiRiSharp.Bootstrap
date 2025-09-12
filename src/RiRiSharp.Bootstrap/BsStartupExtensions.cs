@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using RiRiSharp.Bootstrap.Components.Accordion;
-using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 namespace RiRiSharp.Bootstrap;

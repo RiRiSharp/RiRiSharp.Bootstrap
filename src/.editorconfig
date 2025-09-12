@@ -262,11 +262,16 @@ dotnet_diagnostic.CA2007.severity = none
 # CA5394: Random is an insecure random number generator. Use cryptographically secure random number generators when randomness is required for security.
 dotnet_diagnostic.CA5394.severity = none
 
-# --------------
-# | Roslynator |
-# --------------
+
+# ---------------
+# ROSLYNATOR
+# ---------------
 dotnet_analyzer_diagnostic.category-roslynator.severity = warning
 roslynator_empty_string_style = literal
+roslynator_null_check_style = pattern_matching
 
 # RCS1078: Use "" instead of 'string.Empty'
 dotnet_diagnostig.RCS1078.severity = warning
+
+# RCS1078: Normalize null check
+dotnet_diagnostic.RCS1248.severity = warning
