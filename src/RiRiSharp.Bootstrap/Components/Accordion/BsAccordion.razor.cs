@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
@@ -7,7 +6,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordion : BsChildContentComponent
 {
-    private BsAccordionContext _accordionContext;
+    private BsAccordionContext? _accordionContext;
 
     [Parameter]
     public bool AlwaysOpen { get; set; }
@@ -16,7 +15,7 @@ public partial class BsAccordion : BsChildContentComponent
     public BsAccordionDisplayStyle DisplayStyle { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
 
     protected override void OnInitialized()
     {

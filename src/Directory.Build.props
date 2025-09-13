@@ -4,6 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
     <AnalysisMode>All</AnalysisMode>
     <BaseVersion>1.0.0</BaseVersion>
   </PropertyGroup>

@@ -272,21 +272,23 @@ dotnet_naming_style.screaming_snake_case.capitalization = all_upper
 
 # IDE's
 # IDE0005: Remove unnecessary using directives
-dotnet_diagnostic.IDE0005.severity = none # Disabled because for now we do not generate documentation yet
+dotnet_diagnostic.IDE0005.severity = none # Disabled because it requires you to enable documentation generation, and for now we do not generate documentation yet
 
 # IDE0046: Use conditional expression for return
-dotnet_diagnostic.IDE0046.severity = none
+dotnet_diagnostic.IDE0046.severity = none # Code can get ugly / weird quickly, we trust the developer here
 
 # CA's
+# CA1308: Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = none # We have nullability enabled
+
 # CA1308: Normalize strings to uppercase
-dotnet_diagnostic.CA1308.severity = none
+dotnet_diagnostic.CA1308.severity = none # We are not storing strings in databases
 
 # CA2007: Do not directly await a Task
-dotnet_diagnostic.CA2007.severity = none
+dotnet_diagnostic.CA2007.severity = none # In Blazor code this is not recommended (I believe)
 
 # CA5394: Random is an insecure random number generator. Use cryptographically secure random number generators when randomness is required for security.
-dotnet_diagnostic.CA5394.severity = none
-
+dotnet_diagnostic.CA5394.severity = none # We are not working in a security context
 
 # ---------------
 # ROSLYNATOR
