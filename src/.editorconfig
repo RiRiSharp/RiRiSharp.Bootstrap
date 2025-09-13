@@ -209,6 +209,14 @@ dotnet_naming_rule.private_fields_should_be_camel_with_underscore.severity = war
 dotnet_naming_rule.private_fields_should_be_camel_with_underscore.symbols = private_fields
 dotnet_naming_rule.private_fields_should_be_camel_with_underscore.style = camel_with_underscore
 
+dotnet_naming_rule.async_methods_should_end_with_async.severity = warning
+dotnet_naming_rule.async_methods_should_end_with_async.symbols = async_methods
+dotnet_naming_rule.async_methods_should_end_with_async.style = end_with_async
+
+dotnet_naming_rule.const_fields_should_be_all_caps.severity = warning
+dotnet_naming_rule.const_fields_should_be_all_caps.symbols = const_fields
+dotnet_naming_rule.const_fields_should_be_all_caps.style = screaming_snake_case
+
 # Symbol specifications
 
 dotnet_naming_symbols.interface.applicable_kinds = interface
@@ -227,6 +235,13 @@ dotnet_naming_symbols.private_fields.applicable_kinds = field
 dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 dotnet_naming_symbols.private_fields.required_modifiers =
 
+dotnet_naming_symbols.async_methods.applicable_kinds = method
+dotnet_naming_symbols.async_methods.applicable_accessibilities = public, internal, protected, protected_internal, private_protected
+dotnet_naming_symbols.async_methods.required_modifiers = async
+
+dotnet_naming_symbols.const_fields.applicable_kinds = field
+dotnet_naming_symbols.const_fields.applicable_accessibilities = internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.const_fields.required_modifiers = const
 
 # Naming styles
 
@@ -244,6 +259,16 @@ dotnet_naming_style.camel_with_underscore.required_prefix = _
 dotnet_naming_style.camel_with_underscore.required_suffix =
 dotnet_naming_style.camel_with_underscore.word_separator =
 dotnet_naming_style.camel_with_underscore.capitalization = camel_case
+
+dotnet_naming_style.end_with_async.required_prefix =
+dotnet_naming_style.end_with_async.required_suffix = Async
+dotnet_naming_style.end_with_async.word_separator =
+dotnet_naming_style.end_with_async.capitalization = pascal_case
+
+dotnet_naming_style.screaming_snake_case.required_prefix =
+dotnet_naming_style.screaming_snake_case.required_suffix =
+dotnet_naming_style.screaming_snake_case.word_separator = _
+dotnet_naming_style.screaming_snake_case.capitalization = all_upper
 
 # IDE's
 # IDE0005: Remove unnecessary using directives

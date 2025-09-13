@@ -12,9 +12,8 @@ public class BsIndeterminateInputCheckboxTests()
     private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions = Substitute.For<IBsCheckboxJsFunctions>();
 
     [Fact]
-    public async Task IndeterminateInitializationJsCodeGetsExecutedOnce()
+    public async Task IndeterminateInitializationJsCodeGetsExecutedOnceAsync()
     {
-        var test = Console.ReadLine();
         // Arrange
         ConfigureTestContext();
 

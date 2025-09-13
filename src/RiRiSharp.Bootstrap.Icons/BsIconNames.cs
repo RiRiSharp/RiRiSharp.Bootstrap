@@ -2,7 +2,7 @@ namespace RiRiSharp.Bootstrap.Icons;
 
 public static class BsIconNames
 {
-    public const string DigitOneTwoThree = "bi-23";
+    public const string DigitOneTwoThree = "bi-123";
     public const string AlarmFill = "bi-alarm-fill";
     public const string Alarm = "bi-alarm";
     public const string AlignBottom = "bi-align-bottom";

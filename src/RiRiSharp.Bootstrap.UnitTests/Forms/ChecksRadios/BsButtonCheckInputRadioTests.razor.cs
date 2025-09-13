@@ -5,8 +5,8 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 public partial class BsButtonCheckInputRadioTests : BsComponentTests<BsButtonCheckInputRadio<string>>
 {
     private string _boundValue = "";
-    private const string _someValueVar = "someValue";
-    private const string _differentValueVar = "differentValue";
+    private const string SOME_VALUE_VAR = "someValue";
+    private const string DIFFERENT_VALUE_VAR = "differentValue";
 
     public BsButtonCheckInputRadioTests()
         : base($$"""<input class="btn-check {0}" type="radio" name="{{nameof(_boundValue)}}" {1}>""") { }
@@ -15,15 +15,15 @@ public partial class BsButtonCheckInputRadioTests : BsComponentTests<BsButtonChe
     public void MatchingValuesChecksTheRadio()
     {
         // Arrange
-        _boundValue = _someValueVar;
+        _boundValue = SOME_VALUE_VAR;
 
         // Act
-        var cut = GetCut(parameters => parameters.Add(p => p.Value, _someValueVar));
+        var cut = GetCut(parameters => parameters.Add(p => p.Value, SOME_VALUE_VAR));
 
         // Assert
         // One might ask why a? And there's a (no pun intended) super obscure reason for it.
         // This can be found here: https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web/src/Forms/InputRadio.cs#L78-L95
-        var expectedMarkupString = GetExpectedHtml("", $"""value="{_someValueVar}" checked="a" """);
+        var expectedMarkupString = GetExpectedHtml("", $"""value="{SOME_VALUE_VAR}" checked="a" """);
         cut.MarkupMatches(expectedMarkupString);
     }
 

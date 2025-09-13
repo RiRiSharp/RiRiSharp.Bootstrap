@@ -4,8 +4,8 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
 public partial class BsLabelButton : BsChildContentComponent
 {
-    private const string _button = "btn";
-    private readonly string _buttonLabelClasses = _button;
+    private const string BUTTON = "btn";
+    private readonly string _buttonLabelClasses = BUTTON;
 
     public BsLabelButton(string additionalButtonLabelClasses = "")
     {
@@ -14,6 +14,6 @@ public partial class BsLabelButton : BsChildContentComponent
             return;
         }
 
-        _buttonLabelClasses = $"{_button} {additionalButtonLabelClasses}";
+        _buttonLabelClasses = $"{BUTTON} {additionalButtonLabelClasses}";
     }
 }

@@ -7,65 +7,65 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 internal class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
 {
-    internal const string JsFileName = "accordionFunctions.js";
+    internal const string JS_FILE_NAME = "accordionFunctions.js";
     private readonly BsJsObjectReference _bsJsObjectRef;
 
     public BsAccordionJsFunctions(IJSRuntime jsRuntime)
     {
         _bsJsObjectRef = new BsJsObjectReference(
             jsRuntime,
-            $"./_content/{typeof(BsAccordionJsFunctions).Assembly.GetName().Name}/js/{JsFileName}"
+            $"./_content/{typeof(BsAccordionJsFunctions).Assembly.GetName().Name}/js/{JS_FILE_NAME}"
         );
     }
 
-    internal const string CollapseAll = "collapseAll";
+    internal const string COLLAPSE_ALL = "collapseAll";
 
     public async Task CollapseAllAsync(ElementReference accordionRef)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(CollapseAll, accordionRef);
+        await _bsJsObjectRef.InvokeVoidAsync(COLLAPSE_ALL, accordionRef);
     }
 
-    internal const string ShowAll = "showAll";
+    internal const string SHOW_ALL = "showAll";
 
     public async Task ShowAllAsync(ElementReference accordionRef)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(ShowAll, accordionRef);
+        await _bsJsObjectRef.InvokeVoidAsync(SHOW_ALL, accordionRef);
     }
 
-    internal const string CollapseAllButOne = "collapseAllButOne";
+    internal const string COLLAPSE_ALL_BUT_ONE = "collapseAllButOne";
 
     public async Task CollapseAllButOneAsync(ElementReference accordionRef, ElementReference accordionItemRef)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(CollapseAllButOne, accordionRef, accordionItemRef);
+        await _bsJsObjectRef.InvokeVoidAsync(COLLAPSE_ALL_BUT_ONE, accordionRef, accordionItemRef);
     }
 
-    internal const string Toggle = "toggle";
+    internal const string TOGGLE = "toggle";
 
     public async Task ToggleAsync(ElementReference accordionItemRef, bool alwaysOpen = false)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(Toggle, accordionItemRef, alwaysOpen);
+        await _bsJsObjectRef.InvokeVoidAsync(TOGGLE, accordionItemRef, alwaysOpen);
     }
 
-    internal const string Show = "show";
+    internal const string SHOW = "show";
 
     public async Task ShowAsync(ElementReference accordionItemRef, bool alwaysOpen = false)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(Show, accordionItemRef, alwaysOpen);
+        await _bsJsObjectRef.InvokeVoidAsync(SHOW, accordionItemRef, alwaysOpen);
     }
 
-    internal const string Collapse = "collapse";
+    internal const string COLLAPSE = "collapse";
 
     public async Task CollapseAsync(ElementReference accordionItemRef)
     {
-        await _bsJsObjectRef.InvokeVoidAsync(Collapse, accordionItemRef);
+        await _bsJsObjectRef.InvokeVoidAsync(COLLAPSE, accordionItemRef);
     }
 
-    internal const string RegisterCollapseCallback = "registerCollapseCallback";
+    internal const string REGISTER_COLLAPSE_CALLBACK = "registerCollapseCallback";
 
     public async Task RegisterCollapseCallbackAsync<T>(ElementReference buttonRef, DotNetObjectReference<T> dotNetRef)
         where T : class, IHasCollapseState
     {
-        await _bsJsObjectRef.InvokeVoidAsync(RegisterCollapseCallback, buttonRef, dotNetRef);
+        await _bsJsObjectRef.InvokeVoidAsync(REGISTER_COLLAPSE_CALLBACK, buttonRef, dotNetRef);
     }
 
     public async ValueTask DisposeAsync()

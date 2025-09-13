@@ -11,7 +11,7 @@ namespace RiRiSharp.Bootstrap.Forms.Selects;
 /// <typeparam name="TValue">The value type you want to select</typeparam>
 public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentComponent
 {
-    private const string _formSelect = "form-select";
+    private const string FORM_SELECT = "form-select";
 
     [Parameter]
     public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
@@ -36,7 +36,7 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
     private string GetBsComponentSpecificClasses()
     {
         var sizeClass = DetermineSizeClass();
-        return $"{_formSelect} {sizeClass}";
+        return $"{FORM_SELECT} {sizeClass}";
     }
 
     private string DetermineSizeClass()
@@ -44,8 +44,8 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
         return FormSize switch
         {
             BsFormSize.Regular => "",
-            BsFormSize.Small => $"{_formSelect}-sm",
-            BsFormSize.Large => $"{_formSelect}-lg",
+            BsFormSize.Small => $"{FORM_SELECT}-sm",
+            BsFormSize.Large => $"{FORM_SELECT}-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(FormSize)),
         };
     }

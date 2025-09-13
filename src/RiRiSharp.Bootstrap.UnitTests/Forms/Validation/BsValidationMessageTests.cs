@@ -11,14 +11,14 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.Validation;
 
 public class BsValidationMessageTests : BunitContext
 {
-    private const string _errorMessage = "Error message";
+    private const string ERROR_MESSAGE = "Error message";
     private readonly TestModel _model;
     private readonly EditContext _editContext;
     private IRenderedComponent<BsEditForm> _editContextComponent;
 
     [StringSyntax("Html")]
-    private const string _htmlFormat = $$"""<div class="invalid-feedback {0}" {1}>{{_errorMessage}}</div>""";
-    private static CompositeFormat HtmlFormatCache => CompositeFormat.Parse(_htmlFormat);
+    private const string HTML_FORMAT = $$"""<div class="invalid-feedback {0}" {1}>{{ERROR_MESSAGE}}</div>""";
+    private static CompositeFormat HtmlFormatCache => CompositeFormat.Parse(HTML_FORMAT);
 
     public BsValidationMessageTests()
     {
@@ -27,7 +27,7 @@ public class BsValidationMessageTests : BunitContext
     }
 
     [Fact]
-    public async Task DefaultWorks()
+    public async Task DefaultWorksAsync()
     {
         // Arrange
         var cut = GetCut();
@@ -45,7 +45,7 @@ public class BsValidationMessageTests : BunitContext
     [InlineData("aclass")]
     [InlineData("aclass bclass")]
     [InlineData("aclass blass class")]
-    public async Task PassingClassesWorks(string classes)
+    public async Task PassingClassesWorksAsync(string classes)
     {
         // Arrange
         var cut = GetCut(parameters => parameters.Add(x => x.Classes, classes));
@@ -72,7 +72,7 @@ public class BsValidationMessageTests : BunitContext
             attributeKey1="attributeValue1" attributeKey2="attributeValue2"
             """
     )]
-    public async Task ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
+    public async Task ExtraAttributesWorksAsync(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
         var cut = GetCut(parameters =>
@@ -127,7 +127,7 @@ public class BsValidationMessageTests : BunitContext
         var store = new ValidationMessageStore(_editContext);
         var field = FieldIdentifier.Create(() => _model.Property);
         store.Clear(field);
-        store.Add(field, _errorMessage);
+        store.Add(field, ERROR_MESSAGE);
         await _editContextComponent.InvokeAsync(_editContext.NotifyValidationStateChanged);
     }
 

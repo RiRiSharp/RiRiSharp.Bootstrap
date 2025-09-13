@@ -4,14 +4,14 @@
 @code {
 
     [Theory]
-    [InlineData("someValueId", _someValueVar)]
-    [InlineData("differentValueId", _differentValueVar)]
+    [InlineData("someValueId", SOME_VALUE_VAR)]
+    [InlineData("differentValueId", DIFFERENT_VALUE_VAR)]
     public void ClickingRadioSetsCorrectValue(string idToClick, string expectedBoundValue)
     {
         // Arrange
         var fragment = Render(@<BsInputRadioGroup @bind-Value="_boundValue">
-            <BsButtonCheckInputRadio Value="_someValueVar" id="someValueId"/>
-            <BsButtonCheckInputRadio Value="_differentValueVar" id="differentValueId"/>
+            <BsButtonCheckInputRadio Value="SOME_VALUE_VAR" id="someValueId"/>
+            <BsButtonCheckInputRadio Value="DIFFERENT_VALUE_VAR" id="differentValueId"/>
         </BsInputRadioGroup>);
 
         // Act

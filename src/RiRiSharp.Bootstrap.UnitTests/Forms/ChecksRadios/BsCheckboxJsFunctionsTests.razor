@@ -25,8 +25,8 @@
         var reference = default(ElementReference);
 
         JSInterop
-            .SetupModule($"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JsFileName}")
-            .SetupVoid(BsCheckboxJsFunctions.InitIndeterminateJsFunctionName, reference)
+            .SetupModule($"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}")
+            .SetupVoid(BsCheckboxJsFunctions.INIT_INDETERMINATE_JS_FUNCTION_NAME, reference)
             .SetVoidResult();
         
         var functions = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
