@@ -17,7 +17,7 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
     public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
 
     [Parameter]
-    public string Classes { get; set; }
+    public string? Classes { get; set; }
     public ElementReference HtmlRef => Element.GetValueOrDefault();
 
     protected override void OnParametersSet()

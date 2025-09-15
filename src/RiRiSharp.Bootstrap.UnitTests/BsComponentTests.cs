@@ -52,7 +52,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         InlineData("aclass bclass"),
         InlineData("aclass blass class")
     ]
-    public void PassingClassesWorks(string classes)
+    public void PassingClassesWorks(string? classes)
     {
         // Arrange
         ConfigureTestContext();
@@ -102,7 +102,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     }
 
     protected virtual IRenderedComponent<TComponent> GetCut(
-        Action<ComponentParameterCollectionBuilder<TComponent>> action = null
+        Action<ComponentParameterCollectionBuilder<TComponent>>? action = null
     )
     {
         return Render<TComponent>(parameters =>
@@ -116,7 +116,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
 
     protected virtual void ConfigureTestContext() { }
 
-    protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
+    protected virtual string GetExpectedHtml(string? classes = null, string? attributes = null)
     {
         return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
     }

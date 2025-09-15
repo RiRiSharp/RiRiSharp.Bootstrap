@@ -2,25 +2,30 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapseState
 {
-    private DotNetObjectReference<BsAccordionCollapse> _dotNetRef;
+    private DotNetObjectReference<BsAccordionCollapse> _dotNetRef = null!;
     private bool _initialCollapse;
 
     public bool Collapsed { get; set; } = true;
 
     [CascadingParameter]
-    public BsAccordionItemContext AccordionItemContext { get; set; }
+    public BsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; }
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        if (AccordionItemContext is null)
+        {
+            throw new CascadingParameterNotProvidedException(typeof(BsAccordionItemContext));
+        }
         Collapsed = AccordionItemContext.Collapsed;
         _initialCollapse = Collapsed;
     }

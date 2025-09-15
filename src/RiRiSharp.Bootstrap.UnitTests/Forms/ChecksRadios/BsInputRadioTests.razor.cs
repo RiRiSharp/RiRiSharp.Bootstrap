@@ -5,7 +5,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
 {
-    private string _boundValue = "";
+    private string? _boundValue = "";
     private const string SOME_VALUE_VAR = "someValue";
     private const string DIFFERENT_VALUE_VAR = "differentValue";
 
@@ -29,7 +29,7 @@ public partial class BsInputRadioTests : BsComponentTests<BsInputRadio<string>>
     }
 
     protected override IRenderedComponent<BsInputRadio<string>> GetCut(
-        Action<ComponentParameterCollectionBuilder<BsInputRadio<string>>> action = null
+        Action<ComponentParameterCollectionBuilder<BsInputRadio<string>>>? action = null
     )
     {
         var inputGroupComponent = Render<BsInputRadioGroup<string>>(parameters =>

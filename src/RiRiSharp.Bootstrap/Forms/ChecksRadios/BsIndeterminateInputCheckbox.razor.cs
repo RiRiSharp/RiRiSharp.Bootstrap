@@ -18,7 +18,7 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
         }
     }
 
-    protected override bool TryParseValueFromString(string value, out bool? result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(string? value, out bool? result, out string validationErrorMessage)
     {
         throw new NotImplementedException("This method is not necessary for parsing input checkboxes.");
     }

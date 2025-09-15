@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
 namespace RiRiSharp.Bootstrap.Forms.FormControl;
@@ -10,7 +11,11 @@ namespace RiRiSharp.Bootstrap.Forms.FormControl;
 /// </remark>
 public partial class BsInputColor : BsInputBase<Color>
 {
-    protected override bool TryParseValueFromString(string value, out Color result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(
+        string? value,
+        out Color result,
+        [NotNullWhen(false)] out string? validationErrorMessage
+    )
     {
         if (value is null)
         {

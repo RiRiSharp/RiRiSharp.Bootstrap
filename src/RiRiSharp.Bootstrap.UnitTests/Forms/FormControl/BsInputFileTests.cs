@@ -42,7 +42,7 @@ public class BsInputFileTests : BunitContext
     [InlineData("aclass")]
     [InlineData("aclass bclass")]
     [InlineData("aclass blass class")]
-    public void PassingClassesWorks(string classes)
+    public void PassingClassesWorks(string? classes)
     {
         // Arrange
         ConfigureTestContext();
@@ -104,7 +104,7 @@ public class BsInputFileTests : BunitContext
     }
 
     protected IRenderedComponent<BsInputFile> GetCut(
-        Action<ComponentParameterCollectionBuilder<BsInputFile>> action = null
+        Action<ComponentParameterCollectionBuilder<BsInputFile>>? action = null
     )
     {
         return Render<BsInputFile>(parameters =>
@@ -114,7 +114,7 @@ public class BsInputFileTests : BunitContext
         });
     }
 
-    protected virtual string GetExpectedHtml(string classes = null, string attributes = null)
+    protected virtual string GetExpectedHtml(string? classes = null, string? attributes = null)
     {
         return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
     }

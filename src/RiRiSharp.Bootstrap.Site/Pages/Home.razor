@@ -2,10 +2,10 @@
 @using RiRiSharp.Bootstrap.Components.Accordion
 
 @code {
-    private BsAccordion _accordion1;
-    private BsAccordion _accordion2;
-    private BsAccordionItem _accordionItem1;
-    private BsAccordionItem _accordionItem2;
+    private BsAccordion? _accordion1;
+    private BsAccordion? _accordion2;
+    private BsAccordionItem? _accordionItem1;
+    private BsAccordionItem? _accordionItem2;
 }
 <PageTitle>Home</PageTitle>
 
@@ -48,22 +48,22 @@
         </BsAccordionCollapse>
     </BsAccordionItem>
 </BsAccordion>
-<button class="btn btn-primary" @onclick="() => _accordion1.CollapseAllAsync()">
+<button class="btn btn-primary" @onclick="() => _accordion1!.CollapseAllAsync()">
     Collapse All (1)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordion1.ShowAllAsync()">
+<button class="btn btn-primary" @onclick="() => _accordion1!.ShowAllAsync()">
     Show All (1)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordion1.CollapseAllButOneAsync(_accordionItem1)">
+<button class="btn btn-primary" @onclick="() => _accordion1!.CollapseAllButOneAsync(_accordionItem1!)">
     Show All But One(1)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1.ToggleAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem1!.ToggleAsync()">
     Toggle Item 2 (1)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1.ShowAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem1!.ShowAsync()">
     Show Item 2 (1)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1.CollapseAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem1!.CollapseAsync()">
     Collapse Item 2 (1)
 </button>
 <h3>Accordion test 2</h3>
@@ -105,21 +105,21 @@
         </BsAccordionCollapse>
     </BsAccordionItem>
 </BsAccordion>
-<button class="btn btn-primary" @onclick="() => _accordion2.CollapseAllAsync()">
+<button class="btn btn-primary" @onclick="() => _accordion2!.CollapseAllAsync()">
     Collapse All (2)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordion2.ShowAllAsync()">
+<button class="btn btn-primary" @onclick="() => _accordion2!.ShowAllAsync()">
     Show All (2)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordion2.CollapseAllButOneAsync(_accordionItem2)">
+<button class="btn btn-primary" @onclick="() => _accordion2!.CollapseAllButOneAsync(_accordionItem2!)">
     Show All But One(2)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2.ToggleAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem2!.ToggleAsync()">
     Toggle Item 2 (2)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2.ShowAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem2!.ShowAsync()">
     Show Item 2 (2)
 </button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2.CollapseAsync()">
+<button class="btn btn-primary" @onclick="() => _accordionItem2!.CollapseAsync()">
     Collapse Item 2 (2)
 </button>

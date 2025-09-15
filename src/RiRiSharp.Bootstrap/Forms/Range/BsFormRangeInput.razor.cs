@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace RiRiSharp.Bootstrap.Forms.Range;
@@ -5,7 +6,11 @@ namespace RiRiSharp.Bootstrap.Forms.Range;
 public partial class BsFormRangeInput<TValue> : BsInputBase<TValue>
     where TValue : INumber<TValue>
 {
-    protected override bool TryParseValueFromString(string value, out TValue result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(
+        string? value,
+        [MaybeNullWhen(false)] out TValue result,
+        [NotNullWhen(false)] out string? validationErrorMessage
+    )
     {
         if (TValue.TryParse(value, null, out result))
         {

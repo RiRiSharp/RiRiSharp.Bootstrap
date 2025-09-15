@@ -8,7 +8,7 @@ public abstract class BsInputBaseComponentTests<TComponent, TValue>([StringSynta
     : BsComponentTests<TComponent>(htmlFormat)
     where TComponent : InputBase<TValue>, IBsComponent
 {
-    protected TValue Value { get; set; }
+    protected TValue? Value { get; set; }
 
     protected override void BindParameters(ComponentParameterCollectionBuilder<TComponent> parameterBuilder)
     {

@@ -4,7 +4,7 @@ namespace RiRiSharp.Bootstrap.Forms.FormControl;
 
 public abstract class BsFormControlTextBase<TValue> : BsInputBase<TValue>
 {
-    private readonly string _additionalClasses;
+    private readonly string? _additionalClasses;
 
     protected BsFormControlTextBase(string additionalClasses = "")
     {

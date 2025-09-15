@@ -39,6 +39,6 @@ public class BsEditContextBuilderTests
 
     private sealed class TestObject
     {
-        public string SomeProperty { get; set; }
+        public string? SomeProperty { get; set; }
     }
 }

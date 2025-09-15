@@ -11,7 +11,7 @@ internal class BsJsObjectReference : IJSObjectReference
         _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", filePath).AsTask());
     }
 
-    public async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object[] args)
+    public async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object?[]? args)
     {
         var module = await _moduleTask.Value;
         return await module.InvokeAsync<TValue>(identifier, args);
@@ -20,7 +20,7 @@ internal class BsJsObjectReference : IJSObjectReference
     public async ValueTask<TValue> InvokeAsync<TValue>(
         string identifier,
         CancellationToken cancellationToken,
-        object[] args
+        object?[]? args
     )
     {
         var module = await _moduleTask.Value;

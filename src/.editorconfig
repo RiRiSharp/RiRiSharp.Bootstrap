@@ -300,5 +300,9 @@ roslynator_null_check_style = pattern_matching
 # RCS1078: Use "" instead of 'string.Empty'
 dotnet_diagnostig.RCS1078.severity = warning
 
+# RCS1213: Remove unused member declaration
+dotnet_diagnostic.RCS1213.severity = warning
+
 # RCS1078: Normalize null check
 dotnet_diagnostic.RCS1248.severity = warning
+

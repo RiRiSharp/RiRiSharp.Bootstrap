@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Forms.FormControl;
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
 public class BsInputTextTests()
-    : BsInputBaseComponentTests<BsInputText, string>("""<input class="form-control {0}" type="text" {1}></input>""")
+    : BsInputBaseComponentTests<BsInputText, string?>("""<input class="form-control {0}" type="text" {1}></input>""")
 {
     [Theory]
     [InlineData(BsFormSize.Large, "form-control-lg")]

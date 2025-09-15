@@ -11,7 +11,7 @@ public class BsButtonCheckInputRadio<TValue> : InputRadio<TValue>, IBsComponent
     public BsFormCheckOptions FormCheckOptions { get; set; } = BsFormCheckOptions.Stacked;
 
     [Parameter]
-    public string Classes { get; set; }
+    public string? Classes { get; set; }
     public ElementReference HtmlRef => Element.GetValueOrDefault();
 
     protected override void OnParametersSet()

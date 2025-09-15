@@ -8,7 +8,7 @@ namespace RiRiSharp.Bootstrap.Forms.FormControl;
 public class BsInputFile : InputFile
 {
     [Parameter]
-    public string Classes { get; set; }
+    public string? Classes { get; set; }
 
     [Parameter]
     public BsFormSize FormSize { get; set; } = BsFormSize.Regular;

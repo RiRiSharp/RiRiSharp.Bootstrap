@@ -27,7 +27,7 @@ internal static class BsAttributeUtilities
     /// <param name="additionalAttributes">Attributes, usually on a component</param>
     /// <param name="classNames">Space seperated "list" of classes</param>
     /// <returns>A combination of the provided classNames and the class names present in the attributes dictionary</returns>
-    private static string CombineClassNames(Dictionary<string, object> additionalAttributes, string classNames)
+    private static string CombineClassNames(Dictionary<string, object>? additionalAttributes, string? classNames)
     {
         if (additionalAttributes is null || !additionalAttributes.TryGetValue("class", out var @class))
         {
@@ -38,7 +38,7 @@ internal static class BsAttributeUtilities
 
         if (string.IsNullOrEmpty(classAttributeValue))
         {
-            return classNames;
+            return "";
         }
 
         return string.IsNullOrEmpty(classNames) ? classAttributeValue : $"{classAttributeValue} {classNames}";
@@ -51,11 +51,16 @@ internal static class BsAttributeUtilities
     /// <param name="classNames">The classes which will overwrite to the class attribute of the attribute dictionary</param>
     /// <returns>A copy of the attribute dictionary where the classes attribute is overwritten.</returns>
     internal static IDictionary<string, object> AssignClassNames(
-        IDictionary<string, object> additionalAttributes,
+        IDictionary<string, object>? additionalAttributes,
         string classNames
     )
     {
-        var attributes = additionalAttributes?.ToDictionary() ?? [];
+        var attributes = new Dictionary<string, object>();
+        if (additionalAttributes is not null)
+        {
+            attributes = additionalAttributes.ToDictionary();
+        }
+
         AssignClassNames(attributes, classNames);
         return attributes;
     }
@@ -67,8 +72,8 @@ internal static class BsAttributeUtilities
     /// <param name="classNames">The classes which will overwrite to the class attribute of the attribute dictionary</param>
     /// <returns>A copy of the attribute dictionary where the classes attribute is overwritten.</returns>
     internal static IReadOnlyDictionary<string, object> AssignClassNames(
-        IReadOnlyDictionary<string, object> additionalAttributes,
-        string classNames
+        IReadOnlyDictionary<string, object>? additionalAttributes,
+        string? classNames
     )
     {
         var attributes = additionalAttributes?.ToDictionary() ?? [];
@@ -76,8 +81,9 @@ internal static class BsAttributeUtilities
         return attributes;
     }
 
-    private static void AssignClassNames(Dictionary<string, object> additionalAttributes, string classNames)
+    private static void AssignClassNames(Dictionary<string, object>? additionalAttributes, string? classNames)
     {
+        additionalAttributes ??= [];
         var allClasses = CombineClassNames(additionalAttributes, classNames);
         // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes
         additionalAttributes["class"] = allClasses
