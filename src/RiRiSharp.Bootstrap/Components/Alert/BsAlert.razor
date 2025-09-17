@@ -1,0 +1,16 @@
+@using RiRiSharp.Bootstrap.Components.CloseButton
+@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+@if (_dismissed) return;
+<div role="alert" @attributes="AdditionalAttributes"
+     class="alert @(Variant.ToBootstrapClass()) @(DismissableClass) @(AnimationClass) @(Classes)" @ref="HtmlRef">
+    @(ChildContent)
+    @switch (Dismissable)
+    {
+        case true when DismissContent is null:
+            <BsCloseButton @onclick="DismissAsync"/>
+            break;
+        case true:
+            @(DismissContent)
+            break;
+    }
+</div>

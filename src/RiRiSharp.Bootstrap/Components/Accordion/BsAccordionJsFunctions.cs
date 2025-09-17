@@ -5,7 +5,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
 
-internal class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
+internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
 {
     internal const string JS_FILE_NAME = "accordionFunctions.js";
     private readonly BsJsObjectReference _bsJsObjectRef;
@@ -70,11 +70,6 @@ internal class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposabl
 
     public async ValueTask DisposeAsync()
     {
-        if (_bsJsObjectRef is null)
-        {
-            return;
-        }
-
         await _bsJsObjectRef.DisposeAsync();
     }
 }
