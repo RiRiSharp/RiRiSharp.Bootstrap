@@ -97,11 +97,15 @@ public class BsValidationMessageTests : BunitContext
         {
             _ = parameters
                 .Add(p => p.EditContext, _editContext)
-                .AddChildContent<BsValidationMessage<string?>>(pms =>
-                {
-                    BindParameters(pms);
-                    action?.Invoke(pms);
-                });
+                .Add<BsValidationMessage<string?>, EditContext>(
+                    p => p.ChildContent,
+                    _ =>
+                        pms =>
+                        {
+                            BindParameters(pms);
+                            action?.Invoke(pms);
+                        }
+                );
         });
         return _editContextComponent.FindComponent<BsValidationMessage<string?>>();
     }

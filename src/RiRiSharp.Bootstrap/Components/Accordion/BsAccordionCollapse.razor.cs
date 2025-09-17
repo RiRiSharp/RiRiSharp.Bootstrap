@@ -14,7 +14,7 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
     public bool Collapsed { get; set; } = true;
 
     [CascadingParameter]
-    public BsAccordionItemContext? AccordionItemContext { get; set; }
+    public IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
     private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
@@ -24,10 +24,10 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
         base.OnInitialized();
         if (AccordionItemContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(BsAccordionItemContext));
+            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
         }
-        Collapsed = AccordionItemContext.Collapsed;
-        _initialCollapse = Collapsed;
+
+        _initialCollapse = AccordionItemContext.Collapsed;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

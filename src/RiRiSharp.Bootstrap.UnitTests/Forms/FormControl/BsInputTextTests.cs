@@ -4,8 +4,10 @@ using RiRiSharp.Bootstrap.Forms.FormControl;
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.FormControl;
 
 public class BsInputTextTests()
-    : BsInputBaseComponentTests<BsInputText, string?>("""<input class="form-control {0}" type="text" {1}></input>""")
+    : BsInputBaseComponentTests<BsInputText, string?>("""<input class="{0}" type="text" {1}></input>""")
 {
+    protected override string ClassesForDefaultTests => "form-control";
+
     [Theory]
     [InlineData(BsFormSize.Large, "form-control-lg")]
     [InlineData(BsFormSize.Regular, "")]
@@ -19,7 +21,7 @@ public class BsInputTextTests()
         var cut = GetCut(parameters => parameters.Add(p => p.Size, formSize));
 
         // Assert
-        cut.MarkupMatches(GetExpectedHtml(expected, "value=\"\""));
+        cut.MarkupMatches(GetExpectedHtml($"{expected} {ClassesForDefaultTests}", "value=\"\""));
     }
 
     [Fact]
@@ -32,6 +34,6 @@ public class BsInputTextTests()
         var cut = GetCut(parameters => parameters.Add(p => p.ReadonlyPlaintext, true));
 
         // Assert
-        cut.MarkupMatches("""<input readonly class="form-control-plaintext" type="text" value=""/>""");
+        cut.MarkupMatches(GetExpectedHtml("form-control-plaintext", "value=\"\" readonly=\"\""));
     }
 }

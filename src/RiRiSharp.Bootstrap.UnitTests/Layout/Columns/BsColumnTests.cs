@@ -2,8 +2,10 @@ using RiRiSharp.Bootstrap.Layout.Columns;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Layout.Columns;
 
-public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}" {1}></div>""")
+public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="{0}" {1}></div>""")
 {
+    protected override string ClassesForDefaultTests => "col";
+
     [Fact]
     public void ColumnRenderingWorksInSingularForm()
     {
@@ -11,7 +13,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
         var cut = GetCut(parameters => parameters.Add(p => p.ColOption, BsColumnOptions.Col1));
 
         // Assert
-        cut.MarkupMatches("""<div class="col-1"></div>""");
+        cut.MarkupMatches(GetExpectedHtml("col-1"));
     }
 
     [Fact]
@@ -23,7 +25,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
         );
 
         // Assert
-        cut.MarkupMatches("""<div class="col-sm-4 col-md-6"></div>""");
+        cut.MarkupMatches(GetExpectedHtml("col-sm-4 col-md-6"));
     }
 
     [Fact]
@@ -35,7 +37,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
                 .Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
-        cut.MarkupMatches("""<div class="col-sm-4 col-md-6"></div>""");
+        cut.MarkupMatches(GetExpectedHtml("col-sm-4 col-md-6"));
     }
 
     [Fact]
@@ -43,7 +45,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
     {
         var cut = GetCut(parameters => parameters.Add(p => p.OffsetOption, BsColumnOptions.Col1));
 
-        cut.MarkupMatches(GetExpectedHtml("offset-1", ""));
+        cut.MarkupMatches(GetExpectedHtml($"{ClassesForDefaultTests} offset-1", ""));
     }
 
     [Fact]
@@ -53,7 +55,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
             parameters.Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
-        cut.MarkupMatches(GetExpectedHtml("offset-sm-4 offset-md-6", ""));
+        cut.MarkupMatches(GetExpectedHtml($"{ClassesForDefaultTests} offset-sm-4 offset-md-6", ""));
     }
 
     [Fact]
@@ -65,6 +67,6 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="col {0}
                 .Add(p => p.OffsetOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
-        cut.MarkupMatches(GetExpectedHtml("offset-sm-4 offset-md-6", ""));
+        cut.MarkupMatches(GetExpectedHtml($"{ClassesForDefaultTests} offset-sm-4 offset-md-6", ""));
     }
 }

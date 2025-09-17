@@ -7,13 +7,13 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionItem : BsChildContentComponent
 {
-    private BsAccordionItemContext _accordionItemContext = null!;
+    public IBsAccordionItemContext AccordionItemContext { get; private set; } = null!;
 
     [Parameter]
     public bool InitialCollapsed { get; set; } = true;
 
     [CascadingParameter]
-    private BsAccordionContext? AccordionContext { get; set; }
+    private IBsAccordionContext? AccordionContext { get; set; }
 
     [Inject]
     private IBsAccordionJsFunctions AccordionFunctions { get; set; } = null!;
@@ -23,9 +23,10 @@ public partial class BsAccordionItem : BsChildContentComponent
         base.OnInitialized();
         if (AccordionContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(BsAccordionContext));
+            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionContext));
         }
-        _accordionItemContext = new BsAccordionItemContext(this);
+
+        AccordionItemContext = new BsAccordionItemContext(this);
     }
 
     public async Task ToggleAsync()

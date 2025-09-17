@@ -11,6 +11,8 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
 {
     protected CompositeFormat HtmlFormatCache => CompositeFormat.Parse(htmlFormat);
     protected virtual bool SkipRefCheck => false;
+    protected virtual string ClassesForDefaultTests => "";
+    protected virtual string AttributesForDefaultTests => "";
 
     [Fact]
     public void DefaultWorks()
@@ -22,7 +24,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         var cut = GetCut();
 
         // Assert
-        var expectedMarkupString = GetExpectedHtml("", "");
+        var expectedMarkupString = GetExpectedHtml(ClassesForDefaultTests, AttributesForDefaultTests);
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -44,48 +46,37 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         Assert.NotEqual(default, cut.Instance.HtmlRef);
     }
 
-    [
-        Theory,
-        InlineData(null),
-        InlineData(""),
-        InlineData("aclass"),
-        InlineData("aclass bclass"),
-        InlineData("aclass blass class")
-    ]
+    [Theory]
+    [InlineData("")]
+    [InlineData("aclass")]
+    [InlineData("aclass bclass")]
+    [InlineData("aclass blass class")]
     public void PassingClassesWorks(string? classes)
     {
         // Arrange
         ConfigureTestContext();
+        classes += " " + ClassesForDefaultTests;
 
         // Act
         var cut = GetCut(parameters => parameters.Add(x => x.Classes, classes));
 
         // Assert
-        var expectedMarkupString = GetExpectedHtml(classes, "");
+        var expectedMarkupString = GetExpectedHtml(classes, AttributesForDefaultTests);
         cut.MarkupMatches(expectedMarkupString);
     }
 
-    [
-        Theory,
-        InlineData(
-            new[] { "attributeKey" },
-            new[] { "attributeValue" },
-            """
-                attributeKey="attributeValue"
-                """
-        ),
-        InlineData(
-            new[] { "attributeKey1", "attributeKey2" },
-            new[] { "attributeValue1", "attributeValue2" },
-            """
-                attributeKey1="attributeValue1" attributeKey2="attributeValue2"
-                """
-        )
-    ]
+    [Theory]
+    [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" }, """attributeKey="attributeValue" """)]
+    [InlineData(
+        new[] { "attributeKey1", "attributeKey2" },
+        new[] { "attributeValue1", "attributeValue2" },
+        """ attributeKey1="attributeValue1" attributeKey2="attributeValue2" """
+    )]
     public void ExtraAttributesWorks(string[] attributeKeys, string[] attributeValues, string expected)
     {
         // Arrange
         ConfigureTestContext();
+        expected += " " + AttributesForDefaultTests;
 
         // Act
         var cut = GetCut(parameters =>
@@ -97,7 +88,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         });
 
         // Assert
-        var expectedMarkupString = GetExpectedHtml("", expected);
+        var expectedMarkupString = GetExpectedHtml(ClassesForDefaultTests, expected);
         cut.MarkupMatches(expectedMarkupString);
     }
 

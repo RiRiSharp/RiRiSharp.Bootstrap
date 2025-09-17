@@ -1,6 +1,6 @@
 namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
-public class BsAccordionItemContext(BsAccordionItem accordionItem)
+internal class BsAccordionItemContext(BsAccordionItem accordionItem) : IBsAccordionItemContext
 {
     public bool Collapsed => accordionItem.InitialCollapsed;
 

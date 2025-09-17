@@ -1,35 +1,40 @@
-﻿@using RiRiSharp.Bootstrap.Forms.ChecksRadios
-@inherits BunitContext
-@code {
+﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 
+namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
+
+public class BsCheckboxJsFunctionsTests : BunitContext
+{
     [Fact]
-    public void ConstructorWorks()
+    public async Task ConstructorWorksAsync()
     {
         // Arrange + Act
         try
         {
-            _ = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
+            await using var x = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
         }
         catch (Exception ex)
         {
             // Assert
             Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
+            throw;
         }
     }
 
     [Fact]
-    public async Task CallingInitializeIndeterminateDoesNotThrowException()
+    public async Task CallingInitializeIndeterminateDoesNotThrowExceptionAsync()
     {
         // Arrange
-
         var reference = default(ElementReference);
 
-        JSInterop
-            .SetupModule($"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}")
+        _ = JSInterop
+            .SetupModule(
+                $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}"
+            )
             .SetupVoid(BsCheckboxJsFunctions.INIT_INDETERMINATE_JS_FUNCTION_NAME, reference)
             .SetVoidResult();
-        
-        var functions = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
+
+        await using var functions = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
 
         // Act
         try
@@ -40,6 +45,7 @@
         {
             // Assert
             Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
+            throw;
         }
     }
 }

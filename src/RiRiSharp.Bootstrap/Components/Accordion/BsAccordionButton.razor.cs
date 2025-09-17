@@ -14,10 +14,9 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
     private DotNetObjectReference<BsAccordionButton> _dotNetRef = null!;
 
     private bool _initialCollapse;
-    public bool Collapsed { get; set; } = true;
 
     [CascadingParameter]
-    internal BsAccordionItemContext? AccordionItemContext { get; set; }
+    internal IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
     private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
@@ -27,11 +26,10 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
         base.OnInitialized();
         if (AccordionItemContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(BsAccordionItemContext));
+            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
         }
 
-        Collapsed = AccordionItemContext.Collapsed;
-        _initialCollapse = Collapsed;
+        _initialCollapse = AccordionItemContext.Collapsed;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -46,7 +44,6 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
     [JSInvokable]
     public void UpdateCollapseState(bool isCollapsed)
     {
-        Collapsed = isCollapsed;
         StateHasChanged();
     }
 

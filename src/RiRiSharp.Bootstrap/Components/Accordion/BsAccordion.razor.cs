@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordion : BsChildContentComponent
 {
-    private BsAccordionContext? _accordionContext;
+    public IBsAccordionContext AccordionContext { get; private set; } = null!;
 
     [Parameter]
     public bool AlwaysOpen { get; set; }
@@ -20,7 +20,7 @@ public partial class BsAccordion : BsChildContentComponent
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        _accordionContext = new BsAccordionContext { AlwaysOpen = AlwaysOpen };
+        AccordionContext = new BsAccordionContext { AlwaysOpen = AlwaysOpen };
     }
 
     public async Task CollapseAllAsync()
