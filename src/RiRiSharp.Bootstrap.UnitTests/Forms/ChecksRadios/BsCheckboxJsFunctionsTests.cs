@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 public class BsCheckboxJsFunctionsTests : BunitContext
 {
     [Fact]
-    public async Task ConstructorWorksAsync()
+    public async Task InitializationCallsImportAsync()
     {
         // Arrange + Act
         try
@@ -22,30 +22,22 @@ public class BsCheckboxJsFunctionsTests : BunitContext
     }
 
     [Fact]
-    public async Task CallingInitializeIndeterminateDoesNotThrowExceptionAsync()
+    public async Task CallingInitializeIndeterminateCallsCorrectJsFunctionOnceAsync()
     {
         // Arrange
         var reference = default(ElementReference);
-
-        _ = JSInterop
-            .SetupModule(
-                $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}"
-            )
-            .SetupVoid(BsCheckboxJsFunctions.INIT_INDETERMINATE_JS_FUNCTION_NAME, reference)
-            .SetVoidResult();
-
+        var jsModulePath =
+            $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}";
+        const string jsFunctionName = BsCheckboxJsFunctions.INIT_INDETERMINATE_JS_FUNCTION_NAME;
+        _ = JSInterop.SetupModule(jsModulePath).SetupVoid(jsFunctionName, reference).SetVoidResult();
         await using var functions = new BsCheckboxJsFunctions(JSInterop.JSRuntime);
 
         // Act
-        try
-        {
-            await functions.InitializeIndeterminateAsync(reference);
-        }
-        catch (Exception ex)
-        {
-            // Assert
-            Assert.Fail($"Exception of type {ex.GetType()} occured with message {ex.Message}");
-            throw;
-        }
+        await functions.InitializeIndeterminateAsync(reference);
+
+        // Assert
+        _ = Assert.Single(JSInterop.Invocations["import"]);
+        _ = Assert.Single(JSInterop.Invocations[jsFunctionName]);
+        Assert.Equal(2, JSInterop.Invocations.Count);
     }
 }

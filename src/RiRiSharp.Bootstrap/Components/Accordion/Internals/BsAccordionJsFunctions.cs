@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Components.Accordion;
+namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
 {
