@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using RiRiSharp.Bootstrap.Components.Accordion;
-using RiRiSharp.Bootstrap.Components.Accordion.Internals;
-using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Components.Alert;
+namespace RiRiSharp.Bootstrap.Components.Alert.Internals;
 
 internal sealed class BsAlertJsFunctions : IBsAlertJsFunctions, IAsyncDisposable
 {

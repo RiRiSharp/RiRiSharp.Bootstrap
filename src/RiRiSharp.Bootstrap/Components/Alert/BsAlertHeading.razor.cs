@@ -5,7 +5,7 @@ namespace RiRiSharp.Bootstrap.Components.Alert;
 
 public partial class BsAlertHeading : BsChildContentComponent
 {
-    private const string ALERT_LINK = "alert-link";
+    private const string ALERT_HEADING = "alert-heading";
 
     protected override void OnParametersSet()
     {
@@ -14,7 +14,7 @@ public partial class BsAlertHeading : BsChildContentComponent
     }
 
     [Parameter]
-    public int Heading { get; set; }
+    public int Heading { get; set; } = 4;
 
     private static void ThrowIfInvalid(int value)
     {
