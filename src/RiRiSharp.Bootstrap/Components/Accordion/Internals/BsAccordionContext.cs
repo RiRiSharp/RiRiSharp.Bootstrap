@@ -1,5 +1,3 @@
-using RiRiSharp.Bootstrap.Internals;
-
 namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 internal sealed class BsAccordionContext : IBsAccordionContext

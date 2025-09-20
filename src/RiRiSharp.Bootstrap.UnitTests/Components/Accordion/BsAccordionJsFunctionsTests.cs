@@ -53,14 +53,15 @@ public class BsAccordionJsFunctionsTests : BunitContext
         AssertJsInterop.Calls(jsObj, BsAccordionJsFunctions.COLLAPSE_ALL_BUT_ONE, accordionRef, itemRef);
     }
 
-    [Fact]
-    public async Task ToggleCallsCorrectJsFunctionAsync()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ToggleCallsCorrectJsFunctionAsync(bool alwaysOpen)
     {
         // Arrange
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAccordionJsFunctions(jsObj);
         ElementReference itemRef = default;
-        const bool alwaysOpen = true;
 
         // Act
         await sut.ToggleAsync(itemRef, alwaysOpen);
@@ -69,14 +70,15 @@ public class BsAccordionJsFunctionsTests : BunitContext
         AssertJsInterop.Calls(jsObj, BsAccordionJsFunctions.TOGGLE, itemRef, alwaysOpen);
     }
 
-    [Fact]
-    public async Task ShowCallsCorrectJsFunctionAsync()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ShowCallsCorrectJsFunctionAsync(bool alwaysOpen)
     {
         // Arrange
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAccordionJsFunctions(jsObj);
         ElementReference itemRef = default;
-        const bool alwaysOpen = false;
 
         // Act
         await sut.ShowAsync(itemRef, alwaysOpen);
