@@ -7,14 +7,11 @@ namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
 {
     internal const string JS_FILE_NAME = "accordionFunctions.js";
-    private readonly BsJsObjectReference _bsJsObjectRef;
+    private readonly IJSObjectReference _bsJsObjectRef;
 
-    public BsAccordionJsFunctions(IJSRuntime jsRuntime)
+    public BsAccordionJsFunctions(IJSObjectReference bsJsObjectRef)
     {
-        _bsJsObjectRef = new BsJsObjectReference(
-            jsRuntime,
-            $"./_content/{typeof(BsAccordionJsFunctions).Assembly.GetName().Name}/js/{JS_FILE_NAME}"
-        );
+        _bsJsObjectRef = bsJsObjectRef;
     }
 
     internal const string COLLAPSE_ALL = "collapseAll";

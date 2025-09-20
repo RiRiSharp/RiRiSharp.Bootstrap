@@ -9,14 +9,11 @@ namespace RiRiSharp.Bootstrap.Components.Alert;
 internal sealed class BsAlertJsFunctions : IBsAlertJsFunctions, IAsyncDisposable
 {
     internal const string JS_FILE_NAME = "alertFunctions.js";
-    private readonly BsJsObjectReference _bsJsObjectRef;
+    private readonly IJSObjectReference _bsJsObjectRef;
 
-    public BsAlertJsFunctions(IJSRuntime jsRuntime)
+    public BsAlertJsFunctions(IJSObjectReference bsJsObjectRef)
     {
-        _bsJsObjectRef = new BsJsObjectReference(
-            jsRuntime,
-            $"./_content/{typeof(BsAccordionJsFunctions).Assembly.GetName().Name}/js/{JS_FILE_NAME}"
-        );
+        _bsJsObjectRef = bsJsObjectRef;
     }
 
     internal const string DISMISS = "dismiss";
