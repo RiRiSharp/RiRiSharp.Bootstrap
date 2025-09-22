@@ -31,7 +31,7 @@ export function collapseAllButOne(accordionRef, accordionItemRef) {
 export function toggle(accordionItemRef, alwaysOpen = false) {
     const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
     const buttonElement = accordionItemRef.querySelector('.accordion-button');
-    if (!collapseElement || !buttonElement || togglingState.get(collapseElement)) return;
+    if (!collapseElement || togglingState.get(collapseElement)) return;
 
     togglingState.set(collapseElement, true);
 
@@ -105,11 +105,18 @@ export function registerCollapseCallback(hasCollapseElementReference, hasCollaps
     });
 }
 
+export function dispose(accordionItemRef) {
+    const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
+    if (!collapseElement) return;
+
+    const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false});
+    collapseInstance.dispose();
+}
+
 function updateButtonState(buttonElement, isCollapsed) {
-    if (buttonElement) {
-        buttonElement.setAttribute('aria-expanded', String(!isCollapsed));
-        buttonElement.classList.toggle('collapsed', isCollapsed);
-    }
+    if (!buttonElement) return;
+    buttonElement.setAttribute('aria-expanded', String(!isCollapsed));
+    buttonElement.classList.toggle('collapsed', isCollapsed);
 }
 
 function collapseOtherAccordionItems(accordionItemRef) {
@@ -124,11 +131,10 @@ function collapseOtherAccordionItems(accordionItemRef) {
 function showInt(accordionItemRef) {
     const collapseElement = accordionItemRef.querySelector('.accordion-collapse');
     const buttonElement = accordionItemRef.querySelector('.accordion-button');
-    if (!collapseElement || !buttonElement) return;
+    if (!collapseElement) return;
 
     const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false});
     collapseInstance.show();
-
     updateButtonState(buttonElement, false);
 }
 
@@ -139,6 +145,5 @@ function collapseInt(accordionItemRef) {
 
     const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false});
     collapseInstance.hide();
-
     updateButtonState(buttonElement, true);
 }

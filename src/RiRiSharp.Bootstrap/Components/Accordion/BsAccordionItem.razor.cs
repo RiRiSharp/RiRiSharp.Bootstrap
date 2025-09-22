@@ -5,7 +5,7 @@ using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
 
-public partial class BsAccordionItem : BsChildContentComponent
+public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
 {
     public IBsAccordionItemContext AccordionItemContext { get; private set; } = null!;
 
@@ -42,5 +42,21 @@ public partial class BsAccordionItem : BsChildContentComponent
     public async Task CollapseAsync()
     {
         await AccordionFunctions.CollapseAsync(HtmlRef);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsync(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private async ValueTask DisposeAsync(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+
+        await AccordionFunctions.DisposeAsync(HtmlRef);
     }
 }

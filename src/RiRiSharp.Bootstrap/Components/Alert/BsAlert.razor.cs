@@ -5,7 +5,7 @@ using RiRiSharp.Bootstrap.Components.Alert.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Alert;
 
-public partial class BsAlert : BsChildContentComponent
+public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 {
     private DotNetObjectReference<BsAlert>? _dotNetRef;
     private bool _dismissed;
@@ -61,5 +61,22 @@ public partial class BsAlert : BsChildContentComponent
     public void UpdateDismissedState()
     {
         _dismissed = true;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsync(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private async ValueTask DisposeAsync(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+
+        await AlertJsFunctions.DisposeAsync(HtmlRef);
+        _dotNetRef?.Dispose();
     }
 }

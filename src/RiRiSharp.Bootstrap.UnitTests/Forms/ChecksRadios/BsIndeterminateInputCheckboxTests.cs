@@ -1,6 +1,7 @@
 using System.Reflection;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 

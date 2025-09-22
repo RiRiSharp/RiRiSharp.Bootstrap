@@ -1,0 +1,4 @@
+@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+<a role="button" @attributes="AdditionalAttributes" class="btn @(Variant.ToBootstrapClass()) @(Size.ToBootstrapClass()) @(DisabledClass) @(Classes)" @ref="HtmlRef">
+    @(ChildContent)
+</a>

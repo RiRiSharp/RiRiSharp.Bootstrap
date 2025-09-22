@@ -2,20 +2,12 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
+namespace RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 
-internal class BsCheckboxJsFunctions : IBsCheckboxJsFunctions, IAsyncDisposable
+internal sealed class BsCheckboxJsFunctions : IBsCheckboxJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
-    internal const string JS_FILE_NAME = "BsCheckboxJsFunctions.js";
+    public static string JsFileName => "BsCheckboxJsFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;
-
-    internal BsCheckboxJsFunctions(IJSRuntime jsRuntime)
-    {
-        _bsJsObjectRef = new BsJsObjectReference(
-            jsRuntime,
-            $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{JS_FILE_NAME}"
-        );
-    }
 
     internal BsCheckboxJsFunctions(IJSObjectReference js)
     {

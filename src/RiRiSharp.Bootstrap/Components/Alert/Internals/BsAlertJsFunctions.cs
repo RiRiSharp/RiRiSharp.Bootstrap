@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Alert.Internals;
 
-internal sealed class BsAlertJsFunctions : IBsAlertJsFunctions, IAsyncDisposable
+internal sealed class BsAlertJsFunctions : IBsAlertJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
-    internal const string JS_FILE_NAME = "alertFunctions.js";
+    public static string JsFileName => "alertFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;
 
     public BsAlertJsFunctions(IJSObjectReference bsJsObjectRef)
@@ -25,6 +26,13 @@ internal sealed class BsAlertJsFunctions : IBsAlertJsFunctions, IAsyncDisposable
     public async Task RegisterDismissCallbackAsync(ElementReference alertRef, DotNetObjectReference<BsAlert> dotNetRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(REGISTER_DISMISS_CALLBACK, alertRef, dotNetRef);
+    }
+
+    internal const string DISPOSE = "dispose";
+
+    public async Task DisposeAsync(ElementReference elementRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(DISPOSE, elementRef);
     }
 
     public async ValueTask DisposeAsync()

@@ -4,9 +4,9 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
-internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDisposable
+internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
-    internal const string JS_FILE_NAME = "accordionFunctions.js";
+    public static string JsFileName => "accordionFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;
 
     public BsAccordionJsFunctions(IJSObjectReference bsJsObjectRef)
@@ -62,6 +62,17 @@ internal sealed class BsAccordionJsFunctions : IBsAccordionJsFunctions, IAsyncDi
         where T : class, IHasCollapseState
     {
         await _bsJsObjectRef.InvokeVoidAsync(REGISTER_COLLAPSE_CALLBACK, buttonRef, dotNetRef);
+    }
+
+    internal const string DISPOSE = "dispose";
+
+    /// <summary>
+    /// Disposes the references the underlying JS code has to the created accordion item
+    /// </summary>
+    /// <param name="elementRef">A reference to the accordion-item</param>
+    public async Task DisposeAsync(ElementReference elementRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(DISPOSE, elementRef);
     }
 
     public async ValueTask DisposeAsync()

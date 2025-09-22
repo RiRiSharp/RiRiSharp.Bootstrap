@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Accordion;
+using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Accordion;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
+namespace RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 
 public interface IBsCheckboxJsFunctions
 {

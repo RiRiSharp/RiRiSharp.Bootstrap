@@ -13,4 +13,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="Components\Buttons\BsButton.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Buttons\BsButtonLink.razor.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
 </Project>

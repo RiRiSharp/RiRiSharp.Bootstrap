@@ -13,3 +13,10 @@ export function registerDismissCallback(alertRef, alertDotNetRef) {
         alertDotNetRef.invokeMethodAsync('UpdateDismissedState');
     });
 }
+
+export function dispose(alertRef) {
+    if (!alertRef) return;
+
+    const alertInstance = bootstrap.Alert.getOrCreateInstance(alertRef);
+    alertInstance.dispose();
+}

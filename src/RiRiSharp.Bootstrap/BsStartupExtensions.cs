@@ -1,10 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
-using RiRiSharp.Bootstrap.Components.Accordion;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
-using RiRiSharp.Bootstrap.Components.Alert;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
-using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+using RiRiSharp.Bootstrap.Components.Buttons.Internals;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap;
@@ -14,28 +13,21 @@ public static class BsStartupExtensions
     public static IServiceCollection EnableJsInteractiveComponents(this IServiceCollection services)
     {
         return services
-            .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>(
-                $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsCheckboxJsFunctions.JS_FILE_NAME}"
-            )
-            .AddBootstrapJs<IBsAccordionJsFunctions, BsAccordionJsFunctions>(
-                $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsAccordionJsFunctions.JS_FILE_NAME}"
-            )
-            .AddBootstrapJs<IBsAlertJsFunctions, BsAlertJsFunctions>(
-                $"./_content/{typeof(BsCheckboxJsFunctions).Assembly.GetName().Name}/js/{BsAlertJsFunctions.JS_FILE_NAME}"
-            );
+            .AddBootstrapJs<IBsAccordionJsFunctions, BsAccordionJsFunctions>()
+            .AddBootstrapJs<IBsAlertJsFunctions, BsAlertJsFunctions>()
+            .AddBootstrapJs<IBsButtonJsFunctions, BsButtonJsFunctions>()
+            .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>();
     }
 
-    private static IServiceCollection AddBootstrapJs<TService, TImpl>(
-        this IServiceCollection services,
-        string jsFilePath
-    )
+    private static IServiceCollection AddBootstrapJs<TService, TImpl>(this IServiceCollection services)
         where TService : class
-        where TImpl : class, TService
+        where TImpl : class, TService, IBsJsFunctionsWrapper
     {
+        var filePath = $"./_content/{typeof(TImpl).Assembly.GetName().Name}/js/{TImpl.JsFileName}";
         return services.AddSingleton<TService>(sp =>
         {
             var jsRuntime = sp.GetRequiredService<IJSRuntime>();
-            var bsJsObjectRef = new BsJsObjectReference(jsRuntime, jsFilePath);
+            var bsJsObjectRef = new BsJsObjectReference(jsRuntime, filePath);
             return ActivatorUtilities.CreateInstance<TImpl>(sp, bsJsObjectRef);
         });
     }

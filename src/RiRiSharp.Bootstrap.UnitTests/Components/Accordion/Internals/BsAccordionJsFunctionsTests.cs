@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using NSubstitute;
+using RiRiSharp.Bootstrap.Components.Accordion;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
-namespace RiRiSharp.Bootstrap.UnitTests.Components.Accordion;
+namespace RiRiSharp.Bootstrap.UnitTests.Components.Accordion.Internals;
 
 public class BsAccordionJsFunctionsTests : BunitContext
 {
@@ -116,5 +117,20 @@ public class BsAccordionJsFunctionsTests : BunitContext
 
         // Assert
         AssertJsInterop.Calls(jsObj, BsAccordionJsFunctions.REGISTER_COLLAPSE_CALLBACK, buttonRef, dotNetRef);
+    }
+
+    [Fact]
+    public async Task JsDisposingCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsAccordionJsFunctions(jsObj);
+        ElementReference accordionItemRef = default;
+
+        // Act
+        await sut.DisposeAsync(accordionItemRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsAccordionJsFunctions.DISPOSE, accordionItemRef);
     }
 }

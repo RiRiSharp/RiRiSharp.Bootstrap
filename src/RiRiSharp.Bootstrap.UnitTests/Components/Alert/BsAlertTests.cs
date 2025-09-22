@@ -1,5 +1,6 @@
 using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Alert;
+using RiRiSharp.Bootstrap.Components.Alert.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Alert;
 

@@ -4,7 +4,7 @@ using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Alert;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
 
-namespace RiRiSharp.Bootstrap.UnitTests.Components.Alert;
+namespace RiRiSharp.Bootstrap.UnitTests.Components.Alert.Internals;
 
 public class BsAlertJsFunctionsTests
 {
@@ -30,12 +30,30 @@ public class BsAlertJsFunctionsTests
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAlertJsFunctions(jsObj);
         ElementReference alertRef = default;
-        using var dotNetRef = DotNetObjectReference.Create(new BsAlert());
+#pragma warning disable CA2000 // We can do this here, as there is nothing to dispose, since there's no real JS being used
+        var alert = new BsAlert();
+#pragma warning restore CA2000
+        using var dotNetRef = DotNetObjectReference.Create(alert);
 
         // Act
         await sut.RegisterDismissCallbackAsync(alertRef, dotNetRef);
 
         // Assert
         AssertJsInterop.Calls(jsObj, BsAlertJsFunctions.REGISTER_DISMISS_CALLBACK, alertRef, dotNetRef);
+    }
+
+    [Fact]
+    public async Task JsDisposingCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsAlertJsFunctions(jsObj);
+        ElementReference alertRef = default;
+
+        // Act
+        await sut.DisposeAsync(alertRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsAlertJsFunctions.DISPOSE, alertRef);
     }
 }

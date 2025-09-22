@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using NSubstitute;
-using RiRiSharp.Bootstrap.Forms.ChecksRadios;
+using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 
-namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
+namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios.Internals;
 
 public class BsCheckboxJsFunctionsTests : BunitContext
 {
