@@ -11,6 +11,9 @@ public partial class BsAlert : BsChildContentComponent
     private bool _dismissed;
     private BsAlertContext _alertContext = null!;
 
+    private string DismissableClass => Dismissable ? "alert-dismissible" : "";
+    private string AnimationClass => Animate ? "fade show" : "";
+
     public IBsAlertContext AlertContext => _alertContext;
 
     [Inject]
@@ -22,15 +25,8 @@ public partial class BsAlert : BsChildContentComponent
     [Parameter]
     public bool Dismissable { get; set; }
 
-    private string DismissableClass => Dismissable ? "alert-dismissible" : "";
-
     [Parameter]
     public bool Animate { get; set; } = true;
-
-    private string AnimationClass => Animate ? "fade show" : "";
-
-    [Parameter]
-    public RenderFragment? DismissContent { get; set; }
 
     protected override void OnInitialized()
     {
@@ -40,11 +36,13 @@ public partial class BsAlert : BsChildContentComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (!firstRender)
         {
-            _dotNetRef = DotNetObjectReference.Create(this);
-            await AlertJsFunctions.RegisterDismissCallbackAsync(HtmlRef, _dotNetRef);
+            return;
         }
+
+        _dotNetRef = DotNetObjectReference.Create(this);
+        await AlertJsFunctions.RegisterDismissCallbackAsync(HtmlRef, _dotNetRef);
     }
 
     public async Task DismissAsync()
