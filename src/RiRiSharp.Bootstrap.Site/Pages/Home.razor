@@ -1,14 +1,22 @@
 ﻿@page "/"
 @using RiRiSharp.Bootstrap.Components.Accordion
+@using RiRiSharp.Bootstrap.Components.Alert
+@using RiRiSharp.Bootstrap.Components.CloseButton
 
 @code {
     private BsAccordion? _accordion1;
     private BsAccordion? _accordion2;
     private BsAccordionItem? _accordionItem1;
     private BsAccordionItem? _accordionItem2;
+    private BsAlert _alert = null!;
 }
 <PageTitle>Home</PageTitle>
-
+<h3>Alert</h3>
+<BsAlert Dismissable="true" Variant="BsAlertVariant.Danger" @ref="_alert">
+    <BsAlertHeading>Test</BsAlertHeading>
+    This is insanely <BsAlertLink href="#">cool</BsAlertLink>.
+    <BsCloseButton @onclick="() => _alert.DismissAsync()"/>
+</BsAlert>
 <h3>Accordion test 1</h3>
 <BsAccordion AlwaysOpen="true" @ref="_accordion1">
     <BsAccordionItem>
