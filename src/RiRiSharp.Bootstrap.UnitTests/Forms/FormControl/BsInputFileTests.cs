@@ -103,6 +103,21 @@ public class BsInputFileTests : BunitContext
         cut.MarkupMatches(GetExpectedHtml(expectedClass, ""));
     }
 
+    [Fact]
+    public void InputTypeCannotBeOverriden()
+    {
+        // Arrange
+        ConfigureTestContext();
+        const string attributeKey = "type";
+        const string value = "some-unique-value";
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddUnmatched("type", value));
+
+        // Assert
+        cut.MarkupMatches(GetExpectedHtml(attributes: $"{attributeKey}=\"{value}\""));
+    }
+
     protected IRenderedComponent<BsInputFile> GetCut(
         Action<ComponentParameterCollectionBuilder<BsInputFile>>? action = null
     )

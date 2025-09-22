@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.UnitTests.Components.ButtonGroup;
 public class BsButtonGroupVerticalTests()
     : BsComponentTests<BsButtonGroupVertical>("""<div class="btn-group-vertical {0}" {1}></div>""")
 {
-    protected override string AttributesForDefaultTests => "role=\"group\"";
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["role"] = "group" };
 
     [Theory]
     [InlineData(BsButtonGroupSize.Regular, "")]
@@ -25,19 +25,12 @@ public class BsButtonGroupVerticalTests()
             $"{ClassesForDefaultTests} {expectedClass}",
             AttributesForDefaultTests
         );
-        cut.MarkupMatches(expectedMarkupString, AttributesForDefaultTests);
+        cut.MarkupMatches(expectedMarkupString);
     }
 
     [Fact]
     public void GroupRoleCanBeOverriden()
     {
-        // Arrange
-        ConfigureTestContext();
-
-        // Act
-        var cut = GetCut(parameters => parameters.AddUnmatched("role", "toolbar"));
-
-        // Assert
-        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, """role="toolbar" """));
+        TestForAllowingOverride("role");
     }
 }

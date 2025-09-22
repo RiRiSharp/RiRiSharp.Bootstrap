@@ -26,12 +26,19 @@ public class BsAbbreviationTests() : BsComponentTests<BsAbbreviation>("""<abbr c
     {
         // Arrange
         ConfigureTestContext();
-        var title = $"title=\"{fullName}\"";
+        var attributeDict = AttributesForDefaultTests;
+        attributeDict["title"] = fullName;
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.FullName, fullName));
 
         // Assert
-        cut.MarkupMatches(GetExpectedHtml("", title));
+        cut.MarkupMatches(GetExpectedHtml("", attributeDict));
+    }
+
+    [Fact]
+    public void TitleCannotBeOverriden()
+    {
+        TestForDisallowingOverride("title");
     }
 }

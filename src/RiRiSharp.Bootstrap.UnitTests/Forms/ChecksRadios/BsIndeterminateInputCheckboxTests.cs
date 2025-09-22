@@ -1,4 +1,3 @@
-using System.Reflection;
 using NSubstitute;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
@@ -7,10 +6,12 @@ namespace RiRiSharp.Bootstrap.UnitTests.Forms.ChecksRadios;
 
 public class BsIndeterminateInputCheckboxTests()
     : BsInputBaseComponentTests<BsIndeterminateInputCheckbox, bool?>(
-        """<input class="form-check-input {0}" type="checkbox" {1}></label>"""
+        """<input class="form-check-input {0}" {1}></label>"""
     )
 {
     private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions = Substitute.For<IBsCheckboxJsFunctions>();
+
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "checkbox" };
 
     [Fact]
     public async Task IndeterminateInitializationJsCodeGetsExecutedOnceAsync()
@@ -26,17 +27,22 @@ public class BsIndeterminateInputCheckboxTests()
     }
 
     [Theory]
-    [InlineData(false, false, "")]
-    [InlineData(true, true, "checked")]
-    [InlineData(null, null, "")]
-    [InlineData(null, true, "checked")]
-    [InlineData(true, false, "")]
-    [InlineData(false, true, "checked")]
-    public void CheckingCheckboxSetsCorrectValue(bool? beforeValue, bool? afterValue, string expectedAttribute)
+    [InlineData(false, false, false)]
+    [InlineData(true, true, true)]
+    [InlineData(null, null, false)]
+    [InlineData(null, true, true)]
+    [InlineData(true, false, false)]
+    [InlineData(false, true, true)]
+    public void CheckingCheckboxSetsCorrectValue(bool? beforeValue, bool? afterValue, bool isChecked)
     {
         // Arrange
         ConfigureTestContext();
         Value = beforeValue;
+        var attributeDict = AttributesForDefaultTests;
+        if (isChecked)
+        {
+            attributeDict["checked"] = "";
+        }
 
         // Act
         var cut = GetCut();
@@ -44,7 +50,13 @@ public class BsIndeterminateInputCheckboxTests()
         inputElement.Change(afterValue);
 
         // Assert
-        cut.MarkupMatches(GetExpectedHtml("", expectedAttribute));
+        cut.MarkupMatches(GetExpectedHtml("", attributeDict));
+    }
+
+    [Fact]
+    public void InputTypeCannotBeOverriden()
+    {
+        TestForDisallowingOverride("type");
     }
 
     protected override void ConfigureTestContext()

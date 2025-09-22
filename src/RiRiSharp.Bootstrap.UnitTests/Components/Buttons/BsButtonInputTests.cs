@@ -2,10 +2,10 @@ using RiRiSharp.Bootstrap.Components.Buttons;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Buttons;
 
-public class BsButtonInputTests()
-    : BsComponentTests<BsButtonInput>("""<input type="button" class="btn {0}" {1}></input>""")
+public class BsButtonInputTests() : BsComponentTests<BsButtonInput>("""<input class="btn {0}" {1}></input>""")
 {
     protected override string ClassesForDefaultTests => "btn-primary";
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
 
     [Theory]
     [InlineData(BsButtonVariant.None, "")]
@@ -61,12 +61,19 @@ public class BsButtonInputTests()
     {
         // Arrange
         ConfigureTestContext();
-        var valueAttribute = $"value=\"{content}\"";
+        var attributeDict = AttributesForDefaultTests;
+        attributeDict["value"] = content;
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.Content, content));
 
         // Assert
-        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, valueAttribute));
+        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, attributeDict));
+    }
+
+    [Fact]
+    public void ButtonTypeCanBeOverriden()
+    {
+        TestForAllowingOverride("type");
     }
 }

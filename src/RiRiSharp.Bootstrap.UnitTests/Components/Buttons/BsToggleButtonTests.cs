@@ -4,11 +4,12 @@ using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Buttons;
 
-public class BsToggleButtonTests()
-    : BsComponentTests<BsToggleButton>("""<button type="button" class="btn {0}" {1}></button>""")
+public class BsToggleButtonTests() : BsComponentTests<BsToggleButton>("""<button class="btn {0}" {1}></button>""")
 {
-    protected override string ClassesForDefaultTests => "btn-primary";
     private readonly IBsButtonJsFunctions _buttonJsFunctionsMock = Substitute.For<IBsButtonJsFunctions>();
+
+    protected override string ClassesForDefaultTests => "btn-primary";
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
 
     [Theory]
     [InlineData(BsButtonVariant.None, "")]
@@ -52,6 +53,12 @@ public class BsToggleButtonTests()
             AttributesForDefaultTests
         );
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Fact]
+    public void ButtonTypeCanBeOverriden()
+    {
+        TestForAllowingOverride("type");
     }
 
     protected override void ConfigureTestContext()

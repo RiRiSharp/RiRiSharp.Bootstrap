@@ -5,10 +5,12 @@ using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Accordion;
 
 public class BsAccordionButtonTests()
-    : BsComponentTests<BsAccordionButton>("""<button type="button" class="accordion-button {0}" {1}></button>""")
+    : BsComponentTests<BsAccordionButton>("""<button class="accordion-button {0}" {1}></button>""")
 {
     private readonly IBsAccordionJsFunctions _accordionJsFunctionsMock = Substitute.For<IBsAccordionJsFunctions>();
     private readonly IBsAccordionItemContext _accordionItemContextMock = Substitute.For<IBsAccordionItemContext>();
+
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
 
     [Theory]
     [InlineData(true)]
@@ -25,7 +27,13 @@ public class BsAccordionButtonTests()
 
         // Assert
         var collapsingClass = isCollapsed ? "collapsed" : "";
-        cut.MarkupMatches(GetExpectedHtml(collapsingClass, ""));
+        cut.MarkupMatches(GetExpectedHtml(collapsingClass, AttributesForDefaultTests));
+    }
+
+    [Fact]
+    public void ButtonTypeCanBeOverriden()
+    {
+        TestForAllowingOverride("type");
     }
 
     protected override void BindParameters(ComponentParameterCollectionBuilder<BsAccordionButton> parameterBuilder)

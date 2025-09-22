@@ -12,7 +12,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     protected CompositeFormat HtmlFormatCache => CompositeFormat.Parse(htmlFormat);
     protected virtual bool SkipRefCheck => false;
     protected virtual string ClassesForDefaultTests => "";
-    protected virtual string AttributesForDefaultTests => "";
+    protected virtual Dictionary<string, string> AttributesForDefaultTests => [];
 
     [Fact]
     public void DefaultWorks()
@@ -90,7 +90,7 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
     {
         // Arrange
         ConfigureTestContext();
-        expected += " " + AttributesForDefaultTests;
+        expected += " " + AttributesForDefaultTests.ToAttributeKeyValueString();
 
         // Act
         var cut = GetCut(parameters =>
@@ -104,6 +104,34 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         // Assert
         var expectedMarkupString = GetExpectedHtml(ClassesForDefaultTests, expected);
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    protected void TestForAllowingOverride(string attributeKey)
+    {
+        // Arrange
+        ConfigureTestContext();
+        const string value = "some-unique-value";
+        var attributes = AttributesForDefaultTests;
+        attributes[attributeKey] = value;
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddUnmatched(attributeKey, value));
+
+        // Assert
+        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, attributes));
+    }
+
+    protected void TestForDisallowingOverride(string attributeKey)
+    {
+        // Arrange
+        ConfigureTestContext();
+        const string value = "some-unique-value";
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddUnmatched(attributeKey, value));
+
+        // Assert
+        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, AttributesForDefaultTests));
     }
 
     protected virtual IRenderedComponent<TComponent> GetCut(
@@ -121,8 +149,20 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
 
     protected virtual void ConfigureTestContext() { }
 
-    protected virtual string GetExpectedHtml(string? classes = null, string? attributes = null)
+    protected virtual string GetExpectedHtml(string? classes = null)
+    {
+        return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, null);
+    }
+
+    protected virtual string GetExpectedHtml(string? classes, string? attributes)
     {
         return string.Format(CultureInfo.InvariantCulture, HtmlFormatCache, classes, attributes);
+    }
+
+    protected virtual string GetExpectedHtml(string? classes, Dictionary<string, string>? attributes)
+    {
+        attributes ??= [];
+        var attributeString = attributes.ToAttributeKeyValueString();
+        return GetExpectedHtml(classes, attributeString);
     }
 }

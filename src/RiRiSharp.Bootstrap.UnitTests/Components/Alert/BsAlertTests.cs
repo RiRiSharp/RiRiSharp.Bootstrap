@@ -6,9 +6,10 @@ namespace RiRiSharp.Bootstrap.UnitTests.Components.Alert;
 
 public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}" {1}></div>""")
 {
-    protected override string ClassesForDefaultTests => "alert-primary fade show";
-    protected override string AttributesForDefaultTests => "role=\"alert\"";
     private readonly IBsAlertJsFunctions _alertJsFunctionsMock = Substitute.For<IBsAlertJsFunctions>();
+
+    protected override string ClassesForDefaultTests => "alert-primary fade show";
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["role"] = "alert" };
 
     [Theory]
     [InlineData(BsAlertVariant.Primary, "alert-primary")]
@@ -45,7 +46,10 @@ public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}
 
         // Assert
         var dismissClass = dismissible ? "alert-dismissible" : "";
-        var expectedMarkupString = GetExpectedHtml($"{ClassesForDefaultTests} {dismissClass}");
+        var expectedMarkupString = GetExpectedHtml(
+            $"{ClassesForDefaultTests} {dismissClass}",
+            AttributesForDefaultTests
+        );
         cut.MarkupMatches(expectedMarkupString);
     }
 
@@ -62,21 +66,14 @@ public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}
 
         // Assert
         var animateClass = animate ? "fade show" : "";
-        var expectedMarkupString = GetExpectedHtml($"alert-primary {animateClass}");
+        var expectedMarkupString = GetExpectedHtml($"alert-primary {animateClass}", AttributesForDefaultTests);
         cut.MarkupMatches(expectedMarkupString);
     }
 
     [Fact]
     public void AlertRoleCanBeOverriden()
     {
-        // Arrange
-        ConfigureTestContext();
-
-        // Act
-        var cut = GetCut(parameters => parameters.AddUnmatched("role", "group"));
-
-        // Assert
-        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, """role="group" """));
+        TestForAllowingOverride("role");
     }
 
     protected override void ConfigureTestContext()
