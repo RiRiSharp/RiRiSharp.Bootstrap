@@ -65,6 +65,20 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         cut.MarkupMatches(expectedMarkupString);
     }
 
+    [Fact]
+    public void PassingClassesViaHtmlClassAttributeDoesNotOverwriteClasses()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddUnmatched("class", "aclass"));
+
+        // Assert
+        var expectedMarkupString = GetExpectedHtml(ClassesForDefaultTests, AttributesForDefaultTests);
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
     [Theory]
     [InlineData(new[] { "attributeKey" }, new[] { "attributeValue" }, """attributeKey="attributeValue" """)]
     [InlineData(

@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using System.Drawing
 @using RiRiSharp.Bootstrap.Components.Accordion
 @using RiRiSharp.Bootstrap.Components.Alert
 @using RiRiSharp.Bootstrap.Components.CloseButton
+@using RiRiSharp.Bootstrap.Forms.FormControl
 
 @code {
     private BsAccordion? _accordion1;
@@ -9,12 +11,17 @@
     private BsAccordionItem? _accordionItem1;
     private BsAccordionItem? _accordionItem2;
     private BsAlert _alert = null!;
+    private Color _color;
 }
+
 <PageTitle>Home</PageTitle>
+<BsInputColor @bind-Value="_color"/>
 <h3>Alert</h3>
 <BsAlert Dismissable="true" Variant="BsAlertVariant.Danger" @ref="_alert">
     <BsAlertHeading>Test</BsAlertHeading>
-    This is insanely <BsAlertLink href="#">cool</BsAlertLink>.
+    This is insanely
+    <BsAlertLink href="#">cool</BsAlertLink>
+    .
     <BsCloseButton @onclick="() => _alert.DismissAsync()"/>
 </BsAlert>
 <h3>Accordion test 1</h3>
