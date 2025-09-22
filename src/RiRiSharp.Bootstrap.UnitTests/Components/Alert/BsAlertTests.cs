@@ -4,9 +4,10 @@ using RiRiSharp.Bootstrap.Components.Alert.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Alert;
 
-public class BsAlertTests() : BsComponentTests<BsAlert>("""<div role="alert" class="alert {0}" {1}></div>""")
+public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}" {1}></div>""")
 {
     protected override string ClassesForDefaultTests => "alert-primary fade show";
+    protected override string AttributesForDefaultTests => "role=\"alert\"";
     private readonly IBsAlertJsFunctions _alertJsFunctionsMock = Substitute.For<IBsAlertJsFunctions>();
 
     [Theory]
@@ -63,6 +64,19 @@ public class BsAlertTests() : BsComponentTests<BsAlert>("""<div role="alert" cla
         var animateClass = animate ? "fade show" : "";
         var expectedMarkupString = GetExpectedHtml($"alert-primary {animateClass}");
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Fact]
+    public void AlertRoleCanBeOverriden()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddUnmatched("role", "group"));
+
+        // Assert
+        cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, """role="group" """));
     }
 
     protected override void ConfigureTestContext()
