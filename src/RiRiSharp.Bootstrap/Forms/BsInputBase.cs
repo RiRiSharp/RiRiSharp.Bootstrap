@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using RiRiSharp.Bootstrap.BaseComponents;
@@ -10,6 +9,7 @@ public abstract class BsInputBase<TValue> : InputBase<TValue>, IBsComponent
 {
     [Parameter]
     public string? Classes { get; set; }
+
     public ElementReference HtmlRef { get; protected set; }
 
     protected override void OnParametersSet()
