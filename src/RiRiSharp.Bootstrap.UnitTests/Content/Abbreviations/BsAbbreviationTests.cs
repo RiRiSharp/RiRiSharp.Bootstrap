@@ -21,6 +21,7 @@ public class BsAbbreviationTests() : BsComponentTests<BsAbbreviation>("""<abbr c
     [InlineData("")]
     [InlineData("SimpleTitle")]
     [InlineData("C0mplex TîtLè ~💪💪")]
+    [InlineData("<tag>XML-tag</tag>")]
     public void FullNameAddsCorrectTitleAttribute(string fullName)
     {
         // Arrange

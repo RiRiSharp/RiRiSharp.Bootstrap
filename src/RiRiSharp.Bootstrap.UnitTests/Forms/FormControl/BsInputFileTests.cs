@@ -88,8 +88,8 @@ public class BsInputFileTests : BunitContext
     }
 
     [Theory]
-    [InlineData(BsFormSize.Small, "form-control-sm")]
     [InlineData(BsFormSize.Regular, "")]
+    [InlineData(BsFormSize.Small, "form-control-sm")]
     [InlineData(BsFormSize.Large, "form-control-lg")]
     public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
     {

@@ -6,10 +6,10 @@ namespace RiRiSharp.Bootstrap.Components.Buttons;
 public partial class BsButtonInput : BsComponent
 {
     [Parameter]
-    public string? Value { get; set; }
+    public string? Content { get; set; }
 
     [Parameter]
-    public BsButtonVariant Variant { get; set; }
+    public BsButtonVariant Variant { get; set; } = BsButtonVariant.Primary;
 
     [Parameter]
     public BsButtonSize Size { get; set; }

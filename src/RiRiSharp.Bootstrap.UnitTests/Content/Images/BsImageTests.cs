@@ -22,6 +22,7 @@ public class BsImageTests() : BsComponentTests<BsImage>("""<img class=" {0}" {1}
     [InlineData("source")]
     [InlineData("https://example.com/an-image.jpg")]
     [InlineData("C0mplex TîtLè ~💪💪")]
+    [InlineData("<tag>XML-tag</tag>")]
     public void SrcWorks(string src)
     {
         // Arrange
@@ -33,5 +34,24 @@ public class BsImageTests() : BsComponentTests<BsImage>("""<img class=" {0}" {1}
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml("", srcAttribute));
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("alternative description")]
+    [InlineData("https://example.com/an-image.jpg")]
+    [InlineData("C0mplex TîtLè ~💪💪")]
+    [InlineData("<tag>XML-tag</tag>")]
+    public void AltWorks(string alt)
+    {
+        // Arrange
+        ConfigureTestContext();
+        var altAttribute = $"alt=\"{alt}\"";
+
+        // Act
+        var cut = GetCut(parameters => parameters.Add(p => p.Alt, alt));
+
+        // Assert
+        cut.MarkupMatches(GetExpectedHtml("", altAttribute));
     }
 }

@@ -8,7 +8,7 @@ public partial class BsButtonLink : BsChildContentComponent
     private string DisabledClass => Disabled ? "disabled" : "";
 
     [Parameter]
-    public BsButtonVariant Variant { get; set; }
+    public BsButtonVariant Variant { get; set; } = BsButtonVariant.Primary;
 
     [Parameter]
     public BsButtonSize Size { get; set; }

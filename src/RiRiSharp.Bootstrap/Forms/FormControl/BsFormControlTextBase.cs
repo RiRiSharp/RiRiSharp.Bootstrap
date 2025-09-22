@@ -17,7 +17,7 @@ public abstract class BsFormControlTextBase<TValue> : BsInputBase<TValue>
     }
 
     [Parameter]
-    public BsFormSize Size { get; set; } = BsFormSize.Regular;
+    public BsFormSize Size { get; set; }
 
     [Parameter]
     public bool ReadonlyPlaintext { get; set; }

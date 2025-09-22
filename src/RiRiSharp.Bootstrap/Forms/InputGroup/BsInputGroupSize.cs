@@ -2,8 +2,8 @@ namespace RiRiSharp.Bootstrap.Forms.InputGroup;
 
 public enum BsInputGroupSize
 {
-    Small = 0,
-    Regular = 1,
+    Regular = 0,
+    Small = 1,
     Large = 2,
 }
 
@@ -13,8 +13,8 @@ public static class InputGroupSizeExtensions
     {
         return size switch
         {
-            BsInputGroupSize.Small => "input-group-sm",
             BsInputGroupSize.Regular => "",
+            BsInputGroupSize.Small => "input-group-sm",
             BsInputGroupSize.Large => "input-group-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(size), size, null),
         };

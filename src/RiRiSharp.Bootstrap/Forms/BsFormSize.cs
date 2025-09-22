@@ -2,8 +2,8 @@ namespace RiRiSharp.Bootstrap.Forms;
 
 public enum BsFormSize
 {
-    Small = 0,
-    Regular = 1,
+    Regular = 0,
+    Small = 1,
     Large = 2,
 }
 

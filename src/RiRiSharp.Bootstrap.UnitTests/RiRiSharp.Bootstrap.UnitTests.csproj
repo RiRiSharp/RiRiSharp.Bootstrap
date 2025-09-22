@@ -34,4 +34,10 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Components\Buttons\BsButton.razor" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Buttons\BsButtonLinkTests.cs.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <DependentUpon>BsButtonLinkTests.cs</DependentUpon>
+    </Content>
+  </ItemGroup>
 </Project>

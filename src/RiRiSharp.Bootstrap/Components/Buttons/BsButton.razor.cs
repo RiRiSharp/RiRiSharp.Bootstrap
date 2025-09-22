@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.Components.Buttons;
 public partial class BsButton : BsChildContentComponent
 {
     [Parameter]
-    public BsButtonVariant Variant { get; set; }
+    public BsButtonVariant Variant { get; set; } = BsButtonVariant.Primary;
 
     [Parameter]
     public BsButtonSize Size { get; set; }

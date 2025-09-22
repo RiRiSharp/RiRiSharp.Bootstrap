@@ -11,7 +11,7 @@ public class BsInputFile : InputFile
     public string? Classes { get; set; }
 
     [Parameter]
-    public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
+    public BsFormSize FormSize { get; set; }
 
     public ElementReference HtmlRef => Element.GetValueOrDefault();
 

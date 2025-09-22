@@ -14,7 +14,7 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
     private const string FORM_SELECT = "form-select";
 
     [Parameter]
-    public BsFormSize FormSize { get; set; } = BsFormSize.Regular;
+    public BsFormSize FormSize { get; set; }
 
     [Parameter]
     public string? Classes { get; set; }
