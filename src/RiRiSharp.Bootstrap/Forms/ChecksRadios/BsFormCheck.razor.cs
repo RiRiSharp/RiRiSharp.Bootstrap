@@ -7,6 +7,9 @@ public partial class BsFormCheck : BsChildContentComponent
 {
     private readonly string _additionalFormCheckClasses;
 
+    protected override string BsComponentClasses =>
+        $"form-check {_additionalFormCheckClasses} {FormCheckOptions.ToBootstrapClass()}";
+
     public BsFormCheck(string additionalFormCheckClasses = "")
     {
         _additionalFormCheckClasses = additionalFormCheckClasses;
@@ -14,19 +17,4 @@ public partial class BsFormCheck : BsChildContentComponent
 
     [Parameter]
     public BsFormCheckOptions FormCheckOptions { get; set; }
-
-    private string CssClass
-    {
-        get
-        {
-            var componentSpecificClasses = GetBsComponentSpecificClasses();
-            return $"{componentSpecificClasses} {Classes}";
-        }
-    }
-
-    private string GetBsComponentSpecificClasses()
-    {
-        var optionsClass = FormCheckOptions.ToBootstrapClass();
-        return $"form-check {_additionalFormCheckClasses} {optionsClass}";
-    }
 }

@@ -6,6 +6,8 @@ namespace RiRiSharp.Bootstrap.Forms.Range;
 public partial class BsFormRangeInput<TValue> : BsInputBase<TValue>
     where TValue : INumber<TValue>
 {
+    protected override string BsComponentClasses => "form-range";
+
     protected override bool TryParseValueFromString(
         string? value,
         [MaybeNullWhen(false)] out TValue result,
@@ -20,10 +22,5 @@ public partial class BsFormRangeInput<TValue> : BsInputBase<TValue>
 
         validationErrorMessage = $"The value '{value}' is not valid for type {typeof(TValue).Name}.";
         return false;
-    }
-
-    protected override string GetBsComponentSpecificClasses()
-    {
-        return "form-range";
     }
 }

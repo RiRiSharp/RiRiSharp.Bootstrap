@@ -5,6 +5,8 @@ namespace RiRiSharp.Bootstrap.Components.Buttons;
 
 public partial class BsButtonInput : BsComponent
 {
+    protected override string BsComponentClasses => $"btn {Variant.ToBootstrapClass()} {Size.ToBootstrapClass()}";
+
     [Parameter]
     public string? Content { get; set; }
 

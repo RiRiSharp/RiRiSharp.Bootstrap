@@ -17,6 +17,9 @@
     <AdditionalFiles Include="Components\Buttons\BsButton.razor" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\Accordion\BsAccordionBody.razor.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Include="Components\Buttons\BsButtonLink.razor.cs">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>

@@ -11,6 +11,8 @@ namespace RiRiSharp.Bootstrap.Components.Buttons;
 /// </remarks>
 public partial class BsButtonLabel : BsChildContentComponent
 {
+    protected override string BsComponentClasses => $"btn {Variant.ToBootstrapClass()} {Size.ToBootstrapClass()}";
+
     [Parameter]
     public BsButtonVariant Variant { get; set; } = BsButtonVariant.Primary;
 

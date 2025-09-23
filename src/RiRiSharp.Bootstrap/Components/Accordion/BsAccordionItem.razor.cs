@@ -7,6 +7,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
 {
+    protected override string BsComponentClasses => "accordion-item";
     public IBsAccordionItemContext AccordionItemContext { get; private set; } = null!;
 
     [Parameter]
