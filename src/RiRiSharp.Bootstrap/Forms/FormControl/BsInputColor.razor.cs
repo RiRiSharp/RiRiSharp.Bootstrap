@@ -34,8 +34,5 @@ public partial class BsInputColor : BsInputBase<Color>
         return ColorTranslator.ToHtml(value);
     }
 
-    protected override string GetBsComponentSpecificClasses()
-    {
-        return "form-control form-control-color";
-    }
+    protected override string BsComponentClasses => "form-control form-control-color";
 }

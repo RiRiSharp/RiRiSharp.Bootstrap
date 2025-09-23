@@ -8,6 +8,8 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseState
 {
+    protected override string BsComponentClasses => $"accordion-button {GetInitialCollapsedClass()}";
+
     /// <summary>
     /// Holds a reference to this component for JS interop. Initialized after first render.
     /// </summary>

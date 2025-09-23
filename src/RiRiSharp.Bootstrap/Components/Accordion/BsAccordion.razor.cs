@@ -6,6 +6,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordion : BsChildContentComponent
 {
+    protected override string BsComponentClasses => $"accordion {DisplayStyle.ToBootstrapClass()}";
     public IBsAccordionContext AccordionContext { get; private set; } = null!;
 
     [Parameter]

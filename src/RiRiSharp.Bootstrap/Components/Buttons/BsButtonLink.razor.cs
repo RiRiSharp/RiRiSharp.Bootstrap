@@ -5,6 +5,9 @@ namespace RiRiSharp.Bootstrap.Components.Buttons;
 
 public partial class BsButtonLink : BsChildContentComponent
 {
+    protected override string BsComponentClasses =>
+        $"btn {Variant.ToBootstrapClass()} {Size.ToBootstrapClass()} {DisabledClass}";
+
     private string DisabledClass => Disabled ? "disabled" : "";
 
     [Parameter]

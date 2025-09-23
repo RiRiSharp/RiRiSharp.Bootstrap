@@ -11,6 +11,8 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
     private bool _dismissed;
     private BsAlertContext _alertContext = null!;
 
+    protected override string BsComponentClasses =>
+        $"alert {Variant.ToBootstrapClass()} {DismissableClass} {AnimationClass}";
     private string DismissableClass => Dismissable ? "alert-dismissible" : "";
     private string AnimationClass => Animate ? "fade show" : "";
 

@@ -11,6 +11,7 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
     private DotNetObjectReference<BsAccordionCollapse> _dotNetRef = null!;
     private bool _initialCollapse;
 
+    protected override string BsComponentClasses => $"accordion-collapse collapse {GetInitialCollapsedClass()}";
     public bool Collapsed { get; set; } = true;
 
     [CascadingParameter]

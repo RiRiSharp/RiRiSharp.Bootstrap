@@ -25,8 +25,5 @@ public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
         throw new NotImplementedException("This method is not necessary for parsing input checkboxes.");
     }
 
-    protected override string GetBsComponentSpecificClasses()
-    {
-        return "form-check-input";
-    }
+    protected override string BsComponentClasses => "form-check-input";
 }
