@@ -1,6 +1,4 @@
 @using RiRiSharp.Bootstrap.BaseComponents
-@inherits BsChildContentComponent
+@inherits BsComponent
 
-<div @attributes="AdditionalAttributes" src="@(Src)" alt="@(Alt)" class="@(Classes)" @ref="HtmlRef">
-    @(ChildContent)
-</div>
+<img @attributes="AdditionalAttributes" src="@(Src)" alt="@(Alt)" class="@(Classes)" @ref="HtmlRef"/>

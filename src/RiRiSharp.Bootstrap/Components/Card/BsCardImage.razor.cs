@@ -3,7 +3,7 @@ using RiRiSharp.Bootstrap.BaseComponents;
 
 namespace RiRiSharp.Bootstrap.Components.Card;
 
-public partial class BsCardImage : BsChildContentComponent
+public partial class BsCardImage : BsComponent
 {
     protected override string BsComponentClasses => Position.ToBootstrapClass();
 
