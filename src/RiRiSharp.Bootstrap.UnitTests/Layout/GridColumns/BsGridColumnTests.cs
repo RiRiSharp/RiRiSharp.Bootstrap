@@ -19,7 +19,7 @@ public class BsGridColumnTests() : BsComponentTests<BsGridColumn>("""<div class=
     {
         // Arrange + Act
         var cut = GetCut(parameters =>
-            parameters.Add(p => p.GridOptionsList, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
+            parameters.Add(p => p.GridOptions, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
         );
 
         // Assert
@@ -33,7 +33,7 @@ public class BsGridColumnTests() : BsComponentTests<BsGridColumn>("""<div class=
         var cut = GetCut(parameters =>
             parameters
                 .Add(p => p.GridOption, BsGridColumnOptions.GCol1)
-                .Add(p => p.GridOptionsList, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
+                .Add(p => p.GridOptions, [BsGridColumnOptions.GColSm4, BsGridColumnOptions.GColMd6])
         );
 
         // Assert

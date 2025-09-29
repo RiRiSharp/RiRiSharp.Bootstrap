@@ -5,20 +5,3 @@
     @(ChildContent)
 </div>
 
-@code{
-    [Parameter] public BsGridColumnOptions GridOption { get; set; }
-    [Parameter] public List<BsGridColumnOptions>? GridOptionsList { get; set; }
-
-    [Parameter] public BsGridStartOptions StartOption { get; set; }
-
-    private string ColumnOptionsBootstrapClasses()
-    {
-        if (GridOptionsList is null || GridOptionsList.Count == 0)
-        {
-            return GridOption.ToBootstrapClass();
-        }
-
-        var classes = GridOptionsList.Select(b => b.ToBootstrapClass());
-        return string.Join(' ', classes);
-    }
-}

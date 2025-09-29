@@ -1,8 +1,12 @@
-﻿using RiRiSharp.Bootstrap.BaseComponents;
+﻿using Microsoft.AspNetCore.Components;
+using RiRiSharp.Bootstrap.BaseComponents;
 
 namespace RiRiSharp.Bootstrap.Content.Tables;
 
 public partial class BsTableRow : BsChildContentComponent
 {
     protected override string BsComponentClasses => Options.ToBootstrapRowOrDataClass();
+
+    [Parameter]
+    public BsTableOptions Options { get; set; }
 }

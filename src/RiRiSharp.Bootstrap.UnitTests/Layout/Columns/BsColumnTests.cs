@@ -21,7 +21,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="{0}" {1
     {
         // Arrange + Act
         var cut = GetCut(parameters =>
-            parameters.Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
+            parameters.Add(p => p.ColOptions, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
         // Assert
@@ -34,7 +34,7 @@ public class BsColumnTests() : BsComponentTests<BsColumn>("""<div class="{0}" {1
         var cut = GetCut(parameters =>
             parameters
                 .Add(p => p.ColOption, BsColumnOptions.Col1)
-                .Add(p => p.ColOptionsList, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
+                .Add(p => p.ColOptions, [BsColumnOptions.ColSm4, BsColumnOptions.ColMd6])
         );
 
         cut.MarkupMatches(GetExpectedHtml("col-sm-4 col-md-6"));

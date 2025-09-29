@@ -2,10 +2,3 @@
 
 <img @attributes="AdditionalAttributes" src="@(Src)" alt="@(Alt)"
     class="@(Classes)" @ref="HtmlRef"/>
-
-
-@code {
-    [Parameter] public BsImageOptions Options { get; set; }
-    [Parameter, EditorRequired] public string Src { get; set; }
-    [Parameter] public string? Alt { get; set; }
-}

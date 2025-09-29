@@ -4,6 +4,6 @@ namespace RiRiSharp.Bootstrap.Layout.Containers;
 
 public partial class BsContainer(string breakpoint = "") : BsChildContentComponent
 {
-    protected override string BsComponentClasses => ContainerClass;
-    protected string ContainerClass => string.IsNullOrWhiteSpace(breakpoint) ? "container" : $"container-{breakpoint}";
+    protected override string BsComponentClasses =>
+        string.IsNullOrWhiteSpace(breakpoint) ? "container" : $"container-{breakpoint}";
 }

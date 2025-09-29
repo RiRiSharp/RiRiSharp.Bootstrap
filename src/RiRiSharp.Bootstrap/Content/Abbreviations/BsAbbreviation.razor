@@ -3,9 +3,3 @@
 <abbr @attributes="AdditionalAttributes" title="@(FullName)" class="@(Classes)" @ref="HtmlRef">
     @(ChildContent)
 </abbr>
-
-
-@code {
-    [Parameter, EditorRequired] public string FullName { get; set; }
-    [Parameter] public BsAbbreviationType Type { get; set; }
-}
