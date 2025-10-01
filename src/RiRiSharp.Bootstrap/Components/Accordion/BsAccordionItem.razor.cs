@@ -19,9 +19,9 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
     [Inject]
     private IBsAccordionJsFunctions AccordionFunctions { get; set; } = null!;
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
-        base.OnInitialized();
+        base.OnParametersSet();
         if (AccordionContext is null)
         {
             throw new CascadingParameterNotProvidedException(typeof(IBsAccordionContext));

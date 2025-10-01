@@ -26,12 +26,16 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        _initialCollapse = AccordionItemContext!.Collapsed;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
         if (AccordionItemContext is null)
         {
             throw new CascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
         }
-
-        _initialCollapse = AccordionItemContext.Collapsed;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
