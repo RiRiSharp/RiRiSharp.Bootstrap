@@ -7,10 +7,11 @@ namespace RiRiSharp.Bootstrap.Components.Carousel;
 
 public sealed partial class BsCarouselItem : BsChildContentComponent, IDisposable
 {
-    protected override string BsComponentClasses => "";
+    protected override string BsComponentClasses => $"carousel-item {ActiveClass}";
 
     [Parameter]
     public bool IsActive { get; set; }
+    private string ActiveClass => IsActive ? "active" : "";
 
     [Parameter]
     public int? Interval { get; set; }

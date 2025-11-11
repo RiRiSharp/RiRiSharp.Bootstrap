@@ -2,139 +2,28 @@
 @using System.Drawing
 @using RiRiSharp.Bootstrap.Components.Accordion
 @using RiRiSharp.Bootstrap.Components.Alert
+@using RiRiSharp.Bootstrap.Components.Carousel
 @using RiRiSharp.Bootstrap.Components.CloseButton
 @using RiRiSharp.Bootstrap.Forms.FormControl
 
-@code {
-    private BsAccordion? _accordion1;
-    private BsAccordion? _accordion2;
-    private BsAccordionItem? _accordionItem1;
-    private BsAccordionItem? _accordionItem2;
-    private BsAlert _alert = null!;
-    private Color _color;
-}
-
 <PageTitle>Home</PageTitle>
-<BsInputColor @bind-Value="_color"/>
-<h3>Alert</h3>
-<BsAlert Dismissable="true" Variant="BsAlertVariant.Danger" @ref="_alert">
-    <BsAlertHeading>Test</BsAlertHeading>
-    This is insanely
-    <BsAlertLink href="#">cool</BsAlertLink>
-    .
-    <BsCloseButton @onclick="() => _alert.DismissAsync()"/>
-</BsAlert>
-<h3>Accordion test 1</h3>
-<BsAccordion AlwaysOpen="true" @ref="_accordion1">
-    <BsAccordionItem>
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #1
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number one.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-    <BsAccordionItem @ref="_accordionItem1">
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #2
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number two.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-    <BsAccordionItem>
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #3
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number three.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-</BsAccordion>
-<button class="btn btn-primary" @onclick="() => _accordion1!.CollapseAllAsync()">
-    Collapse All (1)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordion1!.ShowAllAsync()">
-    Show All (1)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordion1!.CollapseAllButOneAsync(_accordionItem1!)">
-    Show All But One(1)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1!.ToggleAsync()">
-    Toggle Item 2 (1)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1!.ShowAsync()">
-    Show Item 2 (1)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem1!.CollapseAsync()">
-    Collapse Item 2 (1)
-</button>
-<h3>Accordion test 2</h3>
-<BsAccordion AlwaysOpen="false" @ref="_accordion2">
-    <BsAccordionItem InitialCollapsed="false">
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #1
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number one.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-    <BsAccordionItem @ref="_accordionItem2">
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #2
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number two.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-    <BsAccordionItem>
-        <BsAccordionHeader>
-            <BsAccordionButton>
-                Accordion item #3
-            </BsAccordionButton>
-        </BsAccordionHeader>
-        <BsAccordionCollapse>
-            <BsAccordionBody>
-                Body number three.
-            </BsAccordionBody>
-        </BsAccordionCollapse>
-    </BsAccordionItem>
-</BsAccordion>
-<button class="btn btn-primary" @onclick="() => _accordion2!.CollapseAllAsync()">
-    Collapse All (2)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordion2!.ShowAllAsync()">
-    Show All (2)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordion2!.CollapseAllButOneAsync(_accordionItem2!)">
-    Show All But One(2)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2!.ToggleAsync()">
-    Toggle Item 2 (2)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2!.ShowAsync()">
-    Show Item 2 (2)
-</button>
-<button class="btn btn-primary" @onclick="() => _accordionItem2!.CollapseAsync()">
-    Collapse Item 2 (2)
-</button>
+
+<BsCarousel>
+    <BsCarouselInner>
+        <BsCarouselItem IsActive="true">
+            <svg aria-label="Placeholder: First slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800" xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
+        </BsCarouselItem>
+        <BsCarouselItem>
+            <svg aria-label="Placeholder: Second slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800" xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
+        </BsCarouselItem>
+        <BsCarouselItem>
+            <svg aria-label="Placeholder: Third slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800" xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
+        </BsCarouselItem>
+    </BsCarouselInner>
+    <BsCarouselControlPrev>
+        <BsCarouselControlPrevIcon/>
+    </BsCarouselControlPrev>
+    <BsCarouselControlNext>
+        <BsCarouselControlNextIcon/>
+    </BsCarouselControlNext>
+</BsCarousel>
