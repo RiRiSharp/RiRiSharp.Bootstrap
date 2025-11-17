@@ -4,19 +4,19 @@ internal class BsCarouselContext(BsCarousel carousel) : IBsCarouselContext
 {
     private readonly BsCarousel _carousel = carousel;
 
-    public Task MoveToSlideAsync(int n)
+    public async Task MoveToSlideAsync(int n)
     {
-        throw new NotImplementedException($"{nameof(_carousel)} has not been implemented.");
+        await _carousel.MoveToSlideAsync(n);
     }
 
-    public Task MovePrevAsync()
+    public async Task MovePrevAsync()
     {
-        throw new NotImplementedException();
+        await _carousel.MovePrevAsync();
     }
 
-    public Task MoveNextAsync()
+    public async Task MoveNextAsync()
     {
-        throw new NotImplementedException();
+        await _carousel.MoveNextAsync();
     }
 }
 

@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
 using RiRiSharp.Bootstrap.Components.Buttons.Internals;
+using RiRiSharp.Bootstrap.Components.Carousel.Internals;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
@@ -16,6 +17,7 @@ public static class BsStartupExtensions
             .AddBootstrapJs<IBsAccordionJsFunctions, BsAccordionJsFunctions>()
             .AddBootstrapJs<IBsAlertJsFunctions, BsAlertJsFunctions>()
             .AddBootstrapJs<IBsButtonJsFunctions, BsButtonJsFunctions>()
+            .AddBootstrapJs<IBsCarouselJsFunctions, BsCarouselJsFunctions>()
             .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>();
     }
 

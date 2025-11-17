@@ -1,6 +1,6 @@
 @using RiRiSharp.Bootstrap.BaseComponents
 @inherits BsChildContentComponent
 
-<button type="button" @attributes="AdditionalAttributes" class="@(Classes)" @ref="HtmlRef">
+<button type="button" @attributes="AdditionalAttributes" class="@(Classes)" @onclick="NextAsync" @ref="HtmlRef">
     @(ChildContent)
 </button>

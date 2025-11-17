@@ -30,9 +30,7 @@ public class BsAlertJsFunctionsTests
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAlertJsFunctions(jsObj);
         ElementReference alertRef = default;
-#pragma warning disable CA2000 // We can do this here, as there is nothing to dispose, since there's no real JS being used
-        var alert = new BsAlert();
-#pragma warning restore CA2000
+        await using var alert = new BsAlert();
         using var dotNetRef = DotNetObjectReference.Create(alert);
 
         // Act

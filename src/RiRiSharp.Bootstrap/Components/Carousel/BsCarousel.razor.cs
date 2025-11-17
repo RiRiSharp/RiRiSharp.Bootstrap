@@ -19,11 +19,29 @@ public partial class BsCarousel : BsChildContentComponent
     [Parameter]
     public bool EnableTouch { get; set; } = true;
 
+    [Inject]
+    private IBsCarouselJsFunctions CarouselJsFunctions { get; set; } = null!;
+
     public string TransitionTypeClass => TransitionType.ToString().ToLowerInvariant();
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         CarouselContext = new BsCarouselContext(this);
+    }
+
+    public async Task MoveToSlideAsync(int i)
+    {
+        await CarouselJsFunctions.MoveToSlideAsync(HtmlRef, i);
+    }
+
+    public async Task MovePrevAsync()
+    {
+        await CarouselJsFunctions.MovePrevAsync(HtmlRef);
+    }
+
+    public async Task MoveNextAsync()
+    {
+        await CarouselJsFunctions.MoveNextAsync(HtmlRef);
     }
 }
