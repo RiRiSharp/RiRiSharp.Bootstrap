@@ -6,7 +6,7 @@ namespace RiRiSharp.Bootstrap.Components.Carousel;
 
 public partial class BsCarousel : BsChildContentComponent
 {
-    protected override string BsComponentClasses => $"carousel {TransitionTypeClass}";
+    protected override string BsComponentClasses => $"carousel slide {TransitionTypeClass}";
 
     public IBsCarouselContext? CarouselContext { get; private set; }
 
@@ -22,12 +22,17 @@ public partial class BsCarousel : BsChildContentComponent
     [Inject]
     private IBsCarouselJsFunctions CarouselJsFunctions { get; set; } = null!;
 
-    public string TransitionTypeClass => TransitionType.ToString().ToLowerInvariant();
+    private string TransitionTypeClass => TransitionType.ToBootstrapClass();
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         CarouselContext = new BsCarouselContext(this);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
     }
 
     public async Task MoveToSlideAsync(int i)
@@ -43,5 +48,15 @@ public partial class BsCarousel : BsChildContentComponent
     public async Task MoveNextAsync()
     {
         await CarouselJsFunctions.MoveNextAsync(HtmlRef);
+    }
+
+    public async Task CycleAsync()
+    {
+        await CarouselJsFunctions.Cycle(HtmlRef);
+    }
+
+    public async Task PauseAsync()
+    {
+        await CarouselJsFunctions.Pause(HtmlRef);
     }
 }

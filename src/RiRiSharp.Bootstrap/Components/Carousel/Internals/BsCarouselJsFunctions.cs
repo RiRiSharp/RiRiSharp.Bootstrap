@@ -34,4 +34,18 @@ internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWra
     {
         await _bsJsObjectRef.InvokeVoidAsync(MOVE_NEXT, carouselRef);
     }
+
+    internal const string CYCLE = "cycle";
+
+    public async Task Cycle(ElementReference carouselRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(CYCLE, carouselRef);
+    }
+
+    internal const string PAUSE = "pause";
+
+    public async Task Pause(ElementReference carouselRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(PAUSE, carouselRef);
+    }
 }

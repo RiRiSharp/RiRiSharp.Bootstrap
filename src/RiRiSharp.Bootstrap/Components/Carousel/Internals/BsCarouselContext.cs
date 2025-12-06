@@ -16,11 +16,14 @@ internal class BsCarouselContext(BsCarousel carousel) : IBsCarouselContext
     {
         await carousel.MoveNextAsync();
     }
-}
 
-public interface IBsCarouselContext
-{
-    Task MoveToSlideAsync(int n);
-    Task MovePrevAsync();
-    Task MoveNextAsync();
+    public async Task CycleAsync()
+    {
+        await carousel.CycleAsync();
+    }
+
+    public async Task PauseAsync()
+    {
+        await carousel.PauseAsync();
+    }
 }

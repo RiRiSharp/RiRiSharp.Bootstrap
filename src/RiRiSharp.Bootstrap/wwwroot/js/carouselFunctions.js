@@ -1,9 +1,7 @@
 ﻿export function moveToSlide(carouselRef, slideNumber) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
-    console.log(carouselRef);
     carousel.to(slideNumber);
-    console.log(carouselRef);
 
     // Update indicators: set 'active' on the button with data-bs-slide-to=slideNumber, because 
     // Bootstrap does not do this automatically when data-bs-target has not been set, which we purposefully avoid doing.
@@ -27,4 +25,18 @@ export function movePrev(carouselRef) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
     carousel.prev();
+}
+
+export function cycle(carouselRef) {
+    if (!carouselRef) return;
+    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    console.log(carousel._config.interval);
+    carousel.cycle();
+    console.log(carousel._config.interval);
+}
+
+export function pause(carouselRef) {
+    if (!carouselRef) return;
+    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    carousel.pause();
 }
