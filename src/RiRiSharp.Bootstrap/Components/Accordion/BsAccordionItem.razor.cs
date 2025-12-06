@@ -24,7 +24,7 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
         base.OnParametersSet();
         if (AccordionContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionContext));
+            throw new BsCascadingParameterNotProvidedException(typeof(IBsAccordionContext));
         }
 
         AccordionItemContext = new BsAccordionItemContext(this);

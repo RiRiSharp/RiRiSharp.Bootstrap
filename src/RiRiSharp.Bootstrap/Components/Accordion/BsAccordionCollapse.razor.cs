@@ -31,7 +31,7 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
         base.OnParametersSet();
         if (AccordionItemContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
+            throw new BsCascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
         }
     }
 

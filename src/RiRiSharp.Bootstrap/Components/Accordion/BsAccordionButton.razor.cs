@@ -34,7 +34,7 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
         base.OnParametersSet();
         if (AccordionItemContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
+            throw new BsCascadingParameterNotProvidedException(typeof(IBsAccordionItemContext));
         }
     }
 

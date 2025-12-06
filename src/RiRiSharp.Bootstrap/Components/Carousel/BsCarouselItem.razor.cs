@@ -24,7 +24,7 @@ public sealed partial class BsCarouselItem : BsChildContentComponent, IDisposabl
         base.OnParametersSet();
         if (CarouselInnerContext is null)
         {
-            throw new CascadingParameterNotProvidedException(typeof(IBsCarouselInnerContext));
+            throw new BsCascadingParameterNotProvidedException(typeof(IBsCarouselInnerContext));
         }
 
         CarouselInnerContext.Register(this);
