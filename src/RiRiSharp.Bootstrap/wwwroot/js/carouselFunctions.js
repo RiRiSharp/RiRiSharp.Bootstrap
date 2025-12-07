@@ -1,52 +1,63 @@
 ﻿export function moveToSlide(carouselRef, slideNumber) {
     const carousel = getCarouselInstance(carouselRef);
+
     carousel.to(slideNumber);
 }
 
 export function moveNext(carouselRef) {
     if (!carouselRef) return;
     const carousel = getCarouselInstance(carouselRef);
+
     carousel.next();
 }
 
 export function movePrev(carouselRef) {
     if (!carouselRef) return;
     const carousel = getCarouselInstance(carouselRef);
+
     carousel.prev();
 }
 
 export function cycle(carouselRef) {
     if (!carouselRef) return;
     const carousel = getCarouselInstance(carouselRef);
-    carousel.cycle();
+
+    if (!carouselRef._isCycling) {
+        carousel.cycle();
+        carouselRef._isCycling = true;
+    }
 }
 
 export function pause(carouselRef) {
     if (!carouselRef) return;
     const carousel = getCarouselInstance(carouselRef);
+
     carousel.pause();
+    carouselRef._isCycling = false;
 }
 
 export function addCycleCallback(carouselRef) {
     if (!carouselRef) return;
     if (carouselRef._cycleHandler) return;
-    const carousel = getCarouselInstance(carouselRef);
-    const cycleHandler = function () {
-        carousel.cycle();
-    };
+
+    const cycleHandler = () => cycle(carouselRef);
+
     carouselRef._cycleHandler = cycleHandler;
     carouselRef.addEventListener('slid.bs.carousel', cycleHandler);
 }
 
 export function removeCycleCallback(carouselRef) {
     if (!carouselRef || !carouselRef._cycleHandler) return;
+
     carouselRef.removeEventListener('slid.bs.carousel', carouselRef._cycleHandler);
     delete carouselRef._cycleHandler;
+    carouselRef._isCycling = false;
 }
 
 function getCarouselInstance(carouselRef) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    
     addSlideCallback(carouselRef);
     return carousel;
 }

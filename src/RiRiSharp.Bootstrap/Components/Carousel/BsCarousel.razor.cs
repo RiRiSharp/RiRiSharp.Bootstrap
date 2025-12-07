@@ -70,16 +70,28 @@ public partial class BsCarousel : BsChildContentComponent
     public async Task MoveToSlideAsync(int i)
     {
         await CarouselJsFunctions.MoveToSlideAsync(HtmlRef, i);
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
+        {
+            await AddCycleCallback();
+        }
     }
 
     public async Task MovePrevAsync()
     {
         await CarouselJsFunctions.MovePrevAsync(HtmlRef);
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
+        {
+            await AddCycleCallback();
+        }
     }
 
     public async Task MoveNextAsync()
     {
         await CarouselJsFunctions.MoveNextAsync(HtmlRef);
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
+        {
+            await AddCycleCallback();
+        }
     }
 
     public async Task CycleAsync()
