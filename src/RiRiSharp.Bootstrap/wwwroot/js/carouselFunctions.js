@@ -1,42 +1,55 @@
 ﻿export function moveToSlide(carouselRef, slideNumber) {
-    if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    const carousel = getCarouselInstance(carouselRef);
     carousel.to(slideNumber);
-
-    // Update indicators: set 'active' on the button with data-bs-slide-to=slideNumber, because 
-    // Bootstrap does not do this automatically when data-bs-target has not been set, which we purposefully avoid doing.
-    const indicators = carouselRef.querySelectorAll('.carousel-indicators [type="button"]');
-    indicators.forEach(btn => {
-        if (btn.getAttribute('data-bs-slide-to') == slideNumber) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
 }
 
 export function moveNext(carouselRef) {
     if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    const carousel = getCarouselInstance(carouselRef);
     carousel.next();
 }
 
 export function movePrev(carouselRef) {
     if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    const carousel = getCarouselInstance(carouselRef);
     carousel.prev();
 }
 
 export function cycle(carouselRef) {
     if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
-    console.log(carousel._config.interval);
+    const carousel = getCarouselInstance(carouselRef);
     carousel.cycle();
-    console.log(carousel._config.interval);
 }
 
 export function pause(carouselRef) {
     if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    const carousel = getCarouselInstance(carouselRef);
     carousel.pause();
+}
+
+function getCarouselInstance(carouselRef) {
+    if (!carouselRef) return;
+    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
+    addSlideCallback(carouselRef);
+    return carousel;
+}
+
+// Set 'active' on the indicator buttons with data-bs-slide-to=slide.to 
+// Bootstrap does not do this automatically when data-bs-target has not been set, which we purposefully avoid doing.
+function addSlideCallback(carouselRef) {
+    if (!carouselRef || carouselRef._indicatorSyncEnabled) return;
+
+    carouselRef.addEventListener('slid.bs.carousel', function (event) {
+        const indicators = carouselRef.querySelectorAll('.carousel-indicators [type="button"]');
+        indicators.forEach(btn => {
+            const attributeSlideNumber = parseInt(btn.getAttribute('data-bs-slide-to'));
+            if (attributeSlideNumber === event.to) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    });
+
+    carouselRef._indicatorSyncEnabled = true;
 }
