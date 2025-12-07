@@ -9,4 +9,6 @@ public interface IBsCarouselJsFunctions
     Task MoveNextAsync(ElementReference carouselRef);
     Task Cycle(ElementReference carouselRef);
     Task Pause(ElementReference carouselRef);
+    Task AddCycleCallback(ElementReference carouselRef);
+    Task RemoveCycleCallback(ElementReference carouselRef);
 }

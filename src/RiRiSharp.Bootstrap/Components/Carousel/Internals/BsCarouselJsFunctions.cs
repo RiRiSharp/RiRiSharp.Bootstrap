@@ -48,4 +48,18 @@ internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWra
     {
         await _bsJsObjectRef.InvokeVoidAsync(PAUSE, carouselRef);
     }
+
+    internal const string ADD_CYCLE_CALLBACK = "addCycleCallback";
+
+    public async Task AddCycleCallback(ElementReference carouselRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(ADD_CYCLE_CALLBACK, carouselRef);
+    }
+
+    internal const string REMOVE_CYCLE_CALLBACK = "removeCycleCallback";
+
+    public async Task RemoveCycleCallback(ElementReference carouselRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(REMOVE_CYCLE_CALLBACK, carouselRef);
+    }
 }

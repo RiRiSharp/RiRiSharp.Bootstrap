@@ -30,9 +30,41 @@ public partial class BsCarousel : BsChildContentComponent
         CarouselContext = new BsCarouselContext(this);
     }
 
-    protected override async Task OnParametersSetAsync()
+    private BsCarouselAutoPlayMode? _lastAutoPlay;
+    private bool _autoPlayChanged;
+
+    protected override void OnParametersSet()
     {
-        await base.OnParametersSetAsync();
+        base.OnParametersSet();
+        if (_lastAutoPlay == AutoPlay)
+        {
+            return;
+        }
+
+        _autoPlayChanged = true;
+        _lastAutoPlay = AutoPlay;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (!_autoPlayChanged)
+        {
+            return;
+        }
+
+        await RemoveCycleCallback();
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
+        {
+            await AddCycleCallback();
+        }
+
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlay)
+        {
+            await CycleAsync();
+        }
+
+        _autoPlayChanged = false;
     }
 
     public async Task MoveToSlideAsync(int i)
@@ -58,5 +90,19 @@ public partial class BsCarousel : BsChildContentComponent
     public async Task PauseAsync()
     {
         await CarouselJsFunctions.Pause(HtmlRef);
+        if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
+        {
+            await RemoveCycleCallback();
+        }
+    }
+
+    private async Task AddCycleCallback()
+    {
+        await CarouselJsFunctions.AddCycleCallback(HtmlRef);
+    }
+
+    private async Task RemoveCycleCallback()
+    {
+        await CarouselJsFunctions.RemoveCycleCallback(HtmlRef);
     }
 }

@@ -27,6 +27,23 @@ export function pause(carouselRef) {
     carousel.pause();
 }
 
+export function addCycleCallback(carouselRef) {
+    if (!carouselRef) return;
+    if (carouselRef._cycleHandler) return;
+    const carousel = getCarouselInstance(carouselRef);
+    const cycleHandler = function () {
+        carousel.cycle();
+    };
+    carouselRef._cycleHandler = cycleHandler;
+    carouselRef.addEventListener('slid.bs.carousel', cycleHandler);
+}
+
+export function removeCycleCallback(carouselRef) {
+    if (!carouselRef || !carouselRef._cycleHandler) return;
+    carouselRef.removeEventListener('slid.bs.carousel', carouselRef._cycleHandler);
+    delete carouselRef._cycleHandler;
+}
+
 function getCarouselInstance(carouselRef) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
