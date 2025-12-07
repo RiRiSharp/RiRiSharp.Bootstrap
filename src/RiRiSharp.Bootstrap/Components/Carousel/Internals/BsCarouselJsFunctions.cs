@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Carousel.Internals;
 
-internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWrapper
+internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
     public static string JsFileName => "carouselFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;
@@ -37,21 +37,21 @@ internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWra
 
     internal const string CYCLE = "cycle";
 
-    public async Task Cycle(ElementReference carouselRef)
+    public async Task CycleAsync(ElementReference carouselRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(CYCLE, carouselRef);
     }
 
     internal const string PAUSE = "pause";
 
-    public async Task Pause(ElementReference carouselRef)
+    public async Task PauseAsync(ElementReference carouselRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(PAUSE, carouselRef);
     }
 
     internal const string ADD_CYCLE_CALLBACK = "addCycleCallback";
 
-    public async Task AddCycleCallback(ElementReference carouselRef)
+    public async Task AddCycleCallbackAsync(ElementReference carouselRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(ADD_CYCLE_CALLBACK, carouselRef);
     }
@@ -61,5 +61,17 @@ internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWra
     public async Task RemoveCycleCallback(ElementReference carouselRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(REMOVE_CYCLE_CALLBACK, carouselRef);
+    }
+
+    internal const string DISPOSE = "dispose";
+
+    public async Task DisposeAsync(ElementReference carouselRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(DISPOSE, carouselRef);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _bsJsObjectRef.DisposeAsync();
     }
 }

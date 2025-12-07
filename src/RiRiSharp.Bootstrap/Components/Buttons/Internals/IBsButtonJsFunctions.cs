@@ -3,7 +3,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Buttons.Internals;
 
-public interface IBsButtonJsFunctions : IBsJsHasDispose
+public interface IBsButtonJsFunctions : IBsJsDisposable
 {
     Task ToggleAsync(ElementReference buttonRef);
 }

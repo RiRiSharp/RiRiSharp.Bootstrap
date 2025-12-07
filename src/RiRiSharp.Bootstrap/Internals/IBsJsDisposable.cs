@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace RiRiSharp.Bootstrap.Internals;
 
-public interface IBsJsHasDispose
+public interface IBsJsDisposable
 {
     Task DisposeAsync(ElementReference elementRef);
 }

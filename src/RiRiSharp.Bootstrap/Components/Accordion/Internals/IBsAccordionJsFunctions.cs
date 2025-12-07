@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
-public interface IBsAccordionJsFunctions : IBsJsHasDispose
+public interface IBsAccordionJsFunctions : IBsJsDisposable
 {
     Task CollapseAllAsync(ElementReference accordionRef);
     Task ShowAllAsync(ElementReference accordionRef);

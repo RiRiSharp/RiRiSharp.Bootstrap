@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Components.Carousel.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Carousel;
 
-public partial class BsCarousel : BsChildContentComponent
+public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 {
     protected override string BsComponentClasses => $"carousel slide {TransitionTypeClass}";
 
@@ -96,12 +96,12 @@ public partial class BsCarousel : BsChildContentComponent
 
     public async Task CycleAsync()
     {
-        await CarouselJsFunctions.Cycle(HtmlRef);
+        await CarouselJsFunctions.CycleAsync(HtmlRef);
     }
 
     public async Task PauseAsync()
     {
-        await CarouselJsFunctions.Pause(HtmlRef);
+        await CarouselJsFunctions.PauseAsync(HtmlRef);
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
             await RemoveCycleCallback();
@@ -110,11 +110,27 @@ public partial class BsCarousel : BsChildContentComponent
 
     private async Task AddCycleCallback()
     {
-        await CarouselJsFunctions.AddCycleCallback(HtmlRef);
+        await CarouselJsFunctions.AddCycleCallbackAsync(HtmlRef);
     }
 
     private async Task RemoveCycleCallback()
     {
         await CarouselJsFunctions.RemoveCycleCallback(HtmlRef);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private async Task Dispose(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+
+        await CarouselJsFunctions.DisposeAsync(HtmlRef);
     }
 }

@@ -54,6 +54,16 @@ export function removeCycleCallback(carouselRef) {
     carouselRef._isCycling = false;
 }
 
+export function dispose(carouselRef) {
+    if (!carouselRef) return;
+    
+    removeCycleCallback(carouselRef);
+    const carousel = bootstrap.Carousel.getInstance(carouselRef);
+    if (carousel) {
+        carousel.dispose();
+    }
+}
+
 function getCarouselInstance(carouselRef) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
