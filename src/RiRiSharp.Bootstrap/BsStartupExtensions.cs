@@ -4,6 +4,7 @@ using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
 using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 using RiRiSharp.Bootstrap.Components.Carousel.Internals;
+using RiRiSharp.Bootstrap.Components.Collapse.Internals;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 using RiRiSharp.Bootstrap.Internals;
 
@@ -18,7 +19,8 @@ public static class BsStartupExtensions
             .AddBootstrapJs<IBsAlertJsFunctions, BsAlertJsFunctions>()
             .AddBootstrapJs<IBsButtonJsFunctions, BsButtonJsFunctions>()
             .AddBootstrapJs<IBsCarouselJsFunctions, BsCarouselJsFunctions>()
-            .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>();
+            .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>()
+            .AddBootstrapJs<IBsCollapseJsFunctions, BsCollapseJsFunctions>();
     }
 
     private static IServiceCollection AddBootstrapJs<TService, TImpl>(this IServiceCollection services)

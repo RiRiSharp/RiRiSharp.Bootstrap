@@ -1,26 +1,20 @@
 ﻿export function moveToSlide(carouselRef, slideNumber) {
-    const carousel = getCarouselInstance(carouselRef);
-
+    const carousel = getCarouselInstanceWithCallback(carouselRef);
     carousel.to(slideNumber);
 }
 
 export function moveNext(carouselRef) {
-    if (!carouselRef) return;
-    const carousel = getCarouselInstance(carouselRef);
-
+    const carousel = getCarouselInstanceWithCallback(carouselRef);
     carousel.next();
 }
 
 export function movePrev(carouselRef) {
-    if (!carouselRef) return;
-    const carousel = getCarouselInstance(carouselRef);
-
+    const carousel = getCarouselInstanceWithCallback(carouselRef);
     carousel.prev();
 }
 
 export function cycle(carouselRef) {
-    if (!carouselRef) return;
-    const carousel = getCarouselInstance(carouselRef);
+    const carousel = getCarouselInstanceWithCallback(carouselRef);
 
     if (!carouselRef._isCycling) {
         carousel.cycle();
@@ -29,8 +23,7 @@ export function cycle(carouselRef) {
 }
 
 export function pause(carouselRef) {
-    if (!carouselRef) return;
-    const carousel = getCarouselInstance(carouselRef);
+    const carousel = getCarouselInstanceWithCallback(carouselRef);
 
     carousel.pause();
     carouselRef._isCycling = false;
@@ -64,7 +57,7 @@ export function dispose(carouselRef) {
     }
 }
 
-function getCarouselInstance(carouselRef) {
+function getCarouselInstanceWithCallback(carouselRef) {
     if (!carouselRef) return;
     const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
     
