@@ -23,13 +23,17 @@ public partial class BsCarouselIndicatorButton : BsComponent, IBsChildContentCom
     // Zero based index
     public int? SlideNo { get; set; }
 
-    public async Task MoveToCorrespondingSlideAsync()
+    protected override void OnParametersSet()
     {
+        base.OnParametersSet();
         if (SlideNo is null or < 0)
         {
             throw new InvalidOperationException($"Slide number {SlideNo} is invalid");
         }
+    }
 
-        await CarouselContext!.MoveToSlideAsync(SlideNo.Value);
+    public async Task MoveToCorrespondingSlideAsync()
+    {
+        await CarouselContext!.MoveToSlideAsync(SlideNo!.Value);
     }
 }

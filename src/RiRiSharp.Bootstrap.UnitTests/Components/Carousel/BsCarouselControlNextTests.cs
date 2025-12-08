@@ -1,6 +1,24 @@
+using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Carousel;
+using RiRiSharp.Bootstrap.Components.Carousel.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Carousel;
 
 public class BsCarouselControlNextTests()
-    : BsComponentTests<BsCarouselControlNext>("""<div class="carousel-caption {0}" {1}></div>""");
+    : BsComponentTests<BsCarouselControlNext>("""<button class="carousel-control-next {0}" {1}></button>""")
+{
+    protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
+    private readonly IBsCarouselContext _carouselContextMock = Substitute.For<IBsCarouselContext>();
+
+    protected override void BindParameters(ComponentParameterCollectionBuilder<BsCarouselControlNext> parameterBuilder)
+    {
+        base.BindParameters(parameterBuilder);
+        _ = parameterBuilder.AddCascadingValue(_carouselContextMock);
+    }
+
+    [Fact]
+    public void TypeCanBeOverriden()
+    {
+        TestForAllowingOverride("type");
+    }
+}

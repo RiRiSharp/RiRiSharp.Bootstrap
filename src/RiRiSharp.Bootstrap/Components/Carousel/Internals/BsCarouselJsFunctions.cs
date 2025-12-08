@@ -58,7 +58,7 @@ internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWra
 
     internal const string REMOVE_CYCLE_CALLBACK = "removeCycleCallback";
 
-    public async Task RemoveCycleCallback(ElementReference carouselRef)
+    public async Task RemoveCycleCallbackAsync(ElementReference carouselRef)
     {
         await _bsJsObjectRef.InvokeVoidAsync(REMOVE_CYCLE_CALLBACK, carouselRef);
     }

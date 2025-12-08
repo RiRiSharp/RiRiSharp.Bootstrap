@@ -22,4 +22,94 @@ public class BsCarouselJsFunctionsTests
         // Assert
         AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.MOVE_TO_SLIDE, carouselRef, slideNumber);
     }
+
+    [Fact]
+    public async Task MovePrevCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.MovePrevAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.MOVE_PREV, carouselRef);
+    }
+
+    [Fact]
+    public async Task MoveNextCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.MoveNextAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.MOVE_NEXT, carouselRef);
+    }
+
+    [Fact]
+    public async Task CycleCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.CycleAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.CYCLE, carouselRef);
+    }
+
+    [Fact]
+    public async Task PauseCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.PauseAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.PAUSE, carouselRef);
+    }
+
+    [Fact]
+    public async Task AddCycleCallbackCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.AddCycleCallbackAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.ADD_CYCLE_CALLBACK, carouselRef);
+    }
+
+    [Fact]
+    public async Task RemoveCycleCallbackCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.RemoveCycleCallbackAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.REMOVE_CYCLE_CALLBACK, carouselRef);
+    }
 }

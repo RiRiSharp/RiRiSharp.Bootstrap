@@ -19,6 +19,12 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
     [Parameter]
     public bool EnableTouch { get; set; } = true;
 
+    /// <summary>
+    /// Makes sure we actually get create data-bs-touch="true" instead of data-bs-touch="", which would happen if we directly use the boolean,
+    /// because of how the razor engine handles boolean attribute values
+    /// </summary>
+    private string EnableTouchAttributeValue => EnableTouch.ToString().ToLowerInvariant();
+
     [Inject]
     private IBsCarouselJsFunctions CarouselJsFunctions { get; set; } = null!;
 
@@ -53,6 +59,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
             return;
         }
 
+        // Reset the situation just to be sure
         await RemoveCycleCallback();
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
@@ -115,7 +122,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     private async Task RemoveCycleCallback()
     {
-        await CarouselJsFunctions.RemoveCycleCallback(HtmlRef);
+        await CarouselJsFunctions.RemoveCycleCallbackAsync(HtmlRef);
     }
 
     public async ValueTask DisposeAsync()

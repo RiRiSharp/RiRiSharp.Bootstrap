@@ -9,19 +9,10 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
     <InternalsVisibleTo Include="$(MSBuildProjectName).UnitTests" />
+    <!-- Enable NSubtitute to access internals -->
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="Components\Buttons\BsButton.razor" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Components\Accordion\BsAccordionBody.razor.cs">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Include="Components\Buttons\BsButtonLink.razor.cs">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
   </ItemGroup>
 </Project>

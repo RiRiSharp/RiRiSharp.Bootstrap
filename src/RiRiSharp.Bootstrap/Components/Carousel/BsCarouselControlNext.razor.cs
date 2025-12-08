@@ -17,7 +17,7 @@ public partial class BsCarouselControlNext : BsChildContentComponent
         base.OnParametersSet();
         if (CarouselContext is null)
         {
-            throw new BsCascadingParameterNotProvidedException(typeof(IBsCarouselInnerContext));
+            throw new BsCascadingParameterNotProvidedException(typeof(IBsCarouselContext));
         }
     }
 

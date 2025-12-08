@@ -1,7 +1,5 @@
 @inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
 <div @attributes="AdditionalAttributes" class="@(Classes)" @ref="HtmlRef">
-    <CascadingValue Value="CarouselInnerContext">
-        @(ChildContent)
-    </CascadingValue>
+    @(ChildContent)
 </div>
