@@ -6,29 +6,34 @@ namespace RiRiSharp.Bootstrap.Components.Collapse;
 
 public partial class BsCollapse : BsChildContentComponent, IAsyncDisposable
 {
-    protected override string BsComponentClasses => $"collapse {DirectionClass}";
+    protected override string BsComponentClasses => $"collapse {ShowClass} {DirectionClass}";
 
     [Parameter]
     public BsCollapseDirection Direction { get; set; }
+
+    [Parameter]
+    public bool Show { get; set; }
+
+    private string ShowClass => Show ? "show" : "";
 
     [Inject]
     private IBsCollapseJsFunctions CollapseJsFunctions { get; set; } = null!;
 
     private string DirectionClass => Direction.ToBootstrapClass();
 
-    public async Task CollapseAsync()
-    {
-        await CollapseJsFunctions.CollapseAsync(HtmlRef);
-    }
-
-    public async Task ExpandAsync()
-    {
-        await CollapseJsFunctions.ExpandAsync(HtmlRef);
-    }
-
     public async Task ToggleAsync()
     {
         await CollapseJsFunctions.ToggleAsync(HtmlRef);
+    }
+
+    public async Task ShowAsync()
+    {
+        await CollapseJsFunctions.ShowAsync(HtmlRef);
+    }
+
+    public async Task CollapseAsync()
+    {
+        await CollapseJsFunctions.CollapseAsync(HtmlRef);
     }
 
     public async ValueTask DisposeAsync()

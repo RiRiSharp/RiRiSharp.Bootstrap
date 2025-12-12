@@ -1,16 +1,22 @@
 ﻿export function collapse(collapseRef) {
     const collapse = getCollapseInstance(collapseRef);
-    collapse.hide();
+    if (collapse) {
+        collapse.hide();
+    }
 }
 
 export function expand(collapseRef) {
     const collapse = getCollapseInstance(collapseRef);
-    collapse.show();
+    if (collapse) {
+        collapse.show();
+    }
 }
 
 export function toggle(collapseRef) {
     const collapse = getCollapseInstance(collapseRef);
-    collapse.toggle();
+    if (collapse) {
+        collapse.toggle();
+    }
 }
 
 export function dispose(collapseRef) {

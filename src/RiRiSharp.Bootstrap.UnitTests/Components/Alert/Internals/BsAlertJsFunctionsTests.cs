@@ -41,7 +41,7 @@ public class BsAlertJsFunctionsTests
     }
 
     [Fact]
-    public async Task JsDisposingCallsCorrectJsFunctionAsync()
+    public async Task DisposeCallsCorrectJsFunctionAsync()
     {
         // Arrange
         var jsObj = Substitute.For<IJSObjectReference>();

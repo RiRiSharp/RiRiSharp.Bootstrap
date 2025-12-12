@@ -1,50 +1,16 @@
 ﻿@page "/"
 @using RiRiSharp.Bootstrap.Components.Buttons
-@using RiRiSharp.Bootstrap.Components.Carousel
+@using RiRiSharp.Bootstrap.Components.Collapse
 
 <PageTitle>Home</PageTitle>
 
-<BsCarousel TransitionType="BsCarouselTransitionType.Crossfade" AutoPlay="BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction" @ref="_carousel">
-    <BsCarouselIndicators>
-        <BsCarouselIndicatorButton SlideNo="0" IsActive="true"/> 
-        <BsCarouselIndicatorButton SlideNo="1"/> 
-        <BsCarouselIndicatorButton SlideNo="2"/> 
-    </BsCarouselIndicators>
-    <BsCarouselInner>
-        <BsCarouselItem IsActive="true" data-bs-interval="1000">
-            <svg aria-label="Placeholder: First slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                 height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800"
-                 xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#777"></rect>
-                <text x="50%" y="50%" fill="#555" dy=".3em">First slide</text>
-            </svg>
-        </BsCarouselItem>
-        <BsCarouselItem data-bs-interval="1000">
-            <svg aria-label="Placeholder: Second slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                 height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800"
-                 xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#666"></rect>
-                <text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text>
-            </svg>
-        </BsCarouselItem>
-        <BsCarouselItem data-bs-interval="1000">
-            <svg aria-label="Placeholder: Third slide" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                 height="400" preserveAspectRatio="xMidYMid slice" role="img" width="800"
-                 xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#555"></rect>
-                <text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text>
-            </svg>
-        </BsCarouselItem>
-    </BsCarouselInner>
-    <BsCarouselControlPrev>
-        <BsCarouselControlPrevIcon/>
-    </BsCarouselControlPrev>
-    <BsCarouselControlNext>
-        <BsCarouselControlNextIcon/>
-    </BsCarouselControlNext>
-</BsCarousel>
-<BsButton Variant="BsButtonVariant.Primary" @onclick="() => _carousel?.PauseAsync() ?? Task.CompletedTask">Pause</BsButton>
+<BsCollapse Show="true" @ref="_collapse">
+    Hello world!
+</BsCollapse>
+<BsButton Variant="BsButtonVariant.Primary" @onclick="() => _collapse?.ToggleAsync() ?? Task.CompletedTask">Toggle</BsButton>
+<BsButton Variant="BsButtonVariant.Secondary" @onclick="() => _collapse?.ShowAsync() ?? Task.CompletedTask">Show</BsButton>
+<BsButton Variant="BsButtonVariant.OutlinePrimary" @onclick="() => _collapse?.CollapseAsync() ?? Task.CompletedTask">Hide</BsButton>
 
 @code {
-    private BsCarousel? _carousel;
+    private BsCollapse? _collapse;
 }

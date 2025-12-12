@@ -99,7 +99,7 @@ public class BsCarouselJsFunctionsTests
     }
 
     [Fact]
-    public async Task RemoveCycleCallbackCorrectJsFunctionAsync()
+    public async Task RemoveCycleCallbackCallsCorrectJsFunctionAsync()
     {
         // Arrange
         var jsObj = Substitute.For<IJSObjectReference>();
@@ -111,5 +111,20 @@ public class BsCarouselJsFunctionsTests
 
         // Assert
         AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.REMOVE_CYCLE_CALLBACK, carouselRef);
+    }
+
+    [Fact]
+    public async Task DisposeCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsCarouselJsFunctions(jsObj);
+        ElementReference carouselRef = default;
+
+        // Act
+        await sut.DisposeAsync(carouselRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsCarouselJsFunctions.DISPOSE, carouselRef);
     }
 }

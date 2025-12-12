@@ -55,7 +55,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.AutoPlay, mode));
-        await cut.Instance.MoveNextAsync();
+        await cut.InvokeAsync(cut.Instance.MoveNextAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(noOfCalls).AddCycleCallbackAsync(cut.Instance.HtmlRef);
@@ -75,7 +75,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.AutoPlay, mode));
-        await cut.Instance.MovePrevAsync();
+        await cut.InvokeAsync(cut.Instance.MovePrevAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(noOfCalls).AddCycleCallbackAsync(cut.Instance.HtmlRef);
@@ -95,7 +95,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut(parameters => parameters.Add(p => p.AutoPlay, mode));
-        await cut.Instance.PauseAsync();
+        await cut.InvokeAsync(cut.Instance.PauseAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(noOfCalls).RemoveCycleCallbackAsync(cut.Instance.HtmlRef);
@@ -143,7 +143,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut();
-        await cut.Instance.MoveNextAsync();
+        await cut.InvokeAsync(cut.Instance.MoveNextAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(1).MoveNextAsync(cut.Instance.HtmlRef);
@@ -157,7 +157,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut();
-        await cut.Instance.MovePrevAsync();
+        await cut.InvokeAsync(cut.Instance.MovePrevAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(1).MovePrevAsync(cut.Instance.HtmlRef);
@@ -171,7 +171,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut();
-        await cut.Instance.CycleAsync();
+        await cut.InvokeAsync(cut.Instance.CycleAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(1).CycleAsync(cut.Instance.HtmlRef);
@@ -185,7 +185,7 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
 
         // Act
         var cut = GetCut();
-        await cut.Instance.PauseAsync();
+        await cut.InvokeAsync(cut.Instance.PauseAsync);
 
         // Assert
         await _carouselJsFunctionsMock.Received(1).PauseAsync(cut.Instance.HtmlRef);
