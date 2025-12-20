@@ -1,0 +1,7 @@
+@using RiRiSharp.Bootstrap.BaseComponents
+@using RiRiSharp.Bootstrap.Components.Buttons
+@inherits BsChildContentComponent
+
+<BsButton Size="Size" Variant="Variant" aria-expanded="false" @attributes="AdditionalAttributes" data-bs-toggle="dropdown" class="@(Classes)" @ref="_bsButtonRef">
+    @(ChildContent)
+</BsButton>

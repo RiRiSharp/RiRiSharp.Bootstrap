@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using RiRiSharp.Bootstrap.Components.Buttons
 @using RiRiSharp.Bootstrap.Components.Collapse
+@using RiRiSharp.Bootstrap.Components.Dropdown
 
 <PageTitle>Home</PageTitle>
 
@@ -11,6 +12,17 @@
 <BsButton Variant="BsButtonVariant.Secondary" @onclick="() => _collapse?.ShowAsync() ?? Task.CompletedTask">Show</BsButton>
 <BsButton Variant="BsButtonVariant.OutlinePrimary" @onclick="() => _collapse?.CollapseAsync() ?? Task.CompletedTask">Hide</BsButton>
 
+<BsDropdown>
+    <BsDropdownToggle Variant="BsButtonVariant.OutlinePrimary" Size="BsButtonSize.Large">
+        Dropdown button
+    </BsDropdownToggle>
+    <BsDropdownMenu>
+        <li><BsDropdownItem>Action!</BsDropdownItem></li>
+        <li><BsDropdownItem>Action2!</BsDropdownItem></li>
+        <li><BsDropdownDivider/></li>
+        <li><BsDropdownItem>Action3!</BsDropdownItem></li>
+    </BsDropdownMenu>
+</BsDropdown>
 @code {
     private BsCollapse? _collapse;
 }

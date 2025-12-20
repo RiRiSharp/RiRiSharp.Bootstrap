@@ -11,5 +11,5 @@ public abstract class BsComponent : ComponentBase, IBsComponent
     [Parameter(CaptureUnmatchedValues = true)]
     public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
 
-    public ElementReference HtmlRef { get; protected set; }
+    public virtual ElementReference HtmlRef { get; protected set; }
 }
