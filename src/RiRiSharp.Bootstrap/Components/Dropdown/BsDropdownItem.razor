@@ -1,5 +1,7 @@
 @inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
-<a @attributes="AdditionalAttributes" class="@(Classes)" @ref="HtmlRef">
-    @(ChildContent)
-</a>
+<li>
+    <a @attributes="RenderAttributes" @ref="HtmlRef">
+        @(ChildContent)
+    </a>
+</li>

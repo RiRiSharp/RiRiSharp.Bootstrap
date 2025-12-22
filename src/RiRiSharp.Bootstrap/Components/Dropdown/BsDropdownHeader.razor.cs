@@ -2,15 +2,15 @@ using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Components.Alert;
+namespace RiRiSharp.Bootstrap.Components.Dropdown;
 
-public partial class BsAlertHeading : BsChildContentComponent
+public partial class BsDropdownHeader : BsChildContentComponent
 {
-    protected override string BsComponentClasses => "alert-heading";
+    protected override string BsComponentClasses => "dropdown-header";
     public override ElementReference HtmlRef => _bsHeadingRef!.HtmlRef;
 
     [Parameter]
-    public int Heading { get; set; } = 4;
+    public int Heading { get; set; } = 6;
 
 #pragma warning disable IDE0044
     /// <summary>

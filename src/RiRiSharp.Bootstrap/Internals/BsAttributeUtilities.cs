@@ -71,7 +71,7 @@ internal static class BsAttributeUtilities
     /// <param name="additionalAttributes">The attribute dictionary to create a copy of.</param>
     /// <param name="classNames">The classes which will overwrite to the class attribute of the attribute dictionary</param>
     /// <returns>A copy of the attribute dictionary where the classes attribute is overwritten.</returns>
-    internal static IReadOnlyDictionary<string, object> AssignClassNames(
+    internal static Dictionary<string, object> AssignClassNames(
         IReadOnlyDictionary<string, object>? additionalAttributes,
         string? classNames
     )

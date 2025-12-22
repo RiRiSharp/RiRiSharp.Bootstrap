@@ -1,7 +1,6 @@
 @inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 @if (_dismissed) return;
-<div role="alert" @attributes="AdditionalAttributes"
-     class="@(Classes)" @ref="HtmlRef">
+<div role="alert" @attributes="RenderAttributes" @ref="HtmlRef">
     <CascadingValue Value="AlertContext">
         @(ChildContent) 
     </CascadingValue>

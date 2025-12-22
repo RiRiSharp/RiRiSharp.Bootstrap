@@ -30,8 +30,7 @@ public class BsAlertJsFunctionsTests
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAlertJsFunctions(jsObj);
         ElementReference alertRef = default;
-        await using var alert = new BsAlert();
-        using var dotNetRef = DotNetObjectReference.Create(alert);
+        DotNetObjectReference<BsAlert> dotNetRef = null!;
 
         // Act
         await sut.RegisterDismissCallbackAsync(alertRef, dotNetRef);

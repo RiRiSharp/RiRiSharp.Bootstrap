@@ -110,7 +110,7 @@ public class BsAccordionJsFunctionsTests : BunitContext
         var jsObj = Substitute.For<IJSObjectReference>();
         await using var sut = new BsAccordionJsFunctions(jsObj);
         ElementReference buttonRef = default;
-        using var dotNetRef = DotNetObjectReference.Create(Substitute.For<IHasCollapseState>());
+        DotNetObjectReference<IHasCollapseState> dotNetRef = null!;
 
         // Act
         await sut.RegisterCollapseCallbackAsync(buttonRef, dotNetRef);

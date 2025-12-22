@@ -10,10 +10,10 @@ public partial class BsDropdownToggle : BsChildContentComponent
 
     public override ElementReference HtmlRef => _bsButtonRef!.HtmlRef;
 
-    [Parameter]
+    [CascadingParameter]
     public BsDropdownMode Mode { get; set; }
 
-    private string ModeClass => Mode.ToBootstrapClass();
+    private string ModeClass => Mode.ToBootstrapButtonClass();
 
     [Parameter]
     public BsButtonSize Size { get; set; }

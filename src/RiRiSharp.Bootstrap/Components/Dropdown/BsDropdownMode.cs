@@ -3,17 +3,27 @@ namespace RiRiSharp.Bootstrap.Components.Dropdown;
 public enum BsDropdownMode
 {
     Regular = 0,
-    ToggleSplit = 1,
+    Split = 1,
 }
 
 public static class BsDropdownModeExtensions
 {
-    public static string ToBootstrapClass(this BsDropdownMode mode)
+    public static string ToBootstrapDropdownClass(this BsDropdownMode mode)
     {
         return mode switch
         {
             BsDropdownMode.Regular => "",
-            BsDropdownMode.ToggleSplit => "toggle-split",
+            BsDropdownMode.Split => "btn-group",
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null),
+        };
+    }
+
+    public static string ToBootstrapButtonClass(this BsDropdownMode mode)
+    {
+        return mode switch
+        {
+            BsDropdownMode.Regular => "",
+            BsDropdownMode.Split => "dropdown-toggle-split",
             _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null),
         };
     }

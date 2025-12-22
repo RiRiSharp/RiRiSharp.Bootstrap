@@ -8,8 +8,6 @@ public partial class BsButtonLink : BsChildContentComponent
     protected override string BsComponentClasses =>
         $"btn {Variant.ToBootstrapClass()} {Size.ToBootstrapClass()} {DisabledClass}";
 
-    private string DisabledClass => Disabled ? "disabled" : "";
-
     [Parameter]
     public BsButtonVariant Variant { get; set; } = BsButtonVariant.Primary;
 
@@ -18,4 +16,6 @@ public partial class BsButtonLink : BsChildContentComponent
 
     [Parameter]
     public bool Disabled { get; set; }
+
+    private string DisabledClass => Disabled ? "disabled" : "";
 }
