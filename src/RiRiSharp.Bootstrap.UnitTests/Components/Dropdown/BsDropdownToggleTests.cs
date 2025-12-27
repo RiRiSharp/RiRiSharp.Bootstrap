@@ -1,0 +1,49 @@
+using RiRiSharp.Bootstrap.Components.Dropdown;
+
+namespace RiRiSharp.Bootstrap.UnitTests.Components.Dropdown;
+
+public class BsDropdownToggleTests()
+    : BsComponentTests<BsDropdownToggle>(
+        """<button class="btn btn-primary dropdown-toggle {0}" data-bs-toggle="dropdown" {1}></div>"""
+    )
+{
+    protected override Dictionary<string, string> AttributesForDefaultTests =>
+        new() { ["type"] = "button", ["aria-expanded"] = "false" };
+
+    [Theory]
+    [InlineData(BsDropdownMode.Regular, "")]
+    [InlineData(BsDropdownMode.Split, "dropdown-toggle-split")]
+    public void ModeAddsCorrectClass(BsDropdownMode dropdownMode, string expectedClass)
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut(parameters => parameters.AddCascadingValue(dropdownMode));
+
+        // Assert
+        var expectedMarkupString = GetExpectedHtml(
+            $"{ClassesForDefaultTests} {expectedClass}",
+            AttributesForDefaultTests
+        );
+        cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Fact]
+    public void ButtonTypeCanBeOverriden()
+    {
+        TestForAllowingOverride("type");
+    }
+
+    [Fact]
+    public void AriaExpandedCanBeOverriden()
+    {
+        TestForAllowingOverride("aria-expanded");
+    }
+
+    [Fact]
+    public void DataBsToggleCannotBeOverridden()
+    {
+        TestForDisallowingOverride("data-bs-toggle");
+    }
+}
