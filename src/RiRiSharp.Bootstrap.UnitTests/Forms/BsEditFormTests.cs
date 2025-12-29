@@ -9,7 +9,7 @@ public class BsEditFormTests() : BsComponentTests<BsEditForm>("""<form class="{0
 
     protected override void BindParameters(ComponentParameterCollectionBuilder<BsEditForm> parameterBuilder)
     {
-        ArgumentNullException.ThrowIfNull(parameterBuilder, nameof(parameterBuilder));
+        ArgumentNullException.ThrowIfNull(parameterBuilder);
         _ = parameterBuilder.Add(p => p.Model, _testModel);
     }
 

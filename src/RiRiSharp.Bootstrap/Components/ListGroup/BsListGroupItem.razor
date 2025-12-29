@@ -1,0 +1,22 @@
+@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+
+@switch (ItemType)
+{
+    case BsListGroupItemType.ListItem:
+        <li @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </li>
+        break;
+    case BsListGroupItemType.Button:
+        <button type="button" @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </button>
+        break;
+    case BsListGroupItemType.Anchor:
+        <a @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </a>
+        break;
+    default:
+        throw new ArgumentOutOfRangeException();
+}

@@ -1,0 +1,22 @@
+@inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
+
+@switch (Type)
+{
+    case BsListType.ContentDivision:
+        <div @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </div>
+        break;
+    case BsListType.UnorderedList:
+        <ul @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </ul>
+        break;
+    case BsListType.OrderedList:
+        <ol @attributes="RenderAttributes" @ref="HtmlRef">
+            @(ChildContent)
+        </ol>
+        break;
+    default:
+        throw new ArgumentOutOfRangeException();
+}

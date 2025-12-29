@@ -2,6 +2,7 @@
 @using RiRiSharp.Bootstrap.Components.Buttons
 @using RiRiSharp.Bootstrap.Components.Collapse
 @using RiRiSharp.Bootstrap.Components.Dropdown
+@using RiRiSharp.Bootstrap.Components.ListGroup
 
 <PageTitle>Home</PageTitle>
 
@@ -23,6 +24,12 @@
         <BsDropdownItem>Action3!</BsDropdownItem>
     </BsDropdownMenu>
 </BsDropdown>
+
+<BsListGroup>
+    <BsListGroupItemButton Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItemButton>
+    <BsListGroupItemButton Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItemButton>
+    <BsListGroupItemLink Variant="BsListGroupItemVariant.Success" href="https://google.com">Linkert</BsListGroupItemLink>
+</BsListGroup>
 @code {
     private BsCollapse? _collapse;
 }
