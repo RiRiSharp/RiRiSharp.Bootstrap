@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Internals;
 
-namespace RiRiSharp.Bootstrap.Components.Alert;
+namespace RiRiSharp.Bootstrap.Components.Modal;
 
 public partial class BsModalHeading : BsChildContentComponent
 {
-    protected override string BsComponentClasses => "alert-heading";
+    protected override string BsComponentClasses => "modal-heading";
     public override ElementReference HtmlRef => _bsHeadingRef!.HtmlRef;
 
     [Parameter]
