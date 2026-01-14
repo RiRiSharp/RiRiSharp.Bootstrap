@@ -36,6 +36,12 @@ public class BsAccordionTests() : BsComponentTests<BsAccordion>("""<div class="a
         Assert.True(cut.Instance.AccordionContext.AlwaysOpen);
     }
 
+    [Fact]
+    public void AccordionContextIsCascading()
+    {
+        TestForCascadingValue<IBsAccordionContext>();
+    }
+
     protected override void ConfigureTestContext()
     {
         _ = Services.AddSingleton(_accordionJsFunctionsMock);

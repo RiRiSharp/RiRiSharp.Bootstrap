@@ -76,6 +76,12 @@ public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}
         TestForAllowingOverride("role");
     }
 
+    [Fact]
+    public void AlertContextIsCascading()
+    {
+        TestForCascadingValue<IBsAlertContext>();
+    }
+
     protected override void ConfigureTestContext()
     {
         _ = Services.AddSingleton(_alertJsFunctionsMock);

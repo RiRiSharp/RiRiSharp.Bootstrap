@@ -31,7 +31,4 @@
   <ItemGroup>
     <ProjectReference Include="..\RiRiSharp.Bootstrap\RiRiSharp.Bootstrap.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\Modal\" />
-  </ItemGroup>
 </Project>

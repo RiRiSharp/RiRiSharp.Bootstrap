@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Alert;
 
-public partial class BsModalHeading : BsChildContentComponent
+public partial class BsAlertHeading : BsChildContentComponent
 {
     protected override string BsComponentClasses => "alert-heading";
     public override ElementReference HtmlRef => _bsHeadingRef!.HtmlRef;

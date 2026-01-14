@@ -191,6 +191,12 @@ public class BsCarouselTests() : BsComponentTests<BsCarousel>("""<div class="car
         await _carouselJsFunctionsMock.Received(1).PauseAsync(cut.Instance.HtmlRef);
     }
 
+    [Fact]
+    public void CarouselContextIsCascading()
+    {
+        TestForCascadingValue<IBsCarouselContext>();
+    }
+
     protected override void ConfigureTestContext()
     {
         _ = Services.AddSingleton(_carouselJsFunctionsMock);

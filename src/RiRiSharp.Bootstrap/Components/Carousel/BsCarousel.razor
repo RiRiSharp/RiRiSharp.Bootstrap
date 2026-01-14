@@ -1,7 +1,7 @@
 @inherits RiRiSharp.Bootstrap.BaseComponents.BsChildContentComponent
 
 <div @attributes="RenderAttributes" data-bs-touch="@(EnableTouchAttributeValue)" @ref="HtmlRef">
-    <CascadingValue Value="@(CarouselContext)">
+    <CascadingValue Value="CarouselContext">
         @(ChildContent)
     </CascadingValue>
 </div>

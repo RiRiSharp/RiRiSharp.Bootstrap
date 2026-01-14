@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
+using Bunit.Rendering;
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 
@@ -92,7 +93,10 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         cut.MarkupMatches(expectedMarkupString);
     }
 
-    protected void TestForAllowingOverride(string attributeKey)
+    protected void TestForAllowingOverride(
+        string attributeKey,
+        Action<ComponentParameterCollectionBuilder<TComponent>>? action = null
+    )
     {
         // Arrange
         ConfigureTestContext();
@@ -101,23 +105,53 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         attributes[attributeKey] = value;
 
         // Act
-        var cut = GetCut(parameters => parameters.AddUnmatched(attributeKey, value));
+        var cut = GetCut(parameters =>
+        {
+            action?.Invoke(parameters);
+            _ = parameters.AddUnmatched(attributeKey, value);
+        });
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, attributes));
     }
 
-    protected void TestForDisallowingOverride(string attributeKey)
+    protected void TestForDisallowingOverride(
+        string attributeKey,
+        Action<ComponentParameterCollectionBuilder<TComponent>>? action = null
+    )
     {
         // Arrange
         ConfigureTestContext();
         const string value = "some-unique-value";
 
         // Act
-        var cut = GetCut(parameters => parameters.AddUnmatched(attributeKey, value));
+        var cut = GetCut(parameters =>
+        {
+            action?.Invoke(parameters);
+            _ = parameters.AddUnmatched(attributeKey, value);
+        });
 
         // Assert
         cut.MarkupMatches(GetExpectedHtml(ClassesForDefaultTests, AttributesForDefaultTests));
+    }
+
+    protected void TestForCascadingValue<T>()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+
+        // Assert
+        try
+        {
+            _ = cut.FindComponent<CascadingValue<T>>();
+        }
+        catch (ComponentNotFoundException)
+        {
+            Assert.Fail($"Cascading value for {typeof(T).Name} was not exposed");
+        }
     }
 
     protected virtual IRenderedComponent<TComponent> GetCut(

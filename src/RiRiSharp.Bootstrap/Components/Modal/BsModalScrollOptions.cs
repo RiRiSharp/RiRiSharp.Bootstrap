@@ -2,8 +2,8 @@ namespace RiRiSharp.Bootstrap.Components.Modal;
 
 public enum BsModalScrollOptions
 {
-    Page = 0,
-    Dialog = 1,
+    WholePage = 0,
+    DialogOnly = 1,
 }
 
 public static class BsModalScrollOptionsExtensions
@@ -12,8 +12,8 @@ public static class BsModalScrollOptionsExtensions
     {
         return options switch
         {
-            BsModalScrollOptions.Page => "",
-            BsModalScrollOptions.Dialog => "modal-dialog-scrollable",
+            BsModalScrollOptions.WholePage => "",
+            BsModalScrollOptions.DialogOnly => "modal-dialog-scrollable",
             _ => throw new ArgumentOutOfRangeException(nameof(options), options, null),
         };
     }

@@ -70,6 +70,12 @@ public class BsAccordionItemTests()
         await _accordionJsFunctionsMock.Received(1).CollapseAsync(cut.Instance.HtmlRef);
     }
 
+    [Fact]
+    public void AccordionItemContextIsCascading()
+    {
+        TestForCascadingValue<IBsAccordionItemContext>();
+    }
+
     protected override void ConfigureTestContext()
     {
         _ = Services.AddSingleton(_accordionJsFunctionsMock);

@@ -17,8 +17,8 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
     private string? DataBsKeyboard => Backdrop == BsModalBackdrop.Static ? "false" : null;
 
     [Parameter]
-    public bool FadeEnabled { get; set; } = true;
-    private string FadeClass => FadeEnabled ? "fade" : "";
+    public bool Fade { get; set; } = true;
+    private string FadeClass => Fade ? "fade" : "";
 
     [Inject]
     private IBsModalJsFunctions BsModalJsFunctions { get; set; } = null!;

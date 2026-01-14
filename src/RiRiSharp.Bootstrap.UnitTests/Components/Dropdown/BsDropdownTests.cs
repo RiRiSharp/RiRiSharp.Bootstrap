@@ -1,4 +1,3 @@
-using RiRiSharp.Bootstrap.Components.Collapse;
 using RiRiSharp.Bootstrap.Components.Dropdown;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Dropdown;
@@ -42,5 +41,11 @@ public class BsDropdownTests() : BsComponentTests<BsDropdown>("""<div class="{0}
             AttributesForDefaultTests
         );
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Fact]
+    public void DropdownModeIsCascading()
+    {
+        TestForCascadingValue<BsDropdownMode>();
     }
 }

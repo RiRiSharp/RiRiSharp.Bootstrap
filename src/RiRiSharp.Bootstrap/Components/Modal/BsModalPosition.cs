@@ -1,6 +1,6 @@
 namespace RiRiSharp.Bootstrap.Components.Modal;
 
-public enum BsModalVerticalPosition
+public enum BsModalPosition
 {
     Top = 0,
     VerticallyCentered = 1,
@@ -8,12 +8,12 @@ public enum BsModalVerticalPosition
 
 public static class BsModalVerticalPositionExtensions
 {
-    public static string ToBootstrapClass(this BsModalVerticalPosition position)
+    public static string ToBootstrapClass(this BsModalPosition position)
     {
         return position switch
         {
-            BsModalVerticalPosition.Top => "",
-            BsModalVerticalPosition.VerticallyCentered => "modal-dialog-centered",
+            BsModalPosition.Top => "",
+            BsModalPosition.VerticallyCentered => "modal-dialog-centered",
             _ => throw new ArgumentOutOfRangeException(nameof(position), position, null),
         };
     }

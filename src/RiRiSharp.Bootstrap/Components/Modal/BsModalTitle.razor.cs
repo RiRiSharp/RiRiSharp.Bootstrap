@@ -4,13 +4,13 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Modal;
 
-public partial class BsModalHeading : BsChildContentComponent
+public partial class BsModalTitle : BsChildContentComponent
 {
-    protected override string BsComponentClasses => "modal-heading";
+    protected override string BsComponentClasses => "modal-title";
     public override ElementReference HtmlRef => _bsHeadingRef!.HtmlRef;
 
     [Parameter]
-    public int Heading { get; set; } = 4;
+    public int Heading { get; set; } = 5;
 
 #pragma warning disable IDE0044
     /// <summary>

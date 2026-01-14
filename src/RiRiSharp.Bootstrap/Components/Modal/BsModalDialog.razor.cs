@@ -14,7 +14,7 @@ public partial class BsModalDialog : BsChildContentComponent
     private string ScrollOptionsClass => ScrollOptions.ToBootstrapClass();
 
     [Parameter]
-    public BsModalVerticalPosition Position { get; set; }
+    public BsModalPosition Position { get; set; }
 
     //TODO: Add way to add breakpoints
     [Parameter]
