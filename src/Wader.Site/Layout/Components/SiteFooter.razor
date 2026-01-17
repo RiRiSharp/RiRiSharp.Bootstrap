@@ -1,0 +1,25 @@
+﻿@using System.Reflection
+@using Wader.Helpers
+@using DisplayFlex = Wader.Helpers.DisplayFlex
+<footer class="border-top text-muted mt-3">
+    <DisplayFlex Justify="BsJustification.Center">
+        <div>
+            &copy; @(DateTime.Now.Year) - Wader - v@(_version ?? "UNKNOWN")
+        </div>
+    </DisplayFlex>
+</footer>
+
+@code {
+    private string? _version;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SetVersion();
+    }
+
+    private void SetVersion()
+    {
+        _version = typeof(SiteFooter).Assembly.GetName().Version?.ToString();
+    }
+}

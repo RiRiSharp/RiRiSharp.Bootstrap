@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <BootstrapIconsVersion>1.13.1</BootstrapIconsVersion>
+    <RootNamespace>Wader.Icons</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wader\Wader.csproj" />
+  </ItemGroup>
+</Project>

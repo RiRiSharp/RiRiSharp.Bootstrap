@@ -1,0 +1,28 @@
+﻿@using Wader.Components.NavBar
+@using Wader.Layout.Containers
+@using Wader.Site.Constants
+
+<header id="header" class="sticky-top">
+    <BsNavbar class="bg-white border-bottom navbar-expand-lg">
+        <BsContainerFluid>
+            <div class="px-2">
+                <BsNavbarBrand href="@(PageRoutes.HOME)">
+                    <div class="logo"></div>
+                </BsNavbarBrand>
+            </div>
+            <BsNavbarTogglerButton @onclick="() => _navbarCollapse!.ToggleAsync()">
+                <BsNavbarTogglerIcon/>
+            </BsNavbarTogglerButton>
+            <BsNavbarCollapse @ref="_navbarCollapse">
+                <BsNavbarNav>
+                    <BsNavItem>
+                        <BsNavLink href="@(PageRoutes.HOME)">
+                            <BsIcon Name="@(BsIconNames.House)"/>
+                            Home
+                        </BsNavLink>
+                    </BsNavItem>
+                </BsNavbarNav>
+            </BsNavbarCollapse>
+        </BsContainerFluid>
+    </BsNavbar>
+</header>

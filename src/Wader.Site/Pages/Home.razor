@@ -1,0 +1,35 @@
+﻿@page "/"
+@using Wader.Components.Buttons
+@using Wader.Components.Collapse
+@using Wader.Components.Dropdown
+@using Wader.Components.ListGroup
+
+<PageTitle>Home</PageTitle>
+
+<BsCollapse Show="true" @ref="_collapse">
+    Hello world!
+</BsCollapse>
+<BsButton Variant="BsButtonVariant.Primary" @onclick="() => _collapse?.ToggleAsync() ?? Task.CompletedTask">Toggle</BsButton>
+<BsButton Variant="BsButtonVariant.Secondary" @onclick="() => _collapse?.ShowAsync() ?? Task.CompletedTask">Show</BsButton>
+<BsButton Variant="BsButtonVariant.OutlinePrimary" @onclick="() => _collapse?.CollapseAsync() ?? Task.CompletedTask">Hide</BsButton>
+
+<BsDropdown>
+    <BsDropdownToggle Variant="BsButtonVariant.OutlinePrimary" Size="BsButtonSize.Large">
+        Dropdown button
+    </BsDropdownToggle>
+    <BsDropdownMenu>
+        <BsDropdownItem>Action!</BsDropdownItem>
+        <BsDropdownItem>Action2!</BsDropdownItem>
+        <BsDropdownDivider/>
+        <BsDropdownItem>Action3!</BsDropdownItem>
+    </BsDropdownMenu>
+</BsDropdown>
+
+<BsListGroup>
+    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItem>
+    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItem>
+    <BsListGroupItem ItemType="BsListGroupItemType.Anchor" Variant="BsListGroupItemVariant.Success" href="https://duckduckgo.com">Linkert</BsListGroupItem>
+</BsListGroup>
+@code {
+    private BsCollapse? _collapse;
+}
