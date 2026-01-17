@@ -10,8 +10,7 @@ namespace RiRiSharp.Bootstrap.UnitTests;
 public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string htmlFormat) : BunitContext
     where TComponent : ComponentBase, IBsComponent
 {
-    protected CompositeFormat HtmlFormatCache => CompositeFormat.Parse(htmlFormat);
-    protected virtual bool SkipRefCheck => false;
+    private CompositeFormat HtmlFormatCache => CompositeFormat.Parse(htmlFormat);
     protected virtual string ClassesForDefaultTests => "";
     protected virtual Dictionary<string, string> AttributesForDefaultTests => [];
 

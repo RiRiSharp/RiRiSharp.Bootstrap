@@ -9,9 +9,9 @@ public partial class BsDropdownToggle : BsChildContentComponent
     protected override string BsComponentClasses => $"dropdown-toggle {ModeClass}";
 
     [CascadingParameter]
-    public BsDropdownMode Mode { get; set; }
+    public BsDropdownMode? Mode { get; set; }
 
-    private string ModeClass => Mode.ToBootstrapButtonClass();
+    private string ModeClass => Mode?.ToBootstrapButtonClass() ?? "";
 
     [Parameter]
     public BsButtonSize Size { get; set; }

@@ -6,9 +6,9 @@
     <BsNavbar class="bg-white border-bottom navbar-expand-lg">
         <BsContainerFluid>
             <div class="px-2">
-                <BsBrandLink href="@(PageRoutes.HOME)">
+                <BsNavbarBrand href="@(PageRoutes.HOME)">
                     <div class="logo"></div>
-                </BsBrandLink>
+                </BsNavbarBrand>
             </div>
             <BsNavbarTogglerButton @onclick="() => _navbarCollapse!.ToggleAsync()">
                 <BsNavbarTogglerIcon/>

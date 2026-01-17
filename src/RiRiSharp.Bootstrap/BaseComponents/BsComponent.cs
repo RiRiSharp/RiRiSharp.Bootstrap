@@ -15,7 +15,7 @@ public abstract class BsComponent : ComponentBase, IBsComponent
 
     protected override void OnParametersSet()
     {
-        base.OnParametersSet();
         _renderAttributes = BsAttributeUtilities.AssignClassNames(AdditionalAttributes, BsComponentClasses);
+        base.OnParametersSet();
     }
 }
