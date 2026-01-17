@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Modal.Internals;
 
-public sealed class BsModalJsFunctions : IBsModalJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
+internal sealed class BsModalJsFunctions : IBsModalJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
     public static string JsFileName => "modalFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;

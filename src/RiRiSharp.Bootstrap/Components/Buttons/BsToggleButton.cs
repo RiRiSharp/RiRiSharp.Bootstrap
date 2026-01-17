@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.Components.Buttons.Internals;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Buttons;
 
 public class BsToggleButton : BsButton, IAsyncDisposable
 {
-    [Inject]
-    private IBsButtonJsFunctions ButtonJsFunctions { get; set; } = null!;
+    internal ElementReference HtmlRef;
 
-    public async Task ToggleAsync()
-    {
-        await ButtonJsFunctions.ToggleAsync(HtmlRef);
-    }
+    [Inject]
+    private IBsButtonJsFunctions? ButtonJsFunctions { get; set; }
 
     public async ValueTask DisposeAsync()
     {
@@ -19,9 +17,15 @@ public class BsToggleButton : BsButton, IAsyncDisposable
         GC.SuppressFinalize(this);
     }
 
+    public async Task ToggleAsync()
+    {
+        BsJsInteractionNotEnabledException.ThrowIfNull(ButtonJsFunctions, nameof(ButtonJsFunctions.ToggleAsync));
+        await ButtonJsFunctions.ToggleAsync(HtmlRef);
+    }
+
     private async ValueTask DisposeAsync(bool disposing)
     {
-        if (!disposing)
+        if (!disposing || ButtonJsFunctions is null)
         {
             return;
         }

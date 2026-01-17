@@ -9,7 +9,6 @@ public class BsEditForm : EditForm, IBsComponent
 {
     [Parameter]
     public string? Classes { get; set; }
-    public ElementReference HtmlRef => default; // TODO https://github.com/RiRiSharp/RiRiSharp.Bootstrap/issues/5
 
     protected override void OnParametersSet()
     {

@@ -1,6 +1,7 @@
 ﻿@using RiRiSharp.Bootstrap.Components.NavBar
 @using RiRiSharp.Bootstrap.Layout.Containers
 @using RiRiSharp.Bootstrap.Site.Constants
+
 <header id="header" class="sticky-top">
     <BsNavbar class="bg-white border-bottom navbar-expand-lg">
         <BsContainerFluid>
@@ -9,10 +10,10 @@
                     <div class="logo"></div>
                 </BsBrandLink>
             </div>
-            <BsNavbarTogglerButton data-bs-toggle="collapse" data-bs-target="#navbar-collapsible">
+            <BsNavbarTogglerButton @onclick="() => _navbarCollapse!.ToggleAsync()">
                 <BsNavbarTogglerIcon/>
             </BsNavbarTogglerButton>
-            <BsNavbarCollapsible id="navbar-collapsible">
+            <BsNavbarCollapse @ref="_navbarCollapse">
                 <BsNavbarNav>
                     <BsNavItem>
                         <BsNavLink href="@(PageRoutes.HOME)">
@@ -21,7 +22,7 @@
                         </BsNavLink>
                     </BsNavItem>
                 </BsNavbarNav>
-            </BsNavbarCollapsible>
+            </BsNavbarCollapse>
         </BsContainerFluid>
     </BsNavbar>
 </header>

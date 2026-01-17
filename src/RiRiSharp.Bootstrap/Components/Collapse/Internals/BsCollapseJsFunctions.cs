@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Collapse.Internals;
 
-public sealed class BsCollapseJsFunctions : IBsCollapseJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
+internal sealed class BsCollapseJsFunctions : IBsCollapseJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
     public static string JsFileName => "collapseFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;

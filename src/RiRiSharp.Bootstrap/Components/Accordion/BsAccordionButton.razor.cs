@@ -8,6 +8,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseState
 {
+    internal ElementReference HtmlRef;
     protected override string BsComponentClasses => $"accordion-button {GetInitialCollapsedClass()}";
 
     /// <summary>
@@ -21,7 +22,7 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
     internal IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
+    private IBsAccordionJsFunctions? AccordionJsFunctions { get; set; }
 
     protected override void OnInitialized()
     {
@@ -40,7 +41,7 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && AccordionJsFunctions is not null)
         {
             _dotNetRef = DotNetObjectReference.Create(this);
             await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);

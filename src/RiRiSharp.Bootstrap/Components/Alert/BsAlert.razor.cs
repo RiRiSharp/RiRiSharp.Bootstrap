@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Alert;
 
 public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 {
+    internal ElementReference HtmlRef;
     private DotNetObjectReference<BsAlert>? _dotNetRef;
     private bool _dismissed;
     private BsAlertContext _alertContext = null!;
@@ -19,7 +21,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
     public IBsAlertContext AlertContext => _alertContext;
 
     [Inject]
-    private IBsAlertJsFunctions AlertJsFunctions { get; set; } = null!;
+    private IBsAlertJsFunctions? AlertJsFunctions { get; set; }
 
     [Parameter]
     public BsAlertVariant Variant { get; set; }
@@ -38,7 +40,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender)
+        if (!firstRender || AlertJsFunctions is null)
         {
             return;
         }
@@ -56,6 +58,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
             );
         }
 
+        BsJsInteractionNotEnabledException.ThrowIfNull(AlertJsFunctions, nameof(AlertJsFunctions.DismissAsync));
         await AlertJsFunctions.DismissAsync(HtmlRef);
     }
 
@@ -73,7 +76,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 
     private async ValueTask DisposeAsync(bool disposing)
     {
-        if (!disposing)
+        if (!disposing || AlertJsFunctions is null)
         {
             return;
         }

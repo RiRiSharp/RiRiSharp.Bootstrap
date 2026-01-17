@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Carousel.Internals;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Carousel;
 
 public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 {
+    internal ElementReference HtmlRef;
     protected override string BsComponentClasses => $"carousel slide {TransitionTypeClass}";
 
     public IBsCarouselContext? CarouselContext { get; private set; }
@@ -26,7 +28,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
     private string EnableTouchAttributeValue => EnableTouch.ToString().ToLowerInvariant();
 
     [Inject]
-    private IBsCarouselJsFunctions CarouselJsFunctions { get; set; } = null!;
+    private IBsCarouselJsFunctions? CarouselJsFunctions { get; set; }
 
     private string TransitionTypeClass => TransitionType.ToBootstrapClass();
 
@@ -76,6 +78,10 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     public async Task MoveToSlideAsync(int i)
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(
+            CarouselJsFunctions,
+            nameof(CarouselJsFunctions.MoveToSlideAsync)
+        );
         await CarouselJsFunctions.MoveToSlideAsync(HtmlRef, i);
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
@@ -85,6 +91,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     public async Task MovePrevAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(CarouselJsFunctions, nameof(CarouselJsFunctions.MovePrevAsync));
         await CarouselJsFunctions.MovePrevAsync(HtmlRef);
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
@@ -94,6 +101,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     public async Task MoveNextAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(CarouselJsFunctions, nameof(CarouselJsFunctions.MoveNextAsync));
         await CarouselJsFunctions.MoveNextAsync(HtmlRef);
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
@@ -103,11 +111,13 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     public async Task CycleAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(CarouselJsFunctions, nameof(CarouselJsFunctions.CycleAsync));
         await CarouselJsFunctions.CycleAsync(HtmlRef);
     }
 
     public async Task PauseAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(CarouselJsFunctions, nameof(CarouselJsFunctions.PauseAsync));
         await CarouselJsFunctions.PauseAsync(HtmlRef);
         if (AutoPlay is BsCarouselAutoPlayMode.AutoPlayAfterUserInteraction)
         {
@@ -117,11 +127,19 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     private async Task AddCycleCallback()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(
+            CarouselJsFunctions,
+            nameof(CarouselJsFunctions.AddCycleCallbackAsync)
+        );
         await CarouselJsFunctions.AddCycleCallbackAsync(HtmlRef);
     }
 
     private async Task RemoveCycleCallback()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(
+            CarouselJsFunctions,
+            nameof(CarouselJsFunctions.RemoveCycleCallbackAsync)
+        );
         await CarouselJsFunctions.RemoveCycleCallbackAsync(HtmlRef);
     }
 
@@ -133,7 +151,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
 
     private async Task Dispose(bool disposing)
     {
-        if (!disposing)
+        if (!disposing || CarouselJsFunctions is null)
         {
             return;
         }

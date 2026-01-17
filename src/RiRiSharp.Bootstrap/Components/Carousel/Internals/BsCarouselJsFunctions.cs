@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Carousel.Internals;
 
-internal class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
+internal sealed class BsCarouselJsFunctions : IBsCarouselJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
     public static string JsFileName => "carouselFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;

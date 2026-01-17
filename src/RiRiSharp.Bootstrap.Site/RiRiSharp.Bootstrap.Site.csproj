@@ -1,4 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+  <PropertyGroup>
+    <!--Disable forcing internal, most classes must be public (components) -->
+    <NoWarn>$(NoWarn);CA1515</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>

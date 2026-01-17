@@ -3,17 +3,17 @@
 @switch (ItemType)
 {
     case BsListGroupItemType.ListItem:
-        <li @attributes="RenderAttributes" @ref="HtmlRef">
+        <li @attributes="RenderAttributes">
             @(ChildContent)
         </li>
         break;
     case BsListGroupItemType.Button:
-        <button type="button" @attributes="RenderAttributes" @ref="HtmlRef">
+        <button type="button" @attributes="RenderAttributes">
             @(ChildContent)
         </button>
         break;
     case BsListGroupItemType.Anchor:
-        <a @attributes="RenderAttributes" @ref="HtmlRef">
+        <a @attributes="RenderAttributes">
             @(ChildContent)
         </a>
         break;

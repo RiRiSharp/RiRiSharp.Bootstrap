@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
+using RiRiSharp.Bootstrap.Internals;
 using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Accordion;
@@ -9,6 +10,7 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
 {
     protected override string BsComponentClasses => "accordion-item";
     public IBsAccordionItemContext AccordionItemContext { get; private set; } = null!;
+    internal ElementReference HtmlRef;
 
     [Parameter]
     public bool InitialCollapsed { get; set; } = true;
@@ -17,7 +19,7 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
     private IBsAccordionContext? AccordionContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions AccordionFunctions { get; set; } = null!;
+    private IBsAccordionJsFunctions? AccordionJsFunctions { get; set; }
 
     protected override void OnParametersSet()
     {
@@ -32,17 +34,23 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
 
     public async Task ToggleAsync()
     {
-        await AccordionFunctions.ToggleAsync(HtmlRef, AccordionContext!.AlwaysOpen);
+        BsJsInteractionNotEnabledException.ThrowIfNull(AccordionJsFunctions, nameof(AccordionJsFunctions.ToggleAsync));
+        await AccordionJsFunctions.ToggleAsync(HtmlRef, AccordionContext!.AlwaysOpen);
     }
 
     public async Task ShowAsync()
     {
-        await AccordionFunctions.ShowAsync(HtmlRef, AccordionContext!.AlwaysOpen);
+        BsJsInteractionNotEnabledException.ThrowIfNull(AccordionJsFunctions, nameof(AccordionJsFunctions.ShowAsync));
+        await AccordionJsFunctions.ShowAsync(HtmlRef, AccordionContext!.AlwaysOpen);
     }
 
     public async Task CollapseAsync()
     {
-        await AccordionFunctions.CollapseAsync(HtmlRef);
+        BsJsInteractionNotEnabledException.ThrowIfNull(
+            AccordionJsFunctions,
+            nameof(AccordionJsFunctions.CollapseAsync)
+        );
+        await AccordionJsFunctions.CollapseAsync(HtmlRef);
     }
 
     public async ValueTask DisposeAsync()
@@ -53,11 +61,11 @@ public partial class BsAccordionItem : BsChildContentComponent, IAsyncDisposable
 
     private async ValueTask DisposeAsync(bool disposing)
     {
-        if (!disposing)
+        if (!disposing || AccordionJsFunctions is null)
         {
             return;
         }
 
-        await AccordionFunctions.DisposeAsync(HtmlRef);
+        await AccordionJsFunctions.DisposeAsync(HtmlRef);
     }
 }

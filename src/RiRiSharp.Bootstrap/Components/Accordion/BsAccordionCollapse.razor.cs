@@ -8,6 +8,7 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapseState
 {
+    internal ElementReference HtmlRef;
     private DotNetObjectReference<BsAccordionCollapse> _dotNetRef = null!;
     private bool _initialCollapse;
 
@@ -18,7 +19,14 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
     public IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
+    private IBsAccordionJsFunctions? AccordionJsFunctions { get; set; }
+
+    [JSInvokable]
+    public void UpdateCollapseState(bool isCollapsed)
+    {
+        Collapsed = isCollapsed;
+        StateHasChanged();
+    }
 
     protected override void OnInitialized()
     {
@@ -37,18 +45,13 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (!firstRender || AccordionJsFunctions is null)
         {
-            _dotNetRef = DotNetObjectReference.Create(this);
-            await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);
+            return;
         }
-    }
 
-    [JSInvokable]
-    public void UpdateCollapseState(bool isCollapsed)
-    {
-        Collapsed = isCollapsed;
-        StateHasChanged();
+        _dotNetRef = DotNetObjectReference.Create(this);
+        await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);
     }
 
     private string GetInitialCollapsedClass()

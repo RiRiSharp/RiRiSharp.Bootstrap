@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Modal.Internals;
+using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Modal;
 
 public partial class BsModal : BsChildContentComponent, IAsyncDisposable
 {
+    internal ElementReference HtmlRef;
     protected override string BsComponentClasses => $"modal {FadeClass}";
 
     public IBsModalContext? ModalContext { get; private set; }
@@ -21,7 +23,7 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
     private string FadeClass => Fade ? "fade" : "";
 
     [Inject]
-    private IBsModalJsFunctions BsModalJsFunctions { get; set; } = null!;
+    private IBsModalJsFunctions? BsModalJsFunctions { get; set; }
 
     protected override void OnInitialized()
     {
@@ -31,16 +33,19 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
 
     public async Task ToggleAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(BsModalJsFunctions, nameof(BsModalJsFunctions.ToggleAsync));
         await BsModalJsFunctions.ToggleAsync(HtmlRef);
     }
 
     public async Task ShowAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(BsModalJsFunctions, nameof(BsModalJsFunctions.ShowAsync));
         await BsModalJsFunctions.ShowAsync(HtmlRef);
     }
 
     public async Task CloseAsync()
     {
+        BsJsInteractionNotEnabledException.ThrowIfNull(BsModalJsFunctions, nameof(BsModalJsFunctions.CloseAsync));
         await BsModalJsFunctions.CloseAsync(HtmlRef);
     }
 
@@ -52,7 +57,7 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
 
     private async Task Dispose(bool disposing)
     {
-        if (!disposing)
+        if (!disposing || BsModalJsFunctions is null)
         {
             return;
         }

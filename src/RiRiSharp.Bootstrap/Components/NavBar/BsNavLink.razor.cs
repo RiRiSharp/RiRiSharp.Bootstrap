@@ -5,11 +5,12 @@ using RiRiSharp.Bootstrap.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.NavBar;
 
-public class BsNavLink : NavLink, IBsComponent
+public partial class BsNavLink : BsChildContentComponent
 {
     [Parameter]
     public string? Classes { get; set; }
-    public ElementReference HtmlRef => default; // TODO https://github.com/RiRiSharp/RiRiSharp.Bootstrap/issues/5
+
+    protected override string BsComponentClasses => "nav-link";
 
     protected override void OnParametersSet()
     {

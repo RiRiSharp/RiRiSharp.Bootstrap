@@ -5,7 +5,7 @@
     }
 }
 
-export function expand(collapseRef) {
+export function show(collapseRef) {
     const collapse = getCollapseInstance(collapseRef);
     if (collapse) {
         collapse.show();

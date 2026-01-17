@@ -29,24 +29,6 @@ public abstract class BsComponentTests<TComponent>([StringSyntax("Html")] string
         cut.MarkupMatches(expectedMarkupString);
     }
 
-    [Fact]
-    public void RefIsSet()
-    {
-        // Arrange
-        if (SkipRefCheck)
-        {
-            return;
-        }
-
-        ConfigureTestContext();
-
-        // Act
-        var cut = GetCut();
-
-        // Assert
-        Assert.NotEqual(default, cut.Instance.HtmlRef);
-    }
-
     [Theory]
     [InlineData("")]
     [InlineData("aclass")]
