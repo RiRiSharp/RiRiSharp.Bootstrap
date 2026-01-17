@@ -1,9 +1,12 @@
+using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Buttons;
+using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Buttons;
 
 public class BsButtonTests() : BsComponentTests<BsButton>("""<button class="btn {0}" {1}></button>""")
 {
+    private readonly IBsButtonJsFunctions _buttonJsFunctionsMock = Substitute.For<IBsButtonJsFunctions>();
     protected override string ClassesForDefaultTests => "btn-primary";
     protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
 
@@ -55,5 +58,10 @@ public class BsButtonTests() : BsComponentTests<BsButton>("""<button class="btn 
     public void ButtonTypeCanBeOverriden()
     {
         TestForAllowingOverride("type");
+    }
+
+    protected override void ConfigureTestContext()
+    {
+        _ = Services.AddSingleton(_buttonJsFunctionsMock);
     }
 }

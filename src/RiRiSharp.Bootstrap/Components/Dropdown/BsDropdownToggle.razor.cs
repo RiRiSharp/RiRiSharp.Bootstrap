@@ -13,6 +13,7 @@ public partial class BsDropdownToggle : BsChildContentComponent
 
     private string ModeClass => Mode.ToBootstrapButtonClass();
 
+    [Inject]
     [Parameter]
     public BsButtonSize Size { get; set; }
 

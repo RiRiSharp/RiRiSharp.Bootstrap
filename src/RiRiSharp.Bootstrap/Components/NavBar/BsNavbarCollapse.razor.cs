@@ -11,11 +11,10 @@ public partial class BsNavbarCollapse : BsChildContentComponent
     protected override string BsComponentClasses => "collapse navbar-collapse";
 
     [Inject]
-    private IBsCollapseJsFunctions? CollapseJsFunctions { get; set; }
+    private IBsCollapseJsFunctions CollapseJsFunctions { get; set; } = null!;
 
     public async Task ToggleAsync()
     {
-        BsJsInteractionNotEnabledException.ThrowIfNull(CollapseJsFunctions, nameof(CollapseJsFunctions.ToggleAsync));
         await CollapseJsFunctions.ToggleAsync(HtmlRef);
     }
 }

@@ -21,7 +21,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
     public IBsAlertContext AlertContext => _alertContext;
 
     [Inject]
-    private IBsAlertJsFunctions? AlertJsFunctions { get; set; }
+    private IBsAlertJsFunctions AlertJsFunctions { get; set; } = null!;
 
     [Parameter]
     public BsAlertVariant Variant { get; set; }
@@ -58,7 +58,6 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
             );
         }
 
-        BsJsInteractionNotEnabledException.ThrowIfNull(AlertJsFunctions, nameof(AlertJsFunctions.DismissAsync));
         await AlertJsFunctions.DismissAsync(HtmlRef);
     }
 

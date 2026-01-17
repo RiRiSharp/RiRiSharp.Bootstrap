@@ -1,9 +1,12 @@
+using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Buttons;
+using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Buttons;
 
 public class BsButtonLinkTests() : BsComponentTests<BsButtonLink>("""<a role="button" class="btn {0}" {1}></a>""")
 {
+    private readonly IBsButtonJsFunctions _buttonJsFunctionsMock = Substitute.For<IBsButtonJsFunctions>();
     protected override string ClassesForDefaultTests => "btn-primary";
 
     [Theory]
@@ -48,5 +51,10 @@ public class BsButtonLinkTests() : BsComponentTests<BsButtonLink>("""<a role="bu
             AttributesForDefaultTests
         );
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    protected override void ConfigureTestContext()
+    {
+        _ = Services.AddSingleton(_buttonJsFunctionsMock);
     }
 }
