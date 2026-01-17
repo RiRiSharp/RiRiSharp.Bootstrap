@@ -4,7 +4,7 @@ using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 
 namespace RiRiSharp.Bootstrap.Components.Buttons;
 
-public partial class BsButtonLink : BsChildContentComponent, IAsyncDisposable
+public partial class BsButtonAnchor : BsChildContentComponent, IAsyncDisposable
 {
     internal ElementReference HtmlRef;
 

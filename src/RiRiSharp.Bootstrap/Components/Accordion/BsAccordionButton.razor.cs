@@ -8,21 +8,26 @@ namespace RiRiSharp.Bootstrap.Components.Accordion;
 
 public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseState
 {
-    internal ElementReference HtmlRef;
-    protected override string BsComponentClasses => $"accordion-button {GetInitialCollapsedClass()}";
-
     /// <summary>
-    /// Holds a reference to this component for JS interop. Initialized after first render.
+    ///     Holds a reference to this component for JS interop. Initialized after first render.
     /// </summary>
     private DotNetObjectReference<BsAccordionButton> _dotNetRef = null!;
 
     private bool _initialCollapse;
+    internal ElementReference HtmlRef;
+    protected override string BsComponentClasses => $"accordion-button {GetInitialCollapsedClass()}";
 
     [CascadingParameter]
     internal IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions? AccordionJsFunctions { get; set; }
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
+
+    [JSInvokable]
+    public void UpdateCollapseState(bool isCollapsed)
+    {
+        StateHasChanged();
+    }
 
     protected override void OnInitialized()
     {
@@ -41,17 +46,13 @@ public partial class BsAccordionButton : BsChildContentComponent, IHasCollapseSt
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && AccordionJsFunctions is not null)
+        if (!firstRender)
         {
-            _dotNetRef = DotNetObjectReference.Create(this);
-            await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);
+            return;
         }
-    }
 
-    [JSInvokable]
-    public void UpdateCollapseState(bool isCollapsed)
-    {
-        StateHasChanged();
+        _dotNetRef = DotNetObjectReference.Create(this);
+        await AccordionJsFunctions.RegisterCollapseCallbackAsync(HtmlRef, _dotNetRef);
     }
 
     private async Task ToggleAsync()

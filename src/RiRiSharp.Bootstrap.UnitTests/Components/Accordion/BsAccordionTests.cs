@@ -37,6 +37,49 @@ public class BsAccordionTests() : BsComponentTests<BsAccordion>("""<div class="a
     }
 
     [Fact]
+    public async Task CollapseAllCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.InvokeAsync(cut.Instance.CollapseAllAsync);
+
+        // Assert
+        await _accordionJsFunctionsMock.Received(1).CollapseAllAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
+    public async Task ShowAllCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.InvokeAsync(cut.Instance.ShowAllAsync);
+
+        // Assert
+        await _accordionJsFunctionsMock.Received(1).ShowAllAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
+    public async Task CollapseAllButOneCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+        var accordionItem = Substitute.For<BsAccordionItem>();
+
+        // Act
+        var cut = GetCut();
+        await cut.InvokeAsync(() => cut.Instance.CollapseAllButOneAsync(accordionItem));
+
+        // Assert
+        await _accordionJsFunctionsMock.Received(1).CollapseAllButOneAsync(cut.Instance.HtmlRef, accordionItem.HtmlRef);
+    }
+
+    [Fact]
     public void AccordionContextIsCascading()
     {
         TestForCascadingValue<IBsAccordionContext>();

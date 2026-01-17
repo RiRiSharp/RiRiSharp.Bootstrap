@@ -30,7 +30,7 @@ public class BsAccordionItemTests()
     }
 
     [Fact]
-    public async Task ToggleCallJsCorrectlyAsync()
+    public async Task ToggleCallsJsCorrectlyAsync()
     {
         // Arrange
         ConfigureTestContext();

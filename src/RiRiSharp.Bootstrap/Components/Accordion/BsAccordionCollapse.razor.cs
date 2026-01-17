@@ -19,7 +19,7 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
     public IBsAccordionItemContext? AccordionItemContext { get; set; }
 
     [Inject]
-    private IBsAccordionJsFunctions? AccordionJsFunctions { get; set; }
+    private IBsAccordionJsFunctions AccordionJsFunctions { get; set; } = null!;
 
     [JSInvokable]
     public void UpdateCollapseState(bool isCollapsed)
@@ -45,7 +45,7 @@ public partial class BsAccordionCollapse : BsChildContentComponent, IHasCollapse
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || AccordionJsFunctions is null)
+        if (!firstRender)
         {
             return;
         }

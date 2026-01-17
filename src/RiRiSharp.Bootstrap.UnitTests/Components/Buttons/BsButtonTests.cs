@@ -55,6 +55,20 @@ public class BsButtonTests() : BsComponentTests<BsButton>("""<button class="btn 
     }
 
     [Fact]
+    public async Task ToggleCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.InvokeAsync(cut.Instance.ToggleAsync);
+
+        // Assert
+        await _buttonJsFunctionsMock.Received(1).ToggleAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
     public void ButtonTypeCanBeOverriden()
     {
         TestForAllowingOverride("type");

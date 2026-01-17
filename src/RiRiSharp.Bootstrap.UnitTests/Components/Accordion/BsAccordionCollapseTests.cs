@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using Microsoft.JSInterop;
+using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Accordion;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
@@ -28,6 +29,21 @@ public class BsAccordionCollapseTests()
         // Assert
         var collapsingClass = isCollapsed ? "" : "show";
         cut.MarkupMatches(GetExpectedHtml(collapsingClass, ""));
+    }
+
+    [Fact]
+    public async Task OnAfterRenderCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+
+        // Assert
+        await _accordionJsFunctionsMock
+            .Received(1)
+            .RegisterCollapseCallbackAsync(cut.Instance.HtmlRef, Arg.Any<DotNetObjectReference<BsAccordionCollapse>>());
     }
 
     protected override void BindParameters(ComponentParameterCollectionBuilder<BsAccordionCollapse> parameterBuilder)

@@ -6,12 +6,11 @@ namespace RiRiSharp.Bootstrap.UnitTests.Components.Modal;
 
 public class BsModalTests() : BsComponentTests<BsModal>("""<div class="modal {0}" {1}></div>""")
 {
+    private readonly IBsModalJsFunctions _collapseJsFunctionsMock = Substitute.For<IBsModalJsFunctions>();
     protected override string ClassesForDefaultTests => "fade";
 
     protected override Dictionary<string, string> AttributesForDefaultTests =>
         new() { ["tabindex"] = "-1", ["aria-hidden"] = "true" };
-
-    private readonly IBsModalJsFunctions _collapseJsFunctionsMock = Substitute.For<IBsModalJsFunctions>();
 
     [Theory]
     [InlineData(BsModalBackdrop.Regular, null, null)]
@@ -58,6 +57,48 @@ public class BsModalTests() : BsComponentTests<BsModal>("""<div class="modal {0}
         // Assert
         var expectedMarkupString = GetExpectedHtml(expectedClass, AttributesForDefaultTests);
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Fact]
+    public async Task ToggleCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.Instance.ToggleAsync();
+
+        // Assert
+        await _collapseJsFunctionsMock.Received(1).ToggleAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
+    public async Task ShowCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.Instance.ShowAsync();
+
+        // Assert
+        await _collapseJsFunctionsMock.Received(1).ShowAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
+    public async Task CloseCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+        await cut.Instance.CloseAsync();
+
+        // Assert
+        await _collapseJsFunctionsMock.Received(1).CloseAsync(cut.Instance.HtmlRef);
     }
 
     [Fact]

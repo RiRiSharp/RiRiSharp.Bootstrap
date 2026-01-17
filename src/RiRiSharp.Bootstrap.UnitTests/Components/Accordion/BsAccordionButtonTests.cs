@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using Microsoft.JSInterop;
+using NSubstitute;
 using RiRiSharp.Bootstrap.Components.Accordion;
 using RiRiSharp.Bootstrap.Components.Accordion.Internals;
 
@@ -7,8 +8,8 @@ namespace RiRiSharp.Bootstrap.UnitTests.Components.Accordion;
 public class BsAccordionButtonTests()
     : BsComponentTests<BsAccordionButton>("""<button class="accordion-button {0}" {1}></button>""")
 {
-    private readonly IBsAccordionJsFunctions _accordionJsFunctionsMock = Substitute.For<IBsAccordionJsFunctions>();
     private readonly IBsAccordionItemContext _accordionItemContextMock = Substitute.For<IBsAccordionItemContext>();
+    private readonly IBsAccordionJsFunctions _accordionJsFunctionsMock = Substitute.For<IBsAccordionJsFunctions>();
 
     protected override Dictionary<string, string> AttributesForDefaultTests => new() { ["type"] = "button" };
 
@@ -34,6 +35,21 @@ public class BsAccordionButtonTests()
     public void ButtonTypeCanBeOverriden()
     {
         TestForAllowingOverride("type");
+    }
+
+    [Fact]
+    public async Task OnAfterRenderCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut();
+
+        // Assert
+        await _accordionJsFunctionsMock
+            .Received(1)
+            .RegisterCollapseCallbackAsync(cut.Instance.HtmlRef, Arg.Any<DotNetObjectReference<BsAccordionButton>>());
     }
 
     protected override void BindParameters(ComponentParameterCollectionBuilder<BsAccordionButton> parameterBuilder)

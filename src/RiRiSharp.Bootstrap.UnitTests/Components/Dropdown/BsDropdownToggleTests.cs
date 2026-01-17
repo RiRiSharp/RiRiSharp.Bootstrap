@@ -1,3 +1,5 @@
+using NSubstitute;
+using RiRiSharp.Bootstrap.Components.Buttons.Internals;
 using RiRiSharp.Bootstrap.Components.Dropdown;
 
 namespace RiRiSharp.Bootstrap.UnitTests.Components.Dropdown;
@@ -7,6 +9,8 @@ public class BsDropdownToggleTests()
         """<button class="btn btn-primary dropdown-toggle {0}" data-bs-toggle="dropdown" {1}></div>"""
     )
 {
+    private readonly IBsButtonJsFunctions _buttonJsFunctionsMock = Substitute.For<IBsButtonJsFunctions>();
+
     protected override Dictionary<string, string> AttributesForDefaultTests =>
         new() { ["type"] = "button", ["aria-expanded"] = "false" };
 
@@ -45,5 +49,10 @@ public class BsDropdownToggleTests()
     public void DataBsToggleCannotBeOverridden()
     {
         TestForDisallowingOverride("data-bs-toggle");
+    }
+
+    protected override void ConfigureTestContext()
+    {
+        _ = Services.AddSingleton(_buttonJsFunctionsMock);
     }
 }

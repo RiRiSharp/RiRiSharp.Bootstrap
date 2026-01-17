@@ -13,8 +13,6 @@ public class BsInputFile : InputFile
     [Parameter]
     public BsFormSize FormSize { get; set; }
 
-    public ElementReference HtmlRef => Element.GetValueOrDefault();
-
     protected override void OnParametersSet()
     {
         base.OnParametersSet();

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using RiRiSharp.Bootstrap.Forms.ChecksRadios.Internals;
 
 namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
@@ -5,6 +6,7 @@ namespace RiRiSharp.Bootstrap.Forms.ChecksRadios;
 public partial class BsIndeterminateInputCheckbox : BsInputBase<bool?>
 {
     private readonly IBsCheckboxJsFunctions _bsCheckboxJsFunctions;
+    internal ElementReference HtmlRef;
 
     public BsIndeterminateInputCheckbox(IBsCheckboxJsFunctions bsCheckboxJsFunctions)
     {

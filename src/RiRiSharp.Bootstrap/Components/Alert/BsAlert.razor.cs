@@ -2,19 +2,19 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RiRiSharp.Bootstrap.BaseComponents;
 using RiRiSharp.Bootstrap.Components.Alert.Internals;
-using RiRiSharp.Bootstrap.Internals.Exceptions;
 
 namespace RiRiSharp.Bootstrap.Components.Alert;
 
 public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 {
-    internal ElementReference HtmlRef;
-    private DotNetObjectReference<BsAlert>? _dotNetRef;
-    private bool _dismissed;
     private BsAlertContext _alertContext = null!;
+    private bool _dismissed;
+    private DotNetObjectReference<BsAlert>? _dotNetRef;
+    internal ElementReference HtmlRef;
 
     protected override string BsComponentClasses =>
         $"alert {Variant.ToBootstrapClass()} {DismissableClass} {AnimationClass}";
+
     private string DismissableClass => Dismissable ? "alert-dismissible" : "";
     private string AnimationClass => Animate ? "fade show" : "";
 
@@ -32,6 +32,12 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
     [Parameter]
     public bool Animate { get; set; } = true;
 
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsync(true);
+        GC.SuppressFinalize(this);
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -40,7 +46,7 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender || AlertJsFunctions is null)
+        if (!firstRender)
         {
             return;
         }
@@ -67,15 +73,9 @@ public partial class BsAlert : BsChildContentComponent, IAsyncDisposable
         _dismissed = true;
     }
 
-    public async ValueTask DisposeAsync()
-    {
-        await DisposeAsync(true);
-        GC.SuppressFinalize(this);
-    }
-
     private async ValueTask DisposeAsync(bool disposing)
     {
-        if (!disposing || AlertJsFunctions is null)
+        if (!disposing)
         {
             return;
         }

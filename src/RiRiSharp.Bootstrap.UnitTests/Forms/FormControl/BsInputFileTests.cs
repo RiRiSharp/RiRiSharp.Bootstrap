@@ -23,19 +23,6 @@ public class BsInputFileTests : BunitContext
         cut.MarkupMatches(GetExpectedHtml("", ""));
     }
 
-    [Fact]
-    public void RefIsSet()
-    {
-        // Arrange
-        ConfigureTestContext();
-
-        // Act
-        var cut = GetCut();
-
-        // Assert
-        Assert.NotEqual(default, cut.Instance.HtmlRef);
-    }
-
     [Theory]
     [InlineData(null)]
     [InlineData("")]

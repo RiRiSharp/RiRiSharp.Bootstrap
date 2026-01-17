@@ -71,6 +71,20 @@ public class BsAlertTests() : BsComponentTests<BsAlert>("""<div class="alert {0}
     }
 
     [Fact]
+    public async Task ToggleCallsJsCorrectlyAsync()
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act
+        var cut = GetCut(parameters => parameters.Add(p => p.Dismissable, true));
+        await cut.InvokeAsync(cut.Instance.DismissAsync);
+
+        // Assert
+        await _alertJsFunctionsMock.Received(1).DismissAsync(cut.Instance.HtmlRef);
+    }
+
+    [Fact]
     public void AlertRoleCanBeOverriden()
     {
         TestForAllowingOverride("role");

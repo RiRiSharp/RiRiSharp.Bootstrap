@@ -12,7 +12,6 @@ public class BsButtonCheckInputRadio<TValue> : InputRadio<TValue>, IBsComponent
 
     [Parameter]
     public string? Classes { get; set; }
-    public ElementReference HtmlRef => Element.GetValueOrDefault();
 
     protected override void OnParametersSet()
     {
