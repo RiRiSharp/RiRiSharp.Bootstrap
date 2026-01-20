@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Wader.BaseComponents;
-using Wader.Shared;
+using Wader.Primitives;
 
 namespace Wader.Components.Dropdown;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Wader.BaseComponents;
-using Wader.Shared;
+using Wader.Primitives;
 
 namespace Wader.Components.Dropdown;
 
@@ -10,7 +10,7 @@ public partial class BsDropdownMenu : BsChildContentComponent
 
     // TODO: Add option to add breakpoints
     [Parameter]
-    public BsDirection Direction { get; set; }
+    public BsDirection Direction { get; set; } = BsDirection.Start;
 
     private string DirectionClass => Direction.ToDropdownBootstrapClass();
 }

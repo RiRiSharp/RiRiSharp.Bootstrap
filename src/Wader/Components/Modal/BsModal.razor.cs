@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Wader.BaseComponents;
 using Wader.Components.Modal.Internals;
+using Wader.Primitives;
 
 namespace Wader.Components.Modal;
 
@@ -12,10 +13,10 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
     public IBsModalContext? ModalContext { get; private set; }
 
     [Parameter]
-    public BsModalBackdrop Backdrop { get; set; }
+    public BsBackdrop Backdrop { get; set; }
 
-    private string? DataBsBackdrop => Backdrop == BsModalBackdrop.Static ? "static" : null;
-    private string? DataBsKeyboard => Backdrop == BsModalBackdrop.Static ? "false" : null;
+    private string? DataBsBackdrop => Backdrop.ToDataBsBackdropValue();
+    private string? DataBsKeyboard => Backdrop.ToDataBsKeyboardValue();
 
     [Parameter]
     public bool Fade { get; set; } = true;

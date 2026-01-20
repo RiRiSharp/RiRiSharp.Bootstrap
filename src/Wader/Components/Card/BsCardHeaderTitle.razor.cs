@@ -8,5 +8,5 @@ public partial class BsCardHeaderTitle : BsChildContentComponent
     protected override string BsComponentClasses => "card-header";
 
     [Parameter]
-    public int Heading { get; set; }
+    public int Heading { get; set; } = 5;
 }

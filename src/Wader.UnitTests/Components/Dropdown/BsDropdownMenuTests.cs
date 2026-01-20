@@ -1,5 +1,5 @@
 using Wader.Components.Dropdown;
-using Wader.Shared;
+using Wader.Primitives;
 
 namespace Wader.UnitTests.Components.Dropdown;
 
@@ -19,5 +19,19 @@ public class BsDropdownMenuTests() : BsComponentTests<BsDropdownMenu>("""<ul cla
         // Assert
         var expectedMarkupString = GetExpectedHtml(expectedClass, AttributesForDefaultTests);
         cut.MarkupMatches(expectedMarkupString);
+    }
+
+    [Theory]
+    [InlineData(BsDirection.Up)]
+    [InlineData(BsDirection.Down)]
+    public void WrongDirectionsThrowOutOfRangeException(BsDirection direction)
+    {
+        // Arrange
+        ConfigureTestContext();
+
+        // Act + Assert
+        _ = Assert.Throws<ArgumentOutOfRangeException>(() =>
+            GetCut(parameters => parameters.Add(p => p.Direction, direction))
+        );
     }
 }

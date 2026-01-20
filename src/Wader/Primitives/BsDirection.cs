@@ -1,4 +1,4 @@
-namespace Wader.Shared;
+namespace Wader.Primitives;
 
 public enum BsDirection
 {

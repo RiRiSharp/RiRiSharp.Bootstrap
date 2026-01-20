@@ -1,5 +1,5 @@
 using Wader.Components.Dropdown;
-using Wader.Shared;
+using Wader.Primitives;
 
 namespace Wader.UnitTests.Components.Dropdown;
 

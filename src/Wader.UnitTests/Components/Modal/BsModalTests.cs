@@ -1,6 +1,7 @@
 using NSubstitute;
 using Wader.Components.Modal;
 using Wader.Components.Modal.Internals;
+using Wader.Primitives;
 
 namespace Wader.UnitTests.Components.Modal;
 
@@ -13,10 +14,10 @@ public class BsModalTests() : BsComponentTests<BsModal>("""<div class="modal {0}
         new() { ["tabindex"] = "-1", ["aria-hidden"] = "true" };
 
     [Theory]
-    [InlineData(BsModalBackdrop.Regular, null, null)]
-    [InlineData(BsModalBackdrop.Static, "static", "false")]
+    [InlineData(BsBackdrop.Regular, null, null)]
+    [InlineData(BsBackdrop.Static, "static", "false")]
     public void BackdropAddsCorrectDataBsAttributes(
-        BsModalBackdrop backdrop,
+        BsBackdrop backdrop,
         string? backdropAttributeValue,
         string? keyboardAttributeValue
     )
