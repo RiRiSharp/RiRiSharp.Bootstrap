@@ -16,4 +16,9 @@ public class BsModalContext(BsModal modal) : IBsModalContext
     {
         await modal.CloseAsync();
     }
+
+    public async Task HandleUpdateAsync()
+    {
+        await modal.HandleUpdateAsync();
+    }
 }

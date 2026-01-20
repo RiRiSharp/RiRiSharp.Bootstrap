@@ -35,6 +35,13 @@ internal sealed class BsModalJsFunctions : IBsModalJsFunctions, IBsJsFunctionsWr
         await _bsJsObjectRef.InvokeVoidAsync(CLOSE, modalRef);
     }
 
+    internal const string HANDLE_UPDATE = "handleUpdate";
+
+    public async Task HandleUpdateAsync(ElementReference modalRef)
+    {
+        await _bsJsObjectRef.InvokeVoidAsync(HANDLE_UPDATE, modalRef);
+    }
+
     internal const string DISPOSE = "dispose";
 
     public async Task DisposeAsync(ElementReference elementRef)

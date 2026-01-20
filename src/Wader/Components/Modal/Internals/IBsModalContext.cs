@@ -5,4 +5,5 @@ public interface IBsModalContext
     Task ToggleAsync();
     Task ShowAsync();
     Task CloseAsync();
+    Task HandleUpdateAsync();
 }

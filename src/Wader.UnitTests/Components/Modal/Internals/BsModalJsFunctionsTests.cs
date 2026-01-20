@@ -53,6 +53,21 @@ public class BsModalJsFunctionsTests
     }
 
     [Fact]
+    public async Task HandleUpdateCallsCorrectJsFunctionAsync()
+    {
+        // Arrange
+        var jsObj = Substitute.For<IJSObjectReference>();
+        await using var sut = new BsModalJsFunctions(jsObj);
+        ElementReference modalRef = default;
+
+        // Act
+        await sut.HandleUpdateAsync(modalRef);
+
+        // Assert
+        AssertJsInterop.Calls(jsObj, BsModalJsFunctions.HANDLE_UPDATE, modalRef);
+    }
+
+    [Fact]
     public async Task DisposeCallsCorrectJsFunctionAsync()
     {
         // Arrange

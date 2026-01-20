@@ -53,6 +53,11 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
         await BsModalJsFunctions.CloseAsync(HtmlRef);
     }
 
+    public async Task HandleUpdateAsync()
+    {
+        await BsModalJsFunctions.HandleUpdateAsync(HtmlRef);
+    }
+
     private async Task Dispose(bool disposing)
     {
         if (!disposing)
