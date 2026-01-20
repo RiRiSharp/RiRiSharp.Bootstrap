@@ -49,7 +49,7 @@ export function removeCycleCallback(carouselRef) {
 
 export function dispose(carouselRef) {
     if (!carouselRef) return;
-    
+
     removeCycleCallback(carouselRef);
     const carousel = bootstrap.Carousel.getInstance(carouselRef);
     if (carousel) {
@@ -59,8 +59,10 @@ export function dispose(carouselRef) {
 
 function getCarouselInstanceWithCallback(carouselRef) {
     if (!carouselRef) return;
-    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef);
-    
+
+    // A creation should not also trigger riding, similar like https://github.com/RiRiSharp/Wader/issues/22
+    const carousel = bootstrap.Carousel.getOrCreateInstance(carouselRef, {ride: false});
+
     addSlideCallback(carouselRef);
     return carousel;
 }

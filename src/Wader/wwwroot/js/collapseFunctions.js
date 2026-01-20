@@ -28,5 +28,7 @@ export function dispose(collapseRef) {
 
 function getCollapseInstance(collapseRef) {
     if (!collapseRef) return;
-    return bootstrap.Collapse.getOrCreateInstance(collapseRef);
+    
+    // A creation should not also trigger a toggle: https://github.com/RiRiSharp/Wader/issues/22
+    return bootstrap.Collapse.getOrCreateInstance(collapseRef, {toggle: false});
 }
