@@ -12,9 +12,9 @@ public enum BsAlertVariant
     Dark = 7,
 }
 
-public static class BsAlertVariantExtensions
+internal static class BsAlertVariantExtensions
 {
-    public static string ToBootstrapClass(this BsAlertVariant variant)
+    internal static string ToBootstrapClass(this BsAlertVariant variant)
     {
         return variant switch
         {

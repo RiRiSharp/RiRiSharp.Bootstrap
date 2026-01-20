@@ -6,9 +6,9 @@ public enum BsDropdownOptions
     WithDropdown = 1,
 }
 
-public static class DropdownOptionsExtensions
+internal static class DropdownOptionsExtensions
 {
-    public static string ToNavItemBootstrapClass(this BsDropdownOptions options)
+    internal static string ToNavItemBootstrapClass(this BsDropdownOptions options)
     {
         return options switch
         {
@@ -18,7 +18,7 @@ public static class DropdownOptionsExtensions
         };
     }
 
-    public static string ToNavLinkBootstrapClass(this BsDropdownOptions options)
+    internal static string ToNavLinkBootstrapClass(this BsDropdownOptions options)
     {
         return options switch
         {

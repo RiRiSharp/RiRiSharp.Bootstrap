@@ -7,9 +7,9 @@ public enum BsFormCheckOptions
     Reverse = 2,
 }
 
-public static class BsFormCheckOptionsExtensions
+internal static class BsFormCheckOptionsExtensions
 {
-    public static string ToBootstrapClass(this BsFormCheckOptions formCheckOptions)
+    internal static string ToBootstrapClass(this BsFormCheckOptions formCheckOptions)
     {
         return formCheckOptions switch
         {

@@ -6,9 +6,9 @@ public enum BsModalScrollOptions
     DialogOnly = 1,
 }
 
-public static class BsModalScrollOptionsExtensions
+internal static class BsModalScrollOptionsExtensions
 {
-    public static string ToBootstrapClass(this BsModalScrollOptions options)
+    internal static string ToBootstrapClass(this BsModalScrollOptions options)
     {
         return options switch
         {

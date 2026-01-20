@@ -6,9 +6,9 @@ public enum BsModalFullScreenOptions
     Enable = 1,
 }
 
-public static class BsModalFullScreenOptionsExtensions
+internal static class BsModalFullScreenOptionsExtensions
 {
-    public static string ToBootstrapClass(this BsModalFullScreenOptions options)
+    internal static string ToBootstrapClass(this BsModalFullScreenOptions options)
     {
         return options switch
         {

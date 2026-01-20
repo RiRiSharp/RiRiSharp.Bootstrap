@@ -6,9 +6,9 @@ public enum BsDropdownMode
     Split = 1,
 }
 
-public static class BsDropdownModeExtensions
+internal static class BsDropdownModeExtensions
 {
-    public static string ToBootstrapDropdownClass(this BsDropdownMode mode)
+    internal static string ToBootstrapDropdownClass(this BsDropdownMode mode)
     {
         return mode switch
         {
@@ -18,7 +18,7 @@ public static class BsDropdownModeExtensions
         };
     }
 
-    public static string ToBootstrapButtonClass(this BsDropdownMode mode)
+    internal static string ToBootstrapButtonClass(this BsDropdownMode mode)
     {
         return mode switch
         {

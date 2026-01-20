@@ -10,9 +10,9 @@ public enum BsTableBreakpoint
     Xxl = 5,
 }
 
-public static class TableResponsivenessExtensions
+internal static class TableResponsivenessExtensions
 {
-    public static string ToBootstrapClass(this BsTableBreakpoint tableBreakpoint)
+    internal static string ToBootstrapClass(this BsTableBreakpoint tableBreakpoint)
     {
         return tableBreakpoint switch
         {

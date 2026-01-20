@@ -12,9 +12,9 @@ public enum BsColumnOrder
     OrderLast = 7,
 }
 
-public static class ColumnOrderExtensions
+internal static class ColumnOrderExtensions
 {
-    public static string ToBootstrapClass(this BsColumnOrder options)
+    internal static string ToBootstrapClass(this BsColumnOrder options)
     {
         return options switch
         {

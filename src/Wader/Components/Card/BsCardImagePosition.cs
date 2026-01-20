@@ -7,9 +7,9 @@ public enum BsCardImagePosition
     Overlay = 2,
 }
 
-public static class BsCardImagePositionExtensions
+internal static class BsCardImagePositionExtensions
 {
-    public static string ToBootstrapClass(this BsCardImagePosition imagePosition)
+    internal static string ToBootstrapClass(this BsCardImagePosition imagePosition)
     {
         return imagePosition switch
         {

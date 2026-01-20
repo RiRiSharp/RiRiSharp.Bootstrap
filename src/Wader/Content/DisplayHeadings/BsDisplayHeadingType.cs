@@ -10,9 +10,9 @@ public enum BsDisplayHeadingType
     Display6 = 5,
 }
 
-public static class DisplayHeadingTypeExtensions
+internal static class DisplayHeadingTypeExtensions
 {
-    public static string ToBootstrapClass(this BsDisplayHeadingType displayHeadingType)
+    internal static string ToBootstrapClass(this BsDisplayHeadingType displayHeadingType)
     {
         return displayHeadingType switch
         {

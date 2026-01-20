@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Wader.BaseComponents;
+using Wader.Shared;
 
 namespace Wader.Components.Dropdown;
 
@@ -8,9 +9,9 @@ public partial class BsDropdown : BsChildContentComponent
     protected override string BsComponentClasses => $"{DropdownDirectionClass} {DropdownClass}";
 
     [Parameter]
-    public BsDropDirection Drop { get; set; }
+    public BsDirection Drop { get; set; }
 
-    private string DropdownDirectionClass => Drop.ToBootstrapClass();
+    private string DropdownDirectionClass => Drop.ToDropDirectionBootstrapClass();
 
     [Parameter]
     public BsDropdownMode Mode { get; set; }

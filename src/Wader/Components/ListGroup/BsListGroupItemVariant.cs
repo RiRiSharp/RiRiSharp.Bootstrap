@@ -13,9 +13,9 @@ public enum BsListGroupItemVariant
     Dark = 8,
 }
 
-public static class BsListGroupItemVariantExtensions
+internal static class BsListGroupItemVariantExtensions
 {
-    public static string ToBootstrapClass(this BsListGroupItemVariant variant)
+    internal static string ToBootstrapClass(this BsListGroupItemVariant variant)
     {
         return variant switch
         {

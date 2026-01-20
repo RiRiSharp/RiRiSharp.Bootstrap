@@ -95,9 +95,9 @@ public enum BsGridColumnOptions : long
     GColXxlAuto = Xxl | GColAuto,
 }
 
-public static class GridColumnOptionsExtensions
+internal static class GridColumnOptionsExtensions
 {
-    public static string ToBootstrapClass(this BsGridColumnOptions gridColumnOptions)
+    internal static string ToBootstrapClass(this BsGridColumnOptions gridColumnOptions)
     {
         if (gridColumnOptions == BsGridColumnOptions.None)
         {

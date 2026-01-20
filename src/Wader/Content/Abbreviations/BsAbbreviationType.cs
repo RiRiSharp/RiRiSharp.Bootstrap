@@ -6,9 +6,9 @@ public enum BsAbbreviationType
     Initialism = 1,
 }
 
-public static class AbbreviationTypeExtensions
+internal static class AbbreviationTypeExtensions
 {
-    public static string ToBootstrapClass(this BsAbbreviationType abbreviationType)
+    internal static string ToBootstrapClass(this BsAbbreviationType abbreviationType)
     {
         return abbreviationType switch
         {

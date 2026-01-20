@@ -41,7 +41,7 @@ public enum BsTableOptions : long
     TableActive = 1 << 23,
 }
 
-public static class TableOptionsExtensions
+internal static class TableOptionsExtensions
 {
     private static readonly Dictionary<BsTableOptions, string> _classMapping = new()
     {
@@ -121,7 +121,7 @@ public static class TableOptionsExtensions
         | BsTableOptions.TableLight
         | BsTableOptions.TableDark;
 
-    public static string ToBootstrapTableClass(this BsTableOptions options)
+    internal static string ToBootstrapTableClass(this BsTableOptions options)
     {
         var relevantTableOptions = options & TABLE_MASK;
         relevantTableOptions.ValidateIllegalCombinations();
@@ -129,7 +129,7 @@ public static class TableOptionsExtensions
         return options.BuildBootstrapClassInner();
     }
 
-    public static string ToBootstrapRowOrDataClass(this BsTableOptions options)
+    internal static string ToBootstrapRowOrDataClass(this BsTableOptions options)
     {
         var relevantRowOptions = options & ROW_MASK;
         relevantRowOptions.ValidateIllegalCombinations();
@@ -137,7 +137,7 @@ public static class TableOptionsExtensions
         return options.BuildBootstrapClassInner();
     }
 
-    public static string ToBootstrapTableHeadClass(this BsTableOptions options)
+    internal static string ToBootstrapTableHeadClass(this BsTableOptions options)
     {
         var relevantTableHeadOptions = options & TABLE_HEAD_MASK;
         relevantTableHeadOptions.ValidateIllegalCombinations();

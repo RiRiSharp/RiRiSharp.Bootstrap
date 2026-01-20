@@ -1,6 +1,7 @@
 @using Wader.BaseComponents
+@using Wader.Internals
 @inherits BsChildContentComponent
 
-<h5 @attributes="RenderAttributes">
+<BsHeading AdditionalAttributes="RenderAttributes" Value="Heading">
     @(ChildContent)
-</h5>
+</BsHeading>

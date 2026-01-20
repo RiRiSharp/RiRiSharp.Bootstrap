@@ -6,9 +6,9 @@ public enum BsListGroupMode
     Flush = 1,
 }
 
-public static class BsListGroupModeExtensions
+internal static class BsListGroupModeExtensions
 {
-    public static string ToBootstrapClass(this BsListGroupMode mode)
+    internal static string ToBootstrapClass(this BsListGroupMode mode)
     {
         return mode switch
         {

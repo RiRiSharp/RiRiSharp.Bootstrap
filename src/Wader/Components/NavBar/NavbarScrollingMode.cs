@@ -6,9 +6,9 @@ public enum NavbarScrollingMode
     EnableVerticalScrolling = 1,
 }
 
-public static class NavbarScrollingModeExtensions
+internal static class NavbarScrollingModeExtensions
 {
-    public static string ToBootstrapClass(this NavbarScrollingMode mode)
+    internal static string ToBootstrapClass(this NavbarScrollingMode mode)
     {
         return mode switch
         {

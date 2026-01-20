@@ -6,9 +6,9 @@ public enum BsListGroupDirection
     Horizontal = 1,
 }
 
-public static class BsListGroupDirectionExtensions
+internal static class BsListGroupDirectionExtensions
 {
-    public static string ToBootstrapClass(this BsListGroupDirection direction)
+    internal static string ToBootstrapClass(this BsListGroupDirection direction)
     {
         return direction switch
         {

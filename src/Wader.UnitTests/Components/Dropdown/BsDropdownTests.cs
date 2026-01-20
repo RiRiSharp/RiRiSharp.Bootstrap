@@ -1,4 +1,5 @@
 using Wader.Components.Dropdown;
+using Wader.Shared;
 
 namespace Wader.UnitTests.Components.Dropdown;
 
@@ -7,11 +8,11 @@ public class BsDropdownTests() : BsComponentTests<BsDropdown>("""<div class="{0}
     protected override string ClassesForDefaultTests => "dropdown";
 
     [Theory]
-    [InlineData(BsDropDirection.Down, "dropdown")]
-    [InlineData(BsDropDirection.Up, "dropup")]
-    [InlineData(BsDropDirection.Start, "dropstart")]
-    [InlineData(BsDropDirection.End, "dropend")]
-    public void DirectionAddsCorrectClass(BsDropDirection direction, string expectedClass)
+    [InlineData(BsDirection.Down, "dropdown")]
+    [InlineData(BsDirection.Up, "dropup")]
+    [InlineData(BsDirection.Start, "dropstart")]
+    [InlineData(BsDirection.End, "dropend")]
+    public void DirectionAddsCorrectClass(BsDirection direction, string expectedClass)
     {
         // Arrange
         ConfigureTestContext();

@@ -22,9 +22,9 @@ public enum BsButtonVariant
     OutlineDark = 17,
 }
 
-public static class BsButtonVariantExtensions
+internal static class BsButtonVariantExtensions
 {
-    public static string ToBootstrapClass(this BsButtonVariant variant)
+    internal static string ToBootstrapClass(this BsButtonVariant variant)
     {
         return variant switch
         {

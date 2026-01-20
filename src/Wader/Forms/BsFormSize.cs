@@ -7,9 +7,9 @@ public enum BsFormSize
     Large = 2,
 }
 
-public static class FormSizeExtensions
+internal static class FormSizeExtensions
 {
-    public static string ToBootstrapClass(this BsFormSize formSize)
+    internal static string ToBootstrapClass(this BsFormSize formSize)
     {
         return formSize switch
         {

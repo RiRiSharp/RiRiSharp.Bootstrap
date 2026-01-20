@@ -10,7 +10,7 @@ public enum BsImageOptions
     Figure = 1 << 3,
 }
 
-public static class ImageOptionsExtensions
+internal static class ImageOptionsExtensions
 {
     private static readonly Dictionary<BsImageOptions, string> _classMapping = new()
     {
@@ -20,7 +20,7 @@ public static class ImageOptionsExtensions
         { BsImageOptions.Figure, "figure-img" },
     };
 
-    public static string ToBootstrapClass(this BsImageOptions imageOptions)
+    internal static string ToBootstrapClass(this BsImageOptions imageOptions)
     {
         return imageOptions.BuildBootstrapClassInner();
     }

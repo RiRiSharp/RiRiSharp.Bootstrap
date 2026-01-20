@@ -6,9 +6,9 @@ public enum BsCarouselTransitionType
     Crossfade = 1,
 }
 
-public static class BsCarouselTransitionTypeExtensions
+internal static class BsCarouselTransitionTypeExtensions
 {
-    public static string ToBootstrapClass(this BsCarouselTransitionType transitionType)
+    internal static string ToBootstrapClass(this BsCarouselTransitionType transitionType)
     {
         return transitionType switch
         {

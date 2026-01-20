@@ -12,9 +12,9 @@ public enum BsBadgeColor
     Dark = 7,
 }
 
-public static class BsBadgeColorExtensions
+internal static class BsBadgeColorExtensions
 {
-    public static string ToBootstrapClass(this BsBadgeColor color)
+    internal static string ToBootstrapClass(this BsBadgeColor color)
     {
         return color switch
         {

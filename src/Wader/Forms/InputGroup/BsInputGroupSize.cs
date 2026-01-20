@@ -7,9 +7,9 @@ public enum BsInputGroupSize
     Large = 2,
 }
 
-public static class InputGroupSizeExtensions
+internal static class InputGroupSizeExtensions
 {
-    public static string ToBootstrapClass(this BsInputGroupSize size)
+    internal static string ToBootstrapClass(this BsInputGroupSize size)
     {
         return size switch
         {

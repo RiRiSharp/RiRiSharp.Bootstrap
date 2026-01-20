@@ -18,9 +18,9 @@ public enum BsColumnsInRow
     ColsAuto = 13,
 }
 
-public static class RowOptsExtensions
+internal static class RowOptsExtensions
 {
-    public static string ToBootstrapClass(this BsColumnsInRow options)
+    internal static string ToBootstrapClass(this BsColumnsInRow options)
     {
         return options switch
         {

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using Wader.BaseComponents;
 
 namespace Wader.Components.Card;

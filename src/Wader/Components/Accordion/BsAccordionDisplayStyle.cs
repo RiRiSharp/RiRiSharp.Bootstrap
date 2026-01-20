@@ -6,9 +6,9 @@ public enum BsAccordionDisplayStyle
     Flush = 1,
 }
 
-public static class BsAccordionDisplayStyleExtensions
+internal static class BsAccordionDisplayStyleExtensions
 {
-    public static string ToBootstrapClass(this BsAccordionDisplayStyle style)
+    internal static string ToBootstrapClass(this BsAccordionDisplayStyle style)
     {
         return style switch
         {

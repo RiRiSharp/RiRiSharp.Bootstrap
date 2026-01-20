@@ -10,9 +10,9 @@ public enum BsHeadingType
     H6 = 5,
 }
 
-public static class HeadingTypeExtensions
+internal static class HeadingTypeExtensions
 {
-    public static string ToBootstrapClass(this BsHeadingType headingType)
+    internal static string ToBootstrapClass(this BsHeadingType headingType)
     {
         return headingType.ToString().ToLowerInvariant();
     }

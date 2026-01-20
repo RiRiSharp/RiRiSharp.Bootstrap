@@ -7,9 +7,9 @@ public enum BsListType
     OrderedList = 2,
 }
 
-public static class BsListTypeExtensions
+internal static class BsListTypeExtensions
 {
-    public static string ToBootstrapClass(this BsListType type)
+    internal static string ToBootstrapClass(this BsListType type)
     {
         return type switch
         {

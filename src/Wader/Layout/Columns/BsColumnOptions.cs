@@ -95,9 +95,9 @@ public enum BsColumnOptions : long
     ColXxlAuto = Xxl | ColAuto,
 }
 
-public static class ColumnOptsExtensions
+internal static class ColumnOptsExtensions
 {
-    public static string ToBootstrapColClass(this BsColumnOptions breakpoint)
+    internal static string ToBootstrapColClass(this BsColumnOptions breakpoint)
     {
         var classString = "col";
         classString += breakpoint.SizeClass();
@@ -105,7 +105,7 @@ public static class ColumnOptsExtensions
         return classString;
     }
 
-    public static string ToBootstrapOffsetClass(this BsColumnOptions breakpoint)
+    internal static string ToBootstrapOffsetClass(this BsColumnOptions breakpoint)
     {
         var classString = "";
         if (breakpoint == BsColumnOptions.None)

@@ -6,9 +6,9 @@ public enum BsModalPosition
     VerticallyCentered = 1,
 }
 
-public static class BsModalVerticalPositionExtensions
+internal static class BsModalVerticalPositionExtensions
 {
-    public static string ToBootstrapClass(this BsModalPosition position)
+    internal static string ToBootstrapClass(this BsModalPosition position)
     {
         return position switch
         {

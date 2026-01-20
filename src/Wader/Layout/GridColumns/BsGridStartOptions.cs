@@ -19,9 +19,9 @@ public enum BsGridStartOptions : long
     Start12 = 1 << 17,
 }
 
-public static class GridStartOptionsExtensions
+internal static class GridStartOptionsExtensions
 {
-    public static string ToBootstrapClass(this BsGridStartOptions gridColumnOptions)
+    internal static string ToBootstrapClass(this BsGridStartOptions gridColumnOptions)
     {
         var classString = "";
         if (gridColumnOptions == BsGridStartOptions.None)

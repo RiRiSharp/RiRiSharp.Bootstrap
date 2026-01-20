@@ -6,9 +6,9 @@ public enum BsCollapseDirection
     Horizontal = 1,
 }
 
-public static class BsCollapseDirectionExtensions
+internal static class BsCollapseDirectionExtensions
 {
-    public static string ToBootstrapClass(this BsCollapseDirection collapseDirection)
+    internal static string ToBootstrapClass(this BsCollapseDirection collapseDirection)
     {
         return collapseDirection switch
         {

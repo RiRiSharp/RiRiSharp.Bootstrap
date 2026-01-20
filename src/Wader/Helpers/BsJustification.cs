@@ -10,9 +10,9 @@ public enum BsJustification
     Evenly = 5,
 }
 
-public static class JustificationExtensions
+internal static class JustificationExtensions
 {
-    public static string ToBootstrapClass(this BsJustification justification)
+    internal static string ToBootstrapClass(this BsJustification justification)
     {
         return justification switch
         {

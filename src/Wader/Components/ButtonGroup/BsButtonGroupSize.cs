@@ -7,9 +7,9 @@ public enum BsButtonGroupSize
     Large = 2,
 }
 
-public static class BsButtonGroupSizeExtensions
+internal static class BsButtonGroupSizeExtensions
 {
-    public static string ToBootstrapClass(this BsButtonGroupSize size)
+    internal static string ToBootstrapClass(this BsButtonGroupSize size)
     {
         return size switch
         {

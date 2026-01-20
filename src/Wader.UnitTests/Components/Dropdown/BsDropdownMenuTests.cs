@@ -1,13 +1,14 @@
 using Wader.Components.Dropdown;
+using Wader.Shared;
 
 namespace Wader.UnitTests.Components.Dropdown;
 
 public class BsDropdownMenuTests() : BsComponentTests<BsDropdownMenu>("""<ul class="dropdown-menu {0}" {1}></ul>""")
 {
     [Theory]
-    [InlineData(BsDropdownMenuDirection.Start, "")]
-    [InlineData(BsDropdownMenuDirection.End, "dropdown-menu-end")]
-    public void MenuDirectionAddsCorrectClass(BsDropdownMenuDirection direction, string expectedClass)
+    [InlineData(BsDirection.Start, "")]
+    [InlineData(BsDirection.End, "dropdown-menu-end")]
+    public void MenuDirectionAddsCorrectClass(BsDirection direction, string expectedClass)
     {
         // Arrange
         ConfigureTestContext();
