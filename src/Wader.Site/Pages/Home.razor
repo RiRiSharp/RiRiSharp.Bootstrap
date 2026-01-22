@@ -3,15 +3,20 @@
 @using Wader.Components.Collapse
 @using Wader.Components.Dropdown
 @using Wader.Components.ListGroup
+@using Wader.Components.Offcanvas
 
 <PageTitle>Home</PageTitle>
 
 <BsCollapse Show="true" @ref="_collapse">
     Hello world!
 </BsCollapse>
-<BsButton Variant="BsButtonVariant.Primary" @onclick="() => _collapse?.ToggleAsync() ?? Task.CompletedTask">Toggle</BsButton>
-<BsButton Variant="BsButtonVariant.Secondary" @onclick="() => _collapse?.ShowAsync() ?? Task.CompletedTask">Show</BsButton>
-<BsButton Variant="BsButtonVariant.OutlinePrimary" @onclick="() => _collapse?.CollapseAsync() ?? Task.CompletedTask">Hide</BsButton>
+<BsButton Variant="BsButtonVariant.Primary" @onclick="() => _collapse?.ToggleAsync() ?? Task.CompletedTask">Toggle
+</BsButton>
+<BsButton Variant="BsButtonVariant.Secondary" @onclick="() => _collapse?.ShowAsync() ?? Task.CompletedTask">Show
+</BsButton>
+<BsButton Variant="BsButtonVariant.OutlinePrimary" @onclick="() => _collapse?.CollapseAsync() ?? Task.CompletedTask">
+    Hide
+</BsButton>
 
 <BsDropdown>
     <BsDropdownToggle Variant="BsButtonVariant.OutlinePrimary" Size="BsButtonSize.Large">
@@ -26,10 +31,21 @@
 </BsDropdown>
 
 <BsListGroup>
-    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItem>
-    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool</BsListGroupItem>
-    <BsListGroupItem ItemType="BsListGroupItemType.Anchor" Variant="BsListGroupItemVariant.Success" href="https://duckduckgo.com">Linkert</BsListGroupItem>
+    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool
+    </BsListGroupItem>
+    <BsListGroupItem ItemType="BsListGroupItemType.Button" Variant="BsListGroupItemVariant.Primary">Super cool
+    </BsListGroupItem>
+    <BsListGroupItem ItemType="BsListGroupItemType.Anchor" Variant="BsListGroupItemVariant.Success"
+                     href="https://duckduckgo.com">Linkert
+    </BsListGroupItem>
 </BsListGroup>
+<BsButton @onclick="() => _offcanvas!.ShowAsync()">Offcanvas!</BsButton>
+<BsOffcanvas @ref="_offcanvas">
+    <BsOffcanvasTitle>Title!</BsOffcanvasTitle>
+    <BsOffcanvasBody>Body!</BsOffcanvasBody>
+</BsOffcanvas>
+
 @code {
     private BsCollapse? _collapse;
+    private BsOffcanvas? _offcanvas;
 }

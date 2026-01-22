@@ -1,33 +1,33 @@
-﻿export function collapse(offcanvasRef) {
+﻿export function offcanvas(offcanvasRef) {
     const offcanvas = getOffcanvasInstance(offcanvasRef);
-    if (collapse) {
-        collapse.hide();
+    if (offcanvas) {
+        offcanvas.hide();
     }
 }
 
 export function show(offcanvasRef) {
     const offcanvas = getOffcanvasInstance(offcanvasRef);
-    if (collapse) {
-        collapse.show();
+    if (offcanvas) {
+        offcanvas.show();
     }
 }
 
 export function toggle(offcanvasRef) {
     const offcanvas = getOffcanvasInstance(offcanvasRef);
-    if (collapse) {
-        collapse.toggle();
+    if (offcanvas) {
+        offcanvas.toggle();
     }
 }
 
 export function dispose(offcanvasRef) {
     const offcanvas = getOffcanvasInstance(offcanvasRef);
-    if (collapse) {
-        collapse.dispose();
+    if (offcanvas) {
+        offcanvas.dispose();
     }
 }
 
 function getOffcanvasInstance(offcanvasRef) {
     if (!offcanvasRef) return;
-    
+
     return bootstrap.Offcanvas.getOrCreateInstance(offcanvasRef);
 }

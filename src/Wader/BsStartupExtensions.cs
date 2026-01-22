@@ -6,6 +6,7 @@ using Wader.Components.Buttons.Internals;
 using Wader.Components.Carousel.Internals;
 using Wader.Components.Collapse.Internals;
 using Wader.Components.Modal.Internals;
+using Wader.Components.Offcanvas.Internals;
 using Wader.Forms.ChecksRadios.Internals;
 using Wader.Internals;
 
@@ -22,7 +23,8 @@ public static class BsStartupExtensions
             .AddBootstrapJs<IBsCarouselJsFunctions, BsCarouselJsFunctions>()
             .AddBootstrapJs<IBsCheckboxJsFunctions, BsCheckboxJsFunctions>()
             .AddBootstrapJs<IBsCollapseJsFunctions, BsCollapseJsFunctions>()
-            .AddBootstrapJs<IBsModalJsFunctions, BsModalJsFunctions>();
+            .AddBootstrapJs<IBsModalJsFunctions, BsModalJsFunctions>()
+            .AddBootstrapJs<IBsOffcanvasJsFunctions, BsOffcanvasJsFunctions>();
     }
 
     private static IServiceCollection AddBootstrapJs<TService, TImpl>(this IServiceCollection services)

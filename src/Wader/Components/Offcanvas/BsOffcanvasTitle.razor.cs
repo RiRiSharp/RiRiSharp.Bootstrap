@@ -3,7 +3,7 @@ using Wader.BaseComponents;
 
 namespace Wader.Components.Offcanvas;
 
-public partial class OffcanvasTitle : BsChildContentComponent
+public partial class BsOffcanvasTitle : BsChildContentComponent
 {
     protected override string BsComponentClasses => "offcanvas-title";
 

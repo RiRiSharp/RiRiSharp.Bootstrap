@@ -6,7 +6,7 @@ namespace Wader.Components.Offcanvas.Internals;
 
 internal sealed class BsOffcanvasJsFunctions : IBsOffcanvasJsFunctions, IBsJsFunctionsWrapper, IAsyncDisposable
 {
-    public static string JsFileName => "modalFunctions.js";
+    public static string JsFileName => "offcanvasFunctions.js";
     private readonly IJSObjectReference _bsJsObjectRef;
 
     public BsOffcanvasJsFunctions(IJSObjectReference bsJsObjectRef)

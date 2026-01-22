@@ -12,7 +12,7 @@ public partial class BsOffcanvas : BsChildContentComponent, IAsyncDisposable
     public IBsOffcanvasContext? OffcanvasContext { get; private set; }
 
     [Parameter]
-    public BsDirection Direction { get; set; }
+    public BsDirection Direction { get; set; } = BsDirection.Start;
 
     [Parameter]
     public bool EnableScroll { get; set; }
