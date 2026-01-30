@@ -8,11 +8,11 @@ public enum BsModalPosition
 
 internal static class BsModalVerticalPositionExtensions
 {
-    internal static string ToBootstrapClass(this BsModalPosition position)
+    internal static string? ToBootstrapClass(this BsModalPosition position)
     {
         return position switch
         {
-            BsModalPosition.Top => "",
+            BsModalPosition.Top => null,
             BsModalPosition.VerticallyCentered => "modal-dialog-centered",
             _ => throw new ArgumentOutOfRangeException(nameof(position), position, null),
         };

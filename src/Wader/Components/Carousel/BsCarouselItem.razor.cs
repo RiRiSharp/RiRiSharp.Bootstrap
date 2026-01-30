@@ -8,9 +8,9 @@ public sealed partial class BsCarouselItem : BsChildContentComponent
     protected override string BsComponentClasses => $"carousel-item {ActiveClass}";
 
     [Parameter]
-    public bool IsActive { get; set; }
+    public bool Active { get; set; }
 
-    private string ActiveClass => IsActive ? "active" : "";
+    private string? ActiveClass => Active ? "active" : null;
 
     [Parameter]
     public int? Interval { get; set; }

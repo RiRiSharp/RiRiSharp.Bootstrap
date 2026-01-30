@@ -8,11 +8,11 @@ public enum BsAbbreviationType
 
 internal static class AbbreviationTypeExtensions
 {
-    internal static string ToBootstrapClass(this BsAbbreviationType abbreviationType)
+    internal static string? ToBootstrapClass(this BsAbbreviationType abbreviationType)
     {
         return abbreviationType switch
         {
-            BsAbbreviationType.Default => "",
+            BsAbbreviationType.Default => null,
             BsAbbreviationType.Initialism => "initialism",
             _ => throw new ArgumentOutOfRangeException(nameof(abbreviationType), abbreviationType, null),
         };

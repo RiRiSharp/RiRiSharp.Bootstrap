@@ -10,5 +10,5 @@ public partial class BsNavItem : BsChildContentComponent
     [Parameter]
     public BsDropdownOptions DropdownOptions { get; set; }
 
-    private string OptionsClass => DropdownOptions.ToNavItemBootstrapClass();
+    private string? OptionsClass => DropdownOptions.ToNavItemBootstrapClass();
 }

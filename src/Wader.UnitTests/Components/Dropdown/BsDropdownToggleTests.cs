@@ -17,7 +17,7 @@ public class BsDropdownToggleTests()
     [Theory]
     [InlineData(BsDropdownMode.Regular, "")]
     [InlineData(BsDropdownMode.Split, "dropdown-toggle-split")]
-    public void ModeAddsCorrectClass(BsDropdownMode dropdownMode, string expectedClass)
+    public void ModeAddsCorrectClass(BsDropdownMode dropdownMode, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

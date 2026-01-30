@@ -21,7 +21,7 @@ public partial class BsModal : BsChildContentComponent, IAsyncDisposable
     [Parameter]
     public bool Fade { get; set; } = true;
 
-    private string FadeClass => Fade ? "fade" : "";
+    private string? FadeClass => Fade ? "fade" : null;
 
     [Inject]
     private IBsModalJsFunctions BsModalJsFunctions { get; set; } = null!;

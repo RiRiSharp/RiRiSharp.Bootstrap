@@ -8,7 +8,7 @@ public class BsTableTests() : BsComponentTests<BsTable>("""<table class="table {
     [InlineData(BsTableOptions.TableBordered | BsTableOptions.BorderDanger, "table-bordered border-danger")]
     [InlineData(BsTableOptions.CaptionTop, "caption-top")]
     [InlineData(BsTableOptions.TableBorderless, "table-borderless")]
-    public void TableOptionsWorks(BsTableOptions options, string expectedClass)
+    public void TableOptionsWorks(BsTableOptions options, string? expectedClass)
     {
         // Arrange + Act
         var cut = GetCut(parameters => parameters.Add(p => p.Options, options));

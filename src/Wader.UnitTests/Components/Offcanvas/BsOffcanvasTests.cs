@@ -18,7 +18,7 @@ public class BsOffcanvasTests() : BsComponentTests<BsOffcanvas>("""<div class="o
     [InlineData(BsDirection.Up, "offcanvas-top")]
     [InlineData(BsDirection.Start, "offcanvas-start")]
     [InlineData(BsDirection.End, "offcanvas-end")]
-    public void DirectionAddsCorrectClass(BsDirection direction, string expectedClass)
+    public void DirectionAddsCorrectClass(BsDirection direction, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

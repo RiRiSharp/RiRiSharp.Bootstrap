@@ -8,11 +8,11 @@ public enum BsModalFullScreenOptions
 
 internal static class BsModalFullScreenOptionsExtensions
 {
-    internal static string ToBootstrapClass(this BsModalFullScreenOptions options)
+    internal static string? ToBootstrapClass(this BsModalFullScreenOptions options)
     {
         return options switch
         {
-            BsModalFullScreenOptions.Disable => "",
+            BsModalFullScreenOptions.Disable => null,
             BsModalFullScreenOptions.Enable => "modal-fullscreen",
             _ => throw new ArgumentOutOfRangeException(nameof(options), options, null),
         };

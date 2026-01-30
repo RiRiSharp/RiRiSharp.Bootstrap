@@ -12,7 +12,7 @@ public class BsDropdownTests() : BsComponentTests<BsDropdown>("""<div class="{0}
     [InlineData(BsDirection.Up, "dropup")]
     [InlineData(BsDirection.Start, "dropstart")]
     [InlineData(BsDirection.End, "dropend")]
-    public void DirectionAddsCorrectClass(BsDirection direction, string expectedClass)
+    public void DirectionAddsCorrectClass(BsDirection direction, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -28,7 +28,7 @@ public class BsDropdownTests() : BsComponentTests<BsDropdown>("""<div class="{0}
     [Theory]
     [InlineData(BsDropdownMode.Regular, "")]
     [InlineData(BsDropdownMode.Split, "btn-group")]
-    public void ModeAddsCorrectClass(BsDropdownMode dropdownMode, string expectedClass)
+    public void ModeAddsCorrectClass(BsDropdownMode dropdownMode, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

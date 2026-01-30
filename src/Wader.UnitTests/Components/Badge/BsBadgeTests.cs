@@ -15,7 +15,7 @@ public class BsBadgeTests() : BsComponentTests<BsBadge>("""<span class="badge {0
     [InlineData(BsBadgeColor.Info, "text-bg-info")]
     [InlineData(BsBadgeColor.Light, "text-bg-light")]
     [InlineData(BsBadgeColor.Dark, "text-bg-dark")]
-    public void BackgroundRendersCorrectClass(BsBadgeColor color, string expectedClass)
+    public void BackgroundRendersCorrectClass(BsBadgeColor color, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

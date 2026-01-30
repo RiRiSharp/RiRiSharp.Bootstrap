@@ -17,7 +17,7 @@ public class GridStartOptionsExtensionsTests
     [InlineData(BsGridStartOptions.Start10, "g-start-10")]
     [InlineData(BsGridStartOptions.Start11, "g-start-11")]
     [InlineData(BsGridStartOptions.Start12, "g-start-12")]
-    public void ColWidthsWork(BsGridStartOptions gridStartOptions, string expectedClass)
+    public void ColWidthsWork(BsGridStartOptions gridStartOptions, string? expectedClass)
     {
         var generatedClass = gridStartOptions.ToBootstrapClass();
         Assert.Equal(expectedClass, generatedClass);

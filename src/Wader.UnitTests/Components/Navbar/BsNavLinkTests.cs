@@ -7,7 +7,7 @@ public class BsNavLinkTests() : BsComponentTests<BsNavLink>("""<a class="nav-lin
     [Theory]
     [InlineData(BsDropdownOptions.NoDropdown, "")]
     [InlineData(BsDropdownOptions.WithDropdown, "dropdown-toggle")]
-    public void CascadingDropdownOptionsAddsCorrectClass(BsDropdownOptions options, string expectedClass)
+    public void CascadingDropdownOptionsAddsCorrectClass(BsDropdownOptions options, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

@@ -16,5 +16,5 @@ public partial class BsDropdown : BsChildContentComponent
     [Parameter]
     public BsDropdownMode Mode { get; set; }
 
-    private string DropdownClass => Mode.ToBootstrapDropdownClass();
+    private string? DropdownClass => Mode.ToBootstrapDropdownClass();
 }

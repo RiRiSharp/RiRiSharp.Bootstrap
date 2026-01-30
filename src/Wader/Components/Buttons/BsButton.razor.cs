@@ -19,9 +19,9 @@ public partial class BsButton : BsChildContentComponent, IAsyncDisposable
     public BsButtonSize Size { get; set; }
 
     [Parameter]
-    public bool IsActive { get; set; }
+    public bool Active { get; set; }
 
-    private string ActiveClass => IsActive ? "active" : "";
+    private string? ActiveClass => Active ? "active" : null;
 
     [Inject]
     private IBsButtonJsFunctions ButtonJsFunctions { get; set; } = null!;

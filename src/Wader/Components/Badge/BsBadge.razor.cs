@@ -9,7 +9,7 @@ public partial class BsBadge : BsChildContentComponent
 
     [Parameter]
     public bool PillShape { get; set; }
-    private string PillShapeClass => PillShape ? "rounded-pill" : "";
+    private string? PillShapeClass => PillShape ? "rounded-pill" : null;
 
     [Parameter]
     public BsBadgeColor Background { get; set; } = BsBadgeColor.Secondary;

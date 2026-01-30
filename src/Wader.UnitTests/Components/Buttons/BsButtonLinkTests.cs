@@ -20,7 +20,7 @@ public class BsButtonLinkTests() : BsComponentTests<BsButtonAnchor>("""<a role="
     [InlineData(BsButtonVariant.Light, "btn-light")]
     [InlineData(BsButtonVariant.Dark, "btn-dark")]
     [InlineData(BsButtonVariant.Link, "btn-link")]
-    public void VariantParameterAppliesCorrectClass(BsButtonVariant variant, string expectedClass)
+    public void VariantParameterAppliesCorrectClass(BsButtonVariant variant, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -37,7 +37,7 @@ public class BsButtonLinkTests() : BsComponentTests<BsButtonAnchor>("""<a role="
     [InlineData(BsButtonSize.Regular, "")]
     [InlineData(BsButtonSize.Small, "btn-sm")]
     [InlineData(BsButtonSize.Large, "btn-lg")]
-    public void SizeParameterAppliesCorrectClass(BsButtonSize size, string expectedClass)
+    public void SizeParameterAppliesCorrectClass(BsButtonSize size, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

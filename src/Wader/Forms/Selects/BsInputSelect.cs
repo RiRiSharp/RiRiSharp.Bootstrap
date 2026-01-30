@@ -38,11 +38,11 @@ public class BsInputSelect<TValue> : InputSelect<TValue>, IBsChildContentCompone
         return $"{FORM_SELECT} {sizeClass}";
     }
 
-    private string DetermineSizeClass()
+    private string? DetermineSizeClass()
     {
         return FormSize switch
         {
-            BsFormSize.Regular => "",
+            BsFormSize.Regular => null,
             BsFormSize.Small => $"{FORM_SELECT}-sm",
             BsFormSize.Large => $"{FORM_SELECT}-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(FormSize)),

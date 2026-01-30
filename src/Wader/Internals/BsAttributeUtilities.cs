@@ -87,7 +87,7 @@ internal static class BsAttributeUtilities
         var allClasses = CombineClassNames(additionalAttributes, classNames);
         // Make sure every class is only mentioned once, otherwise every parameterSet call will re-add some classes
         additionalAttributes["class"] = allClasses
-            .Split(' ')
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
             .ToHashSet()
             .Aggregate("", (current, @class) => @class + " " + current);
     }

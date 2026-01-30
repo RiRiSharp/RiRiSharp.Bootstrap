@@ -9,11 +9,11 @@ public enum BsFormCheckOptions
 
 internal static class BsFormCheckOptionsExtensions
 {
-    internal static string ToBootstrapClass(this BsFormCheckOptions formCheckOptions)
+    internal static string? ToBootstrapClass(this BsFormCheckOptions formCheckOptions)
     {
         return formCheckOptions switch
         {
-            BsFormCheckOptions.Stacked => "",
+            BsFormCheckOptions.Stacked => null,
             BsFormCheckOptions.Inline => "form-check-inline",
             BsFormCheckOptions.Reverse => "form-check-reverse",
             _ => throw new ArgumentOutOfRangeException(nameof(formCheckOptions)),

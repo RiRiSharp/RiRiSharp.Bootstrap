@@ -9,11 +9,11 @@ public enum BsButtonGroupSize
 
 internal static class BsButtonGroupSizeExtensions
 {
-    internal static string ToBootstrapClass(this BsButtonGroupSize size)
+    internal static string? ToBootstrapClass(this BsButtonGroupSize size)
     {
         return size switch
         {
-            BsButtonGroupSize.Regular => "",
+            BsButtonGroupSize.Regular => null,
             BsButtonGroupSize.Small => "btn-group-sm",
             BsButtonGroupSize.Large => "btn-group-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(size), size, null),

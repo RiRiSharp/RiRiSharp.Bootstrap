@@ -32,7 +32,7 @@ public class BsInputFile : InputFile
         return $"form-control {formSizeClass}";
     }
 
-    private string DetermineSizeClass()
+    private string? DetermineSizeClass()
     {
         return FormSize.ToBootstrapClass();
     }

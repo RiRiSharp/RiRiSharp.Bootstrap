@@ -33,7 +33,7 @@ public partial class BsCarousel : BsChildContentComponent, IAsyncDisposable
     [Inject]
     private IBsCarouselJsFunctions CarouselJsFunctions { get; set; } = null!;
 
-    private string TransitionTypeClass => TransitionType.ToBootstrapClass();
+    private string? TransitionTypeClass => TransitionType.ToBootstrapClass();
 
     public async ValueTask DisposeAsync()
     {

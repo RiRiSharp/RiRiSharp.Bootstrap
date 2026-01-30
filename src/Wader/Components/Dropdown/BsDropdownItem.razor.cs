@@ -10,10 +10,10 @@ public partial class BsDropdownItem : BsChildContentComponent
     [Parameter]
     public bool Active { get; set; }
 
-    private string ActiveClass => Active ? "active" : "";
+    private string? ActiveClass => Active ? "active" : null;
 
     [Parameter]
     public bool Disabled { get; set; }
 
-    private string DisabledClass => Disabled ? "disabled" : "";
+    private string? DisabledClass => Disabled ? "disabled" : null;
 }

@@ -22,11 +22,11 @@ internal static class DropdownDirectionExtensions
         };
     }
 
-    internal static string ToDropdownBootstrapClass(this BsDirection direction)
+    internal static string? ToDropdownBootstrapClass(this BsDirection direction)
     {
         return direction switch
         {
-            BsDirection.Start => "",
+            BsDirection.Start => null,
             BsDirection.End => "dropdown-menu-end",
             BsDirection.Down or BsDirection.Up => throw new ArgumentOutOfRangeException(
                 nameof(direction),

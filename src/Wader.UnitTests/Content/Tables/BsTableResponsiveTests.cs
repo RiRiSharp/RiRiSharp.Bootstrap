@@ -13,7 +13,7 @@ public class BsTableResponsiveTests() : BsComponentTests<BsTableResponsive>("""<
     [InlineData(BsTableBreakpoint.Lg, "table-responsive-lg")]
     [InlineData(BsTableBreakpoint.Xl, "table-responsive-xl")]
     [InlineData(BsTableBreakpoint.Xxl, "table-responsive-xxl")]
-    public void TableOptionsWorks(BsTableBreakpoint options, string expectedClass)
+    public void TableOptionsWorks(BsTableBreakpoint options, string? expectedClass)
     {
         // Arrange + Act
         var cut = GetCut(parameters => parameters.Add(p => p.Breakpoint, options));

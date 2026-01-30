@@ -12,7 +12,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.Xxl, "col-xxl")]
     public void ColumnBreakpointOptionsGenerateCorrectClass(
         BsColumnOptions breakpointColumnOptions,
-        string expectedClass
+        string? expectedClass
     )
     {
         var generatedClass = breakpointColumnOptions.ToBootstrapColClass();
@@ -33,7 +33,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.Col11, "col-11")]
     [InlineData(BsColumnOptions.Col12, "col-12")]
     [InlineData(BsColumnOptions.ColAuto, "col-auto")]
-    public void ColumnWidthOptionsGenerateCorrectClass(BsColumnOptions columnWidthOptions, string expectedClass)
+    public void ColumnWidthOptionsGenerateCorrectClass(BsColumnOptions columnWidthOptions, string? expectedClass)
     {
         var generatedClass = columnWidthOptions.ToBootstrapColClass();
         Assert.Equal(expectedClass, generatedClass);
@@ -47,7 +47,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.ColLg7, "col-lg-7")]
     [InlineData(BsColumnOptions.ColXl7, "col-xl-7")]
     [InlineData(BsColumnOptions.ColXxl1, "col-xxl-1")]
-    public void ComposedColumnOptionsGenerateCorrectClass(BsColumnOptions composedOptions, string expectedClass)
+    public void ComposedColumnOptionsGenerateCorrectClass(BsColumnOptions composedOptions, string? expectedClass)
     {
         var generatedClass = composedOptions.ToBootstrapColClass();
         Assert.Equal(expectedClass, generatedClass);
@@ -61,7 +61,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.Xxl, "offset-xxl")]
     public void OffsetBreakpointOptionsGenerateCorrectClass(
         BsColumnOptions breakpointColumnOptions,
-        string expectedClass
+        string? expectedClass
     )
     {
         var generatedClass = breakpointColumnOptions.ToBootstrapOffsetClass();
@@ -82,7 +82,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.Col11, "offset-11")]
     [InlineData(BsColumnOptions.Col12, "offset-12")]
     [InlineData(BsColumnOptions.ColAuto, "offset-auto")]
-    public void OffsetWidthOptionsGenerateCorrectClass(BsColumnOptions columnWidthOptions, string expectedClass)
+    public void OffsetWidthOptionsGenerateCorrectClass(BsColumnOptions columnWidthOptions, string? expectedClass)
     {
         var generatedClass = columnWidthOptions.ToBootstrapOffsetClass();
         Assert.Equal(expectedClass, generatedClass);
@@ -96,7 +96,7 @@ public class ColumnOptionsExtensionsTests
     [InlineData(BsColumnOptions.ColLg7, "offset-lg-7")]
     [InlineData(BsColumnOptions.ColXl7, "offset-xl-7")]
     [InlineData(BsColumnOptions.ColXxl1, "offset-xxl-1")]
-    public void ComposedOffsetOptionsGenerateCorrectClass(BsColumnOptions composedOptions, string expectedClass)
+    public void ComposedOffsetOptionsGenerateCorrectClass(BsColumnOptions composedOptions, string? expectedClass)
     {
         var generatedClass = composedOptions.ToBootstrapOffsetClass();
         Assert.Equal(expectedClass, generatedClass);

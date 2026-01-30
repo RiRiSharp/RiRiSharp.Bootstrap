@@ -8,11 +8,11 @@ public enum BsCarouselTransitionType
 
 internal static class BsCarouselTransitionTypeExtensions
 {
-    internal static string ToBootstrapClass(this BsCarouselTransitionType transitionType)
+    internal static string? ToBootstrapClass(this BsCarouselTransitionType transitionType)
     {
         return transitionType switch
         {
-            BsCarouselTransitionType.Slide => "",
+            BsCarouselTransitionType.Slide => null,
             BsCarouselTransitionType.Crossfade => "carousel-fade",
             _ => throw new ArgumentOutOfRangeException(nameof(transitionType), transitionType, null),
         };

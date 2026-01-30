@@ -10,5 +10,5 @@ public partial class BsNavbarNav : BsChildContentComponent
     [Parameter]
     public NavbarScrollingMode ScrollingMode { get; set; }
 
-    private string ModeClass => ScrollingMode.ToBootstrapClass();
+    private string? ModeClass => ScrollingMode.ToBootstrapClass();
 }

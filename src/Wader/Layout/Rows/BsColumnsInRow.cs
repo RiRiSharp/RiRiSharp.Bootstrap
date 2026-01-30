@@ -20,11 +20,11 @@ public enum BsColumnsInRow
 
 internal static class RowOptsExtensions
 {
-    internal static string ToBootstrapClass(this BsColumnsInRow options)
+    internal static string? ToBootstrapClass(this BsColumnsInRow options)
     {
         return options switch
         {
-            BsColumnsInRow.None => "",
+            BsColumnsInRow.None => null,
             BsColumnsInRow.Cols1 => "row-cols-1",
             BsColumnsInRow.Cols2 => "row-cols-2",
             BsColumnsInRow.Cols3 => "row-cols-3",

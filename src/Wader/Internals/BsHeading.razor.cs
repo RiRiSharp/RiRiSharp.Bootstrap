@@ -5,7 +5,7 @@ namespace Wader.Internals;
 
 public partial class BsHeading : BsChildContentComponent
 {
-    protected override string BsComponentClasses => "";
+    protected override string? BsComponentClasses => null;
 
     [Parameter, EditorRequired]
     public int Value { get; set; } = 1;

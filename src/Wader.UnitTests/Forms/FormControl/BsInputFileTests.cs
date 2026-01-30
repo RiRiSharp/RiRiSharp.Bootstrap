@@ -78,7 +78,7 @@ public class BsInputFileTests : BunitContext
     [InlineData(BsFormSize.Regular, "")]
     [InlineData(BsFormSize.Small, "form-control-sm")]
     [InlineData(BsFormSize.Large, "form-control-lg")]
-    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string expectedClass)
+    public void PassingParametersRendersIntoCorrectBsClass(BsFormSize formSize, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

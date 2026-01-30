@@ -8,11 +8,11 @@ public enum BsAccordionDisplayStyle
 
 internal static class BsAccordionDisplayStyleExtensions
 {
-    internal static string ToBootstrapClass(this BsAccordionDisplayStyle style)
+    internal static string? ToBootstrapClass(this BsAccordionDisplayStyle style)
     {
         return style switch
         {
-            BsAccordionDisplayStyle.Regular => "",
+            BsAccordionDisplayStyle.Regular => null,
             BsAccordionDisplayStyle.Flush => "accordion-flush",
             _ => throw new ArgumentOutOfRangeException(nameof(style), style, null),
         };

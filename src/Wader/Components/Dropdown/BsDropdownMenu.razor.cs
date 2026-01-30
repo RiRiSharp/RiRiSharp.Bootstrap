@@ -12,5 +12,5 @@ public partial class BsDropdownMenu : BsChildContentComponent
     [Parameter]
     public BsDirection Direction { get; set; } = BsDirection.Start;
 
-    private string DirectionClass => Direction.ToDropdownBootstrapClass();
+    private string? DirectionClass => Direction.ToDropdownBootstrapClass();
 }

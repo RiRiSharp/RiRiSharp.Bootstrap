@@ -30,7 +30,7 @@ public class BsListGroupItemTests() : BsComponentTests<BsListGroupItem>("""<li c
     [InlineData(BsListGroupItemVariant.Info, "list-group-item-info")]
     [InlineData(BsListGroupItemVariant.Light, "list-group-item-light")]
     [InlineData(BsListGroupItemVariant.Dark, "list-group-item-dark")]
-    public void VariantAddsCorrectClass(BsListGroupItemVariant variant, string expectedClass)
+    public void VariantAddsCorrectClass(BsListGroupItemVariant variant, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -46,7 +46,7 @@ public class BsListGroupItemTests() : BsComponentTests<BsListGroupItem>("""<li c
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "active")]
-    public void ActiveAddsCorrectClass(bool isActive, string expectedClass)
+    public void ActiveAddsCorrectClass(bool isActive, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -62,7 +62,7 @@ public class BsListGroupItemTests() : BsComponentTests<BsListGroupItem>("""<li c
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "disabled")]
-    public void DisabledAddsCorrectClass(bool isDisabled, string expectedClass)
+    public void DisabledAddsCorrectClass(bool isDisabled, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

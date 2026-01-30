@@ -7,7 +7,7 @@ public class BsNavbarNavTests() : BsComponentTests<BsNavbarNav>("""<ul class="na
     [Theory]
     [InlineData(NavbarScrollingMode.Regular, "")]
     [InlineData(NavbarScrollingMode.EnableVerticalScrolling, "navbar-nav-scroll")]
-    public void ScrollingModeAddsCorrectClass(NavbarScrollingMode mode, string expectedClass)
+    public void ScrollingModeAddsCorrectClass(NavbarScrollingMode mode, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

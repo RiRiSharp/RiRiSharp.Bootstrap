@@ -11,7 +11,7 @@ public partial class BsModalDialog : BsChildContentComponent
     [Parameter]
     public BsModalScrollOptions ScrollOptions { get; set; }
 
-    private string ScrollOptionsClass => ScrollOptions.ToBootstrapClass();
+    private string? ScrollOptionsClass => ScrollOptions.ToBootstrapClass();
 
     [Parameter]
     public BsModalPosition Position { get; set; }
@@ -20,7 +20,7 @@ public partial class BsModalDialog : BsChildContentComponent
     [Parameter]
     public BsModalFullScreenOptions FullScreen { get; set; }
 
-    private string FullScreenClass => FullScreen.ToBootstrapClass();
+    private string? FullScreenClass => FullScreen.ToBootstrapClass();
 
-    private string PositionClass => Position.ToBootstrapClass();
+    private string? PositionClass => Position.ToBootstrapClass();
 }

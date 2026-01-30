@@ -10,5 +10,5 @@ public partial class BsBreadcrumbItem : BsChildContentComponent
     [Parameter]
     public bool Active { get; set; }
 
-    private string ActiveClass => Active ? "active" : "";
+    private string? ActiveClass => Active ? "active" : null;
 }

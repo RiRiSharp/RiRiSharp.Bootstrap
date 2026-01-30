@@ -5,7 +5,7 @@ namespace Wader.Forms;
 
 public partial class BsOption<TValue> : BsChildContentComponent
 {
-    protected override string BsComponentClasses => "";
+    protected override string? BsComponentClasses => null;
 
     [Parameter]
     public TValue? Value { get; set; }

@@ -8,11 +8,11 @@ public enum BsModalScrollOptions
 
 internal static class BsModalScrollOptionsExtensions
 {
-    internal static string ToBootstrapClass(this BsModalScrollOptions options)
+    internal static string? ToBootstrapClass(this BsModalScrollOptions options)
     {
         return options switch
         {
-            BsModalScrollOptions.WholePage => "",
+            BsModalScrollOptions.WholePage => null,
             BsModalScrollOptions.DialogOnly => "modal-dialog-scrollable",
             _ => throw new ArgumentOutOfRangeException(nameof(options), options, null),
         };

@@ -24,11 +24,11 @@ public enum BsButtonVariant
 
 internal static class BsButtonVariantExtensions
 {
-    internal static string ToBootstrapClass(this BsButtonVariant variant)
+    internal static string? ToBootstrapClass(this BsButtonVariant variant)
     {
         return variant switch
         {
-            BsButtonVariant.None => "",
+            BsButtonVariant.None => null,
             BsButtonVariant.Primary => "btn-primary",
             BsButtonVariant.Secondary => "btn-secondary",
             BsButtonVariant.Success => "btn-success",

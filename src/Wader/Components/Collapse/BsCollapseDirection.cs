@@ -8,11 +8,11 @@ public enum BsCollapseDirection
 
 internal static class BsCollapseDirectionExtensions
 {
-    internal static string ToBootstrapClass(this BsCollapseDirection collapseDirection)
+    internal static string? ToBootstrapClass(this BsCollapseDirection collapseDirection)
     {
         return collapseDirection switch
         {
-            BsCollapseDirection.Vertical => "",
+            BsCollapseDirection.Vertical => null,
             BsCollapseDirection.Horizontal => "collapse-horizontal",
             _ => throw new ArgumentOutOfRangeException(nameof(collapseDirection), collapseDirection, null),
         };

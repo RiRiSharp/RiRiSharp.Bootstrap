@@ -8,11 +8,11 @@ public enum NavbarScrollingMode
 
 internal static class NavbarScrollingModeExtensions
 {
-    internal static string ToBootstrapClass(this NavbarScrollingMode mode)
+    internal static string? ToBootstrapClass(this NavbarScrollingMode mode)
     {
         return mode switch
         {
-            NavbarScrollingMode.Regular => "",
+            NavbarScrollingMode.Regular => null,
             NavbarScrollingMode.EnableVerticalScrolling => "navbar-nav-scroll",
             _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null),
         };

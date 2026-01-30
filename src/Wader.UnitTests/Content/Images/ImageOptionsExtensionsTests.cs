@@ -16,7 +16,7 @@ public class ImageOptionsExtensionsTests
         BsImageOptions.Fluid | BsImageOptions.Thumbnail | BsImageOptions.Rounded | BsImageOptions.Figure,
         "img-fluid img-thumbnail rounded figure-img"
     )]
-    public void ImageOptionsGeneratesCorrectClasses(BsImageOptions imageOptions, string expectedClass)
+    public void ImageOptionsGeneratesCorrectClasses(BsImageOptions imageOptions, string? expectedClass)
     {
         var generatedClass = imageOptions.ToBootstrapClass();
         Assert.Equal(expectedClass, generatedClass);

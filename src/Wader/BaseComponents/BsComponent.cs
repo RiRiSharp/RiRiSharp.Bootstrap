@@ -6,7 +6,7 @@ namespace Wader.BaseComponents;
 public abstract class BsComponent : ComponentBase, IBsComponent
 {
     private Dictionary<string, object>? _renderAttributes;
-    protected abstract string BsComponentClasses { get; }
+    protected abstract string? BsComponentClasses { get; }
 
     protected IReadOnlyDictionary<string, object>? RenderAttributes => _renderAttributes;
 

@@ -11,7 +11,7 @@ public class BsAccordionTests() : BsComponentTests<BsAccordion>("""<div class="a
     [Theory]
     [InlineData(BsAccordionDisplayStyle.Regular, "")]
     [InlineData(BsAccordionDisplayStyle.Flush, "accordion-flush")]
-    public void DisplayStyleWorksCorrectly(BsAccordionDisplayStyle displayStyle, string expectedClass)
+    public void DisplayStyleWorksCorrectly(BsAccordionDisplayStyle displayStyle, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

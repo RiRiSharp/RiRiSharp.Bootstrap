@@ -14,11 +14,11 @@ public enum BsColumnOrder
 
 internal static class ColumnOrderExtensions
 {
-    internal static string ToBootstrapClass(this BsColumnOrder options)
+    internal static string? ToBootstrapClass(this BsColumnOrder options)
     {
         return options switch
         {
-            BsColumnOrder.Default => "",
+            BsColumnOrder.Default => null,
             BsColumnOrder.Order1 => "order-1",
             BsColumnOrder.Order2 => "order-2",
             BsColumnOrder.Order3 => "order-3",

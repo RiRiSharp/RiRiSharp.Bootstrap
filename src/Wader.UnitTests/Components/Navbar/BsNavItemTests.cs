@@ -7,7 +7,7 @@ public class BsNavItemTests() : BsComponentTests<BsNavItem>("""<li class="nav-it
     [Theory]
     [InlineData(BsDropdownOptions.NoDropdown, "")]
     [InlineData(BsDropdownOptions.WithDropdown, "dropdown")]
-    public void OptionsAddsCorrectClass(BsDropdownOptions options, string expectedClass)
+    public void OptionsAddsCorrectClass(BsDropdownOptions options, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

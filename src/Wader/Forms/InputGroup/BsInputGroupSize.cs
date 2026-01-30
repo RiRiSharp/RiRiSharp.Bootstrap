@@ -9,11 +9,11 @@ public enum BsInputGroupSize
 
 internal static class InputGroupSizeExtensions
 {
-    internal static string ToBootstrapClass(this BsInputGroupSize size)
+    internal static string? ToBootstrapClass(this BsInputGroupSize size)
     {
         return size switch
         {
-            BsInputGroupSize.Regular => "",
+            BsInputGroupSize.Regular => null,
             BsInputGroupSize.Small => "input-group-sm",
             BsInputGroupSize.Large => "input-group-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(size), size, null),

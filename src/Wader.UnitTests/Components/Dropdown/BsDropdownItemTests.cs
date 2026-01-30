@@ -9,7 +9,7 @@ public class BsDropdownItemTests()
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "active")]
-    public void ActiveAddsCorrectClass(bool isActive, string expectedClass)
+    public void ActiveAddsCorrectClass(bool isActive, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -25,7 +25,7 @@ public class BsDropdownItemTests()
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "disabled")]
-    public void DisabledAddsCorrectClass(bool isDisabled, string expectedClass)
+    public void DisabledAddsCorrectClass(bool isDisabled, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

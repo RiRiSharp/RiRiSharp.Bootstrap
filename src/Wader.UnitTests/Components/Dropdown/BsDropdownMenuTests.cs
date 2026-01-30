@@ -8,7 +8,7 @@ public class BsDropdownMenuTests() : BsComponentTests<BsDropdownMenu>("""<ul cla
     [Theory]
     [InlineData(BsDirection.Start, "")]
     [InlineData(BsDirection.End, "dropdown-menu-end")]
-    public void MenuDirectionAddsCorrectClass(BsDirection direction, string expectedClass)
+    public void MenuDirectionAddsCorrectClass(BsDirection direction, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

@@ -23,7 +23,7 @@ public class BsListGroupTests() : BsComponentTests<BsListGroup>("""<div class="l
     [Theory]
     [InlineData(BsListGroupDirection.Vertical, "")]
     [InlineData(BsListGroupDirection.Horizontal, "list-group-horizontal")]
-    public void DirectionAddsCorrectClass(BsListGroupDirection direction, string expectedClass)
+    public void DirectionAddsCorrectClass(BsListGroupDirection direction, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -39,7 +39,7 @@ public class BsListGroupTests() : BsComponentTests<BsListGroup>("""<div class="l
     [Theory]
     [InlineData(BsListGroupMode.Regular, "")]
     [InlineData(BsListGroupMode.Flush, "list-group-flush")]
-    public void ModeAddsCorrectClass(BsListGroupMode dropdownMode, string expectedClass)
+    public void ModeAddsCorrectClass(BsListGroupMode dropdownMode, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

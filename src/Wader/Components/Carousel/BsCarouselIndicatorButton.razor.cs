@@ -6,7 +6,7 @@ namespace Wader.Components.Carousel;
 
 public partial class BsCarouselIndicatorButton : BsComponent, IBsChildContentComponent
 {
-    protected override string BsComponentClasses => ActiveClass;
+    protected override string? BsComponentClasses => ActiveClass;
 
     [CascadingParameter]
     private IBsCarouselContext? CarouselContext { get; set; }
@@ -15,9 +15,9 @@ public partial class BsCarouselIndicatorButton : BsComponent, IBsChildContentCom
     public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public bool IsActive { get; set; }
+    public bool Active { get; set; }
 
-    private string ActiveClass => IsActive ? "active" : "";
+    private string? ActiveClass => Active ? "active" : null;
 
     [Parameter]
     // Zero based index

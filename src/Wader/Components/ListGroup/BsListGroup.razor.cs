@@ -10,15 +10,15 @@ public partial class BsListGroup : BsChildContentComponent
     [Parameter]
     public BsListType Type { get; set; }
 
-    private string TypeClass => Type.ToBootstrapClass();
+    private string? TypeClass => Type.ToBootstrapClass();
 
     [Parameter]
     public BsListGroupDirection Direction { get; set; }
 
-    private string DirectionClass => Direction.ToBootstrapClass();
+    private string? DirectionClass => Direction.ToBootstrapClass();
 
     [Parameter]
     public BsListGroupMode Mode { get; set; }
 
-    private string ModeClass => Mode.ToBootstrapClass();
+    private string? ModeClass => Mode.ToBootstrapClass();
 }

@@ -16,12 +16,12 @@ public partial class BsCollapse : BsChildContentComponent, IAsyncDisposable
     [Parameter]
     public bool Show { get; set; }
 
-    private string ShowClass => Show ? "show" : "";
+    private string? ShowClass => Show ? "show" : null;
 
     [Inject]
     private IBsCollapseJsFunctions CollapseJsFunctions { get; set; } = null!;
 
-    private string DirectionClass => Direction.ToBootstrapClass();
+    private string? DirectionClass => Direction.ToBootstrapClass();
 
     public async ValueTask DisposeAsync()
     {

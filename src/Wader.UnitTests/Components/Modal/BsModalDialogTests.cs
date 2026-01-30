@@ -7,7 +7,7 @@ public class BsModalDialogTests() : BsComponentTests<BsModalDialog>("""<div clas
     [Theory]
     [InlineData(BsModalScrollOptions.WholePage, "")]
     [InlineData(BsModalScrollOptions.DialogOnly, "modal-dialog-scrollable")]
-    public void ScrollableAddsCorrectClass(BsModalScrollOptions scrollOptions, string expectedClass)
+    public void ScrollableAddsCorrectClass(BsModalScrollOptions scrollOptions, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -23,7 +23,7 @@ public class BsModalDialogTests() : BsComponentTests<BsModalDialog>("""<div clas
     [Theory]
     [InlineData(BsModalPosition.Top, "")]
     [InlineData(BsModalPosition.VerticallyCentered, "modal-dialog-centered")]
-    public void VerticallyCenteredAddsCorrectClass(BsModalPosition position, string expectedClass)
+    public void VerticallyCenteredAddsCorrectClass(BsModalPosition position, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();
@@ -39,7 +39,7 @@ public class BsModalDialogTests() : BsComponentTests<BsModalDialog>("""<div clas
     [Theory]
     [InlineData(BsModalFullScreenOptions.Disable, "")]
     [InlineData(BsModalFullScreenOptions.Enable, "modal-fullscreen")]
-    public void FullscreenAddsCorrectClass(BsModalFullScreenOptions fullScreenOptions, string expectedClass)
+    public void FullscreenAddsCorrectClass(BsModalFullScreenOptions fullScreenOptions, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

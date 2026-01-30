@@ -7,7 +7,7 @@ public class BsTableBodyTests() : BsComponentTests<BsTableBody>("""<tbody class=
     [Theory]
     [InlineData(false, "")]
     [InlineData(true, "table-group-divider")]
-    public void DividerGeneratesCorrectClass(bool hasDivider, string expectedClass)
+    public void DividerGeneratesCorrectClass(bool hasDivider, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

@@ -47,7 +47,7 @@ public class BsModalTests() : BsComponentTests<BsModal>("""<div class="modal {0}
     [Theory]
     [InlineData(true, "fade")]
     [InlineData(false, "")]
-    public void FadingAddsCorrectClass(bool fade, string expectedClass)
+    public void FadingAddsCorrectClass(bool fade, string? expectedClass)
     {
         // Arrange
         ConfigureTestContext();

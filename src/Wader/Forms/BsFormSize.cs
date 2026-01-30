@@ -9,11 +9,11 @@ public enum BsFormSize
 
 internal static class FormSizeExtensions
 {
-    internal static string ToBootstrapClass(this BsFormSize formSize)
+    internal static string? ToBootstrapClass(this BsFormSize formSize)
     {
         return formSize switch
         {
-            BsFormSize.Regular => "",
+            BsFormSize.Regular => null,
             BsFormSize.Small => "form-control-sm",
             BsFormSize.Large => "form-control-lg",
             _ => throw new ArgumentOutOfRangeException(nameof(formSize), formSize, null),

@@ -15,11 +15,11 @@ public enum BsListGroupItemVariant
 
 internal static class BsListGroupItemVariantExtensions
 {
-    internal static string ToBootstrapClass(this BsListGroupItemVariant variant)
+    internal static string? ToBootstrapClass(this BsListGroupItemVariant variant)
     {
         return variant switch
         {
-            BsListGroupItemVariant.None => "",
+            BsListGroupItemVariant.None => null,
             BsListGroupItemVariant.Primary => "list-group-item-primary",
             BsListGroupItemVariant.Secondary => "list-group-item-secondary",
             BsListGroupItemVariant.Success => "list-group-item-success",
